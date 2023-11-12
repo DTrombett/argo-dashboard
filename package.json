@@ -9,7 +9,7 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-		"lint": "prettier --write ** next lint"
+		"lint": "prettier --write ** && next lint"
 	},
 	"dependencies": {
 		"@fortawesome/fontawesome-svg-core": "^6.4.2",
