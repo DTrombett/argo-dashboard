@@ -11,7 +11,7 @@ const PageContent = ({ accessToken }: { accessToken?: string }) => {
 	return state == null ? (
 		<LoginForm action={formAction} />
 	) : typeof state === "string" ? (
-		<Utilities accessToken={state} />
+		<Utilities accessToken={state} formAction={formAction} />
 	) : (
 		<div>
 			<ErrorMessage message={state.message} errors={state.errors} />

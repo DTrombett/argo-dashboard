@@ -33,11 +33,27 @@ const validate = ajv.compile<{
 	},
 	required: ["schoolCode", "username", "password"],
 });
+const clients: Record<string, Client | undefined> = {};
+
+export const logOut = async () => {
+	const cookie = cookies();
+	const accessToken = cookie.get("accessToken")?.value;
+
+	cookie.delete("accessToken");
+	if (accessToken != null) {
+		await clients[accessToken]?.rimuoviProfilo().catch(console.error);
+		delete clients[accessToken];
+	}
+};
 
 export const login = async (
-	_currentState: LoginResponse,
+	currentState: LoginResponse,
 	formData: FormData
 ): Promise<LoginResponse> => {
+	if (typeof currentState === "string") {
+		await logOut();
+		return undefined;
+	}
 	const data = {
 		schoolCode: formData.get("schoolCode"),
 		username: formData.get("username"),
@@ -60,6 +76,7 @@ export const login = async (
 	client = await client.login().catch(() => undefined);
 	if (!client?.token)
 		return { message: "Controlla le tue credenziali d'accesso" };
+	clients[client.token.accessToken] = client;
 	cookies().set("accessToken", client.token.accessToken);
 	return client.token.accessToken;
 };
