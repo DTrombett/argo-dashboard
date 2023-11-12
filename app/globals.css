@@ -16,3 +16,8 @@
 ::-webkit-scrollbar-thumb:active {
 	background-color: #bfbfbf;
 }
+
+.eye {
+	margin-left: -3rem;
+	top: -1.5px;
+}

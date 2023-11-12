@@ -11,12 +11,16 @@ module.exports = {
 			},
 		},
 		"@fullhuman/postcss-purgecss": {
-			content: ["./**/*.{js,jsx,ts,tsx}"],
+			content: [
+				"./pages/**/*.{js,ts,jsx,tsx,mdx}",
+				"./components/**/*.{js,ts,jsx,tsx,mdx}",
+				"./app/**/*.{js,ts,jsx,tsx,mdx}",
+			],
 			defaultExtractor: (/** @type {string} */ content) =>
 				content.match(/[\w-/:]+(?<!:)/g) || [],
 			safelist: ["html", "body"],
 		},
-		"tailwindcss": {},
-		"autoprefixer": {},
+		tailwindcss: {},
+		autoprefixer: {},
 	},
 };
