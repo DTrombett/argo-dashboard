@@ -1,3 +1,5 @@
+@tailwind components;
+
 ::-webkit-scrollbar {
 	width: 15px;
 }
@@ -20,4 +22,10 @@
 .eye {
 	margin-left: -3rem;
 	top: -1.5px;
+}
+
+@layer components {
+	.input {
+		@apply p-4 m-2 rounded outline-none duration-200 bg-zinc-200 dark:bg-zinc-800 text-2xl hover:bg-opacity-80;
+	}
 }

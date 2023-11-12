@@ -12,7 +12,7 @@ const PasswordField = () => {
 		<div>
 			<input
 				autoComplete="current-password"
-				className="p-4 m-2 rounded outline-none duration-200 bg-zinc-200 dark:bg-zinc-800 text-2xl hover:bg-opacity-80"
+				className="input"
 				name="password"
 				placeholder="Password"
 				type={show ? "text" : "password"}
