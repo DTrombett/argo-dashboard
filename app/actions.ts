@@ -1,9 +1,16 @@
 "use server";
 import Ajv from "ajv";
 import { fastUri } from "fast-uri";
-import { cookies } from "next/headers";
 import { env } from "node:process";
 import { Client } from "portaleargo-api";
+
+type LoginResponse =
+	| {
+			message: string;
+			errors?: string[];
+	  }
+	| string
+	| null;
 
 const ajv = new Ajv({
 	allErrors: true,
@@ -26,7 +33,10 @@ const validate = ajv.compile<{
 	required: ["schoolCode", "username", "password"],
 });
 
-export const login = async (formData: FormData) => {
+export const login = async (
+	_currentState: LoginResponse,
+	formData: FormData
+): Promise<LoginResponse> => {
 	const data = {
 		schoolCode: formData.get("schoolCode"),
 		username: formData.get("username"),
@@ -40,32 +50,13 @@ export const login = async (formData: FormData) => {
 				(err) => `body${err.instancePath.replaceAll("/", ".")} ${err.message!}`
 			),
 		};
-	const store = cookies();
-	const client = new Client({
+	let client: Client | undefined = new Client({
 		debug: env.NODE_ENV === "development",
-		dataProvider: {
-			read: (name) => {
-				const value = store.get(name)?.value;
-
-				if (value === undefined) return undefined;
-				try {
-					// eslint-disable-next-line @typescript-eslint/no-unsafe-return
-					return JSON.parse(value);
-				} catch (err) {
-					console.error(err);
-					return undefined;
-				}
-			},
-			write: async (name, writeData) => {
-				// store.set(name, JSON.stringify(writeData));
-			},
-			reset: async () => {
-				for (const cookie of store.getAll()) store.delete(cookie.name);
-			},
-		},
+		dataProvider: null,
 		...data,
 	});
 
-	await client.login();
-	console.log("successful login");
+	client = await client.login().catch(() => undefined);
+	if (!client?.token) return { message: "Login failed" };
+	return client.token.accessToken;
 };
