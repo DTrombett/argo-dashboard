@@ -10,8 +10,7 @@ type LoginResponse =
 			message: string;
 			errors?: string[];
 	  }
-	| string
-	| undefined;
+	| boolean;
 
 const ajv = new Ajv({
 	allErrors: true,
@@ -33,7 +32,7 @@ const validate = ajv.compile<{
 	},
 	required: ["schoolCode", "username", "password"],
 });
-const clients: Record<string, Client | undefined> = {};
+const clients: Partial<Record<string, Client>> = {};
 
 export const logOut = async () => {
 	const cookie = cookies();
@@ -50,9 +49,9 @@ export const login = async (
 	currentState: LoginResponse,
 	formData: FormData
 ): Promise<LoginResponse> => {
-	if (typeof currentState === "string") {
+	if (currentState === true) {
 		await logOut();
-		return undefined;
+		return false;
 	}
 	const data = {
 		schoolCode: formData.get("schoolCode"),
@@ -77,8 +76,15 @@ export const login = async (
 	if (!client?.token)
 		return { message: "Controlla le tue credenziali d'accesso" };
 	clients[client.token.accessToken] = client;
-	cookies().set("accessToken", client.token.accessToken);
-	return client.token.accessToken;
+	cookies().set({
+		name: "accessToken",
+		value: client.token.accessToken,
+		maxAge: 2147483647,
+		priority: "high",
+		sameSite: "strict",
+		secure: true,
+	});
+	return true;
 };
 
 export const getCookie = (name: string) => cookies().get(name)?.value;

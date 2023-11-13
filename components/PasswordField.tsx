@@ -1,4 +1,3 @@
-"use client";
 import { faEye } from "@fortawesome/free-regular-svg-icons/faEye";
 import { faEyeSlash } from "@fortawesome/free-regular-svg-icons/faEyeSlash";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

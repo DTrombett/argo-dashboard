@@ -1,17 +1,26 @@
 "use client";
 import { login } from "@/app/actions";
+import dynamic from "next/dynamic";
 import { useFormState } from "react-dom";
-import ErrorMessage from "./ErrorMessage";
-import LoginForm from "./LoginForm";
-import Utilities from "./Utilities";
+import Loading from "./Loading";
 
-const PageContent = ({ accessToken }: { accessToken?: string }) => {
-	const [state, formAction] = useFormState(login, accessToken);
+const LoginForm = dynamic(() => import("./LoginForm"), {
+	loading: Loading,
+});
+const Utilities = dynamic(() => import("./Utilities"), {
+	loading: Loading,
+});
+const ErrorMessage = dynamic(() => import("./ErrorMessage"), {
+	loading: Loading,
+});
 
-	return state == null ? (
+const PageContent = ({ loggedIn }: { loggedIn: boolean }) => {
+	const [state, formAction] = useFormState(login, loggedIn);
+
+	return state === false ? (
 		<LoginForm action={formAction} />
-	) : typeof state === "string" ? (
-		<Utilities accessToken={state} formAction={formAction} />
+	) : state === true ? (
+		<Utilities formAction={formAction} />
 	) : (
 		<div>
 			<ErrorMessage message={state.message} errors={state.errors} />
