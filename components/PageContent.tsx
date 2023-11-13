@@ -7,25 +7,20 @@ import Loading from "./Loading";
 const LoginForm = dynamic(() => import("./LoginForm"), {
 	loading: Loading,
 });
-const Utilities = dynamic(() => import("./Utilities"), {
-	loading: Loading,
-});
 const ErrorMessage = dynamic(() => import("./ErrorMessage"), {
 	loading: Loading,
 });
 
-const PageContent = ({ loggedIn }: { loggedIn: boolean }) => {
-	const [state, formAction] = useFormState(login, loggedIn);
+const PageContent = () => {
+	const [state, formAction] = useFormState(login, undefined);
 
-	return state === false ? (
-		<LoginForm action={formAction} />
-	) : state === true ? (
-		<Utilities formAction={formAction} />
-	) : (
+	return state ? (
 		<div>
 			<ErrorMessage message={state.message} errors={state.errors} />
 			<LoginForm action={formAction} />
 		</div>
+	) : (
+		<LoginForm action={formAction} />
 	);
 };
 
