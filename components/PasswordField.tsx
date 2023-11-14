@@ -23,6 +23,7 @@ const PasswordField = () => {
 					event.preventDefault();
 					setShow(!show);
 				}}
+				aria-label={`${show ? "Nascondi" : "Mostra"} password`}
 			>
 				<FontAwesomeIcon icon={show ? faEyeSlash : faEye} />
 			</button>
