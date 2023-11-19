@@ -140,13 +140,13 @@ export const login = async (
 				(err) => `body${err.instancePath.replaceAll("/", ".")} ${err.message!}`
 			),
 		};
-	let client: Client | undefined = new Client({
+	let client: Client | void = new Client({
 		debug: env.NODE_ENV === "development",
 		dataProvider: null,
 		...data,
 	});
 
-	client = await client.login().catch(() => undefined);
+	client = await client.login().catch(console.error);
 	if (!client?.token)
 		return { message: "Controlla le tue credenziali d'accesso" };
 	clients[client.token.access_token] = client;
