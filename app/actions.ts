@@ -5,8 +5,8 @@ import type { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { env } from "node:process";
-import type { Jsonify } from "portaleargo-api";
-import { Client, Token } from "portaleargo-api";
+import type { Jsonify, Token } from "portaleargo-api";
+import { Client } from "portaleargo-api";
 
 type LoginResponse =
 	| {
@@ -38,20 +38,22 @@ const validateCredentials = ajv.compile<{
 const validateToken = ajv.compile<Jsonify<Token>>({
 	type: "object",
 	properties: {
-		accessToken: { type: "string" },
 		expireDate: { type: "string" },
-		idToken: { type: "string" },
-		refreshToken: { type: "string" },
-		scopes: { type: "array", items: { type: "string" } },
-		tokenType: { type: "string" },
+		access_token: { type: "string" },
+		expires_in: { type: "integer" },
+		id_token: { type: "string" },
+		refresh_token: { type: "string" },
+		scope: { type: "string" },
+		token_type: { type: "string" },
 	},
 	required: [
-		"accessToken",
 		"expireDate",
-		"idToken",
-		"refreshToken",
-		"scopes",
-		"tokenType",
+		"access_token",
+		"expires_in",
+		"id_token",
+		"refresh_token",
+		"scope",
+		"token_type",
 	],
 });
 const clients: Partial<Record<string, Client>> = {};
@@ -72,7 +74,7 @@ const setClientCookies = (
 			value: typeof token === "string" ? token : JSON.stringify(token),
 		});
 };
-export const getClientToken = () => {
+export const getClientToken = (): Token | undefined => {
 	const value = cookies().get("token")?.value;
 
 	if (value == null) return undefined;
@@ -84,29 +86,29 @@ export const getClientToken = () => {
 		return undefined;
 	}
 	if (!validateToken(token)) return undefined;
-	return token;
+	return { ...token, expireDate: new Date(token.expireDate) };
 };
 const getClient = async () => {
 	const token = getClientToken();
 
 	if (!token) return undefined;
-	let client = clients[token.accessToken];
+	let client = clients[token.access_token];
 
 	if (client) {
 		if (client.isReady()) return client;
 		client = await client.login().catch(() => undefined);
 		if (client) return client;
-		delete clients[token.accessToken];
+		delete clients[token.access_token];
 	}
 	client = new Client({
 		debug: env.NODE_ENV === "development",
 		dataProvider: null,
 	});
-	client.token = new Token(token, client);
+	client.token = token;
 	return client
 		.login()
 		.then((c) => {
-			clients[token.accessToken] = c;
+			clients[token.access_token] = c;
 			return c;
 		})
 		.catch(() => undefined);
@@ -116,8 +118,8 @@ export const logOut = async () => {
 
 	cookies().delete("token");
 	if (token != null) {
-		await clients[token.accessToken]?.rimuoviProfilo().catch(console.error);
-		delete clients[token.accessToken];
+		await clients[token.access_token]?.rimuoviProfilo().catch(console.error);
+		delete clients[token.access_token];
 	}
 	redirect("/");
 };
@@ -147,14 +149,30 @@ export const login = async (
 	client = await client.login().catch(() => undefined);
 	if (!client?.token)
 		return { message: "Controlla le tue credenziali d'accesso" };
-	clients[client.token.accessToken] = client;
+	clients[client.token.access_token] = client;
 	setClientCookies(cookies(), client.token);
 	return redirect("/dashboard");
 };
 export const getDashboard = async () => {
+	// return {
+	// 	dashboard: JSON.parse(
+	// 		await readFile(
+	// 			"C:/Users/acer/Progetti/nextjs/argo-dashboard/dashboard.json",
+	// 			{ encoding: "utf-8" }
+	// 		)
+	// 	) as Dashboard,
+	// 	token: getClientToken(),
+	// };
 	const client = await getClient();
 
-	return { dashboard: client?.dashboard, token: client?.token };
+	// if (client)
+	// 	await writeFile(
+	// 		"C:/Users/acer/Progetti/nextjs/argo-dashboard/dashboard.json",
+	// 		JSON.stringify(client.dashboard)
+	// 	);
+	return client
+		? { dashboard: client.dashboard!, token: client.token! }
+		: { dashboard: undefined, token: undefined };
 };
 export const setCookies = (token?: Token | string) => {
 	setClientCookies(cookies(), token);

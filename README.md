@@ -1,3 +1,3 @@
-# Registro
+# Argo Dashboard
 
-Utilità per il registro elettronico Argo
+Dashboard per il registro elettronico Argo

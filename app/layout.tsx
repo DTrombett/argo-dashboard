@@ -1,17 +1,13 @@
 import type { Metadata } from "next";
-import { Noto_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import "tailwindcss/tailwind.css";
 import "./globals.css";
 
-const font = Noto_Sans({
-	weight: "400",
-	subsets: ["latin"],
-	display: "swap",
-});
+const poppinsRegular = localFont({ src: "../public/Poppins-Regular.ttf" });
 
 export const metadata: Metadata = {
-	title: "Registro",
-	description: "Utilità per il registro elettronico Argo!",
+	title: "Argo Dashboard",
+	description: "Dashboard per il registro elettronico Argo!",
 	authors: [{ name: "D Trombett", url: "https://github.com/DTrombett" }],
 	creator: "D Trombett",
 	generator: "Next.js",
@@ -26,7 +22,7 @@ export default function RootLayout({
 	return (
 		<html lang="it">
 			<body
-				className={`h-screen bg-zinc-100 dark:bg-zinc-900 text-black dark:text-white ${font.className}`}
+				className={`h-screen bg-zinc-100 dark:bg-zinc-900 text-black dark:text-white ${poppinsRegular.className}`}
 			>
 				{children}
 			</body>

@@ -8,7 +8,7 @@ const Home = () => {
 	if (token) redirect("/dashboard");
 	return (
 		<main className="flex flex-col h-full p-4 items-center justify-center text-center">
-			<span className="my-8 text-5xl">Utilità per il registro elettronico</span>
+			<span className="my-8 text-5xl">Argo Dashboard</span>
 			<PageContent />
 		</main>
 	);
