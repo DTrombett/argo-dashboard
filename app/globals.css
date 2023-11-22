@@ -28,6 +28,10 @@
 	display: none;
 }
 
+.hideScrollbar {
+	scrollbar-width: none;
+}
+
 .subject {
 	max-width: 80%;
 }
