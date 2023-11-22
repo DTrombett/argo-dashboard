@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 const Loading = () => {
-	const [n, setN] = useState(0);
+	const [n, setN] = useState(3);
 
 	useEffect(() => {
 		setInterval(() => {

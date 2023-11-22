@@ -1,15 +1,41 @@
-import PageContent from "@/components/PageContent";
-import { redirect } from "next/navigation";
-import { getClientToken } from "./actions";
+"use client";
+import Dashboard from "@/components/Dashboard";
+import Loading from "@/components/Loading";
+import LoginForm from "@/components/LoginForm";
+import { Client } from "portaleargo-api";
+import { useEffect, useState } from "react";
 
 const Home = () => {
-	const token = getClientToken();
+	const [client, setClient] = useState<Client>();
+	const [ready, setReady] = useState<boolean>();
 
-	if (token) redirect("/dashboard");
+	useEffect(() => {
+		void (async () => {
+			const newClient = new Client({ debug: true });
+
+			setClient(newClient);
+			await newClient
+				.login()
+				.then(() => {
+					setReady(true);
+				})
+				.catch(() => {
+					setReady(false);
+				});
+		})();
+	}, []);
 	return (
 		<main className="flex flex-col h-full p-4 items-center justify-center text-center">
 			<span className="my-8 text-5xl">Argo Dashboard</span>
-			<PageContent />
+			<span>
+				{ready === undefined ? (
+					<Loading />
+				) : ready ? (
+					<Dashboard client={client!} setReady={setReady} />
+				) : (
+					<LoginForm client={client!} setReady={setReady} />
+				)}
+			</span>
 		</main>
 	);
 };
