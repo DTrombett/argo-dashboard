@@ -42,7 +42,7 @@
 }
 
 .loading {
-	animation: 2s infinite width;
+	animation: 1.5s infinite width;
 }
 
 @keyframes width {
