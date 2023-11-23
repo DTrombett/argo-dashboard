@@ -25,17 +25,15 @@ const Home = () => {
 		})();
 	}, []);
 	return (
-		<main className="flex flex-col h-full p-4 items-center justify-center text-center">
-			<span className="my-8 text-5xl">Argo Dashboard</span>
-			<span>
-				{ready === undefined ? (
-					<Loading />
-				) : ready ? (
-					<Dashboard client={client!} setReady={setReady} />
-				) : (
-					<LoginForm client={client!} setReady={setReady} />
-				)}
-			</span>
+		<main className="flex flex-col min-h-screen p-4 items-center justify-center text-center">
+			<span className="my-4 text-5xl">Argo Dashboard</span>
+			{ready === undefined ? (
+				<Loading />
+			) : ready ? (
+				<Dashboard client={client!} setReady={setReady} />
+			) : (
+				<LoginForm client={client!} setReady={setReady} />
+			)}
 		</main>
 	);
 };

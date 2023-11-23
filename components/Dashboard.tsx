@@ -2,6 +2,7 @@ import Canvas from "@/components/Canvas";
 import localFont from "next/font/local";
 import { Client } from "portaleargo-api";
 import { useState } from "react";
+import LoadingBar from "./LoadingBar";
 
 const poppinsItalic = localFont({ src: "../public/Poppins-Italic.ttf" });
 
@@ -67,7 +68,7 @@ const Dashboard = ({
 				</div>
 			</div>
 			<button
-				className="my-8 p-4 w-40 rounded duration-500 bg-zinc-300 dark:bg-zinc-700 text-xl focus-visible:outline-zinc-400 dark:focus-visible:outline-zinc-600 enabled:hover:scale-110 enabled:active:scale-95 disabled:cursor-wait disabled:opacity-50 disabled:bg-zinc-200 dark:disabled:bg-zinc-800"
+				className="relative my-8 p-4 w-40 rounded duration-500 bg-zinc-300 dark:bg-zinc-700 text-xl focus-visible:outline-zinc-400 dark:focus-visible:outline-zinc-600 enabled:hover:scale-110 enabled:active:scale-95 disabled:cursor-wait disabled:opacity-50 disabled:bg-zinc-200 dark:disabled:bg-zinc-800"
 				disabled={pending}
 				onClick={async () => {
 					setPending(true);
@@ -76,6 +77,7 @@ const Dashboard = ({
 				}}
 			>
 				Log out
+				{pending && <LoadingBar />}
 			</button>
 		</>
 	);

@@ -21,7 +21,12 @@
 
 .eye {
 	margin-left: -3rem;
-	top: -1.5px;
+}
+
+@media (min-width: 640px) {
+	.eye {
+		top: -1.5px;
+	}
 }
 
 .hideScrollbar::-webkit-scrollbar {
@@ -36,8 +41,33 @@
 	max-width: 80%;
 }
 
+.loading {
+	animation: 2s infinite width;
+}
+
+@keyframes width {
+	0% {
+		left: 0;
+		width: 0;
+		border-bottom-right-radius: 0;
+		border-bottom-left-radius: 0.25rem;
+	}
+	50% {
+		left: 0;
+		width: 99%;
+		border-bottom-right-radius: 0.25rem;
+		border-bottom-left-radius: 0.25rem;
+	}
+	100% {
+		left: 99%;
+		width: 0;
+		border-bottom-right-radius: 0.25rem;
+		border-bottom-left-radius: 0rem;
+	}
+}
+
 @layer components {
 	.input {
-		@apply p-4 m-2 rounded outline-none duration-200 bg-zinc-200 dark:bg-zinc-800 text-2xl hover:bg-opacity-80;
+		@apply p-4 m-2 w-11/12 rounded outline-none duration-200 bg-zinc-200 dark:bg-zinc-800 text-xl hover:bg-opacity-80 sm:text-2xl;
 	}
 }
