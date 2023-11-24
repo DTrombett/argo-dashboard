@@ -25,7 +25,7 @@ const Canvas = ({ media }: { media: number }) => {
 			context.arc(
 				canvas.width / 2,
 				canvas.height / 2,
-				canvas.width / 3,
+				canvas.width / 2.5,
 				-0.5 * Math.PI,
 				(((media / 5) * Math.PI) / duration) * Math.min(elapsed, duration) -
 					0.5 * Math.PI
@@ -35,7 +35,7 @@ const Canvas = ({ media }: { media: number }) => {
 		};
 		requestAnimationFrame(callback);
 	}, [media]);
-	return <canvas ref={canvasRef} width={150} height={150} />;
+	return <canvas ref={canvasRef} width={125} height={125} />;
 };
 
 export default Canvas;

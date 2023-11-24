@@ -1,5 +1,9 @@
 @tailwind components;
 
+* {
+	box-sizing: border-box;
+}
+
 ::-webkit-scrollbar {
 	width: 15px;
 }
@@ -19,14 +23,8 @@
 	background-color: #bfbfbf;
 }
 
-.eye {
-	margin-left: -3rem;
-}
-
-@media (min-width: 640px) {
-	.eye {
-		top: -1.5px;
-	}
+body {
+	text-wrap: balance;
 }
 
 .hideScrollbar::-webkit-scrollbar {
@@ -35,6 +33,16 @@
 
 .hideScrollbar {
 	scrollbar-width: none;
+}
+
+.eye {
+	margin-left: -3rem;
+}
+
+@media (min-width: 640px) {
+	.eye {
+		top: -1.5px;
+	}
 }
 
 .subject {

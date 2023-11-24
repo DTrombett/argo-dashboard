@@ -3,6 +3,16 @@ import localFont from "next/font/local";
 import "tailwindcss/tailwind.css";
 import "./globals.css";
 
+/**
+ * - Thin
+ * - ExtraLight
+ * - Light
+ * - Regular
+ * - Medium
+ * - SemiBold
+ * - Bold
+ * - ExtraBold
+ */
 const poppinsRegular = localFont({ src: "../public/Poppins-Regular.ttf" });
 
 export const metadata: Metadata = {

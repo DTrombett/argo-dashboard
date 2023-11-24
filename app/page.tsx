@@ -2,8 +2,11 @@
 import Dashboard from "@/components/Dashboard";
 import Loading from "@/components/Loading";
 import LoginForm from "@/components/LoginForm";
+import localFont from "next/font/local";
 import { Client } from "portaleargo-api";
 import { useEffect, useState } from "react";
+
+const titleFont = localFont({ src: "../public/Poppins-ExtraBold.ttf" });
 
 const Home = () => {
 	const [client, setClient] = useState<Client>();
@@ -26,7 +29,9 @@ const Home = () => {
 	}, []);
 	return (
 		<main className="flex flex-col min-h-screen p-4 items-center justify-center text-center">
-			<span className="my-4 text-5xl">Argo Dashboard</span>
+			<span className={`my-4 text-4xl ${titleFont.className}`}>
+				Argo Dashboard
+			</span>
 			{ready === undefined ? (
 				<Loading />
 			) : ready ? (
