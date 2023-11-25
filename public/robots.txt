@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://argo-dashboard.vercel.app/sitemap.xml
