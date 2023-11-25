@@ -17,7 +17,8 @@ const poppinsRegular = localFont({ src: "../public/Poppins-Regular.ttf" });
 
 export const metadata: Metadata = {
 	title: "Argo Dashboard",
-	description: "Dashboard per il registro elettronico Argo!",
+	description:
+		"Una dashboard compatta, sicura e di facile utilizzo per gestire il registro elettronico Argo (didUP)",
 	authors: [{ name: "D Trombett", url: "https://github.com/DTrombett" }],
 	creator: "D Trombett",
 	generator: "Next.js",

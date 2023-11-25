@@ -1,9 +1,5 @@
 @tailwind components;
 
-* {
-	box-sizing: border-box;
-}
-
 ::-webkit-scrollbar {
 	width: 15px;
 }

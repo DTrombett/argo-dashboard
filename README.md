@@ -1,5 +1,6 @@
 # [Argo Dashboard](https://argo-dashboard.vercel.app)
 
+![Preview](public/preview.png)
 Una dashboard compatta, sicura e di facile utilizzo per gestire il registro elettronico Argo (didUP).
 
 ## Funzionalità
