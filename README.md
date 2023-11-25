@@ -10,7 +10,7 @@ Mostra la media generale e per materia, nonché i prossimi impegni come compiti,
 ## Sicurezza
 
 Per accedere ai dati del registro utilizziamo [portaleargo-api](https://github.com/DTrombett/portaleargo-api), un package open source (sviluppato sempre da noi) che pone la sicurezza al primo posto.
-Le credenziali vengono inviate al server solo per il primo accesso e non vengono salvate in alcun modo, dopodiché tutto viene eseguito direttamente sul vostro browser in modo da garantire la massima sicurezza.
+Le credenziali vengono inviate al server solo per il primo accesso e non vengono salvate in alcun modo, dopodiché tutto viene eseguito direttamente sul vostro browser in modo da garantire la massima affidabilità.
 
 Tutto il codice del sito e del server è, comunque, disponibile in questa repository per permettere a tutti di proporre modifiche.
 In particolare, potete trovare la parte relativa al server in [app/actions.ts](app/actions.ts#L39-L53) e quella riguardo l'accesso sul browser in [components/LoginForm.tsx](components/LoginForm.tsx#L25-L39).
