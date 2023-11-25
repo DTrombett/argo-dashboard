@@ -46,7 +46,7 @@ const ListElement = ({
 				</span>
 			</div>
 			<span
-				className={light.className}
+				className={`text-base ${light.className}`}
 				onClick={
 					content.length > 100
 						? () => {

@@ -147,7 +147,11 @@ const getElements = (
 		)
 		.map(({ element }) => element);
 
-	return elements.length ? elements : <span>Nessun impegno imminente!</span>;
+	return elements.length ? (
+		elements
+	) : (
+		<span className={italic.className}>Nessun impegno imminente!</span>
+	);
 };
 
 const Dashboard = ({
@@ -180,7 +184,7 @@ const Dashboard = ({
 
 	return (
 		<>
-			<div className="flex flex-col justify-center text-xl container lg:flex-row">
+			<div className="flex flex-col justify-center text-xl container md:flex-row">
 				<Column name="Media">
 					<Entry name="Generale">
 						<div className="relative flex justify-center">
@@ -215,12 +219,12 @@ const Dashboard = ({
 				</Column>
 				<Column name="Prossimi impegni">
 					<Entry name="Entro domani">
-						<div className="flex flex-col text-base">
+						<div className="flex flex-col">
 							{getElements(client.dashboard, { now, tomorrowTime, tomorrow })}
 						</div>
 					</Entry>
 					<Entry name="Successivi">
-						<div className="flex flex-col text-base">
+						<div className="flex flex-col">
 							{getElements(client.dashboard, { tomorrowTime })}
 						</div>
 					</Entry>
