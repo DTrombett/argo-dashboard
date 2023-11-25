@@ -1,4 +1,4 @@
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import type { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import localFont from "next/font/local";
 import { useState } from "react";
@@ -48,7 +48,11 @@ const ListElement = ({
 			<span
 				className={light.className}
 				onClick={
-					content.length > 100 ? () => setExpanded((e) => !e) : undefined
+					content.length > 100
+						? () => {
+								setExpanded((e) => !e);
+						  }
+						: undefined
 				}
 			>
 				{!expanded && content.length > 100

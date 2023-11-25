@@ -1,5 +1,7 @@
+import dynamic from "next/dynamic";
 import { useFormStatus } from "react-dom";
-import LoadingBar from "./LoadingBar";
+
+const LoadingBar = dynamic(() => import("./LoadingBar"));
 
 const SubmitButton = () => {
 	const { pending } = useFormStatus();
