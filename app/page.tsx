@@ -1,31 +1,38 @@
 "use client";
-import Dashboard from "@/components/Dashboard";
 import Loading from "@/components/Loading";
-import LoginForm from "@/components/LoginForm";
+import dynamic from "next/dynamic";
 import localFont from "next/font/local";
 import { Client } from "portaleargo-api";
 import { useEffect, useState } from "react";
 
 const titleFont = localFont({ src: "../public/Poppins-ExtraBold.ttf" });
+const Dashboard = dynamic(() => import("@/components/Dashboard"), {
+	loading: Loading,
+});
+const LoginForm = dynamic(() => import("@/components/LoginForm"), {
+	loading: Loading,
+});
 
 const Home = () => {
 	const [client, setClient] = useState<Client>();
 	const [ready, setReady] = useState<boolean>();
 
 	useEffect(() => {
-		void (async () => {
-			const newClient = new Client({ debug: true });
+		const newClient = new Client({ debug: true });
 
-			setClient(newClient);
-			await newClient
-				.login()
-				.then(() => {
-					setReady(true);
-				})
-				.catch(() => {
-					setReady(false);
-				});
-		})();
+		setClient(newClient);
+		if (!localStorage.getItem("token")) {
+			setReady(false);
+			return;
+		}
+		newClient
+			.login()
+			.then(() => {
+				setReady(true);
+			})
+			.catch(() => {
+				setReady(false);
+			});
 	}, []);
 	return (
 		<main className="flex flex-col min-h-screen p-4 items-center justify-center text-center">

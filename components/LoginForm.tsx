@@ -1,9 +1,11 @@
 import { getClientToken } from "@/app/actions";
-import { Client } from "portaleargo-api";
+import dynamic from "next/dynamic";
+import type { Client } from "portaleargo-api";
 import { useState } from "react";
-import ErrorMessage from "./ErrorMessage";
 import PasswordField from "./PasswordField";
 import SubmitButton from "./SubmitButton";
+
+const ErrorMessage = dynamic(() => import("./ErrorMessage"));
 
 const LoginForm = ({
 	client,
@@ -22,12 +24,19 @@ const LoginForm = ({
 				action={async (formData) => {
 					const token = await getClientToken(formData);
 
-					if ("message" in token) return setError(token.error);
+					if ("message" in token) {
+						setError(token.error);
+						return;
+					}
 					client.token = token;
 					await client
 						.login()
-						.then(() => setReady(true))
-						.catch((err) => setError(String(err)));
+						.then(() => {
+							setReady(true);
+						})
+						.catch((err) => {
+							setError(String(err));
+						});
 				}}
 			>
 				<span className="my-4 text-xl font-light">

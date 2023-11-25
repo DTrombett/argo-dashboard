@@ -1,16 +1,14 @@
-import Canvas from "@/components/Canvas";
 import { faBell } from "@fortawesome/free-regular-svg-icons/faBell";
 import { faClock } from "@fortawesome/free-regular-svg-icons/faClock";
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons/faPenToSquare";
 import { faUser } from "@fortawesome/free-regular-svg-icons/faUser";
+import dynamic from "next/dynamic";
 import localFont from "next/font/local";
-import type { Client } from "portaleargo-api";
-import { Dashboard } from "portaleargo-api";
-import React, { useState } from "react";
+import type { Dashboard as ArgoDashboard, Client } from "portaleargo-api";
+import { useState } from "react";
+import Canvas from "./Canvas";
 import Column from "./Column";
 import Entry from "./Entry";
-import ListElement from "./ListElement";
-import LoadingBar from "./LoadingBar";
 
 enum ElementType {
 	Homework,
@@ -18,10 +16,12 @@ enum ElementType {
 	Meeting,
 	Activity,
 }
+const ListElement = dynamic(() => import("./ListElement"));
+const LoadingBar = dynamic(() => import("./LoadingBar"));
 const italic = localFont({ src: "../public/Poppins-Italic.ttf" });
 
 const getElements = (
-	dashboard: Dashboard,
+	dashboard: ArgoDashboard,
 	options: { tomorrowTime: number } & (
 		| {
 				now: number;
@@ -30,8 +30,8 @@ const getElements = (
 		// eslint-disable-next-line @typescript-eslint/ban-types
 		| {}
 	)
-) =>
-	dashboard.registro
+) => {
+	const elements = dashboard.registro
 		.flatMap((event) => {
 			const array: {
 				element: React.JSX.Element;
@@ -146,6 +146,9 @@ const getElements = (
 				date1.getTime() - date2.getTime() || type1 - type2
 		)
 		.map(({ element }) => element);
+
+	return elements.length ? elements : <span>Nessun impegno imminente!</span>;
+};
 
 const Dashboard = ({
 	client,
