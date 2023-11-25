@@ -9,6 +9,6 @@ updates:
     commit-message:
       prefix: "deps"
       include: "scope"
-    assignees:
+    reviewers:
       - "DTrombett"
     open-pull-requests-limit: 10
