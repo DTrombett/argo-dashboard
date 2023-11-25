@@ -33,5 +33,5 @@ Il layout si adatta benissimo alla grandezza del dispositivo mostrando i dati in
 ### Disclaimer
 
 Questo sito non è legato in alcun modo alla società **Argo Software Srl** che fornisce i servizi per il registro elettronico.
-Per qualsiasi problema riscontrato durante l'utilizzo dei servizi Argo è, quindi, necessario contattare la loro assistenza tecnica.
+Per qualsiasi problema riscontrato durante l'utilizzo dei servizi Argo è necessario contattare la loro assistenza tecnica.
 È possibile consultare tutti i dettagli riguardo Argo Software sul [loro sito ufficiale](https://argosoft.it).
