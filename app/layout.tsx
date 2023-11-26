@@ -14,18 +14,38 @@ import "./globals.css";
  * - ExtraBold
  */
 const poppinsRegular = localFont({ src: "../public/Poppins-Regular.ttf" });
+const description =
+	"Una dashboard compatta, sicura e di facile utilizzo per gestire il registro elettronico Argo (didUP)";
 
 export const metadata: Metadata = {
-	title: "Argo Dashboard",
-	description:
-		"Una dashboard compatta, sicura e di facile utilizzo per gestire il registro elettronico Argo (didUP)",
+	alternates: { canonical: "https://argo-dashboard.vercel.app" },
+	applicationName: "Argo Dashboard",
 	authors: [{ name: "D Trombett", url: "https://github.com/DTrombett" }],
 	creator: "D Trombett",
+	description,
 	generator: "Next.js",
-	publisher: "Vercel",
-	other: {
-		"google-site-verification": "TAmOsVi35BnusH1-Lx2BJLhd3O42orZcSRdGt2QON6A",
+	icons: "https://argo-dashboard.vercel.app/favicon.ico",
+	keywords: ["react", "nextjs", "argo", "registro", "vercel"],
+	// manifest
+	openGraph: {
+		type: "website",
+		countryName: "Italy",
+		description,
+		locale: "it",
+		siteName: "Argo Dashboard",
+		title: "Argo Dashboard",
+		url: "https://argo-dashboard.vercel.app",
 	},
+	publisher: "Vercel",
+	title: "Argo Dashboard",
+	twitter: {
+		card: "summary_large_image",
+		description,
+		images: "https://argo-dashboard.vercel.app/preview.png",
+		creator: "@dtrombett",
+		title: "Argo Dashboard",
+	},
+	verification: { google: "TAmOsVi35BnusH1-Lx2BJLhd3O42orZcSRdGt2QON6A" },
 };
 
 export default function RootLayout({

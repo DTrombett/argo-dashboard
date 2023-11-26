@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	/**
-	 *
 	 * @param {import("webpack").Configuration} config
 	 * @returns
 	 */
@@ -9,11 +8,10 @@ const nextConfig = {
 		if (!isServer)
 			config.externals = [
 				...config.externals,
-				({ context, request }, callback) => {
-					if (context?.includes("portaleargo-api"))
-						return callback(null, `"${request}"`);
-					return callback();
-				},
+				({ context, request }, callback) =>
+					context?.includes("portaleargo-api")
+						? callback(null, `"${request}"`)
+						: callback(),
 			];
 		return config;
 	},
