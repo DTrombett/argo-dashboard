@@ -35,6 +35,7 @@ export const metadata: Metadata = {
 		siteName: "Argo Dashboard",
 		title: "Argo Dashboard",
 		url: "https://argo-dashboard.vercel.app",
+		images: "https://argo-dashboard.vercel.app/preview.png",
 	},
 	publisher: "Vercel",
 	title: "Argo Dashboard",
