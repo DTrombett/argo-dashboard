@@ -19,7 +19,7 @@ const Home = () => {
 	const [ready, setReady] = useState<boolean>();
 
 	useEffect(() => {
-		const newClient = new Client({ debug: true });
+		const newClient = new Client();
 
 		setClient(newClient);
 		if (!localStorage.getItem("token")) {
