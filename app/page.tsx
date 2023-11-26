@@ -2,6 +2,7 @@
 import Loading from "@/components/Loading";
 import dynamic from "next/dynamic";
 import localFont from "next/font/local";
+import Link from "next/link";
 import { Client } from "portaleargo-api";
 import { useEffect, useState } from "react";
 
@@ -46,6 +47,13 @@ const Home = () => {
 			) : (
 				<LoginForm client={client!} setReady={setReady} />
 			)}
+			<Link
+				href="https://github.com/DTrombett/argo-dashboard"
+				target="_blank"
+				className="my-4 hover:underline link"
+			>
+				Source code
+			</Link>
 		</main>
 	);
 };

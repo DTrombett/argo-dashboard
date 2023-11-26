@@ -23,6 +23,11 @@ body {
 	text-wrap: balance;
 }
 
+.link {
+	color: #00a8fc;
+	text-decoration: none;
+}
+
 .hideScrollbar::-webkit-scrollbar {
 	display: none;
 }

@@ -6,7 +6,7 @@ const Loading = () => {
 	useEffect(() => {
 		setInterval(() => {
 			setN((old) => (old === 3 ? 0 : old + 1));
-		}, 250);
+		}, 500);
 	}, []);
 	return <p>Loading{".".repeat(n)}</p>;
 };
