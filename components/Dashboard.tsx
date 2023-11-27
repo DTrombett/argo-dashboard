@@ -206,29 +206,30 @@ const Dashboard = ({
 						{
 							<span className={italic.className}>
 								<LoadingPlaceholder loading={loading} repeat={2} width={"75%"}>
-									Calcolata nel periodo {dataInizio![2]}/{dataInizio![1]}/
-									{dataInizio![0]} - {dataFine![2]}/{dataFine![1]}/
-									{dataFine![0]}
+									Calcolata nel periodo {dataInizio?.[2]}/{dataInizio?.[1]}/
+									{dataInizio?.[0]} - {dataFine?.[2]}/{dataFine?.[1]}/
+									{dataFine?.[0]}
 								</LoadingPlaceholder>
 							</span>
 						}
 					</Entry>
 					<Entry name="Per materia">
 						<LoadingPlaceholder loading={loading} repeat={5}>
-							{Object.entries(client.dashboard!.mediaMaterie).map(([id, m]) => (
-								<div key={id} className="flex justify-between">
-									<span
-										className="text-left whitespace-nowrap overflow-auto outline-0 hideScrollbar subject"
-										tabIndex={-1}
-									>
-										{
-											client.dashboard!.listaMaterie.find((s) => s.pk === id)
-												?.materia
-										}
-									</span>
-									<span className="text-right">{m.mediaMateria}</span>
-								</div>
-							))}
+							{client.dashboard &&
+								Object.entries(client.dashboard.mediaMaterie).map(([id, m]) => (
+									<div key={id} className="flex justify-between">
+										<span
+											className="text-left whitespace-nowrap overflow-auto outline-0 hideScrollbar subject"
+											tabIndex={-1}
+										>
+											{
+												client.dashboard!.listaMaterie.find((s) => s.pk === id)
+													?.materia
+											}
+										</span>
+										<span className="text-right">{m.mediaMateria}</span>
+									</div>
+								))}
 						</LoadingPlaceholder>
 					</Entry>
 				</Column>
@@ -236,18 +237,20 @@ const Dashboard = ({
 					<Entry name="Entro domani">
 						<div className="flex flex-col">
 							<LoadingPlaceholder loading={loading} repeat={5}>
-								{getElements(client.dashboard!, {
-									now,
-									tomorrowTime,
-									tomorrow,
-								})}
+								{client.dashboard &&
+									getElements(client.dashboard, {
+										now,
+										tomorrowTime,
+										tomorrow,
+									})}
 							</LoadingPlaceholder>
 						</div>
 					</Entry>
 					<Entry name="Successivi">
 						<div className="flex flex-col">
 							<LoadingPlaceholder loading={loading} repeat={5}>
-								{getElements(client.dashboard!, { tomorrowTime })}
+								{client.dashboard &&
+									getElements(client.dashboard, { tomorrowTime })}
 							</LoadingPlaceholder>
 						</div>
 					</Entry>

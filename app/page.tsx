@@ -62,18 +62,20 @@ const Home = () => {
 			PageElement = <Loading />;
 	}
 	return (
-		<main className="flex flex-col min-h-screen p-4 items-center justify-center text-center">
+		<main className="flex flex-col min-h-screen p-4 items-center text-center">
 			<span className={`my-4 text-4xl ${titleFont.className}`}>
 				Argo Dashboard
 			</span>
-			{PageElement}
-			<Link
-				href="https://github.com/DTrombett/argo-dashboard"
-				target="_blank"
-				className="my-4 hover:underline link"
-			>
-				Source code
-			</Link>
+			<div className="w-full flex flex-col flex-auto justify-center">
+				{PageElement}
+				<Link
+					href="https://github.com/DTrombett/argo-dashboard"
+					target="_blank"
+					className="my-4 hover:underline link"
+				>
+					Source code
+				</Link>
+			</div>
 		</main>
 	);
 };
