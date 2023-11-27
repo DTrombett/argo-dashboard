@@ -7,6 +7,13 @@ import Link from "next/link";
 import { Client } from "portaleargo-api";
 import { useEffect, useState } from "react";
 
+export enum State {
+	FirstLoading,
+	NeedLogin,
+	NoDashboard,
+	OldDashboardReady,
+	Ready,
+}
 const client = new Client();
 const titleFont = localFont({ src: "../public/Poppins-ExtraBold.ttf" });
 const Dashboard = dynamic(() => import("@/components/Dashboard"), {
@@ -14,34 +21,58 @@ const Dashboard = dynamic(() => import("@/components/Dashboard"), {
 });
 
 const Home = () => {
-	const [ready, setReady] = useState<boolean>();
+	const [state, setState] = useState(State.FirstLoading);
+	let PageElement: React.JSX.Element;
 
 	useEffect(() => {
 		if (!localStorage.getItem("token")) {
-			setReady(false);
+			setState(State.NeedLogin);
 			return;
 		}
+		setState(State.NoDashboard);
+		const dashboard = localStorage.getItem("dashboard");
+
+		if (dashboard)
+			try {
+				client.dashboard = JSON.parse(dashboard);
+				client.dashboard!.dataAggiornamento = new Date(
+					client.dashboard!.dataAggiornamento
+				);
+				setState(State.OldDashboardReady);
+			} catch (err) {}
 		client
 			.login()
 			.then(() => {
-				setReady(true);
+				setState(State.Ready);
 			})
 			.catch(() => {
-				setReady(false);
+				setState(State.NeedLogin);
 			});
 	}, []);
+	switch (state) {
+		case State.NeedLogin:
+			PageElement = <LoginForm client={client} setState={setState} />;
+			break;
+		case State.NoDashboard:
+		case State.OldDashboardReady:
+		case State.Ready:
+			PageElement = (
+				<Dashboard
+					loading={state !== State.Ready}
+					client={client}
+					setState={setState}
+				/>
+			);
+			break;
+		default:
+			PageElement = <Loading />;
+	}
 	return (
 		<main className="flex flex-col min-h-screen p-4 items-center justify-center text-center">
 			<span className={`my-4 text-4xl ${titleFont.className}`}>
 				Argo Dashboard
 			</span>
-			{ready === undefined ? (
-				<Loading />
-			) : ready ? (
-				<Dashboard client={client} setReady={setReady} />
-			) : (
-				<LoginForm client={client} setReady={setReady} />
-			)}
+			{PageElement}
 			<Link
 				href="https://github.com/DTrombett/argo-dashboard"
 				target="_blank"

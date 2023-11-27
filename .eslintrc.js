@@ -20,6 +20,7 @@ module.exports = {
 	plugins: ["react", "jsx-a11y", "import", "@typescript-eslint", "node"],
 	rules: {
 		"no-extend-native": "warn",
+		"no-empty": "off",
 		"no-iterator": "warn",
 		"no-lone-blocks": "warn",
 		"no-return-assign": "warn",

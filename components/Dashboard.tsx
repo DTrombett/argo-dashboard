@@ -9,6 +9,7 @@ import { useState } from "react";
 import Canvas from "./Canvas";
 import Column from "./Column";
 import Entry from "./Entry";
+import LoadingPlaceholder from "./LoadingPlaceholder";
 
 enum ElementType {
 	Homework,
@@ -160,18 +161,17 @@ const getElements = (
 
 const Dashboard = ({
 	client,
-	setReady,
+	setState,
+	loading = false,
 }: {
 	client: Client;
-	setReady: (ready: boolean) => void;
+	setState: (state: number) => void;
+	loading?: boolean;
 }) => {
 	const [pending, setPending] = useState(false);
-
-	if (!client.dashboard) {
-		setReady(false);
-		return <></>;
-	}
-	const period = client.dashboard.listaPeriodi.find((p) => p.pkPeriodo === "*");
+	const period = client.dashboard?.listaPeriodi.find(
+		(p) => p.pkPeriodo === "*"
+	);
 	const dataInizio = period?.dataInizio.split("-");
 	const dataFine = period?.dataFine.split("-");
 	const date = new Date();
@@ -187,49 +187,64 @@ const Dashboard = ({
 	const tomorrowTime = date.getTime();
 
 	return (
-		<>
+		<div className={`${loading && "blur-sm"} w-full`}>
 			<div className="flex flex-col justify-center text-xl container md:flex-row">
 				<Column name="Media">
 					<Entry name="Generale">
 						<div className="relative flex justify-center">
-							<Canvas media={client.dashboard.mediaGenerale} />
+							<Canvas media={client.dashboard?.mediaGenerale} />
 							<span className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
-								{client.dashboard.mediaGenerale.toFixed(2)}
+								<LoadingPlaceholder loading={loading} width={"2rem"}>
+									{client.dashboard?.mediaGenerale.toFixed(2) ?? "?"}
+								</LoadingPlaceholder>
 							</span>
 						</div>
-						{period && (
+						{
 							<span className={italic.className}>
-								Calcolata nel periodo {dataInizio![2]}/{dataInizio![1]}/
-								{dataInizio![0]} - {dataFine![2]}/{dataFine![1]}/{dataFine![0]}
+								<LoadingPlaceholder loading={loading} repeat={2} width={"75%"}>
+									Calcolata nel periodo {dataInizio![2]}/{dataInizio![1]}/
+									{dataInizio![0]} - {dataFine![2]}/{dataFine![1]}/
+									{dataFine![0]}
+								</LoadingPlaceholder>
 							</span>
-						)}
+						}
 					</Entry>
 					<Entry name="Per materia">
-						{Object.entries(client.dashboard.mediaMaterie).map(([id, m]) => (
-							<div key={id} className="flex justify-between">
-								<span
-									className="text-left whitespace-nowrap overflow-auto outline-0 hideScrollbar subject"
-									tabIndex={-1}
-								>
-									{
-										client.dashboard!.listaMaterie.find((s) => s.pk === id)
-											?.materia
-									}
-								</span>
-								<span className="text-right">{m.mediaMateria}</span>
-							</div>
-						))}
+						<LoadingPlaceholder loading={loading} repeat={5}>
+							{Object.entries(client.dashboard!.mediaMaterie).map(([id, m]) => (
+								<div key={id} className="flex justify-between">
+									<span
+										className="text-left whitespace-nowrap overflow-auto outline-0 hideScrollbar subject"
+										tabIndex={-1}
+									>
+										{
+											client.dashboard!.listaMaterie.find((s) => s.pk === id)
+												?.materia
+										}
+									</span>
+									<span className="text-right">{m.mediaMateria}</span>
+								</div>
+							))}
+						</LoadingPlaceholder>
 					</Entry>
 				</Column>
 				<Column name="Prossimi impegni">
 					<Entry name="Entro domani">
 						<div className="flex flex-col">
-							{getElements(client.dashboard, { now, tomorrowTime, tomorrow })}
+							<LoadingPlaceholder loading={loading} repeat={5}>
+								{getElements(client.dashboard!, {
+									now,
+									tomorrowTime,
+									tomorrow,
+								})}
+							</LoadingPlaceholder>
 						</div>
 					</Entry>
 					<Entry name="Successivi">
 						<div className="flex flex-col">
-							{getElements(client.dashboard, { tomorrowTime })}
+							<LoadingPlaceholder loading={loading} repeat={5}>
+								{getElements(client.dashboard!, { tomorrowTime })}
+							</LoadingPlaceholder>
 						</div>
 					</Entry>
 				</Column>
@@ -240,13 +255,13 @@ const Dashboard = ({
 				onClick={async () => {
 					setPending(true);
 					await client.logOut().catch(() => {});
-					setReady(false);
+					setState(1);
 				}}
 			>
 				Log out
 				{pending && <LoadingBar />}
 			</button>
-		</>
+		</div>
 	);
 };
 

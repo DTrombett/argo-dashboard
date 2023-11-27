@@ -1,4 +1,5 @@
 import { getClientToken } from "@/app/actions";
+import { State } from "@/app/page";
 import dynamic from "next/dynamic";
 import type { Client } from "portaleargo-api";
 import { useState } from "react";
@@ -9,10 +10,10 @@ const ErrorMessage = dynamic(() => import("./ErrorMessage"));
 
 const LoginForm = ({
 	client,
-	setReady,
+	setState,
 }: {
 	client: Client;
-	setReady: (ready: boolean) => void;
+	setState: (state: number) => void;
 }) => {
 	const [error, setError] = useState<string>();
 
@@ -32,7 +33,7 @@ const LoginForm = ({
 					await client
 						.login()
 						.then(() => {
-							setReady(true);
+							setState(State.Ready);
 						})
 						.catch((err) => {
 							setError(String(err));
