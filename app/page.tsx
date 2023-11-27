@@ -1,5 +1,6 @@
 "use client";
 import Loading from "@/components/Loading";
+import LoginForm from "@/components/LoginForm";
 import dynamic from "next/dynamic";
 import localFont from "next/font/local";
 import Link from "next/link";
@@ -8,9 +9,6 @@ import { useEffect, useState } from "react";
 
 const titleFont = localFont({ src: "../public/Poppins-ExtraBold.ttf" });
 const Dashboard = dynamic(() => import("@/components/Dashboard"), {
-	loading: Loading,
-});
-const LoginForm = dynamic(() => import("@/components/LoginForm"), {
 	loading: Loading,
 });
 

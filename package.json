@@ -21,7 +21,7 @@
 		"ajv": "^8.12.0",
 		"fast-uri": "^2.3.0",
 		"next": "14.0.3",
-		"portaleargo-api": "github:dtrombett/portaleargo-api#feat/browser",
+		"portaleargo-api": "github:dtrombett/portaleargo-api",
 		"react": "^18",
 		"react-dom": "^18",
 		"tailwindcss": "^3.3.5"
