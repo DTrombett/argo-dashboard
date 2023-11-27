@@ -66,7 +66,7 @@ const Home = () => {
 			<span className={`my-4 text-4xl ${titleFont.className}`}>
 				Argo Dashboard
 			</span>
-			<div className="w-full flex flex-col flex-auto justify-center">
+			<div className="h-full w-full flex flex-col flex-auto justify-center items-center">
 				{PageElement}
 				<Link
 					href="https://github.com/DTrombett/argo-dashboard"
