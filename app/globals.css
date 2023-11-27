@@ -51,10 +51,10 @@ body {
 }
 
 .loading {
-	animation: 1.5s infinite width;
+	animation: 1.5s infinite loading;
 }
 
-@keyframes width {
+@keyframes loading {
 	0% {
 		left: 0;
 		width: 0;
@@ -72,6 +72,16 @@ body {
 		width: 0;
 		border-bottom-right-radius: 0.25rem;
 		border-bottom-left-radius: 0rem;
+	}
+}
+
+.dashboard {
+	animation: 1s blur;
+}
+
+@keyframes blur {
+	from {
+		filter: blur(4px);
 	}
 }
 

@@ -3,6 +3,7 @@ import { faBell } from "@fortawesome/free-regular-svg-icons/faBell";
 import { faClock } from "@fortawesome/free-regular-svg-icons/faClock";
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons/faPenToSquare";
 import { faUser } from "@fortawesome/free-regular-svg-icons/faUser";
+import type { DynamicOptions } from "next/dynamic";
 import dynamic from "next/dynamic";
 import localFont from "next/font/local";
 import type { Dashboard as ArgoDashboard, Client } from "portaleargo-api";
@@ -18,7 +19,9 @@ enum ElementType {
 	Activity,
 	Meeting,
 }
-const ListElement = dynamic(() => import("./ListElement"));
+const ListElement = dynamic(() => import("./ListElement"), {
+	loading: LoadingPlaceholder as DynamicOptions["loading"],
+});
 const LoadingBar = dynamic(() => import("./LoadingBar"));
 const italic = localFont({ src: "../public/Poppins-Italic.ttf" });
 
@@ -188,7 +191,7 @@ const Dashboard = ({
 	const tomorrowTime = date.getTime();
 
 	return (
-		<div className={`${loading && "blur-sm"} w-full`}>
+		<div className={`${loading && "blur-sm"} w-full dashboard`}>
 			<div className="flex flex-col justify-center text-xl container md:flex-row">
 				<Column name="Media">
 					<Entry name="Generale">

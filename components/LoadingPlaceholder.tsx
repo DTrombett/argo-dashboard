@@ -1,12 +1,12 @@
 const LoadingPlaceholder = ({
 	children,
-	loading,
+	loading = true,
 	height,
 	width,
 	repeat = 1,
 }: {
-	children: React.ReactNode;
-	loading: boolean;
+	children?: React.ReactNode;
+	loading?: boolean;
 	height?: React.CSSProperties["height"];
 	width?: React.CSSProperties["width"];
 	repeat?: number;
