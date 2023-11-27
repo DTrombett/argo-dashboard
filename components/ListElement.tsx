@@ -56,7 +56,7 @@ const ListElement = ({
 				}
 			>
 				{!expanded && content.length > 100
-					? `${content.slice(0, 97)}...`
+					? `${content.slice(0, 97).trimEnd()}...`
 					: content}
 			</span>
 		</div>

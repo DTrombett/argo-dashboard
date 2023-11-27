@@ -13,8 +13,8 @@ import Entry from "./Entry";
 enum ElementType {
 	Homework,
 	Reminder,
-	Meeting,
 	Activity,
+	Meeting,
 }
 const ListElement = dynamic(() => import("./ListElement"));
 const LoadingBar = dynamic(() => import("./LoadingBar"));
@@ -68,19 +68,23 @@ const getElements = (
 							: (c) =>
 									new Date(c.dataConsegna).getTime() >= options.tomorrowTime
 					)
-					.map((c, i) => ({
-						element: (
-							<ListElement
-								key={`${event.pk}-compiti-${i}`}
-								content={c.compito}
-								date={new Date(c.dataConsegna)}
-								icon={faPenToSquare}
-								header={event.materia}
-							/>
-						),
-						date,
-						type: ElementType.Homework,
-					}))
+					.map((c, i) => {
+						const d = new Date(c.dataConsegna);
+
+						return {
+							element: (
+								<ListElement
+									key={`${event.pk}-compiti-${c.compito}-${c.dataConsegna}`}
+									content={c.compito}
+									date={d}
+									icon={faPenToSquare}
+									header={event.materia}
+								/>
+							),
+							date: d,
+							type: ElementType.Homework,
+						};
+					})
 			);
 			return array;
 		})
