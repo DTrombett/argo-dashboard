@@ -87,6 +87,6 @@ body {
 
 @layer components {
 	.input {
-		@apply p-4 m-2 w-11/12 rounded outline-none duration-200 bg-zinc-200 dark:bg-zinc-800 text-xl hover:bg-opacity-80 sm:text-2xl;
+		@apply p-4 m-2 max-w-full rounded outline-none bg-zinc-200 dark:bg-zinc-800 duration-200 text-xl hover:bg-opacity-80 sm:text-2xl;
 	}
 }
