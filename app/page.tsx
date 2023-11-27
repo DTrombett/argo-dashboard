@@ -6,14 +6,8 @@ import localFont from "next/font/local";
 import Link from "next/link";
 import { Client } from "portaleargo-api";
 import { useEffect, useState } from "react";
+import { State } from "./utils";
 
-export enum State {
-	FirstLoading,
-	NeedLogin,
-	NoDashboard,
-	OldDashboardReady,
-	Ready,
-}
 const client = new Client();
 const titleFont = localFont({ src: "../public/Poppins-ExtraBold.ttf" });
 const Dashboard = dynamic(() => import("@/components/Dashboard"), {

@@ -1,3 +1,4 @@
+import { State } from "@/app/utils";
 import { faBell } from "@fortawesome/free-regular-svg-icons/faBell";
 import { faClock } from "@fortawesome/free-regular-svg-icons/faClock";
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons/faPenToSquare";
@@ -255,7 +256,7 @@ const Dashboard = ({
 				onClick={async () => {
 					setPending(true);
 					await client.logOut().catch(() => {});
-					setState(1);
+					setState(State.NeedLogin);
 				}}
 			>
 				Log out

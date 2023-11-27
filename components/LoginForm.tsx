@@ -1,5 +1,5 @@
 import { getClientToken } from "@/app/actions";
-import { State } from "@/app/page";
+import { State } from "@/app/utils";
 import dynamic from "next/dynamic";
 import type { Client } from "portaleargo-api";
 import { useState } from "react";
