@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 
 const Loading = () => {
-	const [n, setN] = useState(3);
+	const [n, setN] = useState(0);
 
 	useEffect(() => {
-		setInterval(() => {
-			setN((old) => (old === 3 ? 0 : old + 1));
-		}, 500);
-	}, []);
+		setTimeout(() => {
+			setN(n === 3 ? 0 : n + 1);
+		}, 250);
+	}, [n]);
 	return <p>Loading{".".repeat(n)}</p>;
 };
 
