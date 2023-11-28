@@ -1,6 +1,6 @@
-import type { IconProp } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import localFont from "next/font/local";
+import Image from "next/image";
 import { useState } from "react";
 
 const months = [
@@ -17,8 +17,8 @@ const months = [
 	"NOV",
 	"DIC",
 ];
-const medium = localFont({ src: "../public/Poppins-Medium.ttf" });
-const light = localFont({ src: "../public/Poppins-Light.ttf" });
+const medium = localFont({ src: "../public/fonts/Poppins-Medium.ttf" });
+const light = localFont({ src: "../public/fonts/Poppins-Light.ttf" });
 
 const ListElement = ({
 	icon,
@@ -26,7 +26,7 @@ const ListElement = ({
 	header,
 	content,
 }: {
-	icon?: IconProp;
+	icon: string | StaticImport;
 	date: Date;
 	header: string;
 	content: string;
@@ -36,7 +36,7 @@ const ListElement = ({
 	return (
 		<div className="flex flex-col py-1">
 			<div className={medium.className}>
-				{icon && <FontAwesomeIcon icon={icon} />}
+				<Image src={icon} alt="icon" height={18} className="relative icon" />
 				<span>
 					{" "}
 					{date.getDate()} {months[date.getMonth()]}{" "}

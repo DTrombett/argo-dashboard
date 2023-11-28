@@ -13,7 +13,7 @@ import "./globals.css";
  * - Bold
  * - ExtraBold
  */
-const poppinsRegular = localFont({ src: "../public/Poppins-Regular.ttf" });
+const poppinsRegular = localFont({ src: "../public/fonts/Poppins-Regular.ttf" });
 const description =
 	"Una dashboard compatta, sicura e di facile utilizzo per gestire il registro elettronico Argo (didUP)";
 

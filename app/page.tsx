@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import { State } from "./utils";
 
 const client = new Client();
-const titleFont = localFont({ src: "../public/Poppins-ExtraBold.ttf" });
+const titleFont = localFont({ src: "../public/fonts/Poppins-ExtraBold.ttf" });
 const Dashboard = dynamic(() => import("@/components/Dashboard"), {
 	loading: Loading,
 });

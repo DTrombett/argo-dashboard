@@ -1,7 +1,7 @@
 import localFont from "next/font/local";
 import { useEffect, useState } from "react";
 
-const font = localFont({ src: "../public/Poppins-Light.ttf" });
+const font = localFont({ src: "../public/fonts/Poppins-Light.ttf" });
 
 const Loading = () => {
 	const [n, setN] = useState(3);

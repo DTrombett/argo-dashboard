@@ -1,14 +1,14 @@
-import { faBell } from "@fortawesome/free-regular-svg-icons/faBell";
-import { faBookmark } from "@fortawesome/free-regular-svg-icons/faBookmark";
-import { faCalendarXmark } from "@fortawesome/free-regular-svg-icons/faCalendarXmark";
-import { faClock } from "@fortawesome/free-regular-svg-icons/faClock";
-import { faFileClipboard } from "@fortawesome/free-regular-svg-icons/faFileClipboard";
-import { faNoteSticky } from "@fortawesome/free-regular-svg-icons/faNoteSticky";
-import { faPenToSquare } from "@fortawesome/free-regular-svg-icons/faPenToSquare";
-import { faUser } from "@fortawesome/free-regular-svg-icons/faUser";
 import dynamic from "next/dynamic";
 import localFont from "next/font/local";
 import type { Dashboard as ArgoDashboard, Client } from "portaleargo-api";
+import faClock from "../public/icons/attivita-svolta.svg";
+import faFileClipboard from "../public/icons/bacheca-alunno.svg";
+import faNoteSticky from "../public/icons/bacheca.svg";
+import faCalendarXmark from "../public/icons/calendario.svg";
+import faPenToSquare from "../public/icons/compiti-assegnati.svg";
+import faBell from "../public/icons/promemoria-classe.svg";
+import faUser from "../public/icons/ricevimento-docenti.svg";
+import faBookmark from "../public/icons/voti-giornalieri.svg";
 import Canvas from "./Canvas";
 import Column from "./Column";
 import Entry from "./Entry";
@@ -30,7 +30,7 @@ enum EventType {
 const ListElement = dynamic(() => import("./ListElement"), {
 	loading: () => <LoadingPlaceholder repeat={2} />,
 });
-const italic = localFont({ src: "../public/Poppins-Italic.ttf" });
+const italic = localFont({ src: "../public/fonts/Poppins-Italic.ttf" });
 
 const getAverages = (dashboard: ArgoDashboard) => {
 	const result = Object.entries(dashboard.mediaMaterie).map(([id, m]) => (
