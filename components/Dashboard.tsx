@@ -1,19 +1,30 @@
 import dynamic from "next/dynamic";
 import localFont from "next/font/local";
 import type { Dashboard as ArgoDashboard, Client } from "portaleargo-api";
-import iconAttività from "../public/icons/attivita-svolta.svg";
-import iconBachecaAlunno from "../public/icons/bacheca-alunno.svg";
-import iconBacheca from "../public/icons/bacheca.svg";
-import iconAppello from "../public/icons/calendario.svg";
-import iconCompiti from "../public/icons/compiti-assegnati.svg";
-import iconPromemoria from "../public/icons/promemoria-classe.svg";
-import iconRicevimento from "../public/icons/ricevimento-docenti.svg";
-import iconVoti from "../public/icons/voti-giornalieri.svg";
 import Canvas from "./Canvas";
 import Column from "./Column";
 import Entry from "./Entry";
 import LoadingPlaceholder from "./LoadingPlaceholder";
 import LogOutButton from "./LogOutButton";
+
+const iconAttività = dynamic(
+	() => import("../public/icons/attivita-svolta.svg")
+);
+const iconBachecaAlunno = dynamic(
+	() => import("../public/icons/bacheca-alunno.svg")
+);
+const iconBacheca = dynamic(() => import("../public/icons/bacheca.svg"));
+const iconAppello = dynamic(() => import("../public/icons/calendario.svg"));
+const iconCompiti = dynamic(
+	() => import("../public/icons/compiti-assegnati.svg")
+);
+const iconPromemoria = dynamic(
+	() => import("../public/icons/promemoria-classe.svg")
+);
+const iconRicevimento = dynamic(
+	() => import("../public/icons/ricevimento-docenti.svg")
+);
+const iconVoti = dynamic(() => import("../public/icons/voti-giornalieri.svg"));
 
 enum ScheduledType {
 	Compiti,

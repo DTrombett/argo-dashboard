@@ -25,7 +25,7 @@ const ListElement = ({
 	header,
 	content,
 }: {
-	Icon: (props: SVGProps<SVGElement>) => React.ReactNode;
+	Icon: React.ComponentType<SVGProps<SVGElement>>;
 	date: Date;
 	header: string;
 	content: string;
