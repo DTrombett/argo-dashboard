@@ -198,23 +198,25 @@ const Dashboard = ({
 						<div className="relative flex justify-center">
 							<Canvas media={client.dashboard?.mediaGenerale} />
 							<span className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
-								<LoadingPlaceholder loading={loading} width={"2rem"}>
+								<LoadingPlaceholder loading={!client.dashboard} width={"3rem"}>
 									{client.dashboard?.mediaGenerale.toFixed(2) ?? "?"}
 								</LoadingPlaceholder>
 							</span>
 						</div>
-						{
-							<span className={italic.className}>
-								<LoadingPlaceholder loading={loading} repeat={2} width={"75%"}>
-									Calcolata nel periodo {dataInizio?.[2]}/{dataInizio?.[1]}/
-									{dataInizio?.[0]} - {dataFine?.[2]}/{dataFine?.[1]}/
-									{dataFine?.[0]}
-								</LoadingPlaceholder>
-							</span>
-						}
+						<span className={italic.className}>
+							<LoadingPlaceholder
+								loading={!client.dashboard}
+								repeat={2}
+								width={"75%"}
+							>
+								Calcolata nel periodo {dataInizio?.[2]}/{dataInizio?.[1]}/
+								{dataInizio?.[0]} - {dataFine?.[2]}/{dataFine?.[1]}/
+								{dataFine?.[0]}
+							</LoadingPlaceholder>
+						</span>
 					</Entry>
 					<Entry name="Per materia">
-						<LoadingPlaceholder loading={loading} repeat={5}>
+						<LoadingPlaceholder loading={!client.dashboard} repeat={5}>
 							{client.dashboard &&
 								Object.entries(client.dashboard.mediaMaterie).map(([id, m]) => (
 									<div key={id} className="flex justify-between">
@@ -236,7 +238,7 @@ const Dashboard = ({
 				<Column name="Prossimi impegni">
 					<Entry name="Entro domani">
 						<div className="flex flex-col">
-							<LoadingPlaceholder loading={loading} repeat={5}>
+							<LoadingPlaceholder loading={!client.dashboard} repeat={5}>
 								{client.dashboard &&
 									getElements(client.dashboard, {
 										now,
@@ -248,7 +250,7 @@ const Dashboard = ({
 					</Entry>
 					<Entry name="Successivi">
 						<div className="flex flex-col">
-							<LoadingPlaceholder loading={loading} repeat={5}>
+							<LoadingPlaceholder loading={!client.dashboard} repeat={5}>
 								{client.dashboard &&
 									getElements(client.dashboard, { tomorrowTime })}
 							</LoadingPlaceholder>
