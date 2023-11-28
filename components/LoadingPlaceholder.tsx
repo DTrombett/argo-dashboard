@@ -5,7 +5,7 @@ const LoadingPlaceholder = ({
 	width,
 	repeat = 1,
 }: {
-	children: React.ReactNode;
+	children?: React.ReactNode;
 	loading?: boolean;
 	height?: React.CSSProperties["height"];
 	width?: React.CSSProperties["width"];

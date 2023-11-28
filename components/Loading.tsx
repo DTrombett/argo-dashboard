@@ -1,4 +1,7 @@
+import localFont from "next/font/local";
 import { useEffect, useState } from "react";
+
+const font = localFont({ src: "../public/Poppins-Light.ttf" });
 
 const Loading = () => {
 	const [n, setN] = useState(3);
@@ -8,7 +11,9 @@ const Loading = () => {
 			setN(n === 3 ? 0 : n + 1);
 		}, 250);
 	}, [n]);
-	return <span>Loading{".".repeat(n)}</span>;
+	return (
+		<span className={`text-xl ${font.className}`}>Loading{".".repeat(n)}</span>
+	);
 };
 
 export default Loading;

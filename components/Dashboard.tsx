@@ -3,7 +3,6 @@ import { faBell } from "@fortawesome/free-regular-svg-icons/faBell";
 import { faClock } from "@fortawesome/free-regular-svg-icons/faClock";
 import { faPenToSquare } from "@fortawesome/free-regular-svg-icons/faPenToSquare";
 import { faUser } from "@fortawesome/free-regular-svg-icons/faUser";
-import type { DynamicOptions } from "next/dynamic";
 import dynamic from "next/dynamic";
 import localFont from "next/font/local";
 import type { Dashboard as ArgoDashboard, Client } from "portaleargo-api";
@@ -21,7 +20,7 @@ enum ElementType {
 	Meeting,
 }
 const ListElement = dynamic(() => import("./ListElement"), {
-	loading: LoadingPlaceholder as DynamicOptions["loading"],
+	loading: () => <LoadingPlaceholder repeat={2} />,
 });
 const italic = localFont({ src: "../public/Poppins-Italic.ttf" });
 
@@ -238,7 +237,7 @@ const Dashboard = ({
 				<Column name="Prossimi impegni">
 					<Entry name="Entro domani">
 						<div className="flex flex-col">
-							<LoadingPlaceholder loading={!client.dashboard} repeat={5}>
+							<LoadingPlaceholder loading={!client.dashboard} repeat={4}>
 								{client.dashboard &&
 									getElements(client.dashboard, {
 										now,
@@ -250,7 +249,7 @@ const Dashboard = ({
 					</Entry>
 					<Entry name="Successivi">
 						<div className="flex flex-col">
-							<LoadingPlaceholder loading={!client.dashboard} repeat={5}>
+							<LoadingPlaceholder loading={!client.dashboard} repeat={4}>
 								{client.dashboard &&
 									getElements(client.dashboard, { tomorrowTime })}
 							</LoadingPlaceholder>
@@ -259,7 +258,7 @@ const Dashboard = ({
 				</Column>
 			</div>
 			<button
-				className="relative my-2 p-4 w-40 rounded duration-500 bg-zinc-300 dark:bg-zinc-700 text-xl focus-visible:outline-zinc-400 dark:focus-visible:outline-zinc-600 enabled:hover:scale-110 enabled:active:scale-95 disabled:cursor-wait disabled:opacity-50 disabled:bg-zinc-200 dark:disabled:bg-zinc-800"
+				className="relative mt-4 p-4 w-40 rounded duration-500 bg-zinc-300 dark:bg-zinc-700 text-xl focus-visible:outline-zinc-400 dark:focus-visible:outline-zinc-600 enabled:hover:scale-110 enabled:active:scale-95 disabled:cursor-wait disabled:opacity-50 disabled:bg-zinc-200 dark:disabled:bg-zinc-800"
 				disabled={pending}
 				onClick={async () => {
 					setPending(true);

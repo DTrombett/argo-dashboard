@@ -71,7 +71,7 @@ const Home = () => {
 				<Link
 					href="https://github.com/DTrombett/argo-dashboard"
 					target="_blank"
-					className="my-4 hover:underline link"
+					className="mt-4 hover:underline link"
 				>
 					Source code
 				</Link>
