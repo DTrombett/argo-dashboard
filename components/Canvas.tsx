@@ -1,4 +1,3 @@
-"use client";
 import { useEffect, useRef } from "react";
 
 const duration = 1_000;

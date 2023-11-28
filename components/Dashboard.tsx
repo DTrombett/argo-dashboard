@@ -1,4 +1,3 @@
-import { State } from "@/app/utils";
 import { faBell } from "@fortawesome/free-regular-svg-icons/faBell";
 import { faBookmark } from "@fortawesome/free-regular-svg-icons/faBookmark";
 import { faCalendarXmark } from "@fortawesome/free-regular-svg-icons/faCalendarXmark";
@@ -10,12 +9,11 @@ import { faUser } from "@fortawesome/free-regular-svg-icons/faUser";
 import dynamic from "next/dynamic";
 import localFont from "next/font/local";
 import type { Dashboard as ArgoDashboard, Client } from "portaleargo-api";
-import { useState } from "react";
 import Canvas from "./Canvas";
 import Column from "./Column";
 import Entry from "./Entry";
-import LoadingBar from "./LoadingBar";
 import LoadingPlaceholder from "./LoadingPlaceholder";
+import LogOutButton from "./LogOutButton";
 
 enum ScheduledType {
 	Compiti,
@@ -339,8 +337,6 @@ const Dashboard = ({
 	setState: (state: number) => void;
 	loading?: boolean;
 }) => {
-	console.log(client.dashboard?.bacheca);
-	const [pending, setPending] = useState(false);
 	const period = client.dashboard?.listaPeriodi.find(
 		(p) => p.pkPeriodo === "*"
 	);
@@ -438,18 +434,7 @@ const Dashboard = ({
 					</Entry>
 				</Column>
 			</div>
-			<button
-				className="relative mt-4 p-4 w-40 rounded duration-500 bg-zinc-300 dark:bg-zinc-700 text-xl focus-visible:outline-zinc-400 dark:focus-visible:outline-zinc-600 enabled:hover:scale-110 enabled:active:scale-95 disabled:cursor-wait disabled:opacity-50 disabled:bg-zinc-200 dark:disabled:bg-zinc-800"
-				disabled={pending}
-				onClick={async () => {
-					setPending(true);
-					await client.logOut().catch(() => {});
-					setState(State.NeedLogin);
-				}}
-			>
-				Log out
-				{pending && <LoadingBar />}
-			</button>
+			<LogOutButton client={client} setState={setState} />
 		</div>
 	);
 };

@@ -1,6 +1,8 @@
 "use client";
 import Loading from "@/components/Loading";
 import LoginForm from "@/components/LoginForm";
+import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import dynamic from "next/dynamic";
 import localFont from "next/font/local";
 import Link from "next/link";
@@ -26,7 +28,7 @@ const Home = () => {
 		setState(State.NoDashboard);
 		const dashboard = localStorage.getItem("dashboard");
 
-		if (dashboard)
+		if (dashboard && !client.dashboard)
 			try {
 				client.dashboard = JSON.parse(dashboard);
 				client.dashboard!.dataAggiornamento = new Date(
@@ -71,9 +73,9 @@ const Home = () => {
 				<Link
 					href="https://github.com/DTrombett/argo-dashboard"
 					target="_blank"
-					className="mt-4 hover:underline link"
+					className="mt-4 px-1 hover:underline link text-base"
 				>
-					Source code
+					<FontAwesomeIcon icon={faGithub} height={"1rem"} /> Open Source
 				</Link>
 			</div>
 		</main>
