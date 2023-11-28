@@ -63,7 +63,7 @@ const Home = () => {
 	}
 	return (
 		<main className="flex flex-col min-h-screen p-4 items-center text-center">
-			<span className={`my-4 text-4xl ${titleFont.className}`}>
+			<span className={`m-4 text-4xl ${titleFont.className}`}>
 				Argo Dashboard
 			</span>
 			<div className="h-full w-full flex flex-col flex-auto justify-center items-center">

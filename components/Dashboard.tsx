@@ -11,6 +11,7 @@ import { useState } from "react";
 import Canvas from "./Canvas";
 import Column from "./Column";
 import Entry from "./Entry";
+import LoadingBar from "./LoadingBar";
 import LoadingPlaceholder from "./LoadingPlaceholder";
 
 enum ElementType {
@@ -22,7 +23,6 @@ enum ElementType {
 const ListElement = dynamic(() => import("./ListElement"), {
 	loading: LoadingPlaceholder as DynamicOptions["loading"],
 });
-const LoadingBar = dynamic(() => import("./LoadingBar"));
 const italic = localFont({ src: "../public/Poppins-Italic.ttf" });
 
 const getElements = (

@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 
 const duration = 1_000;
 
-const Canvas = ({ media = 10 }: { media?: number }) => {
+const Canvas = ({ media = 0 }: { media?: number }) => {
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 
 	useEffect(() => {
