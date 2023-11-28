@@ -1,6 +1,5 @@
-import { StaticImport } from "next/dist/shared/lib/get-img-props";
 import localFont from "next/font/local";
-import Image from "next/image";
+import type { SVGProps } from "react";
 import { useState } from "react";
 
 const months = [
@@ -21,12 +20,12 @@ const medium = localFont({ src: "../public/fonts/Poppins-Medium.ttf" });
 const light = localFont({ src: "../public/fonts/Poppins-Light.ttf" });
 
 const ListElement = ({
-	icon,
+	Icon,
 	date,
 	header,
 	content,
 }: {
-	icon: string | StaticImport;
+	Icon: (props: SVGProps<SVGElement>) => React.ReactNode;
 	date: Date;
 	header: string;
 	content: string;
@@ -36,14 +35,11 @@ const ListElement = ({
 	return (
 		<div className="flex flex-col py-1">
 			<div className={medium.className}>
-				<Image src={icon} alt="icon" height={18} className="relative icon" />
-				<span>
-					{" "}
-					{date.getDate()} {months[date.getMonth()]}{" "}
-					{date.getFullYear().toString().slice(-2)}
-					{" — "}
-					{header}
-				</span>
+				<Icon className="icon inline" />
+				{date.getDate()} {months[date.getMonth()]}{" "}
+				{date.getFullYear().toString().slice(-2)}
+				{" — "}
+				{header}
 			</div>
 			<span
 				className={`text-base ${light.className}`}

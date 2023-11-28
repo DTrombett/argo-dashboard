@@ -1,14 +1,14 @@
 import dynamic from "next/dynamic";
 import localFont from "next/font/local";
 import type { Dashboard as ArgoDashboard, Client } from "portaleargo-api";
-import faClock from "../public/icons/attivita-svolta.svg";
-import faFileClipboard from "../public/icons/bacheca-alunno.svg";
-import faNoteSticky from "../public/icons/bacheca.svg";
-import faCalendarXmark from "../public/icons/calendario.svg";
-import faPenToSquare from "../public/icons/compiti-assegnati.svg";
-import faBell from "../public/icons/promemoria-classe.svg";
-import faUser from "../public/icons/ricevimento-docenti.svg";
-import faBookmark from "../public/icons/voti-giornalieri.svg";
+import iconAttività from "../public/icons/attivita-svolta.svg";
+import iconBachecaAlunno from "../public/icons/bacheca-alunno.svg";
+import iconBacheca from "../public/icons/bacheca.svg";
+import iconAppello from "../public/icons/calendario.svg";
+import iconCompiti from "../public/icons/compiti-assegnati.svg";
+import iconPromemoria from "../public/icons/promemoria-classe.svg";
+import iconRicevimento from "../public/icons/ricevimento-docenti.svg";
+import iconVoti from "../public/icons/voti-giornalieri.svg";
 import Canvas from "./Canvas";
 import Column from "./Column";
 import Entry from "./Entry";
@@ -86,7 +86,7 @@ const getScheduled = (
 							key={`${event.pk}-attivita`}
 							content={event.attivita}
 							date={date}
-							icon={faClock}
+							Icon={iconAttività}
 							header={event.materia}
 						/>
 					),
@@ -110,7 +110,7 @@ const getScheduled = (
 									key={`${event.pk}-compiti-${c.compito}-${c.dataConsegna}`}
 									content={c.compito}
 									date={d}
-									icon={faPenToSquare}
+									Icon={iconCompiti}
 									header={event.materia}
 								/>
 							),
@@ -139,7 +139,7 @@ const getScheduled = (
 								key={event.pk}
 								content={event.desAnnotazioni}
 								date={date}
-								icon={faBell}
+								Icon={iconPromemoria}
 								header={event.docente}
 							/>
 						),
@@ -169,7 +169,7 @@ const getScheduled = (
 								key={event.prenotazione.pk}
 								content={`${event.disponibilita.ora_Inizio} - ${event.disponibilita.ora_Fine} — ${event.disponibilita.desLuogoRicevimento} — ${event.disponibilita.desNota}`}
 								date={date}
-								icon={faUser}
+								Icon={iconRicevimento}
 								header={`${event.docente.desNome[0]}. ${event.docente.desCognome}`}
 							/>
 						),
@@ -252,7 +252,7 @@ const getEvents = (
 							event.nota
 						}`}
 						date={date}
-						icon={faCalendarXmark}
+						Icon={iconAppello}
 						header={event.docente}
 					/>
 				),
@@ -273,7 +273,7 @@ const getEvents = (
 							event.descrizioneProva && ` — ${event.descrizioneProva}`
 						}`}
 						date={date}
-						icon={faBookmark}
+						Icon={iconVoti}
 						header={event.desMateria}
 					/>
 				),
@@ -290,7 +290,7 @@ const getEvents = (
 						key={event.pk}
 						content={`${event.categoria}: ${event.messaggio}`}
 						date={date}
-						icon={faNoteSticky}
+						Icon={iconBacheca}
 						header={event.autore}
 					/>
 				),
@@ -307,7 +307,7 @@ const getEvents = (
 						key={event.pk}
 						content={event.nomeFile}
 						date={date}
-						icon={faFileClipboard}
+						Icon={iconBachecaAlunno}
 						header={event.messaggio}
 					/>
 				),
@@ -337,6 +337,7 @@ const Dashboard = ({
 	setState: (state: number) => void;
 	loading?: boolean;
 }) => {
+	console.log(iconVoti);
 	const period = client.dashboard?.listaPeriodi.find(
 		(p) => p.pkPeriodo === "*"
 	);

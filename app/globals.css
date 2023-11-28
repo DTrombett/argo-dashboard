@@ -86,7 +86,7 @@ body {
 }
 
 .icon {
-	top: 2px;
+	transform: scale(calc(18 / 31)) translateY(-2px);
 }
 
 @layer components {

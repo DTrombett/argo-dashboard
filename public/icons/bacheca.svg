@@ -1,13 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="31.5" height="29.312" viewBox="0 0 31.5 29.312">
   <g id="Group" transform="translate(-0.25 -0.243)">
-    <path id="Path_1" data-name="Path 1" d="M1,6.2,19.654,5.114l.091.091L4.858,9.244l4.4,16.7-7.035.408Z" fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
-    <path id="Path_2" data-name="Path 2" d="M4.858,9.244,19.79,5.2a2.306,2.306,0,0,0,2.133.5,2.277,2.277,0,0,0,1.634-1.5l2.224-.5L31,23.268,10.122,28.8Z" fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
-    <path id="Path_3" data-name="Path 3" d="M17.021,9.017l2.723-3.495" fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
-    <path id="Path_4" data-name="Path 4" d="M20.652,1.074a2.326,2.326,0,0,1,2.9,1.725,2.337,2.337,0,0,1-1.725,2.9,2.407,2.407,0,0,1-2.9-1.725A2.38,2.38,0,0,1,20.652,1.074Z" fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
-    <path id="Path_5" data-name="Path 5" d="M9.487,13.873,23.1,10.242" fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
-    <path id="Path_6" data-name="Path 6" d="M10.395,17.277,24.01,13.556" fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
-    <path id="Path_7" data-name="Path 7" d="M11.3,20.635,24.873,17" fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
-    <path id="Path_8" data-name="Path 8" d="M12.21,24.04l5.31-1.407" fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
-    <path id="Path_9" data-name="Path 9" d="M19.971,22.043l1.679-.5" fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
+    <path id="Path_1" data-name="Path 1" d="M1,6.2,19.654,5.114l.091.091L4.858,9.244l4.4,16.7-7.035.408Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
+    <path id="Path_2" data-name="Path 2" d="M4.858,9.244,19.79,5.2a2.306,2.306,0,0,0,2.133.5,2.277,2.277,0,0,0,1.634-1.5l2.224-.5L31,23.268,10.122,28.8Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
+    <path id="Path_3" data-name="Path 3" d="M17.021,9.017l2.723-3.495" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
+    <path id="Path_4" data-name="Path 4" d="M20.652,1.074a2.326,2.326,0,0,1,2.9,1.725,2.337,2.337,0,0,1-1.725,2.9,2.407,2.407,0,0,1-2.9-1.725A2.38,2.38,0,0,1,20.652,1.074Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
+    <path id="Path_5" data-name="Path 5" d="M9.487,13.873,23.1,10.242" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
+    <path id="Path_6" data-name="Path 6" d="M10.395,17.277,24.01,13.556" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
+    <path id="Path_7" data-name="Path 7" d="M11.3,20.635,24.873,17" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
+    <path id="Path_8" data-name="Path 8" d="M12.21,24.04l5.31-1.407" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
+    <path id="Path_9" data-name="Path 9" d="M19.971,22.043l1.679-.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1.5"/>
   </g>
 </svg>

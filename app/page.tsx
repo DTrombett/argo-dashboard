@@ -75,7 +75,8 @@ const Home = () => {
 					target="_blank"
 					className="mt-4 px-1 hover:underline link text-base"
 				>
-					<FontAwesomeIcon icon={faGithub} height={"1rem"} /> Open Source
+					<FontAwesomeIcon icon={faGithub} height={"1rem"} className="inline" />{" "}
+					Open Source
 				</Link>
 			</div>
 		</main>
