@@ -9,9 +9,9 @@ const Column = ({
 	name: string;
 	children?: React.ReactNode;
 }) => (
-	<div className="flex flex-col w-full md:flex-1 md:max-w-md">
+	<div className="flex flex-col w-full lg:flex-1 lg:max-w-md">
 		<div className={`m-4 text-2xl ${bold.className}`}>{name}</div>
-		<div className="flex flex-col">{children}</div>
+		<div className="flex flex-col sm:flex-row lg:flex-col">{children}</div>
 	</div>
 );
 
