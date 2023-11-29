@@ -7,6 +7,21 @@ import Entry from "./Entry";
 import LoadingPlaceholder from "./LoadingPlaceholder";
 import LogOutButton from "./LogOutButton";
 
+enum ScheduledType {
+	Compiti,
+	Promemoria,
+	Attività,
+	Prenotazioni,
+}
+enum EventType {
+	Voti,
+	BachecaAlunno,
+	Bacheca,
+	Appello,
+}
+const ListElement = dynamic(() => import("./ListElement"), {
+	loading: () => <LoadingPlaceholder repeat={2} />,
+});
 const iconAttività = dynamic(
 	() => import("../public/icons/attivita-svolta.svg")
 );
@@ -25,22 +40,6 @@ const iconRicevimento = dynamic(
 	() => import("../public/icons/ricevimento-docenti.svg")
 );
 const iconVoti = dynamic(() => import("../public/icons/voti-giornalieri.svg"));
-
-enum ScheduledType {
-	Compiti,
-	Promemoria,
-	Attività,
-	Prenotazioni,
-}
-enum EventType {
-	Voti,
-	BachecaAlunno,
-	Bacheca,
-	Appello,
-}
-const ListElement = dynamic(() => import("./ListElement"), {
-	loading: () => <LoadingPlaceholder repeat={2} />,
-});
 const italic = localFont({ src: "../public/fonts/Poppins-Italic.ttf" });
 
 const getAverages = (dashboard: ArgoDashboard) => {
@@ -327,6 +326,7 @@ const getEvents = (
 			};
 		}),
 	];
+
 	return elements.length ? (
 		elements
 			.sort(
@@ -348,7 +348,6 @@ const Dashboard = ({
 	setState: (state: number) => void;
 	loading?: boolean;
 }) => {
-	console.log(iconVoti);
 	const period = client.dashboard?.listaPeriodi.find(
 		(p) => p.pkPeriodo === "*"
 	);

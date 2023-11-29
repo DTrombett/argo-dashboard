@@ -12,10 +12,10 @@
 		"lint": "prettier --write ** && next lint"
 	},
 	"dependencies": {
-		"@fortawesome/fontawesome-svg-core": "^6.4.2",
-		"@fortawesome/free-brands-svg-icons": "^6.4.2",
-		"@fortawesome/free-regular-svg-icons": "^6.4.2",
-		"@fortawesome/free-solid-svg-icons": "^6.4.2",
+		"@fortawesome/fontawesome-svg-core": "^6.5.0",
+		"@fortawesome/free-brands-svg-icons": "^6.5.0",
+		"@fortawesome/free-regular-svg-icons": "^6.5.0",
+		"@fortawesome/free-solid-svg-icons": "^6.5.0",
 		"@fortawesome/react-fontawesome": "^0.2.0",
 		"@fullhuman/postcss-purgecss": "^5.0.0",
 		"ajv": "^8.12.0",
@@ -32,7 +32,7 @@
 		"@types/node": "^20",
 		"@types/react": "^18",
 		"@types/react-dom": "^18",
-		"@typescript-eslint/eslint-plugin": "^6.12.0",
+		"@typescript-eslint/eslint-plugin": "^6.13.1",
 		"autoprefixer": "^10.4.16",
 		"eslint": "^8",
 		"eslint-config-next": "14.0.3",
