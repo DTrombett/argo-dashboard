@@ -1,9 +1,9 @@
 import localFont from "next/font/local";
-import type { Dashboard as ArgoDashboard } from "portaleargo-api";
+import type { Dashboard } from "portaleargo-api";
 
 const italic = localFont({ src: "../fonts/Poppins-Italic.ttf" });
 
-const Averages = ({ dashboard }: { dashboard: ArgoDashboard }) => {
+const Averages = ({ dashboard }: { dashboard: Dashboard }) => {
 	const result = Object.entries(dashboard.mediaMaterie).map(([id, m]) => (
 		<div key={id} className="flex justify-between">
 			<span

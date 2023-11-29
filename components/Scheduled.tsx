@@ -1,7 +1,7 @@
 import { ScheduledType } from "@/app/utils";
 import dynamic from "next/dynamic";
 import localFont from "next/font/local";
-import { Dashboard } from "portaleargo-api";
+import type { Dashboard } from "portaleargo-api";
 import LoadingPlaceholder from "./LoadingPlaceholder";
 
 const ListElement = dynamic(() => import("./ListElement"), {
