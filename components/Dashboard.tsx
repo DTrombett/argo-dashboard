@@ -1,6 +1,6 @@
-import dynamic from "next/dynamic";
 import localFont from "next/font/local";
-import type { Dashboard as ArgoDashboard, Client } from "portaleargo-api";
+import type { Client } from "portaleargo-api";
+import Averages from "./Averages";
 import Canvas from "./Canvas";
 import Column from "./Column";
 import Entry from "./Entry";
@@ -9,36 +9,7 @@ import LoadingPlaceholder from "./LoadingPlaceholder";
 import LogOutButton from "./LogOutButton";
 import Scheduled from "./Scheduled";
 
-const ListElement = dynamic(() => import("./ListElement"), {
-	loading: () => <LoadingPlaceholder repeat={2} />,
-});
-const iconBachecaAlunno = dynamic(() => import("../icons/bacheca-alunno.svg"));
-const iconBacheca = dynamic(() => import("../icons/bacheca.svg"));
-const iconAppello = dynamic(() => import("../icons/calendario.svg"));
-const iconVoti = dynamic(() => import("../icons/voti-giornalieri.svg"));
 const italic = localFont({ src: "../fonts/Poppins-Italic.ttf" });
-
-const getAverages = (dashboard: ArgoDashboard) => {
-	const result = Object.entries(dashboard.mediaMaterie).map(([id, m]) => (
-		<div key={id} className="flex justify-between">
-			<span
-				className="text-left whitespace-nowrap overflow-auto outline-0 hideScrollbar subject"
-				tabIndex={-1}
-			>
-				{dashboard.listaMaterie.find((s) => s.pk === id)?.materia}
-			</span>
-			<span className="text-right">{m.mediaMateria}</span>
-		</div>
-	));
-
-	return result.length ? (
-		result
-	) : (
-		<span className={italic.className}>
-			Nessun dato disponibile riguardo la media!
-		</span>
-	);
-};
 
 const Dashboard = ({
 	client,
@@ -102,7 +73,7 @@ const Dashboard = ({
 					</Entry>
 					<Entry name="Per materia">
 						<LoadingPlaceholder loading={!client.dashboard} repeat={5}>
-							{client.dashboard && getAverages(client.dashboard)}
+							{client.dashboard && <Averages dashboard={client.dashboard} />}
 						</LoadingPlaceholder>
 					</Entry>
 				</Column>
