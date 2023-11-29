@@ -4,33 +4,17 @@ import type { Dashboard as ArgoDashboard, Client } from "portaleargo-api";
 import Canvas from "./Canvas";
 import Column from "./Column";
 import Entry from "./Entry";
+import Events from "./Events";
 import LoadingPlaceholder from "./LoadingPlaceholder";
 import LogOutButton from "./LogOutButton";
+import Scheduled from "./Scheduled";
 
-enum ScheduledType {
-	Compiti,
-	Promemoria,
-	Attività,
-	Prenotazioni,
-}
-enum EventType {
-	Voti,
-	BachecaAlunno,
-	Bacheca,
-	Appello,
-}
 const ListElement = dynamic(() => import("./ListElement"), {
 	loading: () => <LoadingPlaceholder repeat={2} />,
 });
-const iconAttività = dynamic(() => import("../icons/attivita-svolta.svg"));
 const iconBachecaAlunno = dynamic(() => import("../icons/bacheca-alunno.svg"));
 const iconBacheca = dynamic(() => import("../icons/bacheca.svg"));
 const iconAppello = dynamic(() => import("../icons/calendario.svg"));
-const iconCompiti = dynamic(() => import("../icons/compiti-assegnati.svg"));
-const iconPromemoria = dynamic(() => import("../icons/promemoria-classe.svg"));
-const iconRicevimento = dynamic(
-	() => import("../icons/ricevimento-docenti.svg")
-);
 const iconVoti = dynamic(() => import("../icons/voti-giornalieri.svg"));
 const italic = localFont({ src: "../fonts/Poppins-Italic.ttf" });
 
@@ -53,281 +37,6 @@ const getAverages = (dashboard: ArgoDashboard) => {
 		<span className={italic.className}>
 			Nessun dato disponibile riguardo la media!
 		</span>
-	);
-};
-const getScheduled = (
-	dashboard: ArgoDashboard,
-	options: { tomorrowTime: number } & (
-		| {
-				now: number;
-				tomorrow: string;
-		  }
-		// eslint-disable-next-line @typescript-eslint/ban-types
-		| {}
-	)
-) => {
-	const elements = dashboard.registro
-		.flatMap((event) => {
-			const array: {
-				element: React.JSX.Element;
-				type: ScheduledType;
-				date: Date;
-			}[] = [];
-			const date = new Date(event.datEvento);
-			const time = date.getTime();
-
-			if (
-				event.attivita &&
-				("now" in options
-					? time > options.now && time < options.tomorrowTime
-					: time >= options.tomorrowTime)
-			)
-				array.push({
-					element: (
-						<ListElement
-							key={`${event.pk}-attivita`}
-							content={event.attivita}
-							date={date}
-							Icon={iconAttività}
-							header={event.materia}
-						/>
-					),
-					date,
-					type: ScheduledType.Attività,
-				});
-			array.push(
-				...event.compiti
-					.filter(
-						"tomorrow" in options
-							? (c) => c.dataConsegna === options.tomorrow
-							: (c) =>
-									new Date(c.dataConsegna).getTime() >= options.tomorrowTime
-					)
-					.map((c, i) => {
-						const d = new Date(c.dataConsegna);
-
-						return {
-							element: (
-								<ListElement
-									key={`${event.pk}-compiti-${c.compito}-${c.dataConsegna}`}
-									content={c.compito}
-									date={d}
-									Icon={iconCompiti}
-									header={event.materia}
-								/>
-							),
-							date: d,
-							type: ScheduledType.Compiti,
-						};
-					})
-			);
-			return array;
-		})
-		.concat(
-			dashboard.promemoria
-				.filter((p) => {
-					const t = new Date(p.datEvento).getTime();
-
-					return "now" in options
-						? t > options.now && t < options.tomorrowTime
-						: t >= options.tomorrowTime;
-				})
-				.map((event) => {
-					const date = new Date(event.datEvento);
-
-					return {
-						element: (
-							<ListElement
-								key={event.pk}
-								content={event.desAnnotazioni}
-								date={date}
-								Icon={iconPromemoria}
-								header={event.docente}
-							/>
-						),
-						date,
-						type: ScheduledType.Promemoria,
-					};
-				}),
-			dashboard.prenotazioniAlunni
-				.filter((p) => {
-					if (p.prenotazione.flgAnnullato === "E") return false;
-					const t = new Date(
-						`${p.disponibilita.datDisponibilita} ${p.disponibilita.ora_Inizio}`
-					).getTime();
-
-					return "now" in options
-						? t > options.now && t < options.tomorrowTime
-						: t >= options.tomorrowTime;
-				})
-				.map((event) => {
-					const date = new Date(
-						`${event.disponibilita.datDisponibilita} ${event.disponibilita.ora_Inizio}`
-					);
-
-					return {
-						element: (
-							<ListElement
-								key={event.prenotazione.pk}
-								content={`${event.disponibilita.ora_Inizio} - ${event.disponibilita.ora_Fine} — ${event.disponibilita.desLuogoRicevimento} — ${event.disponibilita.desNota}`}
-								date={date}
-								Icon={iconRicevimento}
-								header={`${event.docente.desNome[0]}. ${event.docente.desCognome}`}
-							/>
-						),
-						date,
-						type: ScheduledType.Prenotazioni,
-					};
-				})
-		)
-		.sort(
-			({ type: type1, date: date1 }, { type: type2, date: date2 }) =>
-				date1.getTime() - date2.getTime() || type1 - type2
-		)
-		.map(({ element }) => element);
-
-	return elements.length ? (
-		elements
-	) : (
-		<span className={italic.className}>Nessun impegno imminente!</span>
-	);
-};
-const getEvents = (
-	dashboard: ArgoDashboard,
-	options: { weekStart: number } & (
-		| {
-				now: number;
-		  }
-		// eslint-disable-next-line @typescript-eslint/ban-types
-		| {}
-	)
-) => {
-	const predicate = (event: { datEvento: string }) => {
-		const time = new Date(event.datEvento).getTime();
-
-		return "now" in options
-			? time >= options.weekStart && time <= options.now
-			: time < options.weekStart;
-	};
-	const elements: {
-		element: React.JSX.Element;
-		type: EventType;
-		date: Date;
-	}[] = [
-		// ...dashboard.registro
-		// 	.filter((e) => {
-		// 		const date = new Date(e.datEvento);
-		// 		const time = date.getTime();
-
-		// 		return (
-		// 			e.attivita &&
-		// 			("now" in options
-		// 				? time >= options.weekStart && time <= options.now
-		// 				: time < options.weekStart)
-		// 		);
-		// 	})
-		// 	.map((event) => {
-		// 		const date = new Date(event.datEvento);
-
-		// 		return {
-		// 			element: (
-		// 				<ListElement
-		// 					key={`${event.pk}-attivita`}
-		// 					content={event.attivita!}
-		// 					date={date}
-		// 					icon={faClock}
-		// 					header={event.materia}
-		// 				/>
-		// 			),
-		// 			date,
-		// 			type: ScheduledType.Activity,
-		// 		};
-		// 	}),
-		...dashboard.appello.filter(predicate).map((event) => {
-			const date = new Date(event.datEvento);
-
-			return {
-				element: (
-					<ListElement
-						key={event.pk}
-						content={`${event.descrizione && `${event.descrizione} — `}${
-							event.nota
-						}`}
-						date={date}
-						Icon={iconAppello}
-						header={event.docente}
-					/>
-				),
-				date,
-				type: EventType.Appello,
-			};
-		}),
-		...dashboard.voti.filter(predicate).map((event) => {
-			const date = new Date(event.datEvento);
-
-			return {
-				element: (
-					<ListElement
-						key={event.pk}
-						content={`Prova ${
-							event.codVotoPratico === "S" ? "Scritta" : "Orale"
-						}: ${event.valore || event.codCodice} (${event.descrizioneVoto})${
-							event.descrizioneProva && ` — ${event.descrizioneProva}`
-						}`}
-						date={date}
-						Icon={iconVoti}
-						header={event.desMateria}
-					/>
-				),
-				date,
-				type: EventType.Voti,
-			};
-		}),
-		...dashboard.bacheca.filter(predicate).map((event) => {
-			const date = new Date(event.datEvento);
-
-			return {
-				element: (
-					<ListElement
-						key={event.pk}
-						content={`${event.categoria}: ${event.messaggio}`}
-						date={date}
-						Icon={iconBacheca}
-						header={event.autore}
-					/>
-				),
-				date,
-				type: EventType.Bacheca,
-			};
-		}),
-		...dashboard.bachecaAlunno.filter(predicate).map((event) => {
-			const date = new Date(event.datEvento);
-
-			return {
-				element: (
-					<ListElement
-						key={event.pk}
-						content={event.nomeFile}
-						date={date}
-						Icon={iconBachecaAlunno}
-						header={event.messaggio}
-					/>
-				),
-				date,
-				type: EventType.BachecaAlunno,
-			};
-		}),
-	];
-
-	return elements.length ? (
-		elements
-			.sort(
-				({ type: type1, date: date1 }, { type: type2, date: date2 }) =>
-					date2.getTime() - date1.getTime() || type1 - type2
-			)
-			.map(({ element }) => element)
-	) : (
-		<span className={italic.className}>Nessun evento disponibile!</span>
 	);
 };
 
@@ -401,20 +110,26 @@ const Dashboard = ({
 					<Entry name="Entro domani">
 						<div className="flex flex-col">
 							<LoadingPlaceholder loading={!client.dashboard} repeat={4}>
-								{client.dashboard &&
-									getScheduled(client.dashboard, {
-										now,
-										tomorrowTime,
-										tomorrow,
-									})}
+								{client.dashboard && (
+									<Scheduled
+										dashboard={client.dashboard}
+										tomorrowTime={tomorrowTime}
+										now={now}
+										tomorrow={tomorrow}
+									/>
+								)}
 							</LoadingPlaceholder>
 						</div>
 					</Entry>
 					<Entry name="Successivi">
 						<div className="flex flex-col">
 							<LoadingPlaceholder loading={!client.dashboard} repeat={4}>
-								{client.dashboard &&
-									getScheduled(client.dashboard, { tomorrowTime })}
+								{client.dashboard && (
+									<Scheduled
+										dashboard={client.dashboard}
+										tomorrowTime={tomorrowTime}
+									/>
+								)}
 							</LoadingPlaceholder>
 						</div>
 					</Entry>
@@ -423,15 +138,22 @@ const Dashboard = ({
 					<Entry name="Questa settimana">
 						<div className="flex flex-col">
 							<LoadingPlaceholder loading={!client.dashboard} repeat={4}>
-								{client.dashboard &&
-									getEvents(client.dashboard, { now, weekStart })}
+								{client.dashboard && (
+									<Events
+										dashboard={client.dashboard}
+										now={now}
+										weekStart={weekStart}
+									/>
+								)}
 							</LoadingPlaceholder>
 						</div>
 					</Entry>
 					<Entry name="Precedenti">
 						<div className="flex flex-col">
 							<LoadingPlaceholder loading={!client.dashboard} repeat={4}>
-								{client.dashboard && getEvents(client.dashboard, { weekStart })}
+								{client.dashboard && (
+									<Events dashboard={client.dashboard} weekStart={weekStart} />
+								)}
 							</LoadingPlaceholder>
 						</div>
 					</Entry>
