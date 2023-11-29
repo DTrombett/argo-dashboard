@@ -22,25 +22,17 @@ enum EventType {
 const ListElement = dynamic(() => import("./ListElement"), {
 	loading: () => <LoadingPlaceholder repeat={2} />,
 });
-const iconAttività = dynamic(
-	() => import("../public/icons/attivita-svolta.svg")
-);
-const iconBachecaAlunno = dynamic(
-	() => import("../public/icons/bacheca-alunno.svg")
-);
-const iconBacheca = dynamic(() => import("../public/icons/bacheca.svg"));
-const iconAppello = dynamic(() => import("../public/icons/calendario.svg"));
-const iconCompiti = dynamic(
-	() => import("../public/icons/compiti-assegnati.svg")
-);
-const iconPromemoria = dynamic(
-	() => import("../public/icons/promemoria-classe.svg")
-);
+const iconAttività = dynamic(() => import("../icons/attivita-svolta.svg"));
+const iconBachecaAlunno = dynamic(() => import("../icons/bacheca-alunno.svg"));
+const iconBacheca = dynamic(() => import("../icons/bacheca.svg"));
+const iconAppello = dynamic(() => import("../icons/calendario.svg"));
+const iconCompiti = dynamic(() => import("../icons/compiti-assegnati.svg"));
+const iconPromemoria = dynamic(() => import("../icons/promemoria-classe.svg"));
 const iconRicevimento = dynamic(
-	() => import("../public/icons/ricevimento-docenti.svg")
+	() => import("../icons/ricevimento-docenti.svg")
 );
-const iconVoti = dynamic(() => import("../public/icons/voti-giornalieri.svg"));
-const italic = localFont({ src: "../public/fonts/Poppins-Italic.ttf" });
+const iconVoti = dynamic(() => import("../icons/voti-giornalieri.svg"));
+const italic = localFont({ src: "../fonts/Poppins-Italic.ttf" });
 
 const getAverages = (dashboard: ArgoDashboard) => {
 	const result = Object.entries(dashboard.mediaMaterie).map(([id, m]) => (

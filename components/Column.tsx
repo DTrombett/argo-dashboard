@@ -1,6 +1,6 @@
 import localFont from "next/font/local";
 
-const bold = localFont({ src: "../public/fonts/Poppins-Bold.ttf" });
+const bold = localFont({ src: "../fonts/Poppins-Bold.ttf" });
 
 const Column = ({
 	name,

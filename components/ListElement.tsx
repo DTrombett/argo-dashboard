@@ -16,8 +16,8 @@ const months = [
 	"NOV",
 	"DIC",
 ];
-const medium = localFont({ src: "../public/fonts/Poppins-Medium.ttf" });
-const light = localFont({ src: "../public/fonts/Poppins-Light.ttf" });
+const medium = localFont({ src: "../fonts/Poppins-Medium.ttf" });
+const light = localFont({ src: "../fonts/Poppins-Light.ttf" });
 
 const ListElement = ({
 	Icon,
