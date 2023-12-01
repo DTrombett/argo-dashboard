@@ -4,10 +4,10 @@ import Averages from "./Averages";
 import Canvas from "./Canvas";
 import Column from "./Column";
 import Entry from "./Entry";
-import Events from "./Events";
 import LoadingPlaceholder from "./LoadingPlaceholder";
 import LogOutButton from "./LogOutButton";
 import Scheduled from "./Scheduled";
+import Updates from "./Updates";
 
 const italic = localFont({ src: "../fonts/Poppins-Italic.ttf" });
 
@@ -105,12 +105,12 @@ const Dashboard = ({
 						</div>
 					</Entry>
 				</Column>
-				<Column name="Ultimi eventi">
+				<Column name="Ultimi aggiornamenti">
 					<Entry name="Questa settimana">
 						<div className="flex flex-col">
 							<LoadingPlaceholder loading={!client.dashboard} repeat={4}>
 								{client.dashboard && (
-									<Events
+									<Updates
 										dashboard={client.dashboard}
 										now={now}
 										weekStart={weekStart}
@@ -123,7 +123,7 @@ const Dashboard = ({
 						<div className="flex flex-col">
 							<LoadingPlaceholder loading={!client.dashboard} repeat={4}>
 								{client.dashboard && (
-									<Events dashboard={client.dashboard} weekStart={weekStart} />
+									<Updates dashboard={client.dashboard} weekStart={weekStart} />
 								)}
 							</LoadingPlaceholder>
 						</div>

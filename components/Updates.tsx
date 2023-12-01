@@ -13,7 +13,7 @@ const iconAppello = dynamic(() => import("../icons/calendario.svg"));
 const iconVoti = dynamic(() => import("../icons/voti-giornalieri.svg"));
 const italic = localFont({ src: "../fonts/Poppins-Italic.ttf" });
 
-const Events = ({
+const Updates = ({
 	dashboard,
 	...options
 }: {
@@ -26,7 +26,14 @@ const Events = ({
 	// eslint-disable-next-line @typescript-eslint/ban-types
 	| {}
 )) => {
-	const predicate = <T extends { datEvento: string; pk: string }>(event: T) => {
+	const predicate = <
+		T extends {
+			pk: string;
+			datEvento: string;
+		}
+	>(
+		event: T
+	) => {
 		const time = new Date(event.datEvento).getTime();
 
 		return "now" in options
@@ -67,80 +74,72 @@ const Events = ({
 		// 			type: ScheduledType.Activity,
 		// 		};
 		// 	}),
-		...dashboard.appello.filter(predicate).map((event) => {
-			const date = new Date(event.datEvento);
+		...dashboard.appello.filter(predicate).map((event) => ({
+			element: (
+				<ListElement
+					key={event.pk}
+					content={`${event.descrizione && `${event.descrizione} — `}${
+						event.nota
+					}`}
+					date={new Date(event.data)}
+					Icon={iconAppello}
+					header={event.docente}
+				/>
+			),
+			date: new Date(event.datEvento),
+			type: EventType.Appello,
+		})),
+		...dashboard.voti.filter(predicate).map((event) => ({
+			element: (
+				<ListElement
+					key={event.pk}
+					content={`Prova ${
+						event.codVotoPratico === "S" ? "Scritta" : "Orale"
+					}: ${event.valore || event.codCodice} (${event.descrizioneVoto})${
+						event.descrizioneProva && ` — ${event.descrizioneProva}`
+					}`}
+					date={new Date(event.datGiorno)}
+					Icon={iconVoti}
+					header={event.desMateria}
+				/>
+			),
+			date: new Date(event.datEvento),
+			type: EventType.Voti,
+		})),
+		...dashboard.bacheca
+			.filter((event) => {
+				const time = new Date(event.data).getTime();
 
-			return {
-				element: (
-					<ListElement
-						key={event.pk}
-						content={`${event.descrizione && `${event.descrizione} — `}${
-							event.nota
-						}`}
-						date={date}
-						Icon={iconAppello}
-						header={event.docente}
-					/>
-				),
-				date,
-				type: EventType.Appello,
-			};
-		}),
-		...dashboard.voti.filter(predicate).map((event) => {
-			const date = new Date(event.datEvento);
-
-			return {
-				element: (
-					<ListElement
-						key={event.pk}
-						content={`Prova ${
-							event.codVotoPratico === "S" ? "Scritta" : "Orale"
-						}: ${event.valore || event.codCodice} (${event.descrizioneVoto})${
-							event.descrizioneProva && ` — ${event.descrizioneProva}`
-						}`}
-						date={date}
-						Icon={iconVoti}
-						header={event.desMateria}
-					/>
-				),
-				date,
-				type: EventType.Voti,
-			};
-		}),
-		...dashboard.bacheca.filter(predicate).map((event) => {
-			const date = new Date(event.datEvento);
-
-			return {
+				return "now" in options
+					? time >= options.weekStart && time <= options.now
+					: time < options.weekStart;
+			})
+			.map((event) => ({
 				element: (
 					<ListElement
 						key={event.pk}
 						content={`${event.categoria}: ${event.messaggio}`}
-						date={date}
+						date={new Date(event.data)}
 						Icon={iconBacheca}
 						header={event.autore}
 					/>
 				),
-				date,
+				date: new Date(event.data),
 				type: EventType.Bacheca,
-			};
-		}),
-		...dashboard.bachecaAlunno.filter(predicate).map((event) => {
-			const date = new Date(event.datEvento);
-
-			return {
-				element: (
-					<ListElement
-						key={event.pk}
-						content={event.nomeFile}
-						date={date}
-						Icon={iconBachecaAlunno}
-						header={event.messaggio}
-					/>
-				),
-				date,
-				type: EventType.BachecaAlunno,
-			};
-		}),
+			})),
+		...dashboard.bachecaAlunno.filter(predicate).map((event) => ({
+			element: (
+				<ListElement
+					key={event.pk}
+					content={event.nomeFile}
+					date={new Date(event.data)}
+					Icon={iconBachecaAlunno}
+					header={event.messaggio}
+				/>
+			),
+			date: new Date(event.datEvento),
+			type: EventType.BachecaAlunno,
+		})),
 	];
 
 	return elements.length ? (
@@ -158,4 +157,4 @@ const Events = ({
 	);
 };
 
-export default Events;
+export default Updates;
