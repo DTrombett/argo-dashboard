@@ -27,6 +27,7 @@ export const metadata: Metadata = {
 	icons: "https://argo-dashboard.vercel.app/favicon.ico",
 	keywords: ["react", "nextjs", "argo", "registro", "vercel"],
 	// manifest
+	metadataBase: new URL("https://argo-dashboard.vercel.app"),
 	openGraph: {
 		type: "website",
 		countryName: "Italy",
