@@ -1,7 +1,7 @@
 import { EventType } from "@/app/utils";
 import dynamic from "next/dynamic";
 import localFont from "next/font/local";
-import type { Dashboard } from "portaleargo-api";
+import type { Client } from "portaleargo-api";
 import LoadingPlaceholder from "./LoadingPlaceholder";
 
 const ListElement = dynamic(() => import("./ListElement"), {
@@ -14,10 +14,10 @@ const iconVoti = dynamic(() => import("../icons/voti-giornalieri.svg"));
 const italic = localFont({ src: "../fonts/Poppins-Italic.ttf" });
 
 const Updates = ({
-	dashboard,
+	client,
 	...options
 }: {
-	dashboard: Dashboard;
+	client: Client;
 	weekStart: number;
 } & (
 	| {
@@ -74,10 +74,11 @@ const Updates = ({
 		// 			type: ScheduledType.Activity,
 		// 		};
 		// 	}),
-		...dashboard.appello.filter(predicate).map((event) => ({
+		...client.dashboard!.appello.filter(predicate).map((event) => ({
 			element: (
 				<ListElement
 					key={event.pk}
+					title={event.commentoGiustificazione}
 					content={`${event.descrizione && `${event.descrizione} — `}${
 						event.nota
 					}`}
@@ -89,7 +90,7 @@ const Updates = ({
 			date: new Date(event.datEvento),
 			type: EventType.Appello,
 		})),
-		...dashboard.voti.filter(predicate).map((event) => ({
+		...client.dashboard!.voti.filter(predicate).map((event) => ({
 			element: (
 				<ListElement
 					key={event.pk}
@@ -98,16 +99,18 @@ const Updates = ({
 					}: ${event.valore || event.codCodice} (${event.descrizioneVoto})${
 						event.descrizioneProva && ` — ${event.descrizioneProva}`
 					}`}
+					title={event.desCommento}
 					date={new Date(event.datGiorno)}
 					Icon={iconVoti}
 					header={event.desMateria}
+					headerTitle={event.docente}
 				/>
 			),
 			date: new Date(event.datEvento),
 			type: EventType.Voti,
 		})),
-		...dashboard.bacheca
-			.filter((event) => {
+		...client
+			.dashboard!.bacheca.filter((event) => {
 				const time = new Date(event.data).getTime();
 
 				return "now" in options
@@ -122,12 +125,37 @@ const Updates = ({
 						date={new Date(event.data)}
 						Icon={iconBacheca}
 						header={event.autore}
-					/>
+					>
+						{event.listaAllegati[0] && (
+							<>
+								{" "}
+								—{" "}
+								{event.listaAllegati
+									.map<React.ReactNode>((allegato) => (
+										<span
+											className="link"
+											key={allegato.pk}
+											title={allegato.descrizioneFile ?? undefined}
+											onClick={async () => {
+												const link = await client
+													.getLinkAllegato(event.listaAllegati[0].pk)
+													.catch(() => {});
+
+												if (link) window.open(link);
+											}}
+										>
+											{event.listaAllegati[0].nomeFile}
+										</span>
+									))
+									.reduce((prev, curr) => [prev, " — ", curr])}
+							</>
+						)}
+					</ListElement>
 				),
 				date: new Date(event.data),
 				type: EventType.Bacheca,
 			})),
-		...dashboard.bachecaAlunno.filter(predicate).map((event) => ({
+		...client.dashboard!.bachecaAlunno.filter(predicate).map((event) => ({
 			element: (
 				<ListElement
 					key={event.pk}

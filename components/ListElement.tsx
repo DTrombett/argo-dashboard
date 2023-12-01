@@ -24,36 +24,45 @@ const ListElement = ({
 	date,
 	header,
 	content,
+	children,
+	title,
+	headerTitle,
 }: {
 	Icon: React.ComponentType<SVGProps<SVGElement>>;
 	date: Date;
 	header: string;
 	content: string;
+	children?: React.ReactNode;
+	title?: string;
+	headerTitle?: string;
 }) => {
 	const [expanded, setExpanded] = useState(false);
 
 	return (
 		<div className="flex flex-col py-1">
-			<div className={medium.className}>
+			<div className={medium.className} title={headerTitle}>
 				<Icon className="icon inline" />
 				{date.getDate()} {months[date.getMonth()]}{" "}
 				{date.getFullYear().toString().slice(-2)}
 				{" — "}
 				{header}
 			</div>
-			<span
-				className={`text-base ${light.className}`}
-				onClick={
-					content.length > 100
-						? () => {
-								setExpanded((e) => !e);
-						  }
-						: undefined
-				}
-			>
-				{!expanded && content.length > 100
-					? `${content.slice(0, 97).trimEnd()}...`
-					: content}
+			<span className={`text-base ${light.className}`}>
+				<span
+					title={title}
+					onClick={
+						content.length > 100
+							? () => {
+									setExpanded((e) => !e);
+							  }
+							: undefined
+					}
+				>
+					{!expanded && content.length > 100
+						? `${content.slice(0, 97).trimEnd()}...`
+						: content}
+				</span>
+				{children}
 			</span>
 		</div>
 	);

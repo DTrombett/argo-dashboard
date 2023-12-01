@@ -23,9 +23,16 @@ body {
 	text-wrap: balance;
 }
 
+a,
 .link {
 	color: #00a8fc;
+	cursor: pointer;
 	text-decoration: none;
+}
+
+a:hover,
+.link:hover {
+	text-decoration: underline;
 }
 
 .hideScrollbar::-webkit-scrollbar {

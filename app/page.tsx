@@ -73,7 +73,7 @@ const Home = () => {
 				<Link
 					href="https://github.com/DTrombett/argo-dashboard"
 					target="_blank"
-					className="mt-4 px-1 hover:underline link text-base"
+					className="mt-4 px-1 text-base"
 				>
 					<FontAwesomeIcon icon={faGithub} height={"1rem"} className="inline" />{" "}
 					Open Source

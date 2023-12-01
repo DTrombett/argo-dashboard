@@ -110,11 +110,7 @@ const Dashboard = ({
 						<div className="flex flex-col">
 							<LoadingPlaceholder loading={!client.dashboard} repeat={4}>
 								{client.dashboard && (
-									<Updates
-										dashboard={client.dashboard}
-										now={now}
-										weekStart={weekStart}
-									/>
+									<Updates client={client} now={now} weekStart={weekStart} />
 								)}
 							</LoadingPlaceholder>
 						</div>
@@ -123,7 +119,7 @@ const Dashboard = ({
 						<div className="flex flex-col">
 							<LoadingPlaceholder loading={!client.dashboard} repeat={4}>
 								{client.dashboard && (
-									<Updates dashboard={client.dashboard} weekStart={weekStart} />
+									<Updates client={client} weekStart={weekStart} />
 								)}
 							</LoadingPlaceholder>
 						</div>
