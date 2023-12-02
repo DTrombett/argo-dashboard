@@ -133,8 +133,6 @@ const Updates = ({
 								{event.listaAllegati
 									.map<React.ReactNode>((allegato) => {
 										let link: Promise<string | void> | undefined;
-										if (allegato.descrizioneFile)
-											console.log(allegato.nomeFile);
 
 										return (
 											<span
