@@ -2,6 +2,7 @@ import { EventType } from "@/app/utils";
 import dynamic from "next/dynamic";
 import localFont from "next/font/local";
 import type { Client } from "portaleargo-api";
+import Allegato from "./Allegato";
 import LoadingPlaceholder from "./LoadingPlaceholder";
 
 const ListElement = dynamic(() => import("./ListElement"), {
@@ -126,39 +127,18 @@ const Updates = ({
 						Icon={iconBacheca}
 						header={event.autore}
 					>
-						{event.listaAllegati[0] && (
+						{event.listaAllegati.length && (
 							<>
 								{" "}
 								—{" "}
 								{event.listaAllegati
-									.map<React.ReactNode>((allegato) => {
-										let link: Promise<string | void> | undefined;
-
-										return (
-											<span
-												className="link"
-												key={allegato.pk}
-												title={allegato.descrizioneFile ?? undefined}
-												onMouseOver={async () => {
-													if (
-														(await (link ??= client
-															.getLinkAllegato(allegato.pk)
-															.catch(() => {}))) === undefined
-													)
-														link = undefined;
-												}}
-												onClick={async () => {
-													const url = await (link ??= client
-														.getLinkAllegato(allegato.pk)
-														.catch(() => {}));
-
-													if (url) window.open(url);
-												}}
-											>
-												{allegato.nomeFile}
-											</span>
-										);
-									})
+									.map<React.ReactNode>((allegato) => (
+										<Allegato
+											allegato={allegato}
+											getLink={client.getLinkAllegato.bind(client, allegato.pk)}
+											key={allegato.pk}
+										/>
+									))
 									.reduce((prev, curr) => [prev, " — ", curr])}
 							</>
 						)}
@@ -181,26 +161,10 @@ const Updates = ({
 					>
 						{" "}
 						—{" "}
-						<span
-							className="link"
-							onMouseOver={async () => {
-								if (
-									(await (link ??= client
-										.getLinkAllegatoStudente(event.pk)
-										.catch(() => {}))) === undefined
-								)
-									link = undefined;
-							}}
-							onClick={async () => {
-								const url = await (link ??= client
-									.getLinkAllegatoStudente(event.pk)
-									.catch(() => {}));
-
-								if (url) window.open(url);
-							}}
-						>
-							{event.nomeFile}
-						</span>
+						<Allegato
+							allegato={event}
+							getLink={client.getLinkAllegatoStudente.bind(client, event.pk)}
+						/>
 					</ListElement>
 				),
 				date: new Date(event.datEvento),

@@ -56,6 +56,8 @@ const Scheduled = ({
 							content={event.attivita}
 							date={date}
 							Icon={iconAttività}
+							title={`${event.ora}ª Ora`}
+							headerTitle={event.docente}
 							header={event.materia}
 						/>
 					),
@@ -80,6 +82,7 @@ const Scheduled = ({
 									content={c.compito}
 									date={d}
 									Icon={iconCompiti}
+									headerTitle={event.docente}
 									header={event.materia}
 								/>
 							),
@@ -105,7 +108,7 @@ const Scheduled = ({
 					element: (
 						<ListElement
 							key={event.pk}
-							content={event.desAnnotazioni}
+							content={`${event.desAnnotazioni} (${event.oraInizio} - ${event.oraFine})`}
 							date={date}
 							Icon={iconPromemoria}
 							header={event.docente}
@@ -138,6 +141,7 @@ const Scheduled = ({
 							content={`${event.disponibilita.ora_Inizio} - ${event.disponibilita.ora_Fine} — ${event.disponibilita.desLuogoRicevimento} — ${event.disponibilita.desNota}`}
 							date={date}
 							Icon={iconRicevimento}
+							headerTitle={event.docente.desEmail}
 							header={`${event.docente.desNome[0]}. ${event.docente.desCognome}`}
 						/>
 					),
