@@ -44,8 +44,8 @@ const Dashboard = ({
 	return (
 		<div className={`${loading ? "blur-sm" : ""} w-full dashboard`.trimStart()}>
 			<div className="flex flex-col justify-center text-xl container min-w-full lg:flex-row">
-				<Column name="Media">
-					<Entry name="Generale">
+				<Column name="Media" id="media">
+					<Entry name="Generale" id="generale">
 						<div className="flex flex-col justify-center h-full">
 							<div className="relative flex justify-center">
 								<Canvas media={client.dashboard?.mediaGenerale} />
@@ -71,14 +71,14 @@ const Dashboard = ({
 							</span>
 						</div>
 					</Entry>
-					<Entry name="Per materia">
+					<Entry name="Per materia" id="perMateria">
 						<LoadingPlaceholder loading={!client.dashboard} repeat={5}>
 							{client.dashboard && <Averages dashboard={client.dashboard} />}
 						</LoadingPlaceholder>
 					</Entry>
 				</Column>
-				<Column name="Prossimi impegni">
-					<Entry name="Entro domani">
+				<Column name="Prossimi impegni" id="prossimiImpegni">
+					<Entry name="Entro domani" id="perMateria">
 						<div className="flex flex-col">
 							<LoadingPlaceholder loading={!client.dashboard} repeat={4}>
 								{client.dashboard && (
@@ -92,7 +92,7 @@ const Dashboard = ({
 							</LoadingPlaceholder>
 						</div>
 					</Entry>
-					<Entry name="Successivi">
+					<Entry name="Successivi" id="successivi">
 						<div className="flex flex-col">
 							<LoadingPlaceholder loading={!client.dashboard} repeat={4}>
 								{client.dashboard && (
@@ -105,8 +105,8 @@ const Dashboard = ({
 						</div>
 					</Entry>
 				</Column>
-				<Column name="Ultimi aggiornamenti">
-					<Entry name="Questa settimana">
+				<Column name="Ultimi aggiornamenti" id="ultimiAggiornamenti">
+					<Entry name="Questa settimana" id="questaSettimana">
 						<div className="flex flex-col">
 							<LoadingPlaceholder loading={!client.dashboard} repeat={4}>
 								{client.dashboard && (
@@ -115,7 +115,7 @@ const Dashboard = ({
 							</LoadingPlaceholder>
 						</div>
 					</Entry>
-					<Entry name="Precedenti">
+					<Entry name="Precedenti" id="precedenti">
 						<div className="flex flex-col">
 							<LoadingPlaceholder loading={!client.dashboard} repeat={4}>
 								{client.dashboard && (
