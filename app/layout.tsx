@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 	generator: "Next.js",
 	icons: "https://argo-dashboard.vercel.app/favicon.ico",
 	keywords: ["react", "nextjs", "argo", "registro", "vercel"],
-	// manifest
+	// TODO: manifest
 	metadataBase: new URL("https://argo-dashboard.vercel.app"),
 	openGraph: {
 		type: "website",

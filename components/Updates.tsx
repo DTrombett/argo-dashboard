@@ -131,22 +131,36 @@ const Updates = ({
 								{" "}
 								—{" "}
 								{event.listaAllegati
-									.map<React.ReactNode>((allegato) => (
-										<span
-											className="link"
-											key={allegato.pk}
-											title={allegato.descrizioneFile ?? undefined}
-											onClick={async () => {
-												const link = await client
-													.getLinkAllegato(event.listaAllegati[0].pk)
-													.catch(() => {});
+									.map<React.ReactNode>((allegato) => {
+										let link: Promise<string | void> | undefined;
+										if (allegato.descrizioneFile)
+											console.log(allegato.nomeFile);
 
-												if (link) window.open(link);
-											}}
-										>
-											{event.listaAllegati[0].nomeFile}
-										</span>
-									))
+										return (
+											<span
+												className="link"
+												key={allegato.pk}
+												title={allegato.descrizioneFile ?? undefined}
+												onMouseOver={async () => {
+													if (
+														(await (link ??= client
+															.getLinkAllegato(allegato.pk)
+															.catch(() => {}))) === undefined
+													)
+														link = undefined;
+												}}
+												onClick={async () => {
+													const url = await (link ??= client
+														.getLinkAllegato(allegato.pk)
+														.catch(() => {}));
+
+													if (url) window.open(url);
+												}}
+											>
+												{allegato.nomeFile}
+											</span>
+										);
+									})
 									.reduce((prev, curr) => [prev, " — ", curr])}
 							</>
 						)}
@@ -155,19 +169,46 @@ const Updates = ({
 				date: new Date(event.data),
 				type: EventType.Bacheca,
 			})),
-		...client.dashboard!.bachecaAlunno.filter(predicate).map((event) => ({
-			element: (
-				<ListElement
-					key={event.pk}
-					content={event.nomeFile}
-					date={new Date(event.data)}
-					Icon={iconBachecaAlunno}
-					header={event.messaggio}
-				/>
-			),
-			date: new Date(event.datEvento),
-			type: EventType.BachecaAlunno,
-		})),
+		...client.dashboard!.bachecaAlunno.filter(predicate).map((event) => {
+			let link: Promise<string | void> | undefined;
+
+			return {
+				element: (
+					<ListElement
+						key={event.pk}
+						content={event.nomeFile}
+						date={new Date(event.data)}
+						Icon={iconBachecaAlunno}
+						header={event.messaggio}
+					>
+						{" "}
+						—{" "}
+						<span
+							className="link"
+							onMouseOver={async () => {
+								if (
+									(await (link ??= client
+										.getLinkAllegatoStudente(event.pk)
+										.catch(() => {}))) === undefined
+								)
+									link = undefined;
+							}}
+							onClick={async () => {
+								const url = await (link ??= client
+									.getLinkAllegatoStudente(event.pk)
+									.catch(() => {}));
+
+								if (url) window.open(url);
+							}}
+						>
+							{event.nomeFile}
+						</span>
+					</ListElement>
+				),
+				date: new Date(event.datEvento),
+				type: EventType.BachecaAlunno,
+			};
+		}),
 	];
 
 	return elements.length ? (
