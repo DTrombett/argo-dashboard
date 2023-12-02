@@ -15,6 +15,7 @@ const titleFont = localFont({ src: "../fonts/Poppins-ExtraBold.ttf" });
 const Dashboard = dynamic(() => import("@/components/Dashboard"), {
 	loading: Loading,
 });
+const MayNeedLogin = dynamic(() => import("@/components/MayNeedLogin"));
 
 const Home = () => {
 	const [state, setState] = useState(State.FirstLoading);
@@ -42,7 +43,7 @@ const Home = () => {
 				setState(State.Ready);
 			})
 			.catch(() => {
-				setState(State.NeedLogin);
+				setState(State.MayNeedLogin);
 			});
 	}, []);
 	switch (state) {
@@ -51,14 +52,13 @@ const Home = () => {
 			break;
 		case State.NoDashboard:
 		case State.OldDashboardReady:
-		case State.Ready:
 			PageElement = (
-				<Dashboard
-					loading={state !== State.Ready}
-					client={client}
-					setState={setState}
-				/>
+				<Dashboard loading={true} client={client} setState={setState} />
 			);
+			break;
+		case State.Ready:
+		case State.MayNeedLogin:
+			PageElement = <Dashboard client={client} setState={setState} />;
 			break;
 		default:
 			PageElement = <Loading />;
@@ -79,6 +79,7 @@ const Home = () => {
 					Open Source
 				</Link>
 			</div>
+			{state === State.MayNeedLogin && <MayNeedLogin setState={setState} />}
 		</main>
 	);
 };
