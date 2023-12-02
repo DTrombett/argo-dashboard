@@ -9,21 +9,27 @@ const Allegato = ({
 }) => {
 	const [link, setLink] = useState<string | Promise<string | void>>();
 
-	return typeof link === "string" ? (
-		<a
-			href={link}
-			className="link"
-			title={allegato.descrizioneFile ?? undefined}
-		>
-			{allegato.nomeFile}
-		</a>
-	) : (
+	if (typeof link === "string")
+		return (
+			<a
+				href={link}
+				className="link"
+				title={allegato.descrizioneFile ?? undefined}
+				download={allegato.nomeFile}
+			>
+				{allegato.nomeFile}
+			</a>
+		);
+	const loadLink = async () => {
+		if (!link) setLink(getLink().then(setLink).catch(setLink));
+	};
+
+	return (
 		<span
 			className="link"
 			title={allegato.descrizioneFile ?? undefined}
-			onMouseOver={async () => {
-				if (!link) setLink(getLink().then(setLink).catch(setLink));
-			}}
+			onMouseEnter={loadLink}
+			onTouchStart={loadLink}
 			onClick={async () => {
 				let url = await link;
 

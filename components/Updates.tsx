@@ -127,7 +127,7 @@ const Updates = ({
 						Icon={iconBacheca}
 						header={event.autore}
 					>
-						{event.listaAllegati.length && (
+						{event.listaAllegati[0] && (
 							<>
 								{" "}
 								—{" "}
