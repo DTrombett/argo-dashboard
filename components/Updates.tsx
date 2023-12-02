@@ -46,35 +46,6 @@ const Updates = ({
 		type: EventType;
 		date: Date;
 	}[] = [
-		// ...dashboard.registro
-		// 	.filter((e) => {
-		// 		const date = new Date(e.datEvento);
-		// 		const time = date.getTime();
-
-		// 		return (
-		// 			e.attivita &&
-		// 			("now" in options
-		// 				? time >= options.weekStart && time <= options.now
-		// 				: time < options.weekStart)
-		// 		);
-		// 	})
-		// 	.map((event) => {
-		// 		const date = new Date(event.datEvento);
-
-		// 		return {
-		// 			element: (
-		// 				<ListElement
-		// 					key={`${event.pk}-attivita`}
-		// 					content={event.attivita!}
-		// 					date={date}
-		// 					icon={faClock}
-		// 					header={event.materia}
-		// 				/>
-		// 			),
-		// 			date,
-		// 			type: ScheduledType.Activity,
-		// 		};
-		// 	}),
 		...client.dashboard!.appello.filter(predicate).map((event) => ({
 			element: (
 				<ListElement

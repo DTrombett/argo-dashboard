@@ -40,7 +40,7 @@ const Scheduled = ({
 				type: ScheduledType;
 				date: Date;
 			}[] = [];
-			const date = new Date(event.datEvento);
+			const date = new Date(event.datGiorno);
 			const time = date.getTime();
 
 			if (
@@ -95,20 +95,24 @@ const Scheduled = ({
 		}),
 		...dashboard.promemoria
 			.filter((p) => {
-				const t = new Date(p.datEvento).getTime();
+				const t = new Date(p.datGiorno).getTime();
 
 				return "now" in options
 					? t > options.now && t < options.tomorrowTime
 					: t >= options.tomorrowTime;
 			})
 			.map((event) => {
-				const date = new Date(event.datEvento);
+				const date = new Date(event.datGiorno);
 
 				return {
 					element: (
 						<ListElement
 							key={event.pk}
-							content={`${event.desAnnotazioni} (${event.oraInizio} - ${event.oraFine})`}
+							content={`${event.desAnnotazioni}${
+								event.oraInizio === "00:00"
+									? ""
+									: ` (${event.oraInizio} - ${event.oraFine})`
+							}`}
 							date={date}
 							Icon={iconPromemoria}
 							header={event.docente}
