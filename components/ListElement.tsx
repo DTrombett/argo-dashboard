@@ -47,7 +47,7 @@ const ListElement = ({
 				{" — "}
 				{header}
 			</div>
-			<span className={`text-base ${light.className}`}>
+			<div className={`text-base ${light.className}`}>
 				<span
 					title={title}
 					onClick={
@@ -63,7 +63,7 @@ const ListElement = ({
 						: content}
 				</span>
 				{children}
-			</span>
+			</div>
 		</div>
 	);
 };

@@ -1,5 +1,9 @@
 @tailwind components;
 
+* {
+	scroll-behavior: smooth;
+}
+
 ::-webkit-scrollbar {
 	width: 15px;
 }
