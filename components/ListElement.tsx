@@ -39,7 +39,7 @@ const ListElement = ({
 	const [expanded, setExpanded] = useState(false);
 
 	return (
-		<div className="flex flex-col py-1">
+		<div className="flex flex-col p-2 my-1 rounded-xl bg-zinc-300 dark:bg-zinc-700">
 			<div className={medium.className} title={headerTitle}>
 				<Icon className="icon inline" />
 				{date.getDate()} {months[date.getMonth()]}{" "}

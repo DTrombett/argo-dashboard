@@ -16,7 +16,7 @@ const MayNeedLogin = ({ setState }: { setState: (state: State) => void }) => (
 				setState(State.Ready);
 			}}
 		/>
-		<span className="pl-2 max-w-xs">
+		<span className="pl-2 max-w-xs text-left">
 			Aggiornamento dati non riuscito, prova a eseguire il log out
 		</span>
 	</div>

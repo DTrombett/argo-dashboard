@@ -22,7 +22,6 @@ const Allegato = ({
 		);
 	const loadLink = async () => {
 		if (!link) setLink(getLink().then(setLink).catch(setLink));
-		throw new Error();
 	};
 
 	return (
