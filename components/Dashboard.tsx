@@ -42,7 +42,7 @@ const Dashboard = ({
 	const tomorrowTime = date.getTime();
 
 	return (
-		<div className={`${loading ? "blur-sm" : ""} w-full dashboard`.trimStart()}>
+		<div className={`${loading ? "blur-sm " : ""}w-full dashboard`}>
 			<div className="flex flex-col justify-center text-xl container min-w-full lg:flex-row">
 				<Column name="Media" id="media">
 					<Entry name="Generale" id="generale">

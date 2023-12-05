@@ -18,3 +18,8 @@ export enum EventType {
 	Bacheca,
 	Appello,
 }
+export enum Tab {
+	Home,
+	Menu,
+	Options,
+}

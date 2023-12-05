@@ -12,7 +12,7 @@ import { State } from "./utils";
 
 const client = new Client();
 const titleFont = localFont({ src: "../fonts/Poppins-ExtraBold.ttf" });
-const Dashboard = dynamic(() => import("@/components/Dashboard"), {
+const Navigator = dynamic(() => import("@/components/Navigator"), {
 	loading: Loading,
 });
 const MayNeedLogin = dynamic(() => import("@/components/MayNeedLogin"));
@@ -53,18 +53,22 @@ const Home = () => {
 		case State.NoDashboard:
 		case State.OldDashboardReady:
 			PageElement = (
-				<Dashboard loading={true} client={client} setState={setState} />
+				<Navigator loading={true} client={client} setState={setState} />
 			);
 			break;
 		case State.Ready:
 		case State.MayNeedLogin:
-			PageElement = <Dashboard client={client} setState={setState} />;
+			PageElement = <Navigator client={client} setState={setState} />;
 			break;
 		default:
 			PageElement = <Loading />;
 	}
 	return (
-		<main className="flex flex-col min-h-screen p-4 items-center text-center">
+		<main
+			className={`flex flex-col min-h-screen p-4 items-center text-center${
+				(state as number) > 1 ? " mb-16 lg:mb-0 lg:ml-28" : ""
+			}`}
+		>
 			<span className={`m-4 text-4xl ${titleFont.className}`}>
 				Argo Dashboard
 			</span>
