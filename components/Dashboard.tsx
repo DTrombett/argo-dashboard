@@ -105,7 +105,7 @@ const Dashboard = ({
 						</div>
 					</Entry>
 				</Column>
-				<Column name="Ultimi aggiornamenti" id="ultimiAggiornamenti">
+				<Column name="Aggiornamenti" id="ultimiAggiornamenti">
 					<Entry name="Questa settimana" id="questaSettimana">
 						<div className="flex flex-col">
 							<LoadingPlaceholder loading={!client.dashboard} repeat={4}>

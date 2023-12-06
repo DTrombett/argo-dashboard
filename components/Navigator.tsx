@@ -34,7 +34,7 @@ const Navigator = ({
 			) : (
 				<></>
 			)}
-			<div className="w-full h-16 fixed rounded-t-xl bottom-0 left-0 px-8 bg-zinc-200 dark:bg-zinc-800 flex justify-evenly items-center lg:w-28 lg:h-full lg:top-0 lg:flex-col lg:px-3 lg:py-8 lg:rounded-t-none lg:rounded-tr-2xl lg:rounded-br-2xl lg:justify-start">
+			<div className="w-full h-16 fixed rounded-t-xl -mb-px bottom-0 left-0 px-8 bg-zinc-200 dark:bg-zinc-800 flex justify-evenly items-center lg:w-20 lg:h-full lg:top-0 lg:flex-col lg:px-1 lg:py-4 lg:rounded-t-none lg:rounded-tr-2xl lg:rounded-br-2xl lg:justify-start">
 				<TabIcon
 					name="Home"
 					icon={<Home className="invert dark:invert-0" />}

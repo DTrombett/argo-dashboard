@@ -65,6 +65,12 @@ a:hover,
 	animation: 1.5s infinite loading;
 }
 
+@media (min-width: 1024px) {
+	.lg\:max-h-18 {
+		max-height: 4.5rem /* 72px */;
+	}
+}
+
 @keyframes loading {
 	0% {
 		left: 0;
