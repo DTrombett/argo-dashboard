@@ -4,14 +4,14 @@ import LoginForm from "@/components/LoginForm";
 import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import dynamic from "next/dynamic";
-import localFont from "next/font/local";
+import local from "next/font/local";
 import Link from "next/link";
 import { Client } from "portaleargo-api";
 import { useEffect, useState } from "react";
 import { State } from "./utils";
 
 const client = new Client();
-const titleFont = localFont({ src: "../fonts/Poppins-ExtraBold.ttf" });
+const titleFont = local({ src: "../fonts/Poppins-ExtraBold.ttf" });
 const Navigator = dynamic(() => import("@/components/Navigator"), {
 	loading: Loading,
 });

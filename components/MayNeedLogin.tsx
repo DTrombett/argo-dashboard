@@ -1,9 +1,9 @@
 import { State } from "@/app/utils";
 import { faXmark } from "@fortawesome/free-solid-svg-icons/faXmark";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import localFont from "next/font/local";
+import local from "next/font/local";
 
-const semiBold = localFont({ src: "../fonts/Poppins-Medium.ttf" });
+const semiBold = local({ src: "../fonts/Poppins-Medium.ttf" });
 
 const MayNeedLogin = ({ setState }: { setState: (state: State) => void }) => (
 	<div

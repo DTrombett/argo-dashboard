@@ -1,4 +1,4 @@
-import localFont from "next/font/local";
+import local from "next/font/local";
 import type { SVGProps } from "react";
 import { useState } from "react";
 
@@ -16,8 +16,8 @@ const months = [
 	"NOV",
 	"DIC",
 ];
-const medium = localFont({ src: "../fonts/Poppins-Medium.ttf" });
-const light = localFont({ src: "../fonts/Poppins-Light.ttf" });
+const medium = local({ src: "../fonts/Poppins-Medium.ttf" });
+const light = local({ src: "../fonts/Poppins-Light.ttf" });
 
 const ListElement = ({
 	Icon,

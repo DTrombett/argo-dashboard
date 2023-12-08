@@ -1,4 +1,4 @@
-import localFont from "next/font/local";
+import local from "next/font/local";
 import type { Client } from "portaleargo-api";
 import Averages from "./Averages";
 import Canvas from "./Canvas";
@@ -9,7 +9,7 @@ import LogOutButton from "./LogOutButton";
 import Scheduled from "./Scheduled";
 import Updates from "./Updates";
 
-const italic = localFont({ src: "../fonts/Poppins-Italic.ttf" });
+const italic = local({ src: "../fonts/Poppins-Italic.ttf" });
 
 const Dashboard = ({
 	client,

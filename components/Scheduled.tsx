@@ -1,6 +1,6 @@
 import { ScheduledType } from "@/app/utils";
 import dynamic from "next/dynamic";
-import localFont from "next/font/local";
+import local from "next/font/local";
 import type { Dashboard } from "portaleargo-api";
 import LoadingPlaceholder from "./LoadingPlaceholder";
 
@@ -13,7 +13,7 @@ const iconPromemoria = dynamic(() => import("../icons/promemoria-classe.svg"));
 const iconRicevimento = dynamic(
 	() => import("../icons/ricevimento-docenti.svg")
 );
-const italic = localFont({ src: "../fonts/Poppins-Italic.ttf" });
+const italic = local({ src: "../fonts/Poppins-Italic.ttf" });
 
 const Scheduled = ({
 	dashboard,

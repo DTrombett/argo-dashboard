@@ -1,7 +1,7 @@
-import localFont from "next/font/local";
+import local from "next/font/local";
 import type { Dashboard } from "portaleargo-api";
 
-const italic = localFont({ src: "../fonts/Poppins-Italic.ttf" });
+const italic = local({ src: "../fonts/Poppins-Italic.ttf" });
 
 const Averages = ({ dashboard }: { dashboard: Dashboard }) => {
 	const result = Object.entries(dashboard.mediaMaterie).map(([id, m]) => (

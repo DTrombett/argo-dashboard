@@ -1,6 +1,6 @@
-import localFont from "next/font/local";
+import local from "next/font/local";
 
-const semiBold = localFont({ src: "../fonts/Poppins-SemiBold.ttf" });
+const semiBold = local({ src: "../fonts/Poppins-SemiBold.ttf" });
 
 const Entry = ({
 	name,

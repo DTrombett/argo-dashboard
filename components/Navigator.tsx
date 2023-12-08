@@ -30,7 +30,7 @@ const Navigator = ({
 			{tab === Tab.Home ? (
 				<Dashboard loading={loading} client={client} setState={setState} />
 			) : tab === Tab.Menu ? (
-				<Menu />
+				<Menu client={client} />
 			) : (
 				<></>
 			)}

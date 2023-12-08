@@ -23,3 +23,8 @@ export enum Tab {
 	Menu,
 	Options,
 }
+export enum AppelloIndexes {
+	A,
+	I,
+	U,
+}

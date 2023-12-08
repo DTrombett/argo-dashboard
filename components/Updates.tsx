@@ -1,6 +1,6 @@
 import { EventType } from "@/app/utils";
 import dynamic from "next/dynamic";
-import localFont from "next/font/local";
+import local from "next/font/local";
 import type { Client } from "portaleargo-api";
 import Allegato from "./Allegato";
 import LoadingPlaceholder from "./LoadingPlaceholder";
@@ -12,7 +12,7 @@ const iconBachecaAlunno = dynamic(() => import("../icons/bacheca-alunno.svg"));
 const iconBacheca = dynamic(() => import("../icons/bacheca.svg"));
 const iconAppello = dynamic(() => import("../icons/calendario.svg"));
 const iconVoti = dynamic(() => import("../icons/voti-giornalieri.svg"));
-const italic = localFont({ src: "../fonts/Poppins-Italic.ttf" });
+const italic = local({ src: "../fonts/Poppins-Italic.ttf" });
 
 const Updates = ({
 	client,

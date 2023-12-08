@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import local from "next/font/local";
 import "tailwindcss/tailwind.css";
 import "./globals.css";
 
@@ -13,7 +13,7 @@ import "./globals.css";
  * - Bold
  * - ExtraBold
  */
-const poppinsRegular = localFont({ src: "../fonts/Poppins-Regular.ttf" });
+const poppinsRegular = local({ src: "../fonts/Poppins-Regular.ttf" });
 const description =
 	"Una dashboard compatta, sicura e di facile utilizzo per gestire il registro elettronico Argo (didUP)";
 
