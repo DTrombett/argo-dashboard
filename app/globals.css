@@ -65,10 +65,8 @@ a:hover,
 	animation: 1.5s infinite loading;
 }
 
-@media (min-width: 1024px) {
-	.lg\:max-h-18 {
-		max-height: 4.5rem /* 72px */;
-	}
+.menuEntry {
+	min-height: 4rem;
 }
 
 @keyframes loading {
@@ -106,6 +104,10 @@ a:hover,
 	transform: scale(calc(18 / 31)) translateY(-2px);
 }
 
+.menuIcon {
+	transform: scale(calc(24 / 31));
+}
+
 .expand {
 	animation-name: topMargin;
 	animation-timing-function: ease-out;
@@ -121,6 +123,10 @@ a:hover,
 	from {
 		margin-top: -100%;
 	}
+}
+
+.navigator {
+	transition: all 0.5s;
 }
 
 @layer components {
