@@ -2,27 +2,16 @@ import type { State } from "@/app/utils";
 import { AppelloIndexes, Tab } from "@/app/utils";
 import dynamic from "next/dynamic";
 import type { Dashboard as APIDashboard, Client } from "portaleargo-api";
+import MenuList from "@/components/MenuList";
 import { useState } from "react";
-import attività from "../icons/attivita-svolta.svg";
-import bachecaAlunno from "../icons/bacheca-alunno.svg";
-import bacheca from "../icons/bacheca.svg";
-import appello from "../icons/calendario.svg";
-import compiti from "../icons/compiti-assegnati.svg";
-import condivisione from "../icons/condivisione-documenti.svg";
-import curriculum from "../icons/curriculum.svg";
 import Home from "../icons/home-bianca.svg";
-import note from "../icons/note-personali.svg";
-import orario from "../icons/orario.svg";
-import promemoria from "../icons/promemoria-classe.svg";
-import ricevimento from "../icons/ricevimento-docenti.svg";
-import pagamenti from "../icons/tasse-icon.svg";
-import votiGiornalieri from "../icons/voti-giornalieri.svg";
-import votiScrutinio from "../icons/voti-scrutinio.svg";
+import MenuIcon from "../icons/menu-icon.svg";
+import Opzioni from "../icons/opzioni.svg";
 import Dashboard from "./Dashboard";
 import Loading from "./Loading";
-import MenuEntry from "./MenuEntry";
 import TabIcon from "./TabIcon";
 
+//#region summaries
 const appelloTitles: ((n: number) => string)[] = [
 	(n) => `assenz${n === 1 ? "a" : "e"}`,
 	(n) => `ritard${n === 1 ? "o" : "i"}`,
@@ -145,6 +134,7 @@ const resolveBachecaAlunno = (dashboard: APIDashboard) => {
 		}).length
 	} comunicazioni recenti`;
 };
+//#endregion
 
 const Menu = dynamic(() => import("@/components/Menu"), {
 	loading: Loading,
@@ -160,7 +150,6 @@ const Navigator = ({
 	setState: (state: State) => void;
 }) => {
 	const [tab, setTab] = useState(Tab.Home);
-	const [expanded, setExpanded] = useState(false);
 
 	return (
 		<>
@@ -171,141 +160,27 @@ const Navigator = ({
 			) : (
 				<></>
 			)}
-			<div
-				className={`fixed top-0 left-0 bottom-0 w-20 bg-zinc-200 dark:bg-zinc-800 flex flex-col p-2 rounded-r-2xl whitespace-nowrap overflow-auto navigator${
-					expanded ? "" : " hideScrollbar"
-				}`}
-				onMouseEnter={setExpanded.bind(null, true)}
-				onMouseLeave={setExpanded.bind(null, false)}
-				style={
-					expanded
-						? {
-								width: "400px",
-								paddingLeft: "1rem",
-						  }
-						: undefined
-				}
-			>
+			<div className="fixed lg:top-0 left-0 bottom-0 w-screen lg:w-20 bg-zinc-200 dark:bg-zinc-800 flex flex-row lg:flex-col p-2 rounded-t-2xl lg:rounded-r-2xl lg:rounded-tl-none whitespace-nowrap overflow-auto navigator hideScrollbar">
 				<TabIcon
 					name="Home"
 					icon={<Home className="invert dark:invert-0" />}
 					onClick={setTab.bind(null, Tab.Home)}
 					active={tab === Tab.Home}
-					expanded={expanded}
 				/>
-				<MenuEntry
-					summary={client.dashboard && resolveAppello(client.dashboard)}
-					color="#07abbe"
-					icon={appello}
-					name="Eventi appello"
-					expanded={expanded}
-					active={false}
-				>
-					{() => <div className="h-80">Sus</div>}
-				</MenuEntry>
-				<MenuEntry
-					summary={client.dashboard && resolveNote(client.dashboard)}
-					color="#ffb498"
-					icon={note}
-					name="Note"
-					expanded={expanded}
-					active={false}
+				<TabIcon
+					name="Menu"
+					icon={<MenuIcon />}
+					onClick={setTab.bind(null, Tab.Menu)}
+					active={tab === Tab.Menu}
+					className="lg:hidden"
 				/>
-				<MenuEntry
-					summary={client.dashboard && resolveVoti(client.dashboard)}
-					color="#e06f5c"
-					icon={votiGiornalieri}
-					name="Voti giornalieri"
-					expanded={expanded}
-					active={false}
+				<TabIcon
+					name="Opzioni"
+					icon={<Opzioni />}
+					onClick={setTab.bind(null, Tab.Options)}
+					active={tab === Tab.Options}
 				/>
-				<MenuEntry
-					color="#9f72d5"
-					icon={votiScrutinio}
-					name="Voti scrutinio"
-					expanded={expanded}
-					active={false}
-				/>
-				<MenuEntry
-					summary={client.dashboard && resolveAttività(client.dashboard)}
-					color="#3e90d8"
-					icon={attività}
-					name="Attività svolta"
-					expanded={expanded}
-					active={false}
-				/>
-				<MenuEntry
-					summary={client.dashboard && resolveCompiti(client.dashboard)}
-					color="#7080fe"
-					icon={compiti}
-					name="Compiti assegnati"
-					expanded={expanded}
-					active={false}
-				/>
-				<MenuEntry
-					summary={client.dashboard && resolvePromemoria(client.dashboard)}
-					color="#ff5d63"
-					icon={promemoria}
-					name="Promemoria"
-					expanded={expanded}
-					active={false}
-				/>
-				<MenuEntry
-					color="#f8b3ca"
-					icon={orario}
-					name="Orario"
-					expanded={expanded}
-					active={false}
-				/>
-				<MenuEntry
-					summary={client.dashboard && resolvePrenotazioni(client.dashboard)}
-					color="#90c078"
-					icon={ricevimento}
-					name="Ricevimento docenti"
-					expanded={expanded}
-					active={false}
-				/>
-				<MenuEntry
-					summary={client.dashboard && resolveBacheca(client.dashboard)}
-					color="#06aabe"
-					icon={bacheca}
-					name="Bacheca"
-					expanded={expanded}
-					active={false}
-				/>
-				<MenuEntry
-					summary={client.dashboard && resolveBachecaAlunno(client.dashboard)}
-					color="#07abbe"
-					icon={bachecaAlunno}
-					name="Bacheca alunno"
-					expanded={expanded}
-					active={false}
-				/>
-				<MenuEntry
-					summary={
-						client.dashboard &&
-						`${client.dashboard.fileCondivisi.listaFile.length} file condivisi`
-					}
-					color="#45dda1"
-					icon={condivisione}
-					name="Condivisione"
-					expanded={expanded}
-					active={false}
-				/>
-				<MenuEntry
-					color="#07abbe"
-					icon={pagamenti}
-					name="Pagamenti"
-					expanded={expanded}
-					active={false}
-				/>
-				<MenuEntry
-					color="#385a90"
-					icon={curriculum}
-					name="Curriculum"
-					expanded={expanded}
-					active={false}
-				/>
+				<MenuList client={client} className="hidden lg:flex" />
 			</div>
 		</>
 	);

@@ -65,7 +65,8 @@ a:hover,
 	animation: 1.5s infinite loading;
 }
 
-.menuEntry {
+.menuEntry,
+.tabIcon {
 	min-height: 4rem;
 }
 
@@ -127,6 +128,34 @@ a:hover,
 
 .navigator {
 	transition: all 0.5s;
+}
+
+@media (min-width: 1024px) {
+	.navigator:hover {
+		scrollbar-width: auto;
+		width: 400px;
+		padding-left: 1rem;
+		> .tabIcon {
+			justify-content: flex-start;
+			padding-left: 1.25rem;
+			> span {
+				display: block;
+			}
+		}
+		> .menuEntry {
+			padding-left: 1rem;
+			padding-right: 1rem;
+			> svg {
+				width: 2rem;
+			}
+			> div {
+				display: flex;
+			}
+		}
+	}
+	.navigator:hover::-webkit-scrollbar {
+		display: block;
+	}
 }
 
 @layer components {

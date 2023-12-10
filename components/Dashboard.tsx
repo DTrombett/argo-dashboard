@@ -27,19 +27,16 @@ const Dashboard = ({
 	const dataFine = period?.dataFine.split("-");
 	const date = new Date();
 	const now = date.getTime();
-	const day = date.getDay();
+	const day = date.getDay() || 7;
 
 	date.setHours(0, 0, 0, 0);
-	date.setDate(date.getDate() - day + 1);
-	const weekStart = date.getTime();
+	const weekStart = date.setDate(date.getDate() - day + 1);
 
 	date.setDate(date.getDate() + day);
 	const tomorrow = `${date.getFullYear()}-${(date.getMonth() + 1)
 		.toString()
 		.padStart(2)}-${date.getDate()}`;
-
-	date.setDate(date.getDate() + 1);
-	const tomorrowTime = date.getTime();
+	const tomorrowTime = date.setDate(date.getDate() + 1);
 
 	return (
 		<div className={`${loading ? "blur-sm " : ""}w-full dashboard`}>
