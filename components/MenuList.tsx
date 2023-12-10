@@ -146,7 +146,6 @@ const MenuList = ({
 	client: Client;
 	className?: string;
 }) => (
-	// <div className="container flex flex-col my-2 items-center">
 	<>
 		<MenuEntry
 			summary={client.dashboard && resolveAppello(client.dashboard)}
@@ -155,9 +154,7 @@ const MenuList = ({
 			name="Eventi appello"
 			active={false}
 			className={className}
-		>
-			{() => <div className="h-80">Sus</div>}
-		</MenuEntry>
+		/>
 		<MenuEntry
 			summary={client.dashboard && resolveNote(client.dashboard)}
 			color="#ffb498"
@@ -262,7 +259,6 @@ const MenuList = ({
 			className={className}
 		/>
 	</>
-	// </div>
 );
 
 export default MenuList;

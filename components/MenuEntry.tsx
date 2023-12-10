@@ -16,7 +16,6 @@ const MenuEntry = ({
 	color: Property.BorderColor;
 	icon: React.ComponentType<SVGProps<SVGElement>>;
 	summary?: string;
-	children?: () => React.ReactNode;
 	active: boolean;
 	className?: string;
 }) => (
