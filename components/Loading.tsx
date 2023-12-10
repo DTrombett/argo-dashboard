@@ -1,3 +1,4 @@
+"use client";
 import local from "next/font/local";
 import { useEffect, useState } from "react";
 

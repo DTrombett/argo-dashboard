@@ -1,4 +1,4 @@
-import MenuList from "./MenuList";
+import MenuList from "@/components/MenuList";
 
 const Menu = () => (
 	<div className="container flex flex-col my-2 items-center">

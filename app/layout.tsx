@@ -1,10 +1,15 @@
 import ClientProvider from "@/components/ClientProvider";
+import TabIcon from "@/components/TabIcon";
 import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import local from "next/font/local";
 import Link from "next/link";
 import "tailwindcss/tailwind.css";
+import Home from "../icons/home-bianca.svg";
+import MenuIcon from "../icons/menu-icon.svg";
+import Opzioni from "../icons/opzioni.svg";
 import "./globals.css";
 
 /**
@@ -18,9 +23,10 @@ import "./globals.css";
  * - ExtraBold
  */
 const poppinsRegular = local({ src: "../fonts/Poppins-Regular.ttf" });
+const titleFont = local({ src: "../fonts/Poppins-ExtraBold.ttf" });
+const MenuList = dynamic(() => import("@/components/MenuList"));
 const description =
 	"Una dashboard compatta, sicura e di facile utilizzo per gestire il registro elettronico Argo (didUP)";
-const titleFont = local({ src: "../fonts/Poppins-ExtraBold.ttf" });
 
 export const metadata: Metadata = {
 	alternates: { canonical: "https://argo-dashboard.vercel.app" },
@@ -70,11 +76,28 @@ export default function RootLayout({
 						Argo Dashboard
 					</span>
 					<div className="h-full w-full flex flex-col flex-auto justify-center items-center">
-						<ClientProvider>{children}</ClientProvider>
+						<ClientProvider>
+							<div className="fixed lg:top-0 left-0 bottom-0 w-screen lg:w-20 bg-zinc-200 dark:bg-zinc-800 flex flex-row lg:flex-col p-2 rounded-t-2xl lg:rounded-r-2xl lg:rounded-tl-none whitespace-nowrap overflow-auto navigator z-10 hideScrollbar">
+								<TabIcon
+									name="Home"
+									icon={<Home className="invert dark:invert-0" />}
+									href="/"
+								/>
+								<TabIcon
+									name="Menu"
+									icon={<MenuIcon />}
+									className="lg:hidden"
+									href="menu"
+								/>
+								<TabIcon name="Opzioni" icon={<Opzioni />} href="options" />
+								<MenuList className="hidden lg:flex" />
+							</div>
+							{children}
+						</ClientProvider>
 						<Link
 							href="https://github.com/DTrombett/argo-dashboard"
 							target="_blank"
-							className="mt-4 px-1 text-base"
+							className="mt-4 px-1 text-base link"
 						>
 							<FontAwesomeIcon
 								icon={faGithub}

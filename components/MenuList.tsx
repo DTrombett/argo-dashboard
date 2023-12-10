@@ -1,3 +1,4 @@
+"use client";
 import { AppelloIndexes } from "@/app/utils";
 import type { Dashboard } from "portaleargo-api";
 import { useContext } from "react";
