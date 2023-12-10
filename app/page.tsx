@@ -66,7 +66,7 @@ const Home = () => {
 	return (
 		<main
 			className={`flex flex-col min-h-screen p-4 items-center text-center${
-				(state as number) > 1 ? " mb-16 lg:mb-0 lg:ml-28" : ""
+				(state as number) > 1 ? " mb-20 lg:mb-0 lg:ml-28" : ""
 			}`}
 		>
 			<span className={`m-4 text-4xl ${titleFont.className}`}>

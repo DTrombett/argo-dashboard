@@ -16,6 +16,7 @@ import votiGiornalieri from "../icons/voti-giornalieri.svg";
 import votiScrutinio from "../icons/voti-scrutinio.svg";
 import MenuEntry from "./MenuEntry";
 
+//#region
 const appelloTitles: ((n: number) => string)[] = [
 	(n) => `assenz${n === 1 ? "a" : "e"}`,
 	(n) => `ritard${n === 1 ? "o" : "i"}`,
@@ -138,6 +139,7 @@ const resolveBachecaAlunno = (dashboard: Dashboard) => {
 		}).length
 	} comunicazioni recenti`;
 };
+//#endregion
 
 const MenuList = ({
 	client,
