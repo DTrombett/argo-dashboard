@@ -1,9 +1,8 @@
-import type { Client } from "portaleargo-api";
 import MenuList from "./MenuList";
 
-const Menu = ({ client }: { client: Client }) => (
+const Menu = () => (
 	<div className="container flex flex-col my-2 items-center">
-		<MenuList client={client} />
+		<MenuList />
 	</div>
 );
 

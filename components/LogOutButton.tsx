@@ -1,16 +1,11 @@
 import { State } from "@/app/utils";
-import type { Client } from "portaleargo-api";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { ClientContext } from "./ClientProvider";
 import LoadingBar from "./LoadingBar";
 
-const LogOutButton = ({
-	client,
-	setState,
-}: {
-	client: Client;
-	setState: (state: State) => void;
-}) => {
+const LogOutButton = () => {
 	const [pending, setPending] = useState(false);
+	const { client, setState } = useContext(ClientContext);
 
 	return (
 		<button

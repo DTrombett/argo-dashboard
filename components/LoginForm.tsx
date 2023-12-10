@@ -1,21 +1,16 @@
 import { getClientToken } from "@/app/actions";
 import { State } from "@/app/utils";
 import dynamic from "next/dynamic";
-import type { Client } from "portaleargo-api";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { ClientContext } from "./ClientProvider";
 import PasswordField from "./PasswordField";
 import SubmitButton from "./SubmitButton";
 
 const ErrorMessage = dynamic(() => import("./ErrorMessage"));
 
-const LoginForm = ({
-	client,
-	setState,
-}: {
-	client: Client;
-	setState: (state: number) => void;
-}) => {
+const LoginForm = () => {
 	const [error, setError] = useState<string>();
+	const { client, setState } = useContext(ClientContext);
 
 	return (
 		<>

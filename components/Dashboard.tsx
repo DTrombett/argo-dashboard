@@ -1,7 +1,9 @@
+import { State } from "@/app/utils";
 import local from "next/font/local";
-import type { Client } from "portaleargo-api";
+import { useContext } from "react";
 import Averages from "./Averages";
 import Canvas from "./Canvas";
+import { ClientContext } from "./ClientProvider";
 import Column from "./Column";
 import Entry from "./Entry";
 import LoadingPlaceholder from "./LoadingPlaceholder";
@@ -11,15 +13,8 @@ import Updates from "./Updates";
 
 const italic = local({ src: "../fonts/Poppins-Italic.ttf" });
 
-const Dashboard = ({
-	client,
-	setState,
-	loading = false,
-}: {
-	client: Client;
-	setState: (state: number) => void;
-	loading?: boolean;
-}) => {
+const Dashboard = () => {
+	const { client, state } = useContext(ClientContext);
 	const period = client.dashboard?.listaPeriodi.find(
 		(p) => p.pkPeriodo === "*"
 	);
@@ -39,7 +34,13 @@ const Dashboard = ({
 	const tomorrowTime = date.setDate(date.getDate() + 1);
 
 	return (
-		<div className={`${loading ? "blur-sm " : ""}w-full dashboard`}>
+		<div
+			className={`${
+				state === State.NoDashboard || state === State.OldDashboardReady
+					? "blur-sm "
+					: ""
+			}w-full dashboard`}
+		>
 			<div className="flex flex-col justify-center text-xl container min-w-full lg:flex-row">
 				<Column name="Media" id="media">
 					<Entry name="Generale" id="generale">
@@ -123,7 +124,7 @@ const Dashboard = ({
 					</Entry>
 				</Column>
 			</div>
-			<LogOutButton client={client} setState={setState} />
+			<LogOutButton />
 		</div>
 	);
 };

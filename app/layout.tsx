@@ -1,5 +1,9 @@
+import ClientProvider from "@/components/ClientProvider";
+import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { Metadata } from "next";
 import local from "next/font/local";
+import Link from "next/link";
 import "tailwindcss/tailwind.css";
 import "./globals.css";
 
@@ -16,6 +20,7 @@ import "./globals.css";
 const poppinsRegular = local({ src: "../fonts/Poppins-Regular.ttf" });
 const description =
 	"Una dashboard compatta, sicura e di facile utilizzo per gestire il registro elettronico Argo (didUP)";
+const titleFont = local({ src: "../fonts/Poppins-ExtraBold.ttf" });
 
 export const metadata: Metadata = {
 	alternates: { canonical: "https://argo-dashboard.vercel.app" },
@@ -60,7 +65,26 @@ export default function RootLayout({
 			<body
 				className={`min-h-screen bg-zinc-100 dark:bg-zinc-900 text-black dark:text-white ${poppinsRegular.className}`}
 			>
-				{children}
+				<main className="flex flex-col min-h-screen p-4 items-center text-center">
+					<span className={`m-4 text-4xl ${titleFont.className}`}>
+						Argo Dashboard
+					</span>
+					<div className="h-full w-full flex flex-col flex-auto justify-center items-center">
+						<ClientProvider>{children}</ClientProvider>
+						<Link
+							href="https://github.com/DTrombett/argo-dashboard"
+							target="_blank"
+							className="mt-4 px-1 text-base"
+						>
+							<FontAwesomeIcon
+								icon={faGithub}
+								height={"1rem"}
+								className="inline"
+							/>{" "}
+							Open Source
+						</Link>
+					</div>
+				</main>
 			</body>
 		</html>
 	);

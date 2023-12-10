@@ -130,7 +130,20 @@ a:hover,
 	transition: all 0.5s;
 }
 
+body:has(.navigator) {
+	margin-bottom: 6rem;
+}
+
 @media (min-width: 1024px) {
+	body:has(.navigator) {
+		margin-left: 5rem;
+		margin-bottom: 0;
+	}
+
+	.navigator:hover::-webkit-scrollbar {
+		display: block;
+	}
+
 	.navigator:hover {
 		scrollbar-width: auto;
 		width: 400px;
@@ -152,9 +165,6 @@ a:hover,
 				display: flex;
 			}
 		}
-	}
-	.navigator:hover::-webkit-scrollbar {
-		display: block;
 	}
 }
 
