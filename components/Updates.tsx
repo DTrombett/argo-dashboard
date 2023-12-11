@@ -110,30 +110,26 @@ const Updates = ({
 			.dashboard!.bachecaAlunno.filter((e) =>
 				checkDate(new Date(e.datEvento).getTime())
 			)
-			.map((event) => {
-				let link: Promise<string | void> | undefined;
-
-				return {
-					element: (
-						<ListElement
-							key={event.pk}
-							content={event.nomeFile}
-							date={new Date(event.data)}
-							Icon={iconBachecaAlunno}
-							header={event.messaggio}
-						>
-							{" "}
-							—{" "}
-							<Allegato
-								allegato={event}
-								getLink={client.getLinkAllegatoStudente.bind(client, event.pk)}
-							/>
-						</ListElement>
-					),
-					date: new Date(event.datEvento),
-					type: EventType.BachecaAlunno,
-				};
-			}),
+			.map((event) => ({
+				element: (
+					<ListElement
+						key={event.pk}
+						content={event.nomeFile}
+						date={new Date(event.data)}
+						Icon={iconBachecaAlunno}
+						header={event.messaggio}
+					>
+						{" "}
+						—{" "}
+						<Allegato
+							allegato={event}
+							getLink={client.getLinkAllegatoStudente.bind(client, event.pk)}
+						/>
+					</ListElement>
+				),
+				date: new Date(event.datEvento),
+				type: EventType.BachecaAlunno,
+			})),
 	];
 
 	return elements.length ? (

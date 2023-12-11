@@ -91,13 +91,7 @@ a,
 }
 
 .dashboard {
-	animation: 0.5s blur;
-}
-
-@keyframes blur {
-	from {
-		filter: blur(4px);
-	}
+	transition: all 0.5s;
 }
 
 .icon {

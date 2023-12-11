@@ -1,3 +1,5 @@
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons/faChevronRight";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { Property } from "csstype";
 import local from "next/font/local";
 import type { SVGProps } from "react";
@@ -20,7 +22,7 @@ const MenuEntry = ({
 	className?: string;
 }) => (
 	<div
-		className={`my-1 w-full rounded-lg bg-opacity-50 dark:bg-opacity-50 hover:bg-zinc-400 dark:hover:bg-zinc-600 flex items-center justify-center cursor-pointer px-4 lg:px-0 menuEntry ${
+		className={`my-2 lg:my-1 w-full border lg:border-0 rounded-lg bg-opacity-50 dark:bg-opacity-50 hover:bg-zinc-400 dark:hover:bg-zinc-600 flex items-center justify-center cursor-pointer px-4 lg:px-0 menuEntry ${
 			className ?? ""
 		} ${
 			active
@@ -43,6 +45,10 @@ const MenuEntry = ({
 				</span>
 			)}
 		</div>
+		<FontAwesomeIcon
+			icon={faChevronRight}
+			className="h-4 w-4 ml-1 p-2 rounded-lg hover:bg-zinc-400 dark:hover:bg-zinc-600 lg:hidden"
+		/>
 	</div>
 );
 
