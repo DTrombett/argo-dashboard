@@ -87,9 +87,9 @@ export default function RootLayout({
 									name="Menu"
 									icon={<MenuIcon />}
 									className="lg:hidden"
-									href="menu"
+									href="/menu"
 								/>
-								<TabIcon name="Opzioni" icon={<Opzioni />} href="options" />
+								<TabIcon name="Opzioni" icon={<Opzioni />} href="/options" />
 								<MenuList className="hidden lg:flex" />
 							</div>
 							{children}

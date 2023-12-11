@@ -26,7 +26,10 @@ const appelloTitles: ((n: number) => string)[] = [
 	(n) => `uscit${n === 1 ? "a" : "e"}`,
 	() => "fuori classe",
 ];
-const timeTitles = ["entro domani", "successivi"];
+const timeTitles = [
+	() => "entro domani",
+	(n: number) => `successiv${n === 1 ? "o" : "i"}`,
+];
 
 const resolveAppello = (dashboard: Dashboard) => {
 	const result = [0, 0, 0, dashboard.fuoriClasse.length];
@@ -78,7 +81,7 @@ const resolveCompiti = (dashboard: Dashboard) => {
 		}
 	return (
 		counts
-			.map((n, i) => n && `${n} ${timeTitles[i]}`)
+			.map((n, i) => n && `${n} ${timeTitles[i](n)}`)
 			.filter((n) => n)
 			.join(", ") || "Nessun compito"
 	);
@@ -96,7 +99,7 @@ const resolvePromemoria = (dashboard: Dashboard) => {
 	}
 	return (
 		counts
-			.map((n, i) => n && `${n} ${timeTitles[i]}`)
+			.map((n, i) => n && `${n} ${timeTitles[i](n)}`)
 			.filter((n) => n)
 			.join(", ") || "Nessun promemoria"
 	);
@@ -115,7 +118,7 @@ const resolvePrenotazioni = (dashboard: Dashboard) => {
 	}
 	return (
 		counts
-			.map((n, i) => n && `${n} ${timeTitles[i]}`)
+			.map((n, i) => n && `${n} ${timeTitles[i](n)}`)
 			.filter((n) => n)
 			.join(", ") || "Nessun ricevimento"
 	);

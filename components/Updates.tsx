@@ -27,68 +27,56 @@ const Updates = ({
 	// eslint-disable-next-line @typescript-eslint/ban-types
 	| {}
 )) => {
-	const predicate = <
-		T extends {
-			pk: string;
-			datEvento: string;
-		}
-	>(
-		event: T
-	) => {
-		const time = new Date(event.datEvento).getTime();
-
-		return "now" in options
+	const checkDate = (time: number) =>
+		"now" in options
 			? time >= options.weekStart && time <= options.now
 			: time < options.weekStart;
-	};
 	const elements: {
 		element: React.JSX.Element;
 		type: EventType;
 		date: Date;
 	}[] = [
-		...client.dashboard!.appello.filter(predicate).map((event) => ({
-			element: (
-				<ListElement
-					key={event.pk}
-					title={event.commentoGiustificazione}
-					content={`${event.descrizione && `${event.descrizione} — `}${
-						event.nota
-					}`}
-					date={new Date(event.data)}
-					Icon={iconAppello}
-					header={event.docente}
-				/>
-			),
-			date: new Date(event.datEvento),
-			type: EventType.Appello,
-		})),
-		...client.dashboard!.voti.filter(predicate).map((event) => ({
-			element: (
-				<ListElement
-					key={event.pk}
-					content={`Prova ${
-						event.codVotoPratico === "S" ? "Scritta" : "Orale"
-					}: ${event.valore || event.codCodice} (${event.descrizioneVoto})${
-						event.descrizioneProva && ` — ${event.descrizioneProva}`
-					}`}
-					title={event.desCommento}
-					date={new Date(event.datGiorno)}
-					Icon={iconVoti}
-					header={event.desMateria}
-					headerTitle={event.docente}
-				/>
-			),
-			date: new Date(event.datEvento),
-			type: EventType.Voti,
-		})),
 		...client
-			.dashboard!.bacheca.filter((event) => {
-				const time = new Date(event.data).getTime();
-
-				return "now" in options
-					? time >= options.weekStart && time <= options.now
-					: time < options.weekStart;
-			})
+			.dashboard!.appello.filter((e) => checkDate(new Date(e.data).getTime()))
+			.map((event) => ({
+				element: (
+					<ListElement
+						key={event.pk}
+						title={event.commentoGiustificazione}
+						content={`${event.descrizione && `${event.descrizione} — `}${
+							event.nota
+						}`}
+						date={new Date(event.data)}
+						Icon={iconAppello}
+						header={event.docente}
+					/>
+				),
+				date: new Date(event.datEvento),
+				type: EventType.Appello,
+			})),
+		...client
+			.dashboard!.voti.filter((e) => checkDate(new Date(e.datEvento).getTime()))
+			.map((event) => ({
+				element: (
+					<ListElement
+						key={event.pk}
+						content={`Prova ${
+							event.codVotoPratico === "S" ? "Scritta" : "Orale"
+						}: ${event.valore || event.codCodice} (${event.descrizioneVoto})${
+							event.descrizioneProva && ` — ${event.descrizioneProva}`
+						}`}
+						title={event.desCommento}
+						date={new Date(event.datGiorno)}
+						Icon={iconVoti}
+						header={event.desMateria}
+						headerTitle={event.docente}
+					/>
+				),
+				date: new Date(event.datEvento),
+				type: EventType.Voti,
+			})),
+		...client
+			.dashboard!.bacheca.filter((e) => checkDate(new Date(e.data).getTime()))
 			.map((event) => ({
 				element: (
 					<ListElement
@@ -118,30 +106,34 @@ const Updates = ({
 				date: new Date(event.data),
 				type: EventType.Bacheca,
 			})),
-		...client.dashboard!.bachecaAlunno.filter(predicate).map((event) => {
-			let link: Promise<string | void> | undefined;
+		...client
+			.dashboard!.bachecaAlunno.filter((e) =>
+				checkDate(new Date(e.datEvento).getTime())
+			)
+			.map((event) => {
+				let link: Promise<string | void> | undefined;
 
-			return {
-				element: (
-					<ListElement
-						key={event.pk}
-						content={event.nomeFile}
-						date={new Date(event.data)}
-						Icon={iconBachecaAlunno}
-						header={event.messaggio}
-					>
-						{" "}
-						—{" "}
-						<Allegato
-							allegato={event}
-							getLink={client.getLinkAllegatoStudente.bind(client, event.pk)}
-						/>
-					</ListElement>
-				),
-				date: new Date(event.datEvento),
-				type: EventType.BachecaAlunno,
-			};
-		}),
+				return {
+					element: (
+						<ListElement
+							key={event.pk}
+							content={event.nomeFile}
+							date={new Date(event.data)}
+							Icon={iconBachecaAlunno}
+							header={event.messaggio}
+						>
+							{" "}
+							—{" "}
+							<Allegato
+								allegato={event}
+								getLink={client.getLinkAllegatoStudente.bind(client, event.pk)}
+							/>
+						</ListElement>
+					),
+					date: new Date(event.datEvento),
+					type: EventType.BachecaAlunno,
+				};
+			}),
 	];
 
 	return elements.length ? (

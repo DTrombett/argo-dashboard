@@ -91,7 +91,7 @@ a,
 }
 
 .dashboard {
-	animation: 1s blur;
+	animation: 0.5s blur;
 }
 
 @keyframes blur {
@@ -106,23 +106,6 @@ a,
 
 .menuIcon {
 	transform: scale(calc(24 / 31));
-}
-
-.expand {
-	animation-name: topMargin;
-	animation-timing-function: ease-out;
-	animation-duration: 1s;
-}
-
-.hide {
-	margin-top: -100%;
-	transition: margin 1s ease-out;
-}
-
-@keyframes topMargin {
-	from {
-		margin-top: -100%;
-	}
 }
 
 .navigator {
