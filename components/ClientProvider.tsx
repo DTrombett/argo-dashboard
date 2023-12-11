@@ -21,16 +21,6 @@ const ClientProvider = ({ children }: { children: React.ReactNode }) => {
 			return;
 		}
 		setState(State.NoDashboard);
-		const dashboard = localStorage.getItem("dashboard");
-
-		if (dashboard && !client.dashboard)
-			try {
-				client.dashboard = JSON.parse(dashboard);
-				client.dashboard!.dataAggiornamento = new Date(
-					client.dashboard!.dataAggiornamento
-				);
-				setState(State.OldDashboardReady);
-			} catch (err) {}
 		client
 			.login()
 			.then(() => {

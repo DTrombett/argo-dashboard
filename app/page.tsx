@@ -37,9 +37,7 @@ const Dashboard = () => {
 	return (
 		<div
 			className={`${
-				state === State.NoDashboard || state === State.OldDashboardReady
-					? "blur-sm "
-					: ""
+				state === State.NoDashboard ? "blur-sm " : ""
 			}w-full dashboard`}
 		>
 			<div className="flex flex-col justify-center text-xl container min-w-full lg:flex-row">
