@@ -5,7 +5,7 @@ import local from "next/font/local";
 import { useContext } from "react";
 import { ClientContext } from "./ClientProvider";
 
-const semiBold = local({ src: "../fonts/Poppins-Medium.ttf" });
+const semiBold = local({ src: "../../fonts/Poppins-Medium.ttf" });
 
 const MayNeedLogin = () => {
 	const { setState } = useContext(ClientContext);

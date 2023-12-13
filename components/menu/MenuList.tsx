@@ -2,21 +2,21 @@
 import { AppelloIndexes } from "@/app/utils";
 import type { Dashboard } from "portaleargo-api";
 import { useContext } from "react";
-import attività from "../icons/attivita-svolta.svg";
-import bachecaAlunno from "../icons/bacheca-alunno.svg";
-import bacheca from "../icons/bacheca.svg";
-import appello from "../icons/calendario.svg";
-import compiti from "../icons/compiti-assegnati.svg";
-import condivisione from "../icons/condivisione-documenti.svg";
-import curriculum from "../icons/curriculum.svg";
-import note from "../icons/note-personali.svg";
-import orario from "../icons/orario.svg";
-import promemoria from "../icons/promemoria-classe.svg";
-import ricevimento from "../icons/ricevimento-docenti.svg";
-import pagamenti from "../icons/tasse-icon.svg";
-import votiGiornalieri from "../icons/voti-giornalieri.svg";
-import votiScrutinio from "../icons/voti-scrutinio.svg";
-import { ClientContext } from "./ClientProvider";
+import attività from "../../icons/attivita-svolta.svg";
+import bachecaAlunno from "../../icons/bacheca-alunno.svg";
+import bacheca from "../../icons/bacheca.svg";
+import appello from "../../icons/calendario.svg";
+import compiti from "../../icons/compiti-assegnati.svg";
+import condivisione from "../../icons/condivisione-documenti.svg";
+import curriculum from "../../icons/curriculum.svg";
+import note from "../../icons/note-personali.svg";
+import orario from "../../icons/orario.svg";
+import promemoria from "../../icons/promemoria-classe.svg";
+import ricevimento from "../../icons/ricevimento-docenti.svg";
+import pagamenti from "../../icons/tasse-icon.svg";
+import votiGiornalieri from "../../icons/voti-giornalieri.svg";
+import votiScrutinio from "../../icons/voti-scrutinio.svg";
+import { ClientContext } from "../dashboard/ClientProvider";
 import MenuEntry from "./MenuEntry";
 
 //#region
@@ -157,86 +157,86 @@ const MenuList = ({ className }: { className?: string }) => {
 				color="#07abbe"
 				icon={appello}
 				name="Eventi appello"
-				active={false}
 				className={className}
+				page="eventiAppello"
 			/>
 			<MenuEntry
 				summary={client.dashboard && resolveNote(client.dashboard)}
 				color="#ffb498"
 				icon={note}
 				name="Note"
-				active={false}
 				className={className}
+				page="note"
 			/>
 			<MenuEntry
 				summary={client.dashboard && resolveVoti(client.dashboard)}
 				color="#e06f5c"
 				icon={votiGiornalieri}
 				name="Voti giornalieri"
-				active={false}
 				className={className}
+				page="votiGiornalieri"
 			/>
 			<MenuEntry
 				color="#9f72d5"
 				icon={votiScrutinio}
 				name="Voti scrutinio"
-				active={false}
 				className={className}
+				page="votiScrutinio"
 			/>
 			<MenuEntry
 				summary={client.dashboard && resolveAttività(client.dashboard)}
 				color="#3e90d8"
 				icon={attività}
 				name="Attività svolta"
-				active={false}
 				className={className}
+				page="attivitàSvolta"
 			/>
 			<MenuEntry
 				summary={client.dashboard && resolveCompiti(client.dashboard)}
 				color="#7080fe"
 				icon={compiti}
 				name="Compiti assegnati"
-				active={false}
 				className={className}
+				page="compitiAssegnati"
 			/>
 			<MenuEntry
 				summary={client.dashboard && resolvePromemoria(client.dashboard)}
 				color="#ff5d63"
 				icon={promemoria}
 				name="Promemoria"
-				active={false}
 				className={className}
+				page="promemoria"
 			/>
 			<MenuEntry
 				color="#f8b3ca"
 				icon={orario}
 				name="Orario"
-				active={false}
 				className={className}
+				page="orario"
 			/>
 			<MenuEntry
 				summary={client.dashboard && resolvePrenotazioni(client.dashboard)}
 				color="#90c078"
 				icon={ricevimento}
 				name="Ricevimento docenti"
-				active={false}
 				className={className}
+				page="ricevimentoDocenti"
 			/>
 			<MenuEntry
 				summary={client.dashboard && resolveBacheca(client.dashboard)}
 				color="#06aabe"
 				icon={bacheca}
 				name="Bacheca"
-				active={false}
 				className={className}
+				page="bacheca"
 			/>
 			<MenuEntry
 				summary={client.dashboard && resolveBachecaAlunno(client.dashboard)}
 				color="#07abbe"
 				icon={bachecaAlunno}
 				name="Bacheca alunno"
-				active={false}
 				className={className}
+				page="bachecaAlunno"
 			/>
 			<MenuEntry
 				summary={
@@ -246,22 +246,22 @@ const MenuList = ({ className }: { className?: string }) => {
 				color="#45dda1"
 				icon={condivisione}
 				name="Condivisione"
-				active={false}
 				className={className}
+				page="condivisione"
 			/>
 			<MenuEntry
 				color="#07abbe"
 				icon={pagamenti}
 				name="Pagamenti"
-				active={false}
 				className={className}
+				page="pagamenti"
 			/>
 			<MenuEntry
 				color="#385a90"
 				icon={curriculum}
 				name="Curriculum"
-				active={false}
 				className={className}
+				page="curriculum"
 			/>
 		</>
 	);

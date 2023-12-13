@@ -2,17 +2,19 @@ import { EventType } from "@/app/utils";
 import dynamic from "next/dynamic";
 import local from "next/font/local";
 import type { Client } from "portaleargo-api";
+import LoadingPlaceholder from "../loading/LoadingPlaceholder";
 import Allegato from "./Allegato";
-import LoadingPlaceholder from "./LoadingPlaceholder";
 
 const ListElement = dynamic(() => import("./ListElement"), {
 	loading: () => <LoadingPlaceholder repeat={2} />,
 });
-const iconBachecaAlunno = dynamic(() => import("../icons/bacheca-alunno.svg"));
-const iconBacheca = dynamic(() => import("../icons/bacheca.svg"));
-const iconAppello = dynamic(() => import("../icons/calendario.svg"));
-const iconVoti = dynamic(() => import("../icons/voti-giornalieri.svg"));
-const italic = local({ src: "../fonts/Poppins-Italic.ttf" });
+const iconBachecaAlunno = dynamic(
+	() => import("../../icons/bacheca-alunno.svg")
+);
+const iconBacheca = dynamic(() => import("../../icons/bacheca.svg"));
+const iconAppello = dynamic(() => import("../../icons/calendario.svg"));
+const iconVoti = dynamic(() => import("../../icons/voti-giornalieri.svg"));
+const italic = local({ src: "../../fonts/Poppins-Italic.ttf" });
 
 const Updates = ({
 	client,
@@ -47,13 +49,29 @@ const Updates = ({
 							event.nota
 						}`}
 						date={new Date(event.data)}
-						Icon={iconAppello}
+						icon={iconAppello}
 						header={event.docente}
 					/>
 				),
 				date: new Date(event.datEvento),
 				type: EventType.Appello,
 			})),
+		...client.dashboard!.fuoriClasse.map((event) => ({
+			element: (
+				<ListElement
+					key={event.pk}
+					title={event.descrizione}
+					content={`Fuori classe ${event.nota}${
+						event.descrizione && ` (${event.descrizione})`
+					}`}
+					date={new Date(event.data)}
+					icon={iconAppello}
+					header={event.docente}
+				/>
+			),
+			date: new Date(event.data),
+			type: EventType.Appello,
+		})),
 		...client
 			.dashboard!.voti.filter((e) => checkDate(new Date(e.datEvento).getTime()))
 			.map((event) => ({
@@ -67,7 +85,7 @@ const Updates = ({
 						}`}
 						title={event.desCommento}
 						date={new Date(event.datGiorno)}
-						Icon={iconVoti}
+						icon={iconVoti}
 						header={event.desMateria}
 						headerTitle={event.docente}
 					/>
@@ -83,7 +101,7 @@ const Updates = ({
 						key={event.pk}
 						content={`${event.categoria}: ${event.messaggio}`}
 						date={new Date(event.data)}
-						Icon={iconBacheca}
+						icon={iconBacheca}
 						header={event.autore}
 					>
 						{event.listaAllegati[0] && (
@@ -116,7 +134,7 @@ const Updates = ({
 						key={event.pk}
 						content={event.nomeFile}
 						date={new Date(event.data)}
-						Icon={iconBachecaAlunno}
+						icon={iconBachecaAlunno}
 						header={event.messaggio}
 					>
 						{" "}

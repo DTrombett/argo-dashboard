@@ -1,7 +1,7 @@
 import { State } from "@/app/utils";
 import { useContext, useState } from "react";
+import LoadingBar from "../loading/LoadingBar";
 import { ClientContext } from "./ClientProvider";
-import LoadingBar from "./LoadingBar";
 
 const LogOutButton = () => {
 	const [pending, setPending] = useState(false);

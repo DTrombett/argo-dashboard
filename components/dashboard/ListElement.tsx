@@ -16,11 +16,11 @@ const months = [
 	"NOV",
 	"DIC",
 ];
-const medium = local({ src: "../fonts/Poppins-Medium.ttf" });
-const light = local({ src: "../fonts/Poppins-Light.ttf" });
+const medium = local({ src: "../../fonts/Poppins-Medium.ttf" });
+const light = local({ src: "../../fonts/Poppins-Light.ttf" });
 
 const ListElement = ({
-	Icon,
+	icon: Icon,
 	date,
 	header,
 	content,
@@ -28,7 +28,7 @@ const ListElement = ({
 	title,
 	headerTitle,
 }: {
-	Icon: React.ComponentType<SVGProps<SVGElement>>;
+	icon: React.ComponentType<SVGProps<SVGElement>>;
 	date: Date;
 	header: string;
 	content: string;

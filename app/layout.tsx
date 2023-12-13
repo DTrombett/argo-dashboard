@@ -1,5 +1,5 @@
-import ClientProvider from "@/components/ClientProvider";
-import TabIcon from "@/components/TabIcon";
+import ClientProvider from "@/components/dashboard/ClientProvider";
+import TabIcon from "@/components/menu/TabIcon";
 import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { Metadata } from "next";
@@ -24,7 +24,7 @@ import "./globals.css";
  */
 const poppinsRegular = local({ src: "../fonts/Poppins-Regular.ttf" });
 const titleFont = local({ src: "../fonts/Poppins-ExtraBold.ttf" });
-const MenuList = dynamic(() => import("@/components/MenuList"));
+const MenuList = dynamic(() => import("@/components/menu/MenuList"));
 const description =
 	"Una dashboard compatta, sicura e di facile utilizzo per gestire il registro elettronico Argo (didUP)";
 
@@ -75,7 +75,7 @@ export default function RootLayout({
 					<span className={`m-4 text-4xl ${titleFont.className}`}>
 						Argo Dashboard
 					</span>
-					<div className="h-full w-full flex flex-col flex-auto justify-center items-center">
+					<div className="h-full w-full flex-1 flex flex-col justify-center items-center">
 						<ClientProvider>
 							<div className="fixed lg:top-0 left-0 bottom-0 w-screen lg:w-20 bg-zinc-200 dark:bg-zinc-800 flex flex-row lg:flex-col p-2 rounded-t-2xl lg:rounded-r-2xl lg:rounded-tl-none whitespace-nowrap overflow-auto navigator z-10 hideScrollbar">
 								<TabIcon

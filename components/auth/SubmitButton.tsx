@@ -1,5 +1,5 @@
 import { useFormStatus } from "react-dom";
-import LoadingBar from "./LoadingBar";
+import LoadingBar from "../loading/LoadingBar";
 
 const SubmitButton = () => {
 	const { pending } = useFormStatus();

@@ -1,13 +1,13 @@
 "use client";
-import Averages from "@/components/Averages";
-import Canvas from "@/components/Canvas";
-import { ClientContext } from "@/components/ClientProvider";
-import Column from "@/components/Column";
-import Entry from "@/components/Entry";
-import LoadingPlaceholder from "@/components/LoadingPlaceholder";
-import LogOutButton from "@/components/LogOutButton";
-import Scheduled from "@/components/Scheduled";
-import Updates from "@/components/Updates";
+import Averages from "@/components/dashboard/Averages";
+import Canvas from "@/components/dashboard/Canvas";
+import { ClientContext } from "@/components/dashboard/ClientProvider";
+import Column from "@/components/dashboard/Column";
+import Entry from "@/components/dashboard/Entry";
+import LogOutButton from "@/components/dashboard/LogOutButton";
+import Scheduled from "@/components/dashboard/Scheduled";
+import Updates from "@/components/dashboard/Updates";
+import LoadingPlaceholder from "@/components/loading/LoadingPlaceholder";
 import local from "next/font/local";
 import { useContext } from "react";
 import { State } from "./utils";
@@ -102,8 +102,8 @@ const Dashboard = () => {
 						</div>
 					</Entry>
 				</Column>
-				<Column name="Aggiornamenti" id="ultimiAggiornamenti">
-					<Entry name="Questa settimana" id="questaSettimana">
+				<Column name="Aggiornamenti" id="aggiornamenti">
+					<Entry name="Recenti" id="recenti">
 						<div className="flex flex-col">
 							<LoadingPlaceholder loading={!client.dashboard} repeat={4}>
 								{client.dashboard && (

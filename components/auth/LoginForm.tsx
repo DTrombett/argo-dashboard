@@ -2,7 +2,7 @@ import { getClientToken } from "@/app/actions";
 import { State } from "@/app/utils";
 import dynamic from "next/dynamic";
 import { useContext, useState } from "react";
-import { ClientContext } from "./ClientProvider";
+import { ClientContext } from "../dashboard/ClientProvider";
 import PasswordField from "./PasswordField";
 import SubmitButton from "./SubmitButton";
 

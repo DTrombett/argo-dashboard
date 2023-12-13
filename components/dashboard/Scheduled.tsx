@@ -2,18 +2,20 @@ import { ScheduledType } from "@/app/utils";
 import dynamic from "next/dynamic";
 import local from "next/font/local";
 import type { Dashboard } from "portaleargo-api";
-import LoadingPlaceholder from "./LoadingPlaceholder";
+import LoadingPlaceholder from "../loading/LoadingPlaceholder";
 
 const ListElement = dynamic(() => import("./ListElement"), {
 	loading: () => <LoadingPlaceholder repeat={2} />,
 });
-const iconAttività = dynamic(() => import("../icons/attivita-svolta.svg"));
-const iconCompiti = dynamic(() => import("../icons/compiti-assegnati.svg"));
-const iconPromemoria = dynamic(() => import("../icons/promemoria-classe.svg"));
-const iconRicevimento = dynamic(
-	() => import("../icons/ricevimento-docenti.svg")
+const iconAttività = dynamic(() => import("../../icons/attivita-svolta.svg"));
+const iconCompiti = dynamic(() => import("../../icons/compiti-assegnati.svg"));
+const iconPromemoria = dynamic(
+	() => import("../../icons/promemoria-classe.svg")
 );
-const italic = local({ src: "../fonts/Poppins-Italic.ttf" });
+const iconRicevimento = dynamic(
+	() => import("../../icons/ricevimento-docenti.svg")
+);
+const italic = local({ src: "../../fonts/Poppins-Italic.ttf" });
 
 const Scheduled = ({
 	dashboard,
@@ -55,7 +57,7 @@ const Scheduled = ({
 							key={event.pk}
 							content={event.attivita}
 							date={date}
-							Icon={iconAttività}
+							icon={iconAttività}
 							title={`${event.ora}ª Ora`}
 							headerTitle={event.docente}
 							header={event.materia}
@@ -81,7 +83,7 @@ const Scheduled = ({
 									key={`${event.pk}-${c.compito}-${c.dataConsegna}`}
 									content={c.compito}
 									date={d}
-									Icon={iconCompiti}
+									icon={iconCompiti}
 									headerTitle={event.docente}
 									header={event.materia}
 								/>
@@ -114,7 +116,7 @@ const Scheduled = ({
 									: ` (${event.oraInizio} - ${event.oraFine})`
 							}`}
 							date={date}
-							Icon={iconPromemoria}
+							icon={iconPromemoria}
 							header={event.docente}
 						/>
 					),
@@ -144,7 +146,7 @@ const Scheduled = ({
 							key={event.prenotazione.pk}
 							content={`${event.disponibilita.ora_Inizio} - ${event.disponibilita.ora_Fine} — ${event.disponibilita.desLuogoRicevimento} — ${event.disponibilita.desNota}`}
 							date={date}
-							Icon={iconRicevimento}
+							icon={iconRicevimento}
 							headerTitle={event.docente.desEmail}
 							header={`${event.docente.desNome[0]}. ${event.docente.desCognome}`}
 						/>

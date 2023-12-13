@@ -1,5 +1,5 @@
-import MenuList from "@/components/MenuList";
-import RedirectDesktop from "@/components/RedirectDesktop";
+import MenuList from "@/components/menu/MenuList";
+import RedirectDesktop from "@/components/menu/RedirectDesktop";
 
 const Menu = () => (
 	<>
