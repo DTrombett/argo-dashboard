@@ -28,7 +28,7 @@ const FilteredList = () => {
 		A: 0,
 		I: 0,
 		U: 0,
-		FC: client.dashboard?.fuoriClasse.length,
+		FC: 0,
 	};
 	const pks: string[] = [];
 	const handleChange = (type: string) => () => {
@@ -38,39 +38,37 @@ const FilteredList = () => {
 	};
 
 	if (client.dashboard) {
-		for (const event of client.dashboard.appello) {
-			if (
-				(!filters.length || filters.includes(event.codEvento)) &&
-				!pks.includes(event.pk)
-			) {
-				elements.push({
-					element: (
-						<AppelloItem
-							key={event.pk}
-							title={event.commentoGiustificazione}
-							content={event.nota}
-							date={new Date(event.data)}
-							icon={icons[event.codEvento] ?? iconAppello}
-							header={event.docente}
-							footer={
-								event.giustificata === "S"
-									? `(Giustificata il ${new Date(
-											event.dataGiustificazione
-									  ).toLocaleDateString("it-IT", {
-											month: "long",
-											day: "numeric",
-											year: "numeric",
-									  })})`
-									: ""
-							}
-						/>
-					),
-					date: new Date(event.data),
-				});
+		for (const event of client.dashboard.appello)
+			if (!pks.includes(event.pk)) {
+				if (!filters.length || filters.includes(event.codEvento))
+					elements.push({
+						element: (
+							<AppelloItem
+								key={event.pk}
+								title={event.commentoGiustificazione}
+								content={event.nota}
+								date={new Date(event.data)}
+								icon={icons[event.codEvento] ?? iconAppello}
+								header={event.docente}
+								footer={
+									event.giustificata === "S"
+										? `(Giustificata il ${new Date(
+												event.dataGiustificazione
+										  ).toLocaleDateString("it-IT", {
+												month: "long",
+												day: "numeric",
+												year: "numeric",
+										  })})`
+										: ""
+								}
+							/>
+						),
+						date: new Date(event.data),
+					});
+				if (event.codEvento in categories)
+					categories[event.codEvento as "A"]!++;
 				pks.push(event.pk);
 			}
-			if (event.codEvento in categories) categories[event.codEvento as "A"]!++;
-		}
 		if (!filters.length || filters.includes("FC"))
 			for (const event of client.dashboard.fuoriClasse)
 				if (!pks.includes(event.pk)) {
@@ -87,6 +85,7 @@ const FilteredList = () => {
 						),
 						date: new Date(event.data),
 					});
+					categories.FC++;
 					pks.push(event.pk);
 				}
 	}
@@ -145,9 +144,6 @@ const FilteredList = () => {
 						.sort(
 							({ date: date1 }, { date: date2 }) =>
 								date2.getTime() - date1.getTime()
-						)
-						.filter((e, i, array) =>
-							array.every((a, j) => j <= i || a.element.key !== e.element.key)
 						)
 						.map(({ element }) => element)
 				) : (
