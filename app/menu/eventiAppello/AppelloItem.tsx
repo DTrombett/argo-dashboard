@@ -36,7 +36,7 @@ const AppelloItem = ({
 }) => (
 	<div className="flex text-lg p-4 my-2 w-full rounded-xl bg-zinc-200 dark:bg-zinc-800">
 		<Icon className="mx-2 my-4" />
-		<div className="mx-4 flex-1 text-left flex flex-col">
+		<div className="ml-4 flex-1 text-left flex flex-col">
 			<div className="flex flex-col sm:flex-row w-full justify-between">
 				<span className={`${medium.className} uppercase`}>{header}</span>
 				<span className="text-cyan-500 text-base contents" title={headerTitle}>

@@ -1,3 +1,3 @@
-const Options = () => <div></div>;
+const Options = () => <></>;
 
 export default Options;

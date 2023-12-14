@@ -56,22 +56,26 @@ const Updates = ({
 				date: new Date(event.datEvento),
 				type: EventType.Appello,
 			})),
-		...client.dashboard!.fuoriClasse.map((event) => ({
-			element: (
-				<ListElement
-					key={event.pk}
-					title={event.descrizione}
-					content={`Fuori classe ${event.nota}${
-						event.descrizione && ` (${event.descrizione})`
-					}`}
-					date={new Date(event.data)}
-					icon={iconAppello}
-					header={event.docente}
-				/>
-			),
-			date: new Date(event.data),
-			type: EventType.Appello,
-		})),
+		...client
+			.dashboard!.fuoriClasse.filter((e) =>
+				checkDate(new Date(e.data).getTime())
+			)
+			.map((event) => ({
+				element: (
+					<ListElement
+						key={event.pk}
+						title={event.descrizione}
+						content={`Fuori classe ${event.nota}${
+							event.descrizione && ` (${event.descrizione})`
+						}`}
+						date={new Date(event.data)}
+						icon={iconAppello}
+						header={event.docente}
+					/>
+				),
+				date: new Date(event.data),
+				type: EventType.Appello,
+			})),
 		...client
 			.dashboard!.voti.filter((e) => checkDate(new Date(e.datEvento).getTime()))
 			.map((event) => ({

@@ -1,8 +1,12 @@
-import AppelloList from "./AppelloList";
+import local from "next/font/local";
+import FilteredList from "./FilteredList";
+
+const bold = local({ src: "../../../fonts/Poppins-Bold.ttf" });
 
 const EventiAppello = () => (
-	<div className="my-2 lg:px-8 container text-xl flex flex-wrap justify-center h-full w-full">
-		<AppelloList />
+	<div className="my-2 lg:px-2 container flex flex-col justify-center h-full w-full">
+		<h2 className={`${bold.className} text-2xl`}>Eventi appello</h2>
+		<FilteredList />
 	</div>
 );
 

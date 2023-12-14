@@ -3,8 +3,8 @@ import { State } from "@/app/utils";
 import dynamic from "next/dynamic";
 import { Client } from "portaleargo-api";
 import { createContext, useEffect, useState } from "react";
-import Loading from "../loading/Loading";
 import LoginForm from "../auth/LoginForm";
+import Loading from "../loading/Loading";
 
 export const ClientContext = createContext(
 	{} as { client: Client; state: State; setState: (state: State) => void }

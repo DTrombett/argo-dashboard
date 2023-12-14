@@ -46,6 +46,10 @@ a,
 	scrollbar-width: none;
 }
 
+.center-vertically {
+	flex: 0.5;
+}
+
 .eye {
 	margin-left: -3rem;
 }
@@ -141,6 +145,26 @@ body:has(.navigator) {
 				display: flex;
 			}
 		}
+	}
+}
+
+fieldset > label {
+	@apply block relative pl-10 my-2 cursor-pointer select-none;
+	input {
+		@apply h-0 w-0;
+	}
+	span {
+		@apply absolute left-px top-px h-6 w-6 border border-black dark:border-white rounded-md;
+	}
+	span:after {
+		content: "";
+		@apply absolute hidden w-1.5 h-3 left-2 top-1 rotate-45 border-white border-r-2 border-b-2;
+	}
+	input:checked ~ span {
+		@apply bg-cyan-500 dark:bg-cyan-600;
+	}
+	input:checked ~ span:after {
+		@apply block;
 	}
 }
 

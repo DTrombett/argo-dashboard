@@ -24,9 +24,7 @@ const AppelloList = () => {
 				<AppelloItem
 					key={event.pk}
 					title={event.commentoGiustificazione}
-					content={`${event.descrizione && `${event.descrizione} — `}${
-						event.nota
-					}`}
+					content={event.nota}
 					date={new Date(event.data)}
 					icon={icons[event.codEvento] ?? iconAppello}
 					header={event.docente}

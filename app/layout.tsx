@@ -69,13 +69,13 @@ export default function RootLayout({
 	return (
 		<html lang="it">
 			<body
-				className={`min-h-screen bg-zinc-100 dark:bg-zinc-900 text-black dark:text-white ${poppinsRegular.className}`}
+				className={`min-h-screen bg-zinc-100 dark:bg-zinc-900 text-black dark:text-white text-center text-lg ${poppinsRegular.className}`}
 			>
-				<main className="flex flex-col min-h-screen p-4 items-center text-center">
+				<main className="flex flex-col min-h-screen p-4 items-center">
 					<span className={`m-4 text-4xl ${titleFont.className}`}>
 						Argo Dashboard
 					</span>
-					<div className="h-full w-full flex-1 flex flex-col justify-center items-center">
+					<div className="h-full w-full flex-1 flex flex-col items-center">
 						<ClientProvider>
 							<div className="fixed lg:top-0 left-0 bottom-0 w-screen lg:w-20 bg-zinc-200 dark:bg-zinc-800 flex flex-row lg:flex-col p-2 rounded-t-2xl lg:rounded-r-2xl lg:rounded-tl-none whitespace-nowrap overflow-auto navigator z-10 hideScrollbar">
 								<TabIcon
