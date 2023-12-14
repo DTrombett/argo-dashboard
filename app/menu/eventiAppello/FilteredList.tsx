@@ -69,9 +69,9 @@ const FilteredList = () => {
 					categories[event.codEvento as "A"]!++;
 				pks.push(event.pk);
 			}
-		if (!filters.length || filters.includes("FC"))
-			for (const event of client.dashboard.fuoriClasse)
-				if (!pks.includes(event.pk)) {
+		for (const event of client.dashboard.fuoriClasse)
+			if (!pks.includes(event.pk)) {
+				if (!filters.length || filters.includes("FC"))
 					elements.push({
 						element: (
 							<AppelloItem
@@ -85,9 +85,9 @@ const FilteredList = () => {
 						),
 						date: new Date(event.data),
 					});
-					categories.FC++;
-					pks.push(event.pk);
-				}
+				categories.FC++;
+				pks.push(event.pk);
+			}
 	}
 	return (
 		<div className="flex flex-col lg:flex-row justify-between my-2">
