@@ -26,7 +26,7 @@ const poppinsRegular = local({ src: "../fonts/Poppins-Regular.ttf" });
 const titleFont = local({ src: "../fonts/Poppins-ExtraBold.ttf" });
 const MenuList = dynamic(() => import("@/components/menu/MenuList"));
 const description =
-	"Una dashboard compatta, sicura e di facile utilizzo per gestire il registro elettronico Argo (didUP)";
+	"Dashboard compatta, sicura e di facile utilizzo per gestire il registro elettronico Argo (didUP)";
 
 export const metadata: Metadata = {
 	alternates: { canonical: "https://argo-dashboard.vercel.app" },

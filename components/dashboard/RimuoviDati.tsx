@@ -4,7 +4,7 @@ import { useContext, useState } from "react";
 import LoadingBar from "../loading/LoadingBar";
 import { ClientContext } from "./ClientProvider";
 
-const LogOutButton = () => {
+const RimuoviDati = () => {
 	const [pending, setPending] = useState(false);
 	const { client, setState } = useContext(ClientContext);
 
@@ -14,14 +14,22 @@ const LogOutButton = () => {
 			disabled={pending}
 			onClick={async () => {
 				setPending(true);
-				await client.logOut().catch(() => {});
-				setState(State.NeedLogin);
+				setState(State.NoDashboard);
+				localStorage.removeItem("dashboard");
+				delete client.dashboard;
+				await client
+					.login()
+					.then(() => {
+						setState(State.Ready);
+					})
+					.catch(() => {});
+				setPending(false);
 			}}
 		>
-			Log out
+			Rimuovi dati
 			{pending && <LoadingBar />}
 		</button>
 	);
 };
 
-export default LogOutButton;
+export default RimuoviDati;
