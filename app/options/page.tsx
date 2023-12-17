@@ -8,9 +8,12 @@ const Options = () => (
 	<div className="container px-1 lg:px-8 my-2">
 		<h2 className={`${bold.className} text-2xl`}>Opzioni</h2>
 		<div className="mt-6 lg:text-left">
-			<span>
+			<span className="text-base">
 				<span className={bold.className}>Nota</span>: Questo sito è stato creato
-				da studenti per gli studenti. Non siamo affiliati in alcun modo ad{" "}
+				da studenti per gli studenti, con lo scopo di facilitare l&apos;accesso
+				ai dati essenziali del registro in modo veloce su tutti i dispositivi.
+				<br />
+				Non siamo affiliati in alcun modo ad{" "}
 				<span className={bold.className}>Argo Software Srl</span> e si prega di
 				fare affidamento al loro{" "}
 				<a href="https://argosoft.it" className="link" target="_blank">
