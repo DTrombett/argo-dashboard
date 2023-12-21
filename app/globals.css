@@ -34,7 +34,6 @@ a,
 	text-decoration: none;
 }
 
-a:hover,
 .link:hover {
 	text-decoration: underline;
 }
@@ -45,6 +44,10 @@ a:hover,
 
 .hideScrollbar {
 	scrollbar-width: none;
+}
+
+.center-vertically {
+	flex: 0.5;
 }
 
 .eye {
@@ -63,6 +66,11 @@ a:hover,
 
 .loading {
 	animation: 1.5s infinite loading;
+}
+
+.menuEntry,
+.tabIcon {
+	min-height: 4rem;
 }
 
 @keyframes loading {
@@ -87,17 +95,77 @@ a:hover,
 }
 
 .dashboard {
-	animation: 1s blur;
-}
-
-@keyframes blur {
-	from {
-		filter: blur(4px);
-	}
+	transition: all 0.5s;
 }
 
 .icon {
 	transform: scale(calc(18 / 31)) translateY(-2px);
+}
+
+.menuIcon {
+	transform: scale(calc(24 / 31));
+}
+
+.navigator {
+	transition: all 0.5s;
+}
+
+body:has(.navigator) {
+	margin-bottom: 6rem;
+}
+
+@media (min-width: 1024px) {
+	body:has(.navigator) {
+		margin-left: 5rem;
+		margin-bottom: 0;
+	}
+
+	.navigator:hover::-webkit-scrollbar {
+		display: block;
+	}
+
+	.navigator:hover {
+		scrollbar-width: auto;
+		width: 400px;
+		padding-left: 1rem;
+		> .tabIcon {
+			justify-content: flex-start;
+			padding-left: 1.25rem;
+			> span {
+				display: block;
+			}
+		}
+		> .menuEntry {
+			padding-left: 1rem;
+			padding-right: 1rem;
+			> svg {
+				width: 2rem;
+			}
+			> div {
+				display: flex;
+			}
+		}
+	}
+}
+
+fieldset > label {
+	@apply block relative pl-10 my-2 cursor-pointer select-none;
+	input {
+		@apply h-0 w-0;
+	}
+	span {
+		@apply absolute left-px top-px h-6 w-6 border border-black dark:border-white rounded-md;
+	}
+	span:after {
+		content: "";
+		@apply absolute hidden w-1.5 h-3 left-2 top-1 rotate-45 border-white border-r-2 border-b-2;
+	}
+	input:checked ~ span {
+		@apply bg-cyan-500 dark:bg-cyan-600;
+	}
+	input:checked ~ span:after {
+		@apply block;
+	}
 }
 
 @layer components {

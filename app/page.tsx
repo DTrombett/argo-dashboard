@@ -1,87 +1,124 @@
 "use client";
-import Loading from "@/components/Loading";
-import LoginForm from "@/components/LoginForm";
-import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import dynamic from "next/dynamic";
-import localFont from "next/font/local";
-import Link from "next/link";
-import { Client } from "portaleargo-api";
-import { useEffect, useState } from "react";
+import Averages from "@/components/dashboard/Averages";
+import Canvas from "@/components/dashboard/Canvas";
+import { ClientContext } from "@/components/dashboard/ClientProvider";
+import Column from "@/components/dashboard/Column";
+import Entry from "@/components/dashboard/Entry";
+import Scheduled from "@/components/dashboard/Scheduled";
+import Updates from "@/components/dashboard/Updates";
+import LoadingPlaceholder from "@/components/loading/LoadingPlaceholder";
+import local from "next/font/local";
+import { useContext } from "react";
 import { State } from "./utils";
 
-const client = new Client();
-const titleFont = localFont({ src: "../fonts/Poppins-ExtraBold.ttf" });
-const Dashboard = dynamic(() => import("@/components/Dashboard"), {
-	loading: Loading,
-});
-const MayNeedLogin = dynamic(() => import("@/components/MayNeedLogin"));
+const italic = local({ src: "../fonts/Poppins-Italic.ttf" });
 
-const Home = () => {
-	const [state, setState] = useState(State.FirstLoading);
-	let PageElement: React.JSX.Element;
+const Dashboard = () => {
+	const { client, state } = useContext(ClientContext);
+	const period = client.dashboard?.listaPeriodi.find(
+		(p) => p.pkPeriodo === "*"
+	);
+	const dataInizio = period?.dataInizio.split("-");
+	const dataFine = period?.dataFine.split("-");
+	const date = new Date();
+	const now = date.getTime();
+	const day = date.getDay() || 7;
 
-	useEffect(() => {
-		if (!localStorage.getItem("token")) {
-			setState(State.NeedLogin);
-			return;
-		}
-		setState(State.NoDashboard);
-		const dashboard = localStorage.getItem("dashboard");
+	date.setHours(0, 0, 0, 0);
+	const weekStart = date.setDate(date.getDate() - day + 1);
 
-		if (dashboard && !client.dashboard)
-			try {
-				client.dashboard = JSON.parse(dashboard);
-				client.dashboard!.dataAggiornamento = new Date(
-					client.dashboard!.dataAggiornamento
-				);
-				setState(State.OldDashboardReady);
-			} catch (err) {}
-		client
-			.login()
-			.then(() => {
-				setState(State.Ready);
-			})
-			.catch(() => {
-				setState(State.MayNeedLogin);
-			});
-	}, []);
-	switch (state) {
-		case State.NeedLogin:
-			PageElement = <LoginForm client={client} setState={setState} />;
-			break;
-		case State.NoDashboard:
-		case State.OldDashboardReady:
-			PageElement = (
-				<Dashboard loading={true} client={client} setState={setState} />
-			);
-			break;
-		case State.Ready:
-		case State.MayNeedLogin:
-			PageElement = <Dashboard client={client} setState={setState} />;
-			break;
-		default:
-			PageElement = <Loading />;
-	}
+	date.setDate(date.getDate() + day);
+	const tomorrow = `${date.getFullYear()}-${(date.getMonth() + 1)
+		.toString()
+		.padStart(2)}-${date.getDate()}`;
+	const tomorrowTime = date.setDate(date.getDate() + 1);
+
 	return (
-		<main className="flex flex-col min-h-screen p-4 items-center text-center">
-			<span className={`m-4 text-4xl ${titleFont.className}`}>
-				Argo Dashboard
-			</span>
-			<div className="h-full w-full flex flex-col flex-auto justify-center items-center">
-				{PageElement}
-				<Link
-					href="https://github.com/DTrombett/argo-dashboard"
-					target="_blank"
-					className="mt-4 px-1 text-base"
-				>
-					<FontAwesomeIcon icon={faGithub} height={"1rem"} className="inline" />{" "}
-					Open Source
-				</Link>
-			</div>
-			{state === State.MayNeedLogin && <MayNeedLogin setState={setState} />}
-		</main>
+		<div
+			className={`${
+				state === State.NoDashboard ? "blur-sm " : ""
+			}w-full dashboard flex flex-col justify-center text-xl container min-w-full lg:flex-row`}
+		>
+			<Column name="Media" id="media">
+				<Entry name="Generale" id="generale">
+					<div className="flex flex-col justify-center h-full">
+						<div className="relative flex justify-center">
+							<Canvas media={client.dashboard?.mediaGenerale} />
+							<span className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+								<LoadingPlaceholder loading={!client.dashboard} width={"3rem"}>
+									{client.dashboard?.mediaGenerale.toFixed(2) ?? "?"}
+								</LoadingPlaceholder>
+							</span>
+						</div>
+						<span className={italic.className}>
+							<LoadingPlaceholder
+								loading={!client.dashboard || !period}
+								repeat={2}
+								width={"75%"}
+							>
+								Calcolata nel periodo {dataInizio?.[2]}/{dataInizio?.[1]}/
+								{dataInizio?.[0]} - {dataFine?.[2]}/{dataFine?.[1]}/
+								{dataFine?.[0]}
+							</LoadingPlaceholder>
+						</span>
+					</div>
+				</Entry>
+				<Entry name="Per materia" id="perMateria">
+					<LoadingPlaceholder loading={!client.dashboard} repeat={5}>
+						{client.dashboard && <Averages dashboard={client.dashboard} />}
+					</LoadingPlaceholder>
+				</Entry>
+			</Column>
+			<Column name="Prossimi impegni" id="prossimiImpegni">
+				<Entry name="Entro domani" id="perMateria">
+					<div className="flex flex-col">
+						<LoadingPlaceholder loading={!client.dashboard} repeat={4}>
+							{client.dashboard && (
+								<Scheduled
+									dashboard={client.dashboard}
+									tomorrowTime={tomorrowTime}
+									now={now}
+									tomorrow={tomorrow}
+								/>
+							)}
+						</LoadingPlaceholder>
+					</div>
+				</Entry>
+				<Entry name="Successivi" id="successivi">
+					<div className="flex flex-col">
+						<LoadingPlaceholder loading={!client.dashboard} repeat={4}>
+							{client.dashboard && (
+								<Scheduled
+									dashboard={client.dashboard}
+									tomorrowTime={tomorrowTime}
+								/>
+							)}
+						</LoadingPlaceholder>
+					</div>
+				</Entry>
+			</Column>
+			<Column name="Aggiornamenti" id="aggiornamenti">
+				<Entry name="Recenti" id="recenti">
+					<div className="flex flex-col">
+						<LoadingPlaceholder loading={!client.dashboard} repeat={4}>
+							{client.dashboard && (
+								<Updates client={client} now={now} weekStart={weekStart} />
+							)}
+						</LoadingPlaceholder>
+					</div>
+				</Entry>
+				<Entry name="Precedenti" id="precedenti">
+					<div className="flex flex-col">
+						<LoadingPlaceholder loading={!client.dashboard} repeat={4}>
+							{client.dashboard && (
+								<Updates client={client} weekStart={weekStart} />
+							)}
+						</LoadingPlaceholder>
+					</div>
+				</Entry>
+			</Column>
+		</div>
 	);
 };
 
-export default Home;
+export default Dashboard;

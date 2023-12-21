@@ -2,7 +2,6 @@ export enum State {
 	FirstLoading,
 	NeedLogin,
 	NoDashboard,
-	OldDashboardReady,
 	Ready,
 	MayNeedLogin,
 }
@@ -17,4 +16,14 @@ export enum EventType {
 	BachecaAlunno,
 	Bacheca,
 	Appello,
+}
+export enum Tab {
+	Home,
+	Menu,
+	Options,
+}
+export enum AppelloIndexes {
+	A,
+	I,
+	U,
 }
