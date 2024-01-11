@@ -1,5 +1,5 @@
 const cspHeader = `
-  default-src 'self';
+  default-src 'none';
 	connect-src 'self' www.portaleargo.it;
   script-src 'self' 'unsafe-eval' 'unsafe-inline';
   style-src 'self' 'unsafe-inline';
@@ -58,6 +58,7 @@ const nextConfig = {
 				{ key: "Content-Security-Policy", value: cspHeader.replace(/\n/g, "") },
 				{ key: "X-Frame-Options", value: "SAMEORIGIN" },
 				{ key: "X-Content-Type-Options", value: "nosniff" },
+				{ key: "X-XSS-Protection", value: "1" },
 			],
 		},
 	],
