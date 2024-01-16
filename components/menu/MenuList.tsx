@@ -52,11 +52,17 @@ const resolveVoti = (dashboard: Dashboard) => {
 	});
 
 	return `Media generale: ${dashboard.mediaGenerale}${
-		length ? ` — ${length} voti recenti` : ""
+		length
+			? ` | ${length} ${length === 1 ? "voto recente" : "voti recenti"}`
+			: ""
 	}`;
 };
 const resolveNote = (dashboard: Dashboard) =>
-	`${dashboard.noteDisciplinari.length} note disciplinari`;
+	`${dashboard.noteDisciplinari.length} ${
+		dashboard.noteDisciplinari.length === 1
+			? "nota disciplinare"
+			: "note disciplinari"
+	}`;
 const resolveAttività = (dashboard: Dashboard) => {
 	const now = Date.now();
 	const { length } = dashboard.registro.filter(
@@ -125,25 +131,27 @@ const resolvePrenotazioni = (dashboard: Dashboard) => {
 };
 const resolveBacheca = (dashboard: Dashboard) => {
 	const now = Date.now();
+	const { length } = dashboard.bacheca.filter((entry) => {
+		const date = new Date(entry.datEvento);
 
-	return `${
-		dashboard.bacheca.filter((entry) => {
-			const date = new Date(entry.datEvento);
+		return date.setDate(date.getDate() + 1) >= now;
+	});
 
-			return date.setDate(date.getDate() + 1) >= now;
-		}).length
-	} comunicazioni recenti`;
+	return `${length} ${
+		length === 1 ? "comunicazione recente" : "comunicazioni recenti"
+	}`;
 };
 const resolveBachecaAlunno = (dashboard: Dashboard) => {
 	const now = Date.now();
+	const { length } = dashboard.bachecaAlunno.filter((entry) => {
+		const date = new Date(entry.datEvento);
 
-	return `${
-		dashboard.bachecaAlunno.filter((entry) => {
-			const date = new Date(entry.datEvento);
+		return date.setDate(date.getDate() + 1) >= now;
+	});
 
-			return date.setDate(date.getDate() + 1) >= now;
-		}).length
-	} comunicazioni recenti`;
+	return `${length} ${
+		length === 1 ? "comunicazione recente" : "comunicazioni recenti"
+	}`;
 };
 //#endregion
 

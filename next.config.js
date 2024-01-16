@@ -51,17 +51,23 @@ const nextConfig = {
 		fileLoaderRule.exclude = /\.svg$/i;
 		return config;
 	},
-	headers: async () => [
-		{
-			source: "/(.*)",
-			headers: [
-				{ key: "Content-Security-Policy", value: cspHeader.replace(/\n/g, "") },
-				{ key: "X-Frame-Options", value: "SAMEORIGIN" },
-				{ key: "X-Content-Type-Options", value: "nosniff" },
-				{ key: "X-XSS-Protection", value: "1" },
-			],
-		},
-	],
+	headers:
+		process.env.NODE_ENV === "development"
+			? undefined
+			: async () => [
+					{
+						source: "/(.*)",
+						headers: [
+							{
+								key: "Content-Security-Policy",
+								value: cspHeader.replace(/\n/g, ""),
+							},
+							{ key: "X-Frame-Options", value: "SAMEORIGIN" },
+							{ key: "X-Content-Type-Options", value: "nosniff" },
+							{ key: "X-XSS-Protection", value: "1" },
+						],
+					},
+			  ],
 };
 
 module.exports = nextConfig;
