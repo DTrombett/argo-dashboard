@@ -29,11 +29,14 @@ const Menu = () => {
 				/>
 			</div>
 			<div
-				className={`fixed left-0 right-0 top-0 bottom-0 z-10 w-full h-full p-4 lg:p-0 lg:static lg:max-h-fit bg-zinc-900 bg-opacity-50 lg:bg-inherit ${
+				className={`fixed left-0 right-0 top-0 bottom-0 z-10 w-full h-full lg:static lg:max-h-fit bg-zinc-900 bg-opacity-50 lg:bg-inherit ${
 					open ? "blockScroll" : "hidden lg:block"
 				}`}
 			>
-				<div className="absolute left-4 right-4 top-4 bottom-4 lg:static lg:h-full border-zinc-500 border rounded-2xl lg:border-0 bg-zinc-100 dark:bg-zinc-900 overflow-y-auto hideScrollbar">
+				<div
+					className="absolute left-4 right-4 -translate-y-1/2 lg:translate-y-0 top-1/2 lg:static border-zinc-500 border rounded-2xl lg:border-0 bg-zinc-100 dark:bg-zinc-900 overflow-y-auto hideScrollbar"
+					style={{ maxHeight: "95%" }}
+				>
 					<AllSubjectsButton />
 					<MenuList />
 				</div>
