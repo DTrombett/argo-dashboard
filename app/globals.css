@@ -27,6 +27,10 @@ body {
 	text-wrap: balance;
 }
 
+body:has(.blockScroll) {
+	overflow: hidden;
+}
+
 a,
 .link {
 	color: #00a8fc;
@@ -118,6 +122,10 @@ body:has(.navigator) {
 	body:has(.navigator) {
 		margin-left: 5rem;
 		margin-bottom: 0;
+	}
+
+	body:has(.blockScroll) {
+		overflow: auto;
 	}
 
 	.navigator:hover::-webkit-scrollbar {

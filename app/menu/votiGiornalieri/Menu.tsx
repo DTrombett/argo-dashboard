@@ -3,6 +3,7 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons/faChevronUp";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { memo, useState } from "react";
+import AllSubjectsButton from "./AllSubjectsButton";
 import MenuList from "./MenuList";
 import SubjectName from "./SubjectName";
 
@@ -11,7 +12,7 @@ const Menu = () => {
 
 	return (
 		<div
-			className={`relative lg:px-4 mx-4 lg:mx-0 lg:w-1/3 lg:border-0 lg:border-r lg:pl-0 border-zinc-500 border lg:rounded-none ${
+			className={`lg:px-4 mx-4 lg:mx-0 lg:w-1/3 lg:border-0 lg:border-r lg:pl-0 border-zinc-500 border lg:rounded-none ${
 				open ? "rounded-t-lg border-b-0" : "rounded-lg"
 			}`}
 			onClick={setOpen.bind(null, !open)}
@@ -28,12 +29,14 @@ const Menu = () => {
 				/>
 			</div>
 			<div
-				className={`absolute lg:static w-full max-h-96 lg:max-h-fit border-zinc-500 border-b border-x rounded-b-lg lg:border-0 bg-zinc-100 dark:bg-zinc-900 box-content overflow-y-auto hideScrollbar ${
-					open ? "" : "hidden lg:block"
+				className={`fixed left-0 right-0 top-0 bottom-0 z-10 w-full h-full p-4 lg:p-0 lg:static lg:max-h-fit bg-zinc-900 bg-opacity-50 lg:bg-inherit ${
+					open ? "blockScroll" : "hidden lg:block"
 				}`}
-				style={{ left: "-0.75px" }}
 			>
-				<MenuList />
+				<div className="absolute left-4 right-4 top-4 bottom-4 lg:static lg:h-full border-zinc-500 border rounded-2xl lg:border-0 bg-zinc-100 dark:bg-zinc-900 overflow-y-auto hideScrollbar">
+					<AllSubjectsButton />
+					<MenuList />
+				</div>
 			</div>
 		</div>
 	);
