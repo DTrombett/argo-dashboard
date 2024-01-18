@@ -1,7 +1,7 @@
 "use client";
 import { ClientContext } from "@/components/dashboard/ClientProvider";
 import local from "next/font/local";
-import { useContext } from "react";
+import { memo, useContext } from "react";
 
 const italic = local({ src: "../../../fonts/Poppins-Italic.ttf" });
 
@@ -36,4 +36,4 @@ const Note = () => {
 	);
 };
 
-export default Note;
+export default memo(Note);

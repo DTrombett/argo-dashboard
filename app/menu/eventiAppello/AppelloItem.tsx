@@ -1,4 +1,5 @@
 import local from "next/font/local";
+import { memo } from "react";
 
 const months = [
 	"GEN",
@@ -56,4 +57,4 @@ const AppelloItem = ({
 	</div>
 );
 
-export default AppelloItem;
+export default memo(AppelloItem);

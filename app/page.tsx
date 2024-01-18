@@ -8,7 +8,7 @@ import Scheduled from "@/components/dashboard/Scheduled";
 import Updates from "@/components/dashboard/Updates";
 import LoadingPlaceholder from "@/components/loading/LoadingPlaceholder";
 import local from "next/font/local";
-import { useContext } from "react";
+import { memo, useContext } from "react";
 import { State } from "./utils";
 
 const italic = local({ src: "../fonts/Poppins-Italic.ttf" });
@@ -121,4 +121,4 @@ const Dashboard = () => {
 	);
 };
 
-export default Dashboard;
+export default memo(Dashboard);

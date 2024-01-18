@@ -2,7 +2,7 @@
 import { ClientContext } from "@/components/dashboard/ClientProvider";
 import dynamic from "next/dynamic";
 import local from "next/font/local";
-import { useContext } from "react";
+import { memo, useContext } from "react";
 import AppelloItem from "./AppelloItem";
 
 const italic = local({ src: "../../../fonts/Poppins-Italic.ttf" });
@@ -74,4 +74,4 @@ const AppelloList = () => {
 	);
 };
 
-export default AppelloList;
+export default memo(AppelloList);

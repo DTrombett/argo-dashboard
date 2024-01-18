@@ -1,5 +1,6 @@
 import MenuList from "@/components/menu/MenuList";
 import RedirectDesktop from "@/components/menu/RedirectDesktop";
+import { memo } from "react";
 
 const Menu = () => (
 	<>
@@ -10,4 +11,4 @@ const Menu = () => (
 	</>
 );
 
-export default Menu;
+export default memo(Menu);

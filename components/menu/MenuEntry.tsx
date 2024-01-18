@@ -4,11 +4,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { Property } from "csstype";
 import local from "next/font/local";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useSelectedLayoutSegments } from "next/navigation";
 import type { SVGProps } from "react";
 
 const light = local({ src: "../../fonts/Poppins-Light.ttf" });
-const matcher = /(?<=menu\/).+/i;
 
 const MenuEntry = ({
 	name,
@@ -30,7 +29,7 @@ const MenuEntry = ({
 		className={`my-2 lg:my-1 w-full border rounded-lg bg-opacity-50 dark:bg-opacity-50 hover:bg-zinc-400 dark:hover:bg-zinc-600 flex items-center justify-center cursor-pointer px-4 text-base lg:px-0 menuEntry ${
 			className ?? ""
 		} ${
-			usePathname().match(matcher)?.[0] === page
+			useSelectedLayoutSegments()[1] === page
 				? "lg:border bg-zinc-400 dark:bg-zinc-600 hover:bg-opacity-75 dark:hover:bg-opacity-75"
 				: "lg:border-0 bg-zinc-300 dark:bg-zinc-700 hover:bg-opacity-50 dark:hover:bg-opacity-50"
 		}`}

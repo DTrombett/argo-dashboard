@@ -1,4 +1,5 @@
 import local from "next/font/local";
+import { memo } from "react";
 import FilteredList from "./FilteredList";
 
 const bold = local({ src: "../../../fonts/Poppins-Bold.ttf" });
@@ -10,4 +11,4 @@ const EventiAppello = () => (
 	</div>
 );
 
-export default EventiAppello;
+export default memo(EventiAppello);
