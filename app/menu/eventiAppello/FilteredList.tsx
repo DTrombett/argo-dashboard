@@ -65,8 +65,7 @@ const FilteredList = () => {
 						),
 						date: new Date(event.data),
 					});
-				if (event.codEvento in categories)
-					categories[event.codEvento as "A"]!++;
+				if (event.codEvento in categories) categories[event.codEvento as "A"]++;
 				pks.push(event.pk);
 			}
 		for (const event of client.dashboard.fuoriClasse)
