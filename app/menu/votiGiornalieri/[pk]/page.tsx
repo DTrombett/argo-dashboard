@@ -1,20 +1,9 @@
 "use client";
 import { ClientContext } from "@/components/dashboard/ClientProvider";
-import type { Client } from "portaleargo-api";
 import { memo, useContext, useMemo, useState } from "react";
+import type { Filter } from "../Filters";
 import Filters from "../Filters";
 import ListaVoti from "../ListaVoti";
-
-type APIVoto = NonNullable<Client["dashboard"]>["voti"][number];
-type Filter = (typeof filterFunctions)[keyof typeof filterFunctions];
-
-const filterFunctions = {
-	orali: [(v: APIVoto) => v.codVotoPratico === "N", "codVotoPratico"],
-	scritti: [(v: APIVoto) => v.codVotoPratico === "S", "codVotoPratico"],
-	note: [(v: APIVoto) => v.codTipo === "N", "codTipo"],
-	sufficienti: [(v: APIVoto) => v.codTipo === "V" && v.valore >= 6, "valore"],
-	insufficienti: [(v: APIVoto) => v.codTipo === "V" && v.valore < 6, "valore"],
-} as const;
 
 const VotiMateria = ({ params: { pk } }: { params: { pk: string } }) => {
 	const {

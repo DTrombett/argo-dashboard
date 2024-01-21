@@ -1,9 +1,18 @@
 import local from "next/font/local";
 import type { Dispatch, SetStateAction } from "react";
 import { memo, useMemo } from "react";
-import type { Filter, VotoType } from "./page";
-import { filterFunctions, filtersArray } from "./page";
+import type { VotoType } from "./page";
 
+export type Filter = (typeof filterFunctions)[keyof typeof filterFunctions];
+
+const filterFunctions = {
+	orali: [(v: VotoType) => v.codVotoPratico === "N", "codVotoPratico"],
+	scritti: [(v: VotoType) => v.codVotoPratico === "S", "codVotoPratico"],
+	note: [(v: VotoType) => v.codTipo === "N", "codTipo"],
+	sufficienti: [(v: VotoType) => v.codTipo === "V" && v.valore >= 6, "valore"],
+	insufficienti: [(v: VotoType) => v.codTipo === "V" && v.valore < 6, "valore"],
+} as const;
+const filtersArray = Object.values(filterFunctions).map(([f]) => f);
 const semiBold = local({ src: "../../../fonts/Poppins-SemiBold.ttf" });
 
 const Filters = ({

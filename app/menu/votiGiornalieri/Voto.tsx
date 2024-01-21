@@ -73,7 +73,7 @@ const Voto = ({
 						: v.desMateria}
 				</span>
 				<div
-					className={`flex flex-col lg:flex-row justify-between ${light.className} text-sm text-opacity-50 text-black dark:text-white dark:text-opacity-50`}
+					className={`flex flex-col sm:flex-row justify-between ${light.className} text-sm text-opacity-50 text-black dark:text-white dark:text-opacity-50`}
 				>
 					<span title={v.descrizioneProva}>
 						{v.codTipo === "N" && "Nota — "}Prova{" "}
