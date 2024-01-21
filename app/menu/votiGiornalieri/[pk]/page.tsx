@@ -2,21 +2,20 @@
 import { ClientContext } from "@/components/dashboard/ClientProvider";
 import local from "next/font/local";
 import type { Client } from "portaleargo-api";
-import { memo, useCallback, useContext, useMemo, useState } from "react";
-import Voto from "../Voto";
+import { memo, useContext, useMemo, useState } from "react";
+import ListaVoti from "../ListaVoti";
 
-type Voto = NonNullable<Client["dashboard"]>["voti"][number];
+type APIVoto = NonNullable<Client["dashboard"]>["voti"][number];
 type Filter = (typeof filterFunctions)[keyof typeof filterFunctions];
 
 const filterFunctions = {
-	orali: [(v: Voto) => v.codVotoPratico === "N", "codVotoPratico"],
-	scritti: [(v: Voto) => v.codVotoPratico === "S", "codVotoPratico"],
-	note: [(v: Voto) => v.codTipo === "N", "codTipo"],
-	sufficienti: [(v: Voto) => v.codTipo === "V" && v.valore >= 6, "valore"],
-	insufficienti: [(v: Voto) => v.codTipo === "V" && v.valore < 6, "valore"],
+	orali: [(v: APIVoto) => v.codVotoPratico === "N", "codVotoPratico"],
+	scritti: [(v: APIVoto) => v.codVotoPratico === "S", "codVotoPratico"],
+	note: [(v: APIVoto) => v.codTipo === "N", "codTipo"],
+	sufficienti: [(v: APIVoto) => v.codTipo === "V" && v.valore >= 6, "valore"],
+	insufficienti: [(v: APIVoto) => v.codTipo === "V" && v.valore < 6, "valore"],
 } as const;
 const filtersArray = Object.values(filterFunctions).map(([f]) => f);
-const italic = local({ src: "../../../../fonts/Poppins-Italic.ttf" });
 const semiBold = local({ src: "../../../../fonts/Poppins-SemiBold.ttf" });
 
 const VotiMateria = ({ params: { pk } }: { params: { pk: string } }) => {
@@ -24,29 +23,16 @@ const VotiMateria = ({ params: { pk } }: { params: { pk: string } }) => {
 		client: { dashboard },
 	} = useContext(ClientContext);
 	const [filters, setFilters] = useState<Filter[]>([]);
-	const handleChange = useCallback(
-		(filter: Filter) =>
-			setFilters.bind(null, (oldFilters) => {
-				const i = oldFilters.indexOf(filter);
+	const handleChange = (filter: Filter) =>
+		setFilters.bind(null, (oldFilters) => {
+			const i = oldFilters.indexOf(filter);
 
-				return i === -1 ? [...oldFilters, filter] : oldFilters.toSpliced(i, 1);
-			}),
-		[]
+			return i === -1 ? [...oldFilters, filter] : oldFilters.toSpliced(i, 1);
+		});
+	const voti = useMemo(
+		() => dashboard?.voti.filter((v) => v.pkMateria === pk),
+		[dashboard?.voti, pk]
 	);
-	const filterFn = useCallback(
-		(v: Voto) => {
-			const checked: string[] = [];
-			const types = new Set<string>();
-
-			for (const [filter, type] of filters) {
-				types.add(type);
-				if (!checked.includes(type) && filter(v)) checked.push(type);
-			}
-			return checked.length === types.size;
-		},
-		[filters]
-	);
-	const voti = dashboard?.voti.filter((v) => v.pkMateria === pk);
 	const counts = useMemo(
 		() =>
 			voti?.reduce<number[]>(
@@ -54,25 +40,6 @@ const VotiMateria = ({ params: { pk } }: { params: { pk: string } }) => {
 				Array(5).fill(0)
 			) ?? Array<number>(5).fill(0),
 		[voti]
-	);
-	const list = useMemo(
-		() => (
-			<div className="flex flex-col flex-1 lg:mx-4 my-auto lg:my-0">
-				{voti?.length ? (
-					voti
-						.filter(filterFn)
-						.toSorted((a, b) =>
-							new Date(a.datGiorno) > new Date(b.datGiorno) ? -1 : 1
-						)
-						.map((v) => <Voto v={v} key={v.pk} />)
-				) : (
-					<span className={`${italic.className} text-xl py-4 lg:pr-64`}>
-						Nessun voto disponibile!
-					</span>
-				)}
-			</div>
-		),
-		[voti, filterFn]
 	);
 
 	return (
@@ -135,7 +102,7 @@ const VotiMateria = ({ params: { pk } }: { params: { pk: string } }) => {
 					<span />
 				</label>
 			</fieldset>
-			{list}
+			<ListaVoti filters={filters} voti={voti} />
 		</div>
 	);
 };

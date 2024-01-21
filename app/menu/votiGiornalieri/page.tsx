@@ -2,11 +2,11 @@
 import { ClientContext } from "@/components/dashboard/ClientProvider";
 import local from "next/font/local";
 import type { Client } from "portaleargo-api";
-import { memo, useCallback, useContext, useMemo, useState } from "react";
-import Voto from "./Voto";
+import { memo, useContext, useMemo, useState } from "react";
+import ListaVoti from "./ListaVoti";
 
-type Voto = NonNullable<Client["dashboard"]>["voti"][number];
-type Filter = (typeof filterFunctions)[keyof typeof filterFunctions];
+export type Voto = NonNullable<Client["dashboard"]>["voti"][number];
+export type Filter = (typeof filterFunctions)[keyof typeof filterFunctions];
 
 const filterFunctions = {
 	orali: [(v: Voto) => v.codVotoPratico === "N", "codVotoPratico"],
@@ -24,28 +24,12 @@ const VotiGiornalieri = () => {
 		client: { dashboard },
 	} = useContext(ClientContext);
 	const [filters, setFilters] = useState<Filter[]>([]);
-	const handleChange = useCallback(
-		(filter: Filter) =>
-			setFilters.bind(null, (oldFilters) => {
-				const i = oldFilters.indexOf(filter);
+	const handleChange = (filter: Filter) =>
+		setFilters.bind(null, (oldFilters) => {
+			const i = oldFilters.indexOf(filter);
 
-				return i === -1 ? [...oldFilters, filter] : oldFilters.toSpliced(i, 1);
-			}),
-		[]
-	);
-	const filterFn = useCallback(
-		(v: Voto) => {
-			const checked: string[] = [];
-			const types = new Set<string>();
-
-			for (const [filter, type] of filters) {
-				types.add(type);
-				if (!checked.includes(type) && filter(v)) checked.push(type);
-			}
-			return checked.length === types.size;
-		},
-		[filters]
-	);
+			return i === -1 ? [...oldFilters, filter] : oldFilters.toSpliced(i, 1);
+		});
 	const counts = useMemo(
 		() =>
 			dashboard?.voti.reduce<number[]>(
@@ -53,25 +37,6 @@ const VotiGiornalieri = () => {
 				Array(5).fill(0)
 			) ?? Array<number>(5).fill(0),
 		[dashboard?.voti]
-	);
-	const list = useMemo(
-		() => (
-			<div className="flex flex-col flex-1 lg:mx-4 my-auto lg:my-0">
-				{dashboard?.voti.length ? (
-					dashboard.voti
-						.filter(filterFn)
-						.toSorted((a, b) =>
-							new Date(a.datGiorno) > new Date(b.datGiorno) ? -1 : 1
-						)
-						.map((v) => <Voto v={v} key={v.pk} />)
-				) : (
-					<span className={`${italic.className} text-xl py-4 lg:pr-64`}>
-						Nessun voto disponibile!
-					</span>
-				)}
-			</div>
-		),
-		[dashboard?.voti, filterFn]
 	);
 
 	return (
@@ -134,7 +99,7 @@ const VotiGiornalieri = () => {
 					<span />
 				</label>
 			</fieldset>
-			{list}
+			<ListaVoti filters={filters} voti={dashboard?.voti} />
 		</div>
 	);
 };
