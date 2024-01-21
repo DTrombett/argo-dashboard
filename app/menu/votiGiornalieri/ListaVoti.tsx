@@ -1,7 +1,8 @@
 import local from "next/font/local";
 import { memo } from "react";
+import { Filter } from "./Filters";
 import Voto from "./Voto";
-import type { Filter, VotoType } from "./page";
+import type { VotoType } from "./page";
 
 const italic = local({ src: "../../../fonts/Poppins-Italic.ttf" });
 
