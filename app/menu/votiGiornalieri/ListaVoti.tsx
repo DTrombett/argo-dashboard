@@ -1,16 +1,18 @@
 import local from "next/font/local";
 import { memo } from "react";
 import Voto from "./Voto";
-import type { Filter, Voto as VotoType } from "./page";
+import type { Filter, VotoType } from "./page";
 
 const italic = local({ src: "../../../fonts/Poppins-Italic.ttf" });
 
 const ListaVoti = ({
 	voti,
 	filters,
+	showDescription,
 }: {
 	voti?: VotoType[];
 	filters: Filter[];
+	showDescription?: boolean;
 }) => {
 	const pks: string[] = [];
 
@@ -33,7 +35,9 @@ const ListaVoti = ({
 					.toSorted((a, b) =>
 						new Date(a.datGiorno) > new Date(b.datGiorno) ? -1 : 1
 					)
-					.map((v) => <Voto v={v} key={v.pk} />)
+					.map((v) => (
+						<Voto v={v} key={v.pk} showDescription={showDescription} />
+					))
 			) : (
 				<span className={`${italic.className} text-xl py-4 lg:pr-64`}>
 					Nessun voto disponibile!

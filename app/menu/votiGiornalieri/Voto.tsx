@@ -5,6 +5,7 @@ import { memo } from "react";
 const semiBold = local({ src: "../../../fonts/Poppins-SemiBold.ttf" });
 const medium = local({ src: "../../../fonts/Poppins-Medium.ttf" });
 const light = local({ src: "../../../fonts/Poppins-Light.ttf" });
+const italic = local({ src: "../../../fonts/Poppins-LightItalic.ttf" });
 const months = [
 	"GEN",
 	"FEB",
@@ -22,8 +23,10 @@ const months = [
 
 const Voto = ({
 	v,
+	showDescription = false,
 }: {
 	v: NonNullable<Client["dashboard"]>["voti"][number];
+	showDescription?: boolean;
 }) => {
 	const date = new Date(v.datGiorno);
 
@@ -57,8 +60,17 @@ const Voto = ({
 						{date.getFullYear().toString().slice(-2)}
 					</span>
 				</div>
-				<span title={v.desCommento} className={`py-1 ${light.className}`}>
-					{v.desMateria}
+				<span
+					title={v.desCommento}
+					className={`py-1 ${
+						!showDescription || v.descrizioneProva
+							? light.className
+							: italic.className
+					}`}
+				>
+					{showDescription
+						? v.descrizioneProva || "Descrizione non presente"
+						: v.desMateria}
 				</span>
 				<div
 					className={`flex flex-col lg:flex-row justify-between ${light.className} text-sm text-opacity-50 text-black dark:text-white dark:text-opacity-50`}
