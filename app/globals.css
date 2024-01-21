@@ -103,6 +103,12 @@ body:has(.navigator) {
 	max-height: 95%;
 }
 
+.menuPopup {
+	animation-duration: 0.25s;
+	animation-fill-mode: forwards;
+	animation-name: fadeIn;
+}
+
 @media (min-width: 1024px) {
 	:not(.nativeScrollbar)::-webkit-scrollbar {
 		width: 15px;
@@ -161,6 +167,21 @@ body:has(.navigator) {
 
 	.subjectsList {
 		max-height: 100%;
+	}
+
+	.menuPopup {
+		animation: none;
+	}
+}
+
+@keyframes fadeIn {
+	from {
+		transform: scale(0, 0) translate(0, -50%);
+		opacity: 0;
+		top: 0;
+	}
+	to {
+		transform: scale(1, 1) translate(0, -50%);
 	}
 }
 

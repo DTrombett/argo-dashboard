@@ -11,7 +11,7 @@ const SubjectName = () => {
 
 	return useMemo(
 		() => (
-			<span className="flex-1 text-left">
+			<span className="flex-1 text-left max-h-16 overflow-y-auto hideScrollbar">
 				{selectedPk == null
 					? "Scegli una materia"
 					: dashboard?.listaMaterie.find(({ pk }) => pk === selectedPk)

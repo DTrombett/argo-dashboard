@@ -18,7 +18,11 @@ const Menu = () => {
 					open ? "blockScroll" : "hidden lg:block"
 				}`}
 			>
-				<div className="absolute left-4 right-4 -translate-y-1/2 lg:translate-y-0 top-1/2 lg:static lg:pr-2 border-zinc-500 border rounded-2xl lg:rounded-none lg:border-0 bg-zinc-100 dark:bg-zinc-900 overflow-y-auto transition subjectsList">
+				<div
+					className={`absolute left-4 right-4 lg:translate-y-0 top-1/2 lg:static lg:pr-2 border-zinc-500 border rounded-2xl lg:rounded-none lg:border-0 bg-zinc-100 dark:bg-zinc-900 overflow-y-auto transition subjectsList ${
+						open ? "menuPopup" : ""
+					}`}
+				>
 					<AllSubjectsButton />
 					<MenuList />
 				</div>
