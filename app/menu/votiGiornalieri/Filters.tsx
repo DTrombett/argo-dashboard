@@ -50,7 +50,7 @@ const Filters = ({
 
 	return (
 		<fieldset
-			className={`px-4 py-2 mx-2 my-2 lg:mx-0 rounded-xl text-left text-lg lg:h-fit lg:max-w-60 overflow-y-hidden ${
+			className={`px-2 py-2 mx-2 my-2 lg:mx-0 rounded-xl text-left text-lg lg:h-fit lg:max-w-60 overflow-y-hidden ${
 				open ? "" : "h-10"
 			}`}
 		>

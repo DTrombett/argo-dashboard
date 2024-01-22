@@ -9,7 +9,7 @@ const Menu = () => {
 
 	return (
 		<div
-			className="mx-4 lg:mx-0 lg:ml-2 lg:pr-1 lg:w-1/3 lg:border-0 lg:pl-0 border-zinc-500 border lg:rounded-none rounded-lg"
+			className="mx-4 lg:mx-0 lg:ml-1 lg:pr-1 lg:w-1/3 lg:border-0 lg:pl-0 border-zinc-500 border lg:rounded-none rounded-lg"
 			onClick={setOpen.bind(null, !open)}
 		>
 			<MenuOpener open={open} />
@@ -19,7 +19,7 @@ const Menu = () => {
 				}`}
 			>
 				<div
-					className={`absolute left-4 right-4 lg:translate-y-0 top-1/2 lg:static lg:pr-2 border-zinc-500 border rounded-2xl lg:rounded-none lg:border-0 bg-zinc-100 dark:bg-zinc-900 overflow-y-auto transition subjectsList ${
+					className={`absolute left-4 right-4 lg:translate-y-0 top-1/2 lg:static lg:px-1 border-zinc-500 border rounded-2xl lg:rounded-none lg:border-0 bg-zinc-100 dark:bg-zinc-900 overflow-y-auto transition subjectsList ${
 						open ? "popupMobile" : ""
 					}`}
 				>
