@@ -1,6 +1,10 @@
+"use client";
+import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons/faUpRightFromSquare";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import local from "next/font/local";
 import type { Client } from "portaleargo-api";
-import { memo } from "react";
+import { memo, useEffect, useMemo, useState } from "react";
+import Popup from "./Popup";
 
 const semiBold = local({ src: "../../../fonts/Poppins-SemiBold.ttf" });
 const medium = local({ src: "../../../fonts/Poppins-Medium.ttf" });
@@ -22,70 +26,119 @@ const months = [
 ];
 
 const Voto = ({
-	v,
+	voto,
 	showDescription = false,
 }: {
-	v: NonNullable<Client["dashboard"]>["voti"][number];
+	voto: NonNullable<Client["dashboard"]>["voti"][number];
 	showDescription?: boolean;
 }) => {
-	const date = new Date(v.datGiorno);
-
-	return (
-		<div className="flex text-lg p-4 my-2 w-full rounded-xl bg-zinc-200 dark:bg-zinc-800">
-			<div
-				className={`flex mx-1 my-4 w-12 h-12 items-center justify-center text-white bg-opacity-80 rounded-full ${
-					v.codTipo === "V"
-						? v.valore >= 6
-							? "bg-green-500"
-							: v.valore < 5
-							? "bg-red-500"
-							: "bg-orange-500"
-						: v.codTipo === "N"
-						? "bg-blue-500"
-						: ""
-				} ${semiBold.className}`}
-			>
-				<span title={v.valore.toLocaleString()}>{v.codCodice}</span>
-			</div>
-			<div className="ml-4 flex-1 text-left flex flex-col">
-				<div className="flex flex-col sm:flex-row w-full justify-between">
-					<span
-						className={`${medium.className} uppercase`}
-						title={v.desCommento}
-					>
-						{v.docente}
-					</span>
-					<span className="text-cyan-500 text-base contents">
-						{date.getDate()} {months[date.getMonth()]}{" "}
-						{date.getFullYear().toString().slice(-2)}
-					</span>
-				</div>
-				<span
-					title={v.desCommento}
-					className={`py-1 ${
-						!showDescription || v.descrizioneProva
-							? light.className
-							: italic.className
-					}`}
-				>
-					{showDescription
-						? v.descrizioneProva || "Descrizione non presente"
-						: v.desMateria}
-				</span>
+	const [touch, setTouch] = useState(false);
+	const [open, setOpen] = useState(false);
+	const date = useMemo(() => new Date(voto.datGiorno), [voto.datGiorno]);
+	const details = useMemo(
+		() => (
+			<>
 				<div
-					className={`flex flex-col sm:flex-row justify-between ${light.className} text-sm text-opacity-50 text-black dark:text-white dark:text-opacity-50`}
+					className={`flex mx-1 my-4 w-12 h-12 items-center justify-center text-white bg-opacity-80 rounded-full ${
+						voto.codTipo === "V"
+							? voto.valore >= 6
+								? "bg-green-500"
+								: voto.valore < 5
+								? "bg-red-500"
+								: "bg-orange-500"
+							: voto.codTipo === "N"
+							? "bg-blue-500"
+							: ""
+					} ${semiBold.className}`}
 				>
-					<span title={v.descrizioneProva}>
-						{v.codTipo === "N" && "Nota — "}Prova{" "}
-						{v.codVotoPratico === "S" ? "Scritta" : "Orale"}
-					</span>
-					<span title={v.descrizioneVoto}>
-						{v.codTipo === "V"
-							? `Valore: ${v.valore.toLocaleString()}`
-							: "Non fa media"}
-					</span>
+					<span title={voto.valore.toLocaleString()}>{voto.codCodice}</span>
 				</div>
-			</div>
+				<div className="ml-4 flex-1 text-left flex flex-col">
+					<div className="flex flex-row w-full justify-between">
+						<div className="flex flex-col">
+							<span
+								className={`${medium.className} uppercase`}
+								title={voto.desCommento}
+							>
+								{voto.docente}
+							</span>
+							<span className="text-cyan-500 text-base contents">
+								{date.getDate()} {months[date.getMonth()]}{" "}
+								{date.getFullYear().toString().slice(-2)}
+							</span>
+						</div>
+						<FontAwesomeIcon
+							icon={faUpRightFromSquare}
+							className="w-6 h-6 p-2 rounded-lg hover:bg-zinc-400 dark:hover:bg-zinc-600 hover:bg-opacity-65 dark:hover:bg-opacity-65"
+						/>
+					</div>
+					<span
+						title={voto.desCommento}
+						className={`py-1 ${
+							!showDescription || voto.descrizioneProva
+								? light.className
+								: italic.className
+						}`}
+					>
+						{showDescription
+							? voto.descrizioneProva || "Descrizione non presente"
+							: voto.desMateria}
+					</span>
+					<div
+						className={`flex flex-col sm:flex-row justify-between ${light.className} text-sm text-opacity-50 text-black dark:text-white dark:text-opacity-50`}
+					>
+						<span title={showDescription ? undefined : voto.descrizioneProva}>
+							{voto.codTipo === "N" && "Nota — "}Prova{" "}
+							{voto.codVotoPratico === "S" ? "Scritta" : "Orale"}
+						</span>
+						<span title={voto.descrizioneVoto}>
+							{voto.codTipo === "V"
+								? `Valore: ${voto.valore.toLocaleString()}`
+								: "Non fa media"}
+						</span>
+					</div>
+				</div>
+			</>
+		),
+		[showDescription, voto, date]
+	);
+
+	useEffect(() => {
+		if (!open) return undefined;
+		const listener = (event: KeyboardEvent) => {
+			if (event.key === "Escape") setOpen(false);
+		};
+
+		document.body.addEventListener("keydown", listener);
+		return window.removeEventListener.bind(
+			null,
+			"keydown",
+			listener as EventListener
+		);
+	}, [open]);
+	return (
+		<div
+			className={`flex text-lg p-4 my-2 w-full rounded-xl bg-zinc-200 dark:bg-zinc-800 transition-all ${
+				touch ? "opacity-75 " : ""
+			}${
+				open
+					? ""
+					: "cursor-pointer lg:hover:bg-zinc-300 lg:dark:hover:bg-zinc-700 lg:hover:bg-opacity-65 lg:dark:hover:bg-opacity-65"
+			}`}
+			tabIndex={0}
+			onKeyDown={
+				open
+					? undefined
+					: (event) => {
+							if (event.key === "Enter") setOpen(true);
+					  }
+			}
+			onTouchStart={open ? undefined : setTouch.bind(null, true)}
+			onTouchEnd={open ? undefined : setTouch.bind(null, false)}
+			onClick={setOpen.bind(null, !open)}
+		>
+			{details}
+			{open && <Popup date={date} setOpen={setOpen} voto={voto} />}
 		</div>
 	);
 };

@@ -37,7 +37,7 @@ const MenuItem = ({
 
 	return (
 		<Link
-			className={`lg:my-3 lg:rounded-lg h-16 lg:hover:bg-zinc-400 lg:dark:hover:bg-zinc-600 flex items-center justify-center cursor-pointer px-4 text-base lg:border border-zinc-500 ${
+			className={`lg:my-3 lg:rounded-lg h-16 lg:hover:bg-zinc-400 lg:dark:hover:bg-zinc-600 flex items-center transition-all justify-center cursor-pointer px-4 text-base lg:border border-zinc-500 ${
 				avg
 					? avg >= 6
 						? "lg:border-green-500"

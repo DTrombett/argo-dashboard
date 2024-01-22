@@ -8,7 +8,7 @@ body {
 	text-wrap: balance;
 }
 
-body:has(.blockScroll) {
+body:has(.blockScroll, .blockScrollMobile) {
 	overflow: hidden;
 }
 
@@ -50,7 +50,7 @@ a,
 }
 
 .loading {
-	animation: 1.5s infinite loading;
+	animation: 1500ms infinite loading;
 }
 
 .menuEntry,
@@ -79,10 +79,6 @@ a,
 	}
 }
 
-.dashboard {
-	transition: all 0.5s;
-}
-
 .icon {
 	transform: scale(calc(18 / 31)) translateY(-2px);
 }
@@ -92,7 +88,7 @@ a,
 }
 
 .navigator {
-	transition: all 0.5s;
+	transition: all 500ms;
 }
 
 body:has(.navigator) {
@@ -103,13 +99,14 @@ body:has(.navigator) {
 	max-height: 95%;
 }
 
-.menuPopup {
-	animation-duration: 0.25s;
+.popup,
+.popupMobile {
+	animation-duration: 250ms;
 	animation-fill-mode: forwards;
 	animation-name: fadeIn;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
 	:not(.nativeScrollbar)::-webkit-scrollbar {
 		width: 15px;
 	}
@@ -128,13 +125,15 @@ body:has(.navigator) {
 	:not(.nativeScrollbar)::-webkit-scrollbar-thumb:active {
 		background-color: #bfbfbf;
 	}
+}
 
+@media (min-width: 1024px) {
 	body:has(.navigator) {
 		margin-left: 5rem;
 		margin-bottom: 0;
 	}
 
-	body:has(.blockScroll) {
+	body:has(.blockScrollMobile):not(:has(.blockScroll)) {
 		overflow: auto;
 	}
 
@@ -169,7 +168,7 @@ body:has(.navigator) {
 		max-height: 100%;
 	}
 
-	.menuPopup {
+	.popupMobile {
 		animation: none;
 	}
 }
@@ -185,8 +184,12 @@ body:has(.navigator) {
 	}
 }
 
+fieldset > label:has(input:focus-visible) {
+	@apply border;
+}
+
 fieldset > label {
-	@apply block relative pl-10 my-2 cursor-pointer select-none;
+	@apply block relative pl-10 my-2 cursor-pointer select-none rounded;
 	input {
 		@apply h-0 w-0;
 	}

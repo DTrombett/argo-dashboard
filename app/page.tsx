@@ -37,7 +37,7 @@ const Dashboard = () => {
 		<div
 			className={`${
 				state === State.NoDashboard ? "blur-sm " : ""
-			}w-full dashboard flex flex-col justify-center text-xl container min-w-full lg:flex-row`}
+			}w-full transition-all flex flex-col justify-center text-xl container min-w-full lg:flex-row`}
 		>
 			<Column name="Media" id="media">
 				<Entry name="Generale" id="generale">

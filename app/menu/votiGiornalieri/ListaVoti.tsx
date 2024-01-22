@@ -37,7 +37,7 @@ const ListaVoti = ({
 						new Date(a.datGiorno) > new Date(b.datGiorno) ? -1 : 1
 					)
 					.map((v) => (
-						<Voto v={v} key={v.pk} showDescription={showDescription} />
+						<Voto voto={v} key={v.pk} showDescription={showDescription} />
 					))
 			) : (
 				<span className={`${italic.className} text-xl py-4 lg:pr-64`}>

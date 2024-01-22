@@ -15,12 +15,12 @@ const Menu = () => {
 			<MenuOpener open={open} />
 			<div
 				className={`fixed left-0 right-0 top-0 bottom-0 z-10 w-full h-full lg:static bg-zinc-900 bg-opacity-50 lg:bg-inherit ${
-					open ? "blockScroll" : "hidden lg:block"
+					open ? "blockScrollMobile" : "hidden lg:block"
 				}`}
 			>
 				<div
 					className={`absolute left-4 right-4 lg:translate-y-0 top-1/2 lg:static lg:pr-2 border-zinc-500 border rounded-2xl lg:rounded-none lg:border-0 bg-zinc-100 dark:bg-zinc-900 overflow-y-auto transition subjectsList ${
-						open ? "menuPopup" : ""
+						open ? "popupMobile" : ""
 					}`}
 				>
 					<AllSubjectsButton />
