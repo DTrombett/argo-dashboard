@@ -1,6 +1,10 @@
+"use client";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons/faChevronDown";
+import { faChevronUp } from "@fortawesome/free-solid-svg-icons/faChevronUp";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import local from "next/font/local";
 import type { Dispatch, SetStateAction } from "react";
-import { memo, useCallback, useMemo } from "react";
+import { memo, useCallback, useMemo, useState } from "react";
 import Filter from "./Filter";
 import type { VotoType } from "./page";
 
@@ -25,6 +29,7 @@ const Filters = ({
 	filters: Filter[];
 	setFilters: Dispatch<SetStateAction<Filter[]>>;
 }) => {
+	const [open, setOpen] = useState(false);
 	const counts = useMemo(
 		() =>
 			voti?.reduce<number[]>(
@@ -44,8 +49,21 @@ const Filters = ({
 	);
 
 	return (
-		<fieldset className="border lg:border-0 px-4 py-2 mb-4 mx-2 lg:mx-0 rounded-xl text-left text-lg h-fit lg:max-w-60">
-			<legend className={`${semiBold.className} text-xl`}>Filtri</legend>
+		<fieldset
+			className={`px-4 py-2 mx-2 my-2 lg:mx-0 rounded-xl text-left text-lg lg:h-fit lg:max-w-60 overflow-y-hidden ${
+				open ? "" : "h-10"
+			}`}
+		>
+			<legend
+				className={`${semiBold.className} text-xl flex justify-between w-full pr-4`}
+				onClick={setOpen.bind(null, !open)}
+			>
+				<span>Filtri</span>
+				<FontAwesomeIcon
+					icon={open ? faChevronUp : faChevronDown}
+					className="pt-px lg:hidden"
+				/>
+			</legend>
 			<Filter
 				filters={filters}
 				handleChange={handleChange}
