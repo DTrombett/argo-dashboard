@@ -8,6 +8,7 @@ import Scheduled from "@/components/dashboard/Scheduled";
 import Updates from "@/components/dashboard/Updates";
 import LoadingPlaceholder from "@/components/loading/LoadingPlaceholder";
 import local from "next/font/local";
+import Link from "next/link";
 import { memo, useContext } from "react";
 import { State } from "./utils";
 
@@ -41,15 +42,18 @@ const Dashboard = () => {
 		>
 			<Column name="Media" id="media">
 				<Entry name="Generale" id="generale">
-					<div className="flex flex-col justify-center h-full">
-						<div className="relative flex justify-center">
+					<div className="flex flex-col justify-center items-center h-full">
+						<Link
+							className="relative flex justify-center w-fit"
+							href="/menu/votiGiornalieri"
+						>
 							<Canvas media={client.dashboard?.mediaGenerale} />
 							<span className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
 								<LoadingPlaceholder loading={!client.dashboard} width={"3rem"}>
 									{client.dashboard?.mediaGenerale.toFixed(2) ?? "?"}
 								</LoadingPlaceholder>
 							</span>
-						</div>
+						</Link>
 						<span className={italic.className}>
 							<LoadingPlaceholder
 								loading={!client.dashboard || !period}
