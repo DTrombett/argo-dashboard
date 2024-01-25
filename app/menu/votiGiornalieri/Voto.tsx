@@ -1,4 +1,5 @@
 "use client";
+import TouchableOpacity from "@/components/Utils/TouchableOpacity";
 import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons/faUpRightFromSquare";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import dynamic from "next/dynamic";
@@ -34,7 +35,6 @@ const Voto = ({
 	voto: NonNullable<Client["dashboard"]>["voti"][number];
 	showDescription?: boolean;
 }) => {
-	const [touch, setTouch] = useState(false);
 	const [open, setOpen] = useState(false);
 	const date = useMemo(() => new Date(voto.datGiorno), [voto.datGiorno]);
 	const details = useMemo(
@@ -106,10 +106,8 @@ const Voto = ({
 	);
 
 	return (
-		<div
-			className={`flex text-lg p-4 my-2 w-full rounded-xl bg-zinc-200 dark:bg-zinc-800 transition ${
-				touch ? "opacity-75 " : ""
-			}${
+		<TouchableOpacity
+			className={`flex text-lg p-4 my-2 w-full rounded-xl bg-zinc-200 dark:bg-zinc-800 ${
 				open
 					? ""
 					: "cursor-pointer lg:hover:bg-zinc-300 lg:dark:hover:bg-zinc-700 lg:hover:bg-opacity-65 lg:dark:hover:bg-opacity-65"
@@ -122,8 +120,6 @@ const Voto = ({
 							if (event.key === "Enter") setOpen(true);
 					  }
 			}
-			onTouchStart={open ? undefined : setTouch.bind(null, true)}
-			onTouchEnd={open ? undefined : setTouch.bind(null, false)}
 			onClick={open ? undefined : setOpen.bind(null, true)}
 		>
 			{details}
@@ -132,7 +128,7 @@ const Voto = ({
 					<PopupVoto date={date} setOpen={setOpen} voto={voto} />
 				</Popup>
 			)}
-		</div>
+		</TouchableOpacity>
 	);
 };
 
