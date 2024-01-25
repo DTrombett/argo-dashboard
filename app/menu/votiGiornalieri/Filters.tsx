@@ -1,4 +1,5 @@
 "use client";
+import TouchableOpacity from "@/components/Utils/TouchableOpacity";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons/faChevronDown";
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons/faChevronUp";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -55,14 +56,16 @@ const Filters = ({
 			}`}
 		>
 			<legend
-				className={`${semiBold.className} text-xl flex justify-between w-full pr-4`}
+				className={`${semiBold.className} text-xl w-full pr-4`}
 				onClick={setOpen.bind(null, !open)}
 			>
-				<span>Filtri</span>
-				<FontAwesomeIcon
-					icon={open ? faChevronUp : faChevronDown}
-					className="pt-px lg:hidden"
-				/>
+				<TouchableOpacity className="flex justify-between">
+					<span>Filtri</span>
+					<FontAwesomeIcon
+						icon={open ? faChevronUp : faChevronDown}
+						className="pt-px lg:hidden"
+					/>
+				</TouchableOpacity>
 			</legend>
 			<Filter
 				filters={filters}

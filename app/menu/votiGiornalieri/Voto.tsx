@@ -106,29 +106,31 @@ const Voto = ({
 	);
 
 	return (
-		<TouchableOpacity
-			className={`flex text-lg p-4 my-2 w-full rounded-xl bg-zinc-200 dark:bg-zinc-800 ${
-				open
-					? ""
-					: "cursor-pointer lg:hover:bg-zinc-300 lg:dark:hover:bg-zinc-700 lg:hover:bg-opacity-65 lg:dark:hover:bg-opacity-65"
-			}`}
-			tabIndex={0}
-			onKeyDown={
-				open
-					? undefined
-					: (event) => {
-							if (event.key === "Enter") setOpen(true);
-					  }
-			}
-			onClick={open ? undefined : setOpen.bind(null, true)}
-		>
-			{details}
+		<>
+			<TouchableOpacity
+				className={`flex text-lg p-4 my-2 w-full rounded-xl bg-zinc-200 dark:bg-zinc-800 ${
+					open
+						? ""
+						: "cursor-pointer lg:hover:bg-zinc-300 lg:dark:hover:bg-zinc-700 lg:hover:bg-opacity-65 lg:dark:hover:bg-opacity-65"
+				}`}
+				tabIndex={0}
+				onKeyDown={
+					open
+						? undefined
+						: (event) => {
+								if (event.key === "Enter") setOpen(true);
+						  }
+				}
+				onClick={open ? undefined : setOpen.bind(null, true)}
+			>
+				{details}
+			</TouchableOpacity>
 			{open && (
 				<Popup setOpen={setOpen}>
 					<PopupVoto date={date} setOpen={setOpen} voto={voto} />
 				</Popup>
 			)}
-		</TouchableOpacity>
+		</>
 	);
 };
 
