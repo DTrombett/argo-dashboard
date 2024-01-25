@@ -1,7 +1,6 @@
 "use client";
 import { AppelloIndexes } from "@/app/utils";
-import type { Dashboard } from "portaleargo-api";
-import { memo, useContext } from "react";
+import { memo, useContext, useMemo } from "react";
 import attività from "../../icons/attivita-svolta.svg";
 import bachecaAlunno from "../../icons/bacheca-alunno.svg";
 import bacheca from "../../icons/bacheca.svg";
@@ -19,7 +18,6 @@ import votiScrutinio from "../../icons/voti-scrutinio.svg";
 import { ClientContext } from "../dashboard/ClientProvider";
 import MenuEntry from "./MenuEntry";
 
-//#region
 const appelloTitles: ((n: number) => string)[] = [
 	(n) => `assenz${n === 1 ? "a" : "e"}`,
 	(n) => `ritard${n === 1 ? "o" : "i"}`,
@@ -31,137 +29,139 @@ const timeTitles = [
 	(n: number) => `successiv${n === 1 ? "o" : "i"}`,
 ];
 
-const resolveAppello = (dashboard: Dashboard) => {
-	const result = [0, 0, 0, dashboard.fuoriClasse.length];
+const MenuList = ({ className }: { className?: string }) => {
+	const {
+		client: { dashboard },
+	} = useContext(ClientContext);
+	const appelloSummary = useMemo(() => {
+		if (!dashboard?.fuoriClasse) return undefined;
+		const result = [0, 0, 0, dashboard.fuoriClasse.length];
 
-	for (const entry of dashboard.appello)
-		result[AppelloIndexes[entry.codEvento as keyof typeof AppelloIndexes]]++;
-	return (
-		result
-			.map((n, i) => n && `${n} ${appelloTitles[i](n)}`)
-			.filter((n) => n)
-			.join(", ") || "Nessun evento"
-	);
-};
-const resolveVoti = (dashboard: Dashboard) => {
-	const now = Date.now();
-	const { length } = dashboard.voti.filter((entry) => {
-		const date = new Date(entry.datEvento);
+		for (const entry of dashboard.appello)
+			result[AppelloIndexes[entry.codEvento as keyof typeof AppelloIndexes]]++;
+		return (
+			result
+				.map((n, i) => n && `${n} ${appelloTitles[i](n)}`)
+				.filter((n) => n)
+				.join(", ") || "Nessun evento"
+		);
+	}, [dashboard?.appello, dashboard?.fuoriClasse]);
+	const votiSummary = useMemo(() => {
+		if (!dashboard?.voti) return undefined;
+		const now = Date.now();
+		const { length } = dashboard.voti.filter((entry) => {
+			const date = new Date(entry.datEvento);
 
-		return date.setDate(date.getDate() + 1) >= now;
-	});
+			return date.setDate(date.getDate() + 1) >= now;
+		});
 
-	return `Media generale: ${dashboard.mediaGenerale}${
-		length
-			? ` | ${length} ${length === 1 ? "voto recente" : "voti recenti"}`
-			: ""
-	}`;
-};
-const resolveNote = (dashboard: Dashboard) =>
-	`${dashboard.noteDisciplinari.length} ${
-		dashboard.noteDisciplinari.length === 1
-			? "nota disciplinare"
-			: "note disciplinari"
-	}`;
-const resolveAttività = (dashboard: Dashboard) => {
-	const now = Date.now();
-	const { length } = dashboard.registro.filter(
-		(entry) => entry.attivita && new Date(entry.datGiorno).getTime() > now
-	);
+		return `Media generale: ${dashboard.mediaGenerale}${
+			length
+				? ` | ${length} ${length === 1 ? "voto recente" : "voti recenti"}`
+				: ""
+		}`;
+	}, [dashboard?.voti, dashboard?.mediaGenerale]);
+	const attivitàSummary = useMemo(() => {
+		if (!dashboard?.registro) return undefined;
+		const now = Date.now();
+		const { length } = dashboard.registro.filter(
+			(entry) => entry.attivita && new Date(entry.datGiorno).getTime() > now
+		);
 
-	return length
-		? `${length} attività programmat${length === 1 ? "a" : "e"}`
-		: "Nessuna attività programmata";
-};
-const resolveCompiti = (dashboard: Dashboard) => {
-	const now = Date.now();
-	const counts = [0, 0];
+		return length
+			? `${length} attività programmat${length === 1 ? "a" : "e"}`
+			: "Nessuna attività programmata";
+	}, [dashboard?.registro]);
+	const compitiSummary = useMemo(() => {
+		if (!dashboard?.registro) return undefined;
+		const now = Date.now();
+		const counts = [0, 0];
 
-	for (const entry of dashboard.registro)
-		for (const homework of entry.compiti) {
-			const date = new Date(homework.dataConsegna);
+		for (const entry of dashboard.registro)
+			for (const homework of entry.compiti) {
+				const date = new Date(homework.dataConsegna);
+				const time = date.getTime();
+
+				if (date.setDate(date.getDate() - 1) > now) counts[1]++;
+				else if (time > now) counts[0]++;
+			}
+		return (
+			counts
+				.map((n, i) => n && `${n} ${timeTitles[i](n)}`)
+				.filter((n) => n)
+				.join(", ") || "Nessun compito"
+		);
+	}, [dashboard?.registro]);
+	const promemoriaSummary = useMemo(() => {
+		if (!dashboard?.promemoria) return undefined;
+		const now = Date.now();
+		const counts = [0, 0];
+
+		for (const entry of dashboard.promemoria) {
+			const date = new Date(entry.datGiorno);
 			const time = date.getTime();
 
 			if (date.setDate(date.getDate() - 1) > now) counts[1]++;
 			else if (time > now) counts[0]++;
 		}
-	return (
-		counts
-			.map((n, i) => n && `${n} ${timeTitles[i](n)}`)
-			.filter((n) => n)
-			.join(", ") || "Nessun compito"
-	);
-};
-const resolvePromemoria = (dashboard: Dashboard) => {
-	const now = Date.now();
-	const counts = [0, 0];
+		return (
+			counts
+				.map((n, i) => n && `${n} ${timeTitles[i](n)}`)
+				.filter((n) => n)
+				.join(", ") || "Nessun promemoria"
+		);
+	}, [dashboard?.promemoria]);
+	const ricevimentoSummary = useMemo(() => {
+		if (!dashboard?.prenotazioniAlunni) return undefined;
+		const now = Date.now();
+		const counts = [0, 0];
 
-	for (const entry of dashboard.promemoria) {
-		const date = new Date(entry.datGiorno);
-		const time = date.getTime();
+		for (const entry of dashboard.prenotazioniAlunni) {
+			if (entry.prenotazione.flgAnnullato === "E") continue;
+			const date = new Date(entry.disponibilita.datDisponibilita);
+			const time = date.getTime();
 
-		if (date.setDate(date.getDate() - 1) > now) counts[1]++;
-		else if (time > now) counts[0]++;
-	}
-	return (
-		counts
-			.map((n, i) => n && `${n} ${timeTitles[i](n)}`)
-			.filter((n) => n)
-			.join(", ") || "Nessun promemoria"
-	);
-};
-const resolvePrenotazioni = (dashboard: Dashboard) => {
-	const now = Date.now();
-	const counts = [0, 0];
+			if (date.setDate(date.getDate() - 1) > now) counts[1]++;
+			else if (time > now) counts[0]++;
+		}
+		return (
+			counts
+				.map((n, i) => n && `${n} ${timeTitles[i](n)}`)
+				.filter((n) => n)
+				.join(", ") || "Nessun ricevimento"
+		);
+	}, [dashboard?.prenotazioniAlunni]);
+	const bachecaSummary = useMemo(() => {
+		if (!dashboard?.bacheca) return undefined;
+		const now = Date.now();
+		const { length } = dashboard.bacheca.filter((entry) => {
+			const date = new Date(entry.datEvento);
 
-	for (const entry of dashboard.prenotazioniAlunni) {
-		if (entry.prenotazione.flgAnnullato === "E") continue;
-		const date = new Date(entry.disponibilita.datDisponibilita);
-		const time = date.getTime();
+			return date.setDate(date.getDate() + 1) >= now;
+		});
 
-		if (date.setDate(date.getDate() - 1) > now) counts[1]++;
-		else if (time > now) counts[0]++;
-	}
-	return (
-		counts
-			.map((n, i) => n && `${n} ${timeTitles[i](n)}`)
-			.filter((n) => n)
-			.join(", ") || "Nessun ricevimento"
-	);
-};
-const resolveBacheca = (dashboard: Dashboard) => {
-	const now = Date.now();
-	const { length } = dashboard.bacheca.filter((entry) => {
-		const date = new Date(entry.datEvento);
+		return `${length} ${
+			length === 1 ? "comunicazione recente" : "comunicazioni recenti"
+		}`;
+	}, [dashboard?.bacheca]);
+	const bachecaAlunnoSummary = useMemo(() => {
+		if (!dashboard?.bachecaAlunno) return undefined;
+		const now = Date.now();
+		const { length } = dashboard.bachecaAlunno.filter((entry) => {
+			const date = new Date(entry.datEvento);
 
-		return date.setDate(date.getDate() + 1) >= now;
-	});
+			return date.setDate(date.getDate() + 1) >= now;
+		});
 
-	return `${length} ${
-		length === 1 ? "comunicazione recente" : "comunicazioni recenti"
-	}`;
-};
-const resolveBachecaAlunno = (dashboard: Dashboard) => {
-	const now = Date.now();
-	const { length } = dashboard.bachecaAlunno.filter((entry) => {
-		const date = new Date(entry.datEvento);
-
-		return date.setDate(date.getDate() + 1) >= now;
-	});
-
-	return `${length} ${
-		length === 1 ? "comunicazione recente" : "comunicazioni recenti"
-	}`;
-};
-//#endregion
-
-const MenuList = ({ className }: { className?: string }) => {
-	const { client } = useContext(ClientContext);
+		return `${length} ${
+			length === 1 ? "comunicazione recente" : "comunicazioni recenti"
+		}`;
+	}, [dashboard?.bachecaAlunno]);
 
 	return (
 		<>
 			<MenuEntry
-				summary={client.dashboard && resolveAppello(client.dashboard)}
+				summary={appelloSummary}
 				color="#07abbe"
 				icon={appello}
 				name="Eventi appello"
@@ -169,7 +169,14 @@ const MenuList = ({ className }: { className?: string }) => {
 				page="eventiAppello"
 			/>
 			<MenuEntry
-				summary={client.dashboard && resolveNote(client.dashboard)}
+				summary={
+					dashboard &&
+					`${dashboard.noteDisciplinari.length} ${
+						dashboard.noteDisciplinari.length === 1
+							? "nota disciplinare"
+							: "note disciplinari"
+					}`
+				}
 				color="#ffb498"
 				icon={note}
 				name="Note"
@@ -177,7 +184,7 @@ const MenuList = ({ className }: { className?: string }) => {
 				page="note"
 			/>
 			<MenuEntry
-				summary={client.dashboard && resolveVoti(client.dashboard)}
+				summary={votiSummary}
 				color="#e06f5c"
 				icon={votiGiornalieri}
 				name="Voti giornalieri"
@@ -192,7 +199,7 @@ const MenuList = ({ className }: { className?: string }) => {
 				page="votiScrutinio"
 			/>
 			<MenuEntry
-				summary={client.dashboard && resolveAttività(client.dashboard)}
+				summary={attivitàSummary}
 				color="#3e90d8"
 				icon={attività}
 				name="Attività svolta"
@@ -200,7 +207,7 @@ const MenuList = ({ className }: { className?: string }) => {
 				page="attivitàSvolta"
 			/>
 			<MenuEntry
-				summary={client.dashboard && resolveCompiti(client.dashboard)}
+				summary={compitiSummary}
 				color="#7080fe"
 				icon={compiti}
 				name="Compiti assegnati"
@@ -208,7 +215,7 @@ const MenuList = ({ className }: { className?: string }) => {
 				page="compitiAssegnati"
 			/>
 			<MenuEntry
-				summary={client.dashboard && resolvePromemoria(client.dashboard)}
+				summary={promemoriaSummary}
 				color="#ff5d63"
 				icon={promemoria}
 				name="Promemoria"
@@ -223,7 +230,7 @@ const MenuList = ({ className }: { className?: string }) => {
 				page="orario"
 			/>
 			<MenuEntry
-				summary={client.dashboard && resolvePrenotazioni(client.dashboard)}
+				summary={ricevimentoSummary}
 				color="#90c078"
 				icon={ricevimento}
 				name="Ricevimento docenti"
@@ -231,7 +238,7 @@ const MenuList = ({ className }: { className?: string }) => {
 				page="ricevimentoDocenti"
 			/>
 			<MenuEntry
-				summary={client.dashboard && resolveBacheca(client.dashboard)}
+				summary={bachecaSummary}
 				color="#06aabe"
 				icon={bacheca}
 				name="Bacheca"
@@ -239,7 +246,7 @@ const MenuList = ({ className }: { className?: string }) => {
 				page="bacheca"
 			/>
 			<MenuEntry
-				summary={client.dashboard && resolveBachecaAlunno(client.dashboard)}
+				summary={bachecaAlunnoSummary}
 				color="#07abbe"
 				icon={bachecaAlunno}
 				name="Bacheca alunno"
@@ -248,8 +255,8 @@ const MenuList = ({ className }: { className?: string }) => {
 			/>
 			<MenuEntry
 				summary={
-					client.dashboard &&
-					`${client.dashboard.fileCondivisi.listaFile.length} file condivisi`
+					dashboard &&
+					`${dashboard.fileCondivisi.listaFile.length} file condivisi`
 				}
 				color="#45dda1"
 				icon={condivisione}
