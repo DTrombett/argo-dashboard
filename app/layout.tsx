@@ -1,9 +1,9 @@
 import ClientProvider from "@/components/dashboard/ClientProvider";
+import MenuList from "@/components/menu/MenuList";
 import TabIcon from "@/components/menu/TabIcon";
 import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { Metadata } from "next";
-import dynamic from "next/dynamic";
 import local from "next/font/local";
 import Link from "next/link";
 import { memo } from "react";
@@ -25,7 +25,6 @@ import "./globals.css";
  */
 const poppinsRegular = local({ src: "../fonts/Poppins-Regular.ttf" });
 const titleFont = local({ src: "../fonts/Poppins-ExtraBold.ttf" });
-const MenuList = dynamic(() => import("@/components/menu/MenuList"));
 const description =
 	"Dashboard compatta, sicura e di facile utilizzo per gestire il registro elettronico Argo (didUP)";
 
