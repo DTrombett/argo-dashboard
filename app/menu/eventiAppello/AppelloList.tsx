@@ -2,7 +2,7 @@
 import { ClientContext } from "@/components/dashboard/ClientProvider";
 import dynamic from "next/dynamic";
 import local from "next/font/local";
-import { memo, useContext } from "react";
+import { memo, useContext, useMemo } from "react";
 import AppelloItem from "./AppelloItem";
 
 const italic = local({ src: "../../../fonts/Poppins-Italic.ttf" });
@@ -17,61 +17,74 @@ const icons: Record<
 };
 
 const AppelloList = () => {
-	const { client } = useContext(ClientContext);
-	const elements = client.dashboard?.appello
-		.map((event) => ({
-			element: (
-				<AppelloItem
-					key={event.pk}
-					title={event.commentoGiustificazione}
-					content={event.nota}
-					date={new Date(event.data)}
-					icon={icons[event.codEvento] ?? iconAppello}
-					header={event.docente}
-					footer={
-						event.giustificata === "S"
-							? `(Giustificata il ${new Date(
-									event.dataGiustificazione
-							  ).toLocaleDateString("it-IT", {
-									month: "long",
-									day: "numeric",
-									year: "numeric",
-							  })})`
-							: ""
-					}
-				/>
-			),
-			date: new Date(event.data),
-		}))
-		.concat(
-			client.dashboard.fuoriClasse.map((event) => ({
-				element: (
-					<AppelloItem
-						key={event.pk}
-						content={`Fuori classe ${event.nota}`}
-						date={new Date(event.data)}
-						icon={iconAppello}
-						header={event.docente}
-						footer={event.descrizione}
-					/>
-				),
-				date: new Date(event.data),
-			}))
+	const {
+		client: { dashboard },
+	} = useContext(ClientContext);
+
+	return useMemo(() => {
+		const elements = dashboard?.appello
+			.map((event) => {
+				const date = new Date(event.data);
+
+				return {
+					element: (
+						<AppelloItem
+							key={event.pk}
+							title={event.commentoGiustificazione}
+							content={event.nota}
+							date={date}
+							icon={icons[event.codEvento] ?? iconAppello}
+							header={event.docente}
+							footer={
+								event.giustificata === "S"
+									? `(Giustificata il ${new Date(
+											event.dataGiustificazione
+									  ).toLocaleDateString("it-IT", {
+											month: "long",
+											day: "numeric",
+											year: "numeric",
+									  })})`
+									: ""
+							}
+						/>
+					),
+					date,
+				};
+			})
+			.concat(
+				dashboard.fuoriClasse.map((event) => {
+					const date = new Date(event.data);
+
+					return {
+						element: (
+							<AppelloItem
+								key={event.pk}
+								content={`Fuori classe ${event.nota}`}
+								date={date}
+								icon={iconAppello}
+								header={event.docente}
+								footer={event.descrizione}
+							/>
+						),
+						date,
+					};
+				})
+			);
+
+		return elements?.length ? (
+			elements
+				.sort(
+					({ date: date1 }, { date: date2 }) =>
+						date2.getTime() - date1.getTime()
+				)
+				.filter((e, i, array) =>
+					array.every((a, j) => j <= i || a.element.key !== e.element.key)
+				)
+				.map(({ element }) => element)
+		) : (
+			<span className={italic.className}>Nessun evento disponibile!</span>
 		);
-
-	return elements?.length ? (
-		elements
-
-			.sort(
-				({ date: date1 }, { date: date2 }) => date2.getTime() - date1.getTime()
-			)
-			.filter((e, i, array) =>
-				array.every((a, j) => j <= i || a.element.key !== e.element.key)
-			)
-			.map(({ element }) => element)
-	) : (
-		<span className={italic.className}>Nessun evento disponibile!</span>
-	);
+	}, [dashboard?.appello, dashboard?.fuoriClasse]);
 };
 
 export default memo(AppelloList);
