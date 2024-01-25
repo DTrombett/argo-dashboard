@@ -7,7 +7,7 @@ const PasswordField = () => {
 	const [show, setShow] = useState(false);
 
 	return (
-		<div className="m-2 w-11/12 sm:w-full">
+		<>
 			<input
 				autoComplete="current-password"
 				className="p-4 w-full rounded outline-none bg-zinc-200 dark:bg-zinc-800 duration-200 text-xl hover:bg-opacity-80 sm:text-2xl"
@@ -27,7 +27,7 @@ const PasswordField = () => {
 			>
 				<FontAwesomeIcon icon={show ? faEyeSlash : faEye} />
 			</button>
-		</div>
+		</>
 	);
 };
 

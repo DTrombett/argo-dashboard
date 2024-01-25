@@ -3,7 +3,7 @@ import { State } from "@/app/utils";
 import dynamic from "next/dynamic";
 import { Client } from "portaleargo-api";
 import { createContext, useEffect, useState } from "react";
-import LoginForm from "../auth/LoginForm";
+import Login from "../auth/Login";
 import Loading from "../loading/Loading";
 
 export const ClientContext = createContext(
@@ -35,7 +35,7 @@ const ClientProvider = ({ children }: { children: React.ReactNode }) => {
 			{state === State.FirstLoading ? (
 				<Loading />
 			) : state === State.NeedLogin ? (
-				<LoginForm />
+				<Login />
 			) : (
 				children
 			)}
