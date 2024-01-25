@@ -1,6 +1,6 @@
 "use client";
 import { State } from "@/app/utils";
-import { useContext, useState } from "react";
+import { memo, useContext, useState } from "react";
 import LoadingBar from "../loading/LoadingBar";
 import { ClientContext } from "./ClientProvider";
 
@@ -32,4 +32,4 @@ const RimuoviDati = () => {
 	);
 };
 
-export default RimuoviDati;
+export default memo(RimuoviDati);

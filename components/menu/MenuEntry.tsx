@@ -5,7 +5,7 @@ import type { Property } from "csstype";
 import local from "next/font/local";
 import Link from "next/link";
 import { useSelectedLayoutSegments } from "next/navigation";
-import type { SVGProps } from "react";
+import { memo, type SVGProps } from "react";
 
 const light = local({ src: "../../fonts/Poppins-Light.ttf" });
 
@@ -53,4 +53,4 @@ const MenuEntry = ({
 	</Link>
 );
 
-export default MenuEntry;
+export default memo(MenuEntry);

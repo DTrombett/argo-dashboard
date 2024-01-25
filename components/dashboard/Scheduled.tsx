@@ -2,6 +2,7 @@ import { ScheduledType } from "@/app/utils";
 import dynamic from "next/dynamic";
 import local from "next/font/local";
 import type { Dashboard } from "portaleargo-api";
+import { memo } from "react";
 import LoadingPlaceholder from "../loading/LoadingPlaceholder";
 
 const ListElement = dynamic(() => import("./ListElement"), {
@@ -172,4 +173,4 @@ const Scheduled = ({
 	);
 };
 
-export default Scheduled;
+export default memo(Scheduled);

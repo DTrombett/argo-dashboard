@@ -1,6 +1,6 @@
 "use client";
 import { State } from "@/app/utils";
-import { useContext, useState } from "react";
+import { memo, useContext, useState } from "react";
 import LoadingBar from "../loading/LoadingBar";
 import { ClientContext } from "./ClientProvider";
 
@@ -24,4 +24,4 @@ const LogOutButton = () => {
 	);
 };
 
-export default LogOutButton;
+export default memo(LogOutButton);

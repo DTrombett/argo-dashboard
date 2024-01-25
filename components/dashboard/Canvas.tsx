@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef } from "react";
+import { memo, useLayoutEffect, useRef } from "react";
 
 const duration = 1_000;
 
@@ -37,4 +37,4 @@ const Canvas = ({ media = 0 }: { media?: number }) => {
 	return <canvas ref={canvasRef} width={125} height={125} />;
 };
 
-export default Canvas;
+export default memo(Canvas);

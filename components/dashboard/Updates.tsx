@@ -2,6 +2,7 @@ import { EventType } from "@/app/utils";
 import dynamic from "next/dynamic";
 import local from "next/font/local";
 import type { Client } from "portaleargo-api";
+import { memo } from "react";
 import LoadingPlaceholder from "../loading/LoadingPlaceholder";
 
 const ListElement = dynamic(() => import("./ListElement"), {
@@ -177,4 +178,4 @@ const Updates = ({
 	);
 };
 
-export default Updates;
+export default memo(Updates);

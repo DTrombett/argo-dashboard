@@ -1,6 +1,7 @@
 import local from "next/font/local";
 import Link from "next/link";
 import type { Dashboard } from "portaleargo-api";
+import { memo } from "react";
 import TouchableOpacity from "../Utils/TouchableOpacity";
 
 const italic = local({ src: "../../fonts/Poppins-Italic.ttf" });
@@ -29,4 +30,4 @@ const Averages = ({ dashboard }: { dashboard: Dashboard }) => {
 	);
 };
 
-export default Averages;
+export default memo(Averages);

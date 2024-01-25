@@ -1,4 +1,5 @@
 import local from "next/font/local";
+import { memo } from "react";
 
 const font = local({ src: "../../fonts/Poppins-Light.ttf" });
 
@@ -8,4 +9,4 @@ const Loading = () => (
 	</div>
 );
 
-export default Loading;
+export default memo(Loading);

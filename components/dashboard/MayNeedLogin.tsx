@@ -2,7 +2,7 @@ import { State } from "@/app/utils";
 import { faXmark } from "@fortawesome/free-solid-svg-icons/faXmark";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import local from "next/font/local";
-import { useContext } from "react";
+import { memo, useContext } from "react";
 import { ClientContext } from "./ClientProvider";
 
 const semiBold = local({ src: "../../fonts/Poppins-Medium.ttf" });
@@ -28,4 +28,4 @@ const MayNeedLogin = () => {
 	);
 };
 
-export default MayNeedLogin;
+export default memo(MayNeedLogin);

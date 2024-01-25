@@ -2,7 +2,7 @@
 import { State } from "@/app/utils";
 import dynamic from "next/dynamic";
 import { Client } from "portaleargo-api";
-import { createContext, useEffect, useState } from "react";
+import { createContext, memo, useEffect, useState } from "react";
 import LoginForm from "../auth/LoginForm";
 import Loading from "../loading/Loading";
 
@@ -44,4 +44,4 @@ const ClientProvider = ({ children }: { children: React.ReactNode }) => {
 	);
 };
 
-export default ClientProvider;
+export default memo(ClientProvider);
