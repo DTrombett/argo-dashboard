@@ -15,7 +15,7 @@ const TabIcon = ({
 }) => (
 	<Link
 		href={href}
-		className={`flex flex-col lg:flex-row justify-center items-center select-none cursor-pointer w-full rounded-lg my-1 tabIcon mx-2 lg:mx-0 pt-2 lg:pt-0 transition-all ${
+		className={`flex flex-col lg:flex-row justify-center items-center select-none cursor-pointer w-full rounded-lg my-1 tabIcon mx-2 lg:mx-0 pt-2 lg:pt-0 transition ${
 			className ?? ""
 		} ${
 			`/${useSelectedLayoutSegment() ?? ""}` === href

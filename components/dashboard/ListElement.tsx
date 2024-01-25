@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import local from "next/font/local";
 import type { Dispatch, SetStateAction, SVGProps } from "react";
 import { memo, useState } from "react";
+import TouchableOpacity from "../Utils/TouchableOpacity";
 import ExpandText from "./ExpandText";
 
 const months = [
@@ -47,18 +48,20 @@ const ListElement = ({
 
 	return (
 		<>
-			<div
-				className={`flex flex-col p-2 my-1 rounded-xl bg-zinc-300 dark:bg-zinc-700${
-					PopupComponent ? " cursor-pointer" : ""
+			<TouchableOpacity
+				className={`flex flex-col p-2 my-1 rounded-xl bg-zinc-300 dark:bg-zinc-700 ${
+					PopupComponent
+						? "cursor-pointer lg:hover:bg-zinc-400 lg:dark:hover:bg-zinc-600 lg:hover:bg-opacity-80 lg:dark:hover:bg-opacity-80"
+						: ""
 				}`}
 				onClick={PopupComponent && !open ? setOpen.bind(null, true) : undefined}
 			>
-				<div className={medium.className} title={headerTitle}>
+				<div className={medium.className}>
 					<Icon className="icon inline" />
 					{date.getDate()} {months[date.getMonth()]}{" "}
 					{date.getFullYear().toString().slice(-2)}
 					{" — "}
-					{header}
+					<span title={headerTitle}>{header}</span>
 					{PopupComponent && (
 						<FontAwesomeIcon
 							icon={faUpRightFromSquare}
@@ -70,7 +73,7 @@ const ListElement = ({
 					<ExpandText title={title} content={content} />
 					{children}
 				</div>
-			</div>
+			</TouchableOpacity>
 			{open && PopupComponent && (
 				<Popup setOpen={setOpen}>
 					<PopupComponent setOpen={setOpen} />

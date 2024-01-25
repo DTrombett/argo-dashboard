@@ -1,4 +1,5 @@
 "use client";
+import TouchableOpacity from "@/components/Utils/TouchableOpacity";
 import Averages from "@/components/dashboard/Averages";
 import Canvas from "@/components/dashboard/Canvas";
 import { ClientContext } from "@/components/dashboard/ClientProvider";
@@ -36,24 +37,29 @@ const Dashboard = () => {
 
 	return (
 		<div
-			className={`${
-				state === State.NoDashboard ? "blur-sm " : ""
-			}w-full transition-all flex flex-col justify-center text-xl container min-w-full lg:flex-row`}
+			className={`w-full transition duration-200 flex flex-col justify-center text-xl container min-w-full lg:flex-row ${
+				state === State.NoDashboard ? "blur-sm" : ""
+			}`}
 		>
 			<Column name="Media" id="media">
 				<Entry name="Generale" id="generale">
 					<div className="flex flex-col justify-center items-center h-full">
-						<Link
-							className="relative flex justify-center w-fit"
-							href="/menu/votiGiornalieri"
-						>
-							<Canvas media={client.dashboard?.mediaGenerale} />
-							<span className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
-								<LoadingPlaceholder loading={!client.dashboard} width={"3rem"}>
-									{client.dashboard?.mediaGenerale.toFixed(2) ?? "?"}
-								</LoadingPlaceholder>
-							</span>
-						</Link>
+						<TouchableOpacity>
+							<Link
+								className="relative flex justify-center w-fit"
+								href="/menu/votiGiornalieri"
+							>
+								<Canvas media={client.dashboard?.mediaGenerale} />
+								<span className="absolute top-0 left-0 w-full h-full flex items-center justify-center hover:underline">
+									<LoadingPlaceholder
+										loading={!client.dashboard}
+										width={"3rem"}
+									>
+										{client.dashboard?.mediaGenerale.toFixed(2) ?? "?"}
+									</LoadingPlaceholder>
+								</span>
+							</Link>
+						</TouchableOpacity>
 						<span className={italic.className}>
 							<LoadingPlaceholder
 								loading={!client.dashboard || !period}

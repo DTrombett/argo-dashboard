@@ -26,7 +26,7 @@ const MenuEntry = ({
 }) => (
 	<Link
 		href={`/menu/${page}`}
-		className={`my-2 lg:my-1 w-full border rounded-lg bg-opacity-50 dark:bg-opacity-50 hover:bg-zinc-400 dark:hover:bg-zinc-600 flex items-center justify-center cursor-pointer px-4 text-base lg:px-0 transition-all menuEntry ${
+		className={`my-2 lg:my-1 w-full border rounded-lg bg-opacity-50 dark:bg-opacity-50 hover:bg-zinc-400 dark:hover:bg-zinc-600 flex items-center justify-center cursor-pointer px-4 text-base lg:px-0 transition menuEntry ${
 			className ?? ""
 		} ${
 			useSelectedLayoutSegments()[1] === page

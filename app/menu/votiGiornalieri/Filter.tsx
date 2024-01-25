@@ -39,7 +39,7 @@ const Filter = ({
 				onChange={onChange}
 				checked={filters.includes(filterFunctions[name])}
 			/>
-			<span className="transition-all" />
+			<span className="transition" />
 		</label>
 	);
 };
