@@ -1,6 +1,10 @@
+import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons/faUpRightFromSquare";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import dynamic from "next/dynamic";
 import local from "next/font/local";
-import type { SVGProps } from "react";
-import { useState } from "react";
+import type { Dispatch, SetStateAction, SVGProps } from "react";
+import { memo, useState } from "react";
+import ExpandText from "./ExpandText";
 
 const months = [
 	"GEN",
@@ -18,6 +22,7 @@ const months = [
 ];
 const medium = local({ src: "../../fonts/Poppins-Medium.ttf" });
 const light = local({ src: "../../fonts/Poppins-Light.ttf" });
+const Popup = dynamic(() => import("../Utils/Popup"));
 
 const ListElement = ({
 	icon: Icon,
@@ -27,6 +32,7 @@ const ListElement = ({
 	children,
 	title,
 	headerTitle,
+	popup: PopupComponent,
 }: {
 	icon: React.ComponentType<SVGProps<SVGElement>>;
 	date: Date;
@@ -35,37 +41,43 @@ const ListElement = ({
 	children?: React.ReactNode;
 	title?: string;
 	headerTitle?: string;
+	popup?: React.ComponentType<{ setOpen: Dispatch<SetStateAction<boolean>> }>;
 }) => {
-	const [expanded, setExpanded] = useState(false);
+	const [open, setOpen] = useState(false);
 
 	return (
-		<div className="flex flex-col p-2 my-1 rounded-xl bg-zinc-300 dark:bg-zinc-700">
-			<div className={medium.className} title={headerTitle}>
-				<Icon className="icon inline" />
-				{date.getDate()} {months[date.getMonth()]}{" "}
-				{date.getFullYear().toString().slice(-2)}
-				{" — "}
-				{header}
+		<>
+			<div
+				className={`flex flex-col p-2 my-1 rounded-xl bg-zinc-300 dark:bg-zinc-700${
+					PopupComponent ? " cursor-pointer" : ""
+				}`}
+				onClick={PopupComponent && !open ? setOpen.bind(null, true) : undefined}
+			>
+				<div className={medium.className} title={headerTitle}>
+					<Icon className="icon inline" />
+					{date.getDate()} {months[date.getMonth()]}{" "}
+					{date.getFullYear().toString().slice(-2)}
+					{" — "}
+					{header}
+					{PopupComponent && (
+						<FontAwesomeIcon
+							icon={faUpRightFromSquare}
+							className="inline pl-2"
+						/>
+					)}
+				</div>
+				<div className={`text-base ${light.className}`}>
+					<ExpandText title={title} content={content} />
+					{children}
+				</div>
 			</div>
-			<div className={`text-base ${light.className}`}>
-				<span
-					title={title}
-					onClick={
-						content.length > 100
-							? () => {
-									setExpanded((e) => !e);
-							  }
-							: undefined
-					}
-				>
-					{!expanded && content.length > 100
-						? `${content.slice(0, 97).trimEnd()}...`
-						: content}
-				</span>
-				{children}
-			</div>
-		</div>
+			{open && PopupComponent && (
+				<Popup setOpen={setOpen}>
+					<PopupComponent setOpen={setOpen} />
+				</Popup>
+			)}
+		</>
 	);
 };
 
-export default ListElement;
+export default memo(ListElement);

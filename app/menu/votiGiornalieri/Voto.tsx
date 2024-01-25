@@ -1,15 +1,17 @@
 "use client";
 import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons/faUpRightFromSquare";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import dynamic from "next/dynamic";
 import local from "next/font/local";
 import type { Client } from "portaleargo-api";
-import { memo, useEffect, useMemo, useState } from "react";
-import Popup from "./Popup";
+import { memo, useMemo, useState } from "react";
 
 const semiBold = local({ src: "../../../fonts/Poppins-SemiBold.ttf" });
 const medium = local({ src: "../../../fonts/Poppins-Medium.ttf" });
 const light = local({ src: "../../../fonts/Poppins-Light.ttf" });
 const italic = local({ src: "../../../fonts/Poppins-LightItalic.ttf" });
+const Popup = dynamic(() => import("@/components/Utils/Popup"));
+const PopupVoto = dynamic(() => import("./PopupVoto"));
 const months = [
 	"GEN",
 	"FEB",
@@ -103,22 +105,9 @@ const Voto = ({
 		[showDescription, voto, date]
 	);
 
-	useEffect(() => {
-		if (!open) return undefined;
-		const listener = (event: KeyboardEvent) => {
-			if (event.key === "Escape") setOpen(false);
-		};
-
-		document.body.addEventListener("keydown", listener);
-		return window.removeEventListener.bind(
-			null,
-			"keydown",
-			listener as EventListener
-		);
-	}, [open]);
 	return (
 		<div
-			className={`flex text-lg p-4 my-2 w-full rounded-xl bg-zinc-200 dark:bg-zinc-800 transition-all ${
+			className={`flex text-lg p-4 my-2 w-full rounded-xl bg-zinc-200 dark:bg-zinc-800 transition ${
 				touch ? "opacity-75 " : ""
 			}${
 				open
@@ -135,10 +124,14 @@ const Voto = ({
 			}
 			onTouchStart={open ? undefined : setTouch.bind(null, true)}
 			onTouchEnd={open ? undefined : setTouch.bind(null, false)}
-			onClick={setOpen.bind(null, !open)}
+			onClick={open ? undefined : setOpen.bind(null, true)}
 		>
 			{details}
-			{open && <Popup date={date} setOpen={setOpen} voto={voto} />}
+			{open && (
+				<Popup setOpen={setOpen}>
+					<PopupVoto date={date} setOpen={setOpen} voto={voto} />
+				</Popup>
+			)}
 		</div>
 	);
 };

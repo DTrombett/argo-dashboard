@@ -3,11 +3,12 @@ import dynamic from "next/dynamic";
 import local from "next/font/local";
 import type { Client } from "portaleargo-api";
 import LoadingPlaceholder from "../loading/LoadingPlaceholder";
-import Allegato from "./Allegato";
 
 const ListElement = dynamic(() => import("./ListElement"), {
 	loading: () => <LoadingPlaceholder repeat={2} />,
 });
+const Allegato = dynamic(() => import("./Allegato"));
+const VotoPopup = dynamic(() => import("@/app/menu/votiGiornalieri/PopupVoto"));
 const iconBachecaAlunno = dynamic(
 	() => import("../../icons/bacheca-alunno.svg")
 );
@@ -78,25 +79,32 @@ const Updates = ({
 			})),
 		...client
 			.dashboard!.voti.filter((e) => checkDate(new Date(e.datEvento).getTime()))
-			.map((event) => ({
-				element: (
-					<ListElement
-						key={event.pk}
-						content={`Prova ${
-							event.codVotoPratico === "S" ? "Scritta" : "Orale"
-						}: ${event.valore || event.codCodice} (${event.descrizioneVoto})${
-							event.descrizioneProva && ` — ${event.descrizioneProva}`
-						}`}
-						title={event.desCommento}
-						date={new Date(event.datGiorno)}
-						icon={iconVoti}
-						header={event.desMateria}
-						headerTitle={event.docente}
-					/>
-				),
-				date: new Date(event.datEvento),
-				type: EventType.Voti,
-			})),
+			.map((event) => {
+				const date = new Date(event.datGiorno);
+
+				return {
+					element: (
+						<ListElement
+							key={event.pk}
+							content={`Prova ${
+								event.codVotoPratico === "S" ? "Scritta" : "Orale"
+							}: ${event.valore || event.codCodice} (${event.descrizioneVoto})${
+								event.descrizioneProva && ` — ${event.descrizioneProva}`
+							}`}
+							title={event.desCommento}
+							date={date}
+							icon={iconVoti}
+							header={event.desMateria}
+							headerTitle={event.docente}
+							popup={({ setOpen }) => (
+								<VotoPopup date={date} voto={event} setOpen={setOpen} />
+							)}
+						/>
+					),
+					date: new Date(event.datEvento),
+					type: EventType.Voti,
+				};
+			}),
 		...client
 			.dashboard!.bacheca.filter((e) => checkDate(new Date(e.data).getTime()))
 			.map((event) => ({
