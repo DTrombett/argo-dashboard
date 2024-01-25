@@ -82,7 +82,7 @@ const Dashboard = () => {
 				</Entry>
 				<Entry name="Per materia" id="perMateria">
 					<LoadingPlaceholder loading={!client.dashboard} repeat={5}>
-						{client.dashboard && <Averages dashboard={client.dashboard} />}
+						<Averages />
 					</LoadingPlaceholder>
 				</Entry>
 			</Column>
@@ -90,26 +90,18 @@ const Dashboard = () => {
 				<Entry name="Entro domani" id="perMateria">
 					<div className="flex flex-col">
 						<LoadingPlaceholder loading={!client.dashboard} repeat={4}>
-							{client.dashboard && (
-								<Scheduled
-									dashboard={client.dashboard}
-									tomorrowTime={tomorrowTime}
-									now={now}
-									tomorrow={tomorrow}
-								/>
-							)}
+							<Scheduled
+								tomorrowTime={tomorrowTime}
+								now={now}
+								tomorrow={tomorrow}
+							/>
 						</LoadingPlaceholder>
 					</div>
 				</Entry>
 				<Entry name="Successivi" id="successivi">
 					<div className="flex flex-col">
 						<LoadingPlaceholder loading={!client.dashboard} repeat={4}>
-							{client.dashboard && (
-								<Scheduled
-									dashboard={client.dashboard}
-									tomorrowTime={tomorrowTime}
-								/>
-							)}
+							<Scheduled tomorrowTime={tomorrowTime} />
 						</LoadingPlaceholder>
 					</div>
 				</Entry>
@@ -118,18 +110,14 @@ const Dashboard = () => {
 				<Entry name="Recenti" id="recenti">
 					<div className="flex flex-col">
 						<LoadingPlaceholder loading={!client.dashboard} repeat={4}>
-							{client.dashboard && (
-								<Updates client={client} now={now} weekStart={weekStart} />
-							)}
+							<Updates now={now} weekStart={weekStart} />
 						</LoadingPlaceholder>
 					</div>
 				</Entry>
 				<Entry name="Precedenti" id="precedenti">
 					<div className="flex flex-col">
 						<LoadingPlaceholder loading={!client.dashboard} repeat={4}>
-							{client.dashboard && (
-								<Updates client={client} weekStart={weekStart} />
-							)}
+							<Updates weekStart={weekStart} />
 						</LoadingPlaceholder>
 					</div>
 				</Entry>
