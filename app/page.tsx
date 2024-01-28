@@ -39,7 +39,7 @@ const Dashboard = () => {
 	date.setDate(date.getDate() + day);
 	const tomorrow = `${date.getFullYear()}-${(date.getMonth() + 1)
 		.toString()
-		.padStart(2)}-${date.getDate()}`;
+		.padStart(2, "0")}-${date.getDate()}`;
 	const tomorrowTime = date.setDate(date.getDate() + 1);
 
 	return (
