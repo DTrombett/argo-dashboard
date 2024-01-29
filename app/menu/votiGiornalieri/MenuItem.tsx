@@ -64,7 +64,7 @@ const MenuItem = ({
 							  } (${handlePlural(numValutazioniScritto)}) | Orale: ${
 									mediaOrale || "N/A"
 							  } (${handlePlural(numValutazioniOrale)})`
-							: "Nessun voto disponibile!"}
+							: "Nessun voto disponibile per questo periodo!"}
 					</span>
 				)}
 			</div>

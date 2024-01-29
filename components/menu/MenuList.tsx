@@ -54,13 +54,19 @@ const MenuList = ({ className }: { className?: string }) => {
 
 			return date.setDate(date.getDate() + 1) >= now;
 		});
+		const medie = Object.entries(dashboard.mediaPerPeriodo)
+			.filter(([, m]) => m.mediaGenerale)
+			.map(([n, m]) => `${n}: ${m.mediaGenerale}`)
+			.join(", ");
 
-		return `Media generale: ${dashboard.mediaGenerale}${
-			length
-				? ` | ${length} ${length === 1 ? "voto recente" : "voti recenti"}`
-				: ""
-		}`;
-	}, [dashboard?.voti, dashboard?.mediaGenerale]);
+		return (
+			`${medie && `Media ${medie}`}${
+				length
+					? ` | ${length} ${length === 1 ? "voto recente" : "voti recenti"}`
+					: ""
+			}` || "Nessun voto disponibile!"
+		);
+	}, [dashboard?.voti, dashboard?.mediaPerPeriodo]);
 	const attivitàSummary = useMemo(() => {
 		if (!dashboard?.registro) return undefined;
 		const now = Date.now();

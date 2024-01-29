@@ -56,7 +56,7 @@ const Filters = ({
 			}`}
 		>
 			<legend
-				className={`${semiBold.className} text-xl w-full pr-4`}
+				className={`${semiBold.className} text-xl w-full pr-4 cursor-pointer`}
 				onClick={setOpen.bind(null, !open)}
 			>
 				<TouchableOpacity className="flex justify-between">

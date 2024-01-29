@@ -62,7 +62,9 @@ const Dashboard = () => {
 										loading={!client.dashboard}
 										width={"3rem"}
 									>
-										{client.dashboard?.mediaGenerale.toFixed(2) ?? "?"}
+										{client.dashboard?.mediaGenerale
+											? client.dashboard.mediaGenerale.toFixed(2)
+											: "N/D"}
 									</LoadingPlaceholder>
 								</span>
 							</Link>

@@ -14,19 +14,21 @@ const Averages = () => {
 	const result = useMemo(
 		() =>
 			dashboard?.mediaMaterie &&
-			Object.entries(dashboard.mediaMaterie).map(([pk, m]) => (
-				<Link key={pk} href={`/menu/votiGiornalieri/${pk}`}>
-					<TouchableOpacity className="flex justify-between lg:hover:underline">
-						<span
-							className="text-left whitespace-nowrap overflow-auto outline-0 hideScrollbar subject"
-							tabIndex={-1}
-						>
-							{dashboard.listaMaterie.find((s) => s.pk === pk)?.materia}
-						</span>
-						<span className="text-right">{m.mediaMateria}</span>
-					</TouchableOpacity>
-				</Link>
-			)),
+			Object.entries(dashboard.mediaMaterie)
+				.filter(([pk]) => pk !== "listaMaterie")
+				.map(([pk, m]) => (
+					<Link key={pk} href={`/menu/votiGiornalieri/${pk}`}>
+						<TouchableOpacity className="flex justify-between lg:hover:underline">
+							<span
+								className="text-left whitespace-nowrap overflow-auto outline-0 hideScrollbar subject"
+								tabIndex={-1}
+							>
+								{dashboard.listaMaterie.find((s) => s.pk === pk)?.materia}
+							</span>
+							<span className="text-right">{m.mediaMateria}</span>
+						</TouchableOpacity>
+					</Link>
+				)),
 		[dashboard?.listaMaterie, dashboard?.mediaMaterie]
 	);
 

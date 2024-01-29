@@ -13,7 +13,8 @@ const Canvas = ({ media = 0 }: { media?: number }) => {
 
 		if (!context) return;
 		context.lineWidth = 10;
-		context.strokeStyle = "limegreen";
+		context.strokeStyle =
+			media >= 6 ? "limegreen" : media >= 5 || media === 0 ? "orange" : "red";
 		let start;
 
 		const callback = (timeStamp: number): void => {
@@ -26,7 +27,8 @@ const Canvas = ({ media = 0 }: { media?: number }) => {
 				canvas.height / 2,
 				canvas.width / 2.5,
 				-0.5 * Math.PI,
-				(((media / 5) * Math.PI) / duration) * Math.min(elapsed, duration) -
+				((((media || 10) / 5) * Math.PI) / duration) *
+					Math.min(elapsed, duration) -
 					0.5 * Math.PI
 			);
 			context.stroke();
