@@ -54,10 +54,12 @@ const MenuList = ({ className }: { className?: string }) => {
 
 			return date.setDate(date.getDate() + 1) >= now;
 		});
-		const medie = Object.entries(dashboard.mediaPerPeriodo)
-			.filter(([, m]) => m.mediaGenerale)
-			.map(([n, m]) => `${n}: ${m.mediaGenerale}`)
-			.join(", ");
+		const medie = dashboard.mediaPerPeriodo
+			? Object.entries(dashboard.mediaPerPeriodo)
+					.filter(([, m]) => m.mediaGenerale)
+					.map(([n, m]) => `${n}: ${m.mediaGenerale}`)
+					.join(", ")
+			: "";
 
 		return (
 			`${medie && `Media ${medie}`}${

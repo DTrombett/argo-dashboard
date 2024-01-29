@@ -20,9 +20,9 @@ const Dashboard = () => {
 	const date = useMemo(() => new Date(), []);
 	const period = useMemo(
 		() =>
-			client.dashboard?.listaPeriodi.find(
+			client.dashboard?.listaPeriodi?.find(
 				(p) => new Date(p.datInizio!) <= date && new Date(p.datFine!) > date
-			) ?? client.dashboard?.listaPeriodi.at(-1),
+			) ?? client.dashboard?.listaPeriodi?.at(-1),
 		[client.dashboard?.listaPeriodi, date]
 	);
 	const now = date.getTime();
