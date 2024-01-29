@@ -17,19 +17,14 @@ const italic = local({ src: "../fonts/Poppins-Italic.ttf" });
 
 const Dashboard = () => {
 	const { client, state } = useContext(ClientContext);
+	const date = useMemo(() => new Date(), []);
 	const period = useMemo(
-		() => client.dashboard?.listaPeriodi.find((p) => p.pkPeriodo === "*"),
-		[client.dashboard?.listaPeriodi]
+		() =>
+			client.dashboard?.listaPeriodi.find(
+				(p) => new Date(p.datInizio!) <= date && new Date(p.datFine!) > date
+			) ?? client.dashboard?.listaPeriodi.at(-1),
+		[client.dashboard?.listaPeriodi, date]
 	);
-	const dataInizio = useMemo(
-		() => period?.dataInizio.split("-"),
-		[period?.dataInizio]
-	);
-	const dataFine = useMemo(
-		() => period?.dataFine.split("-"),
-		[period?.dataFine]
-	);
-	const date = new Date();
 	const now = date.getTime();
 	const day = date.getDay() || 7;
 
@@ -75,9 +70,7 @@ const Dashboard = () => {
 								repeat={2}
 								width={"75%"}
 							>
-								Calcolata nel periodo {dataInizio?.[2]}/{dataInizio?.[1]}/
-								{dataInizio?.[0]} - {dataFine?.[2]}/{dataFine?.[1]}/
-								{dataFine?.[0]}
+								Calcolata nel periodo {period?.dataInizio} - {period?.dataFine}
 							</LoadingPlaceholder>
 						</span>
 					</div>
