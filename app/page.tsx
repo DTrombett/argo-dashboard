@@ -10,21 +10,18 @@ import Updates from "@/components/dashboard/Updates";
 import LoadingPlaceholder from "@/components/loading/LoadingPlaceholder";
 import local from "next/font/local";
 import Link from "next/link";
-import { memo, useContext, useMemo } from "react";
+import { memo, useContext } from "react";
 import { State } from "./utils";
 
 const italic = local({ src: "../fonts/Poppins-Italic.ttf" });
 
 const Dashboard = () => {
 	const { client, state } = useContext(ClientContext);
-	const date = useMemo(() => new Date(), []);
-	const period = useMemo(
-		() =>
-			client.dashboard?.listaPeriodi?.find(
-				(p) => new Date(p.datInizio!) <= date && new Date(p.datFine!) > date
-			) ?? client.dashboard?.listaPeriodi?.at(-1),
-		[client.dashboard?.listaPeriodi, date]
-	);
+	const date = new Date();
+	const period =
+		client.dashboard?.listaPeriodi?.find(
+			(p) => new Date(p.datInizio!) <= date && new Date(p.datFine!) > date
+		) ?? client.dashboard?.listaPeriodi?.at(-1);
 	const now = date.getTime();
 	const day = date.getDay() || 7;
 
