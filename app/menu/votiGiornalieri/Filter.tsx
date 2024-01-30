@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { Filter } from "./Filters";
+import type { FilterType } from "./Filters";
 import type { VotoType } from "./page";
 
 const filterFunctions = {
@@ -17,8 +17,8 @@ const Filter = ({
 	count,
 }: {
 	name: keyof typeof filterFunctions;
-	filters: Filter[];
-	handleChange: (filter: Filter) => () => void;
+	filters: FilterType[];
+	handleChange: (filter: FilterType) => () => void;
 	count: number;
 }) => {
 	const onChange = handleChange(filterFunctions[name]);

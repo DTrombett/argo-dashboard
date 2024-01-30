@@ -1,6 +1,6 @@
 import local from "next/font/local";
 import { memo } from "react";
-import type { Filter } from "./Filters";
+import type { FilterType } from "./Filters";
 import Voto from "./Voto";
 import type { VotoType } from "./page";
 
@@ -12,7 +12,7 @@ const ListaVoti = ({
 	showDescription,
 }: {
 	voti?: VotoType[];
-	filters: Filter[];
+	filters: FilterType[];
 	showDescription?: boolean;
 }) => {
 	const pks: string[] = [];

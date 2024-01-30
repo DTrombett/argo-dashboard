@@ -1,7 +1,7 @@
 "use client";
 import { ClientContext } from "@/components/dashboard/ClientProvider";
 import { memo, useContext, useMemo, useState } from "react";
-import type { Filter } from "../Filters";
+import type { FilterType } from "../Filters";
 import Filters from "../Filters";
 import ListaVoti from "../ListaVoti";
 
@@ -9,7 +9,7 @@ const VotiMateria = ({ params: { pk } }: { params: { pk: string } }) => {
 	const {
 		client: { dashboard },
 	} = useContext(ClientContext);
-	const [filters, setFilters] = useState<Filter[]>([]);
+	const [filters, setFilters] = useState<FilterType[]>([]);
 	const voti = useMemo(
 		() => dashboard?.voti.filter((v) => v.pkMateria === pk),
 		[dashboard?.voti, pk]

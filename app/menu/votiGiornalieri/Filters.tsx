@@ -9,7 +9,7 @@ import { memo, useCallback, useMemo, useState } from "react";
 import Filter from "./Filter";
 import type { VotoType } from "./page";
 
-export type Filter = (typeof filterFunctions)[keyof typeof filterFunctions];
+export type FilterType = (typeof filterFunctions)[keyof typeof filterFunctions];
 
 const filterFunctions = {
 	orali: [(v: VotoType) => v.codVotoPratico === "N", "codVotoPratico"],
@@ -27,8 +27,8 @@ const Filters = ({
 	setFilters,
 }: {
 	voti?: VotoType[];
-	filters: Filter[];
-	setFilters: Dispatch<SetStateAction<Filter[]>>;
+	filters: FilterType[];
+	setFilters: Dispatch<SetStateAction<FilterType[]>>;
 }) => {
 	const [open, setOpen] = useState(false);
 	const counts = useMemo(
@@ -40,7 +40,7 @@ const Filters = ({
 		[voti]
 	);
 	const handleChange = useCallback(
-		(filter: Filter) =>
+		(filter: FilterType) =>
 			setFilters.bind(null, (oldFilters) => {
 				const i = oldFilters.indexOf(filter);
 
