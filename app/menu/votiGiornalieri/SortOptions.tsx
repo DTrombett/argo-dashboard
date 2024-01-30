@@ -22,12 +22,12 @@ const SortOptions = ({
 
 	return (
 		<fieldset
-			className={`px-2 py-2 mx-2 my-2 lg:mx-0 rounded-xl text-left text-lg lg:h-fit lg:max-w-60 overflow-y-hidden ${
-				open ? "" : "h-10"
+			className={`px-2 py-2 mx-2 my-2 lg:mx-0 rounded-xl text-left text-lg lg:h-fit lg:max-w-60 overflow-y-hidden transition-all duration-500 ${
+				open ? "h-56" : "h-10"
 			}`}
 		>
 			<legend
-				className={`${semiBold.className} text-xl w-full pr-4 cursor-pointer`}
+				className={`${semiBold.className} text-xl w-full pr-4 cursor-pointer lg:cursor-auto`}
 				onClick={setOpen.bind(null, !open)}
 			>
 				<TouchableOpacity className="flex justify-between">

@@ -39,7 +39,7 @@ const ListaVoti = ({
 						<Voto voto={v} key={v.pk} showDescription={showDescription} />
 					))
 			) : (
-				<span className={`${italic.className} text-xl py-4 lg:pr-64`}>
+				<span className={`${italic.className} text-xl py-4 lg:pr-16`}>
 					Nessun voto disponibile!
 				</span>
 			)}
