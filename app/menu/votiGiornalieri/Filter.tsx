@@ -1,13 +1,5 @@
-import type { FilterType } from "./Filters";
-import type { VotoType } from "./page";
-
-const filterFunctions = {
-	orali: [(v: VotoType) => v.codVotoPratico === "N", "codVotoPratico"],
-	scritti: [(v: VotoType) => v.codVotoPratico === "S", "codVotoPratico"],
-	note: [(v: VotoType) => v.codTipo === "N", "codTipo"],
-	sufficienti: [(v: VotoType) => v.codTipo === "V" && v.valore >= 6, "valore"],
-	insufficienti: [(v: VotoType) => v.codTipo === "V" && v.valore < 6, "valore"],
-} as const;
+import type { FilterName, FilterType } from "./utils";
+import { filterFunctions } from "./utils";
 
 const Filter = ({
 	name,
@@ -15,7 +7,7 @@ const Filter = ({
 	handleChange,
 	count,
 }: {
-	name: keyof typeof filterFunctions;
+	name: FilterName;
 	filters: FilterType[];
 	handleChange: (filter: FilterType) => () => void;
 	count: number;

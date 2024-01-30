@@ -194,7 +194,13 @@ fieldset > label {
 		@apply h-0 w-0;
 	}
 	span {
-		@apply absolute left-px top-px h-6 w-6 border border-black dark:border-white rounded-md;
+		@apply absolute left-px top-px h-6 w-6 border border-black dark:border-white;
+	}
+	input[type="checkbox"] ~ span {
+		@apply rounded-md;
+	}
+	input[type="radio"] ~ span {
+		@apply rounded-full;
 	}
 	span:after {
 		content: "";
@@ -203,7 +209,7 @@ fieldset > label {
 	input:checked ~ span {
 		@apply bg-cyan-500 dark:bg-cyan-600;
 	}
-	input:checked ~ span:after {
+	input[type="checkbox"]:checked ~ span:after {
 		@apply block;
 	}
 }

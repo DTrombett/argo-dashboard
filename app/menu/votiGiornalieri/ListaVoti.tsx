@@ -1,17 +1,19 @@
 import local from "next/font/local";
-import type { FilterType } from "./Filters";
 import Voto from "./Voto";
-import type { VotoType } from "./page";
+import type { FilterType, SortName, VotoType } from "./utils";
+import { sortFunctions } from "./utils";
 
 const italic = local({ src: "../../../fonts/Poppins-Italic.ttf" });
 
 const ListaVoti = ({
 	voti,
 	filters,
+	sort,
 	showDescription,
 }: {
 	voti?: VotoType[];
 	filters: FilterType[];
+	sort: SortName;
 	showDescription?: boolean;
 }) => {
 	const pks: string[] = [];
@@ -32,9 +34,7 @@ const ListaVoti = ({
 		<div className="flex flex-col flex-1 lg:mx-4 my-auto lg:my-0">
 			{resolved?.length ? (
 				resolved
-					.toSorted((a, b) =>
-						new Date(a.datGiorno) > new Date(b.datGiorno) ? -1 : 1
-					)
+					.sort(sortFunctions[sort])
 					.map((v) => (
 						<Voto voto={v} key={v.pk} showDescription={showDescription} />
 					))
