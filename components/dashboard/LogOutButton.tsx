@@ -1,26 +1,23 @@
 "use client";
 import { State } from "@/app/utils";
-import { memo, useContext, useState } from "react";
-import LoadingBar from "../loading/LoadingBar";
+import Link from "next/link";
+import { memo, useContext } from "react";
 import { ClientContext } from "./ClientProvider";
 
 const LogOutButton = () => {
-	const [pending, setPending] = useState(false);
 	const { client, setState } = useContext(ClientContext);
 
 	return (
-		<button
-			className="relative p-4 w-40 whitespace-nowrap rounded duration-500 bg-zinc-300 dark:bg-zinc-700 text-xl focus-visible:outline-zinc-400 dark:focus-visible:outline-zinc-600 enabled:hover:scale-110 enabled:active:scale-95 disabled:cursor-wait disabled:opacity-50 disabled:bg-zinc-200 dark:disabled:bg-zinc-800"
-			disabled={pending}
+		<Link
+			href="/"
+			className="relative p-4 w-40 whitespace-nowrap rounded duration-500 text-center bg-zinc-300 dark:bg-zinc-700 text-xl focus-visible:outline-zinc-400 dark:focus-visible:outline-zinc-600 hover:scale-110 active:scale-95"
 			onClick={async () => {
-				setPending(true);
-				await client.logOut().catch(() => {});
 				setState(State.NeedLogin);
+				await client.logOut().catch(() => {});
 			}}
 		>
 			Log out
-			{pending && <LoadingBar />}
-		</button>
+		</Link>
 	);
 };
 
