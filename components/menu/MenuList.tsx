@@ -1,6 +1,6 @@
 "use client";
 import { AppelloIndexes } from "@/app/utils";
-import { memo, useContext, useMemo } from "react";
+import { useContext, useMemo } from "react";
 import attività from "../../icons/attivita-svolta.svg";
 import bachecaAlunno from "../../icons/bacheca-alunno.svg";
 import bacheca from "../../icons/bacheca.svg";
@@ -290,4 +290,4 @@ const MenuList = ({ className }: { className?: string }) => {
 	);
 };
 
-export default memo(MenuList);
+export default MenuList;

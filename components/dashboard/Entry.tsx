@@ -1,5 +1,4 @@
 import local from "next/font/local";
-import { memo } from "react";
 
 const semiBold = local({ src: "../../fonts/Poppins-SemiBold.ttf" });
 
@@ -23,4 +22,4 @@ const Entry = ({
 	</div>
 );
 
-export default memo(Entry);
+export default Entry;

@@ -1,6 +1,6 @@
 "use client";
 import type { Dispatch, ReactNode, SetStateAction } from "react";
-import { memo, useEffect } from "react";
+import { useEffect } from "react";
 
 const Popup = ({
 	setOpen,
@@ -39,4 +39,4 @@ const Popup = ({
 	);
 };
 
-export default memo(Popup);
+export default Popup;

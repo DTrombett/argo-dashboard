@@ -1,6 +1,5 @@
 "use client";
 import { useSelectedLayoutSegment } from "next/navigation";
-import { memo } from "react";
 import MenuItem from "./MenuItem";
 
 const AllSubjectsButton = () => (
@@ -10,4 +9,4 @@ const AllSubjectsButton = () => (
 	/>
 );
 
-export default memo(AllSubjectsButton);
+export default AllSubjectsButton;

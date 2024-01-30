@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { useState } from "react";
 
 const ExpandText = ({
 	title,
@@ -20,4 +20,4 @@ const ExpandText = ({
 	);
 };
 
-export default memo(ExpandText);
+export default ExpandText;

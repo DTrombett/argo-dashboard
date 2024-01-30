@@ -1,5 +1,5 @@
 "use client";
-import { memo, useState } from "react";
+import { useState } from "react";
 import AllSubjectsButton from "./AllSubjectsButton";
 import MenuList from "./MenuList";
 import MenuOpener from "./MenuOpener";
@@ -31,4 +31,4 @@ const Menu = () => {
 	);
 };
 
-export default memo(Menu);
+export default Menu;

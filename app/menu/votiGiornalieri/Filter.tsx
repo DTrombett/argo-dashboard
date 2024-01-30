@@ -1,4 +1,3 @@
-import { memo } from "react";
 import type { FilterType } from "./Filters";
 import type { VotoType } from "./page";
 
@@ -44,4 +43,4 @@ const Filter = ({
 	);
 };
 
-export default memo(Filter);
+export default Filter;

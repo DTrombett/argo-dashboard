@@ -2,7 +2,7 @@
 import { ScheduledType } from "@/app/utils";
 import dynamic from "next/dynamic";
 import local from "next/font/local";
-import { memo, useContext, useMemo } from "react";
+import { useContext, useMemo } from "react";
 import LoadingPlaceholder from "../loading/LoadingPlaceholder";
 import { ClientContext } from "./ClientProvider";
 
@@ -196,4 +196,4 @@ const Scheduled = ({
 	);
 };
 
-export default memo(Scheduled);
+export default Scheduled;

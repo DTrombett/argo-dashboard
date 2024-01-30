@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import dynamic from "next/dynamic";
 import local from "next/font/local";
 import type { Dispatch, SetStateAction, SVGProps } from "react";
-import { memo, useState } from "react";
+import { useState } from "react";
 import TouchableOpacity from "../Utils/TouchableOpacity";
 import ExpandText from "./ExpandText";
 
@@ -83,4 +83,4 @@ const ListElement = ({
 	);
 };
 
-export default memo(ListElement);
+export default ListElement;

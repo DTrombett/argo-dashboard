@@ -3,7 +3,6 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons/faChevronRight
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import local from "next/font/local";
 import Link from "next/link";
-import { memo } from "react";
 
 const light = local({ src: "../../../fonts/Poppins-Light.ttf" });
 const handlePlural = (n: number) => `${n} vot${n === 1 ? "o" : "i"}`;
@@ -76,4 +75,4 @@ const MenuItem = ({
 	</TouchableOpacity>
 );
 
-export default memo(MenuItem);
+export default MenuItem;

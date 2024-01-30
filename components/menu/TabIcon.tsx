@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import { useSelectedLayoutSegment } from "next/navigation";
-import { memo } from "react";
 
 const TabIcon = ({
 	name,
@@ -29,4 +28,4 @@ const TabIcon = ({
 	</Link>
 );
 
-export default memo(TabIcon);
+export default TabIcon;

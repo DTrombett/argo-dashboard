@@ -1,7 +1,7 @@
 "use client";
 import { ClientContext } from "@/components/dashboard/ClientProvider";
 import { useSelectedLayoutSegment } from "next/navigation";
-import { memo, useContext, useMemo } from "react";
+import { useContext, useMemo } from "react";
 
 const SubjectName = () => {
 	const selectedPk = useSelectedLayoutSegment();
@@ -22,4 +22,4 @@ const SubjectName = () => {
 	);
 };
 
-export default memo(SubjectName);
+export default SubjectName;

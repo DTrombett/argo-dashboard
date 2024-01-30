@@ -1,5 +1,4 @@
 import local from "next/font/local";
-import { memo } from "react";
 import Menu from "./Menu";
 
 const bold = local({ src: "../../../fonts/Poppins-Bold.ttf" });
@@ -14,4 +13,4 @@ const Layout = ({ children }: { children: React.ReactNode }) => (
 	</div>
 );
 
-export default memo(Layout);
+export default Layout;

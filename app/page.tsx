@@ -10,7 +10,7 @@ import Updates from "@/components/dashboard/Updates";
 import LoadingPlaceholder from "@/components/loading/LoadingPlaceholder";
 import local from "next/font/local";
 import Link from "next/link";
-import { memo, useContext } from "react";
+import { useContext } from "react";
 import { State } from "./utils";
 
 const italic = local({ src: "../fonts/Poppins-Italic.ttf" });
@@ -118,4 +118,4 @@ const Dashboard = () => {
 	);
 };
 
-export default memo(Dashboard);
+export default Dashboard;

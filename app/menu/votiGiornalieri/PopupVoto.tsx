@@ -2,7 +2,6 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons/faXmark";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import local from "next/font/local";
 import type { Dispatch, SetStateAction } from "react";
-import { memo } from "react";
 import type { VotoType } from "./page";
 
 const semiBold = local({ src: "../../../fonts/Poppins-SemiBold.ttf" });
@@ -102,4 +101,4 @@ const PopupVoto = ({
 	</>
 );
 
-export default memo(PopupVoto);
+export default PopupVoto;

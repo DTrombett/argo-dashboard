@@ -1,7 +1,7 @@
 "use client";
 import { ClientContext } from "@/components/dashboard/ClientProvider";
 import type { Client } from "portaleargo-api";
-import { memo, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import type { FilterType } from "./Filters";
 import Filters from "./Filters";
 import ListaVoti from "./ListaVoti";
@@ -26,4 +26,4 @@ const VotiGiornalieri = () => {
 	);
 };
 
-export default memo(VotiGiornalieri);
+export default VotiGiornalieri;

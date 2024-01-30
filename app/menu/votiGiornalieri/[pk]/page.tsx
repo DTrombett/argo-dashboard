@@ -1,6 +1,6 @@
 "use client";
 import { ClientContext } from "@/components/dashboard/ClientProvider";
-import { memo, useContext, useMemo, useState } from "react";
+import { useContext, useMemo, useState } from "react";
 import type { FilterType } from "../Filters";
 import Filters from "../Filters";
 import ListaVoti from "../ListaVoti";
@@ -23,4 +23,4 @@ const VotiMateria = ({ params: { pk } }: { params: { pk: string } }) => {
 	);
 };
 
-export default memo(VotiMateria);
+export default VotiMateria;

@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { Metadata } from "next";
 import local from "next/font/local";
 import Link from "next/link";
-import { memo } from "react";
 import "tailwindcss/tailwind.css";
 import Home from "../icons/home-bianca.svg";
 import MenuIcon from "../icons/menu-icon.svg";
@@ -107,4 +106,4 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
 	</html>
 );
 
-export default memo(RootLayout);
+export default RootLayout;

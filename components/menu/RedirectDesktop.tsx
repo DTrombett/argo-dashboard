@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { memo, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 const RedirectDesktop = () => {
 	const ref = useRef<HTMLDivElement>(null);
@@ -20,4 +20,4 @@ const RedirectDesktop = () => {
 	return <div className="hidden lg:block" ref={ref}></div>;
 };
 
-export default memo(RedirectDesktop);
+export default RedirectDesktop;

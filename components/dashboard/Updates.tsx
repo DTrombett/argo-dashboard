@@ -2,7 +2,7 @@
 import { EventType } from "@/app/utils";
 import dynamic from "next/dynamic";
 import local from "next/font/local";
-import { memo, useCallback, useContext, useMemo } from "react";
+import { useCallback, useContext, useMemo } from "react";
 import LoadingPlaceholder from "../loading/LoadingPlaceholder";
 import { ClientContext } from "./ClientProvider";
 
@@ -208,4 +208,4 @@ const Updates = ({
 	);
 };
 
-export default memo(Updates);
+export default Updates;

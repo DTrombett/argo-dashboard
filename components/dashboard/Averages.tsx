@@ -1,7 +1,7 @@
 "use client";
 import local from "next/font/local";
 import Link from "next/link";
-import { memo, useContext, useMemo } from "react";
+import { useContext, useMemo } from "react";
 import TouchableOpacity from "../Utils/TouchableOpacity";
 import { ClientContext } from "./ClientProvider";
 
@@ -39,4 +39,4 @@ const Averages = () => {
 	);
 };
 
-export default memo(Averages);
+export default Averages;

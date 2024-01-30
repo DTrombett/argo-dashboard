@@ -1,7 +1,7 @@
 import { getClientToken } from "@/app/actions";
 import { State } from "@/app/utils";
 import dynamic from "next/dynamic";
-import { memo, useContext, useState } from "react";
+import { useContext, useState } from "react";
 import { ClientContext } from "../dashboard/ClientProvider";
 import PasswordField from "./PasswordField";
 import SubmitButton from "./SubmitButton";
@@ -62,4 +62,4 @@ const LoginForm = () => {
 	);
 };
 
-export default memo(LoginForm);
+export default LoginForm;

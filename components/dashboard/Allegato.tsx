@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { useState } from "react";
 
 const Allegato = ({
 	allegato,
@@ -52,4 +52,4 @@ const Allegato = ({
 	);
 };
 
-export default memo(Allegato);
+export default Allegato;

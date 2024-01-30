@@ -1,4 +1,3 @@
-import { memo } from "react";
 import { useFormStatus } from "react-dom";
 import LoadingBar from "../loading/LoadingBar";
 
@@ -16,4 +15,4 @@ const SubmitButton = () => {
 	);
 };
 
-export default memo(SubmitButton);
+export default SubmitButton;

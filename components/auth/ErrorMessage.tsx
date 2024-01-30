@@ -1,6 +1,5 @@
 import { faXmark } from "@fortawesome/free-solid-svg-icons/faXmark";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { memo } from "react";
 
 const ErrorMessage = ({ message }: { message: string; errors?: string[] }) => (
 	<div className="px-4 py-2 max-w-sm text-left flex items-center rounded-xl bg-red-500 bg-opacity-80 text-lg">
@@ -12,4 +11,4 @@ const ErrorMessage = ({ message }: { message: string; errors?: string[] }) => (
 	</div>
 );
 
-export default memo(ErrorMessage);
+export default ErrorMessage;

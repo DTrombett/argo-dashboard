@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import dynamic from "next/dynamic";
 import local from "next/font/local";
 import type { Client } from "portaleargo-api";
-import { memo, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 const semiBold = local({ src: "../../../fonts/Poppins-SemiBold.ttf" });
 const medium = local({ src: "../../../fonts/Poppins-Medium.ttf" });
@@ -134,4 +134,4 @@ const Voto = ({
 	);
 };
 
-export default memo(Voto);
+export default Voto;

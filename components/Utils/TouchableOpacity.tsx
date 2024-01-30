@@ -1,6 +1,6 @@
 "use client";
 import type { KeyboardEventHandler, MouseEventHandler, ReactNode } from "react";
-import { memo, useState } from "react";
+import { useState } from "react";
 
 const TouchableOpacity = ({
 	children,
@@ -31,4 +31,4 @@ const TouchableOpacity = ({
 	);
 };
 
-export default memo(TouchableOpacity);
+export default TouchableOpacity;

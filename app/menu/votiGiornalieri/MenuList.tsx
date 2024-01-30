@@ -1,7 +1,7 @@
 "use client";
 import { ClientContext } from "@/components/dashboard/ClientProvider";
 import { useSelectedLayoutSegment } from "next/navigation";
-import { memo, useContext, useMemo } from "react";
+import { useContext, useMemo } from "react";
 import MenuItem from "./MenuItem";
 
 const PageElements = () => {
@@ -34,4 +34,4 @@ const PageElements = () => {
 	);
 };
 
-export default memo(PageElements);
+export default PageElements;

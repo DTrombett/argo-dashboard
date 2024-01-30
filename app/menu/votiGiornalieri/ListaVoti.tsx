@@ -1,5 +1,4 @@
 import local from "next/font/local";
-import { memo } from "react";
 import type { FilterType } from "./Filters";
 import Voto from "./Voto";
 import type { VotoType } from "./page";
@@ -48,4 +47,4 @@ const ListaVoti = ({
 	);
 };
 
-export default memo(ListaVoti);
+export default ListaVoti;

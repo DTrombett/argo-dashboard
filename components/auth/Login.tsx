@@ -1,4 +1,3 @@
-import { memo } from "react";
 import LoginForm from "./LoginForm";
 
 const Login = () => (
@@ -9,4 +8,4 @@ const Login = () => (
 	</div>
 );
 
-export default memo(Login);
+export default Login;

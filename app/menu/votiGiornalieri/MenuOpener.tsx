@@ -1,7 +1,6 @@
 import TouchableOpacity from "@/components/Utils/TouchableOpacity";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { memo } from "react";
 import SubjectName from "./SubjectName";
 
 const MenuOpener = ({ open }: { open: boolean }) => (
@@ -18,4 +17,4 @@ const MenuOpener = ({ open }: { open: boolean }) => (
 	</TouchableOpacity>
 );
 
-export default memo(MenuOpener);
+export default MenuOpener;

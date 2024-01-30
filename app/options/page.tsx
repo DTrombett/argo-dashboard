@@ -1,7 +1,6 @@
 import LogOutButton from "@/components/dashboard/LogOutButton";
 import RimuoviDati from "@/components/dashboard/RimuoviDati";
 import local from "next/font/local";
-import { memo } from "react";
 
 const bold = local({ src: "../../fonts/Poppins-Bold.ttf" });
 
@@ -62,4 +61,4 @@ const Options = () => (
 	</div>
 );
 
-export default memo(Options);
+export default Options;

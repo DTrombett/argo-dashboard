@@ -1,5 +1,3 @@
-import { memo } from "react";
-
 const LoadingPlaceholder = ({
 	children,
 	loading = true,
@@ -25,4 +23,4 @@ const LoadingPlaceholder = ({
 				))
 		: children;
 
-export default memo(LoadingPlaceholder);
+export default LoadingPlaceholder;

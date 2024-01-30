@@ -5,7 +5,7 @@ import { faChevronUp } from "@fortawesome/free-solid-svg-icons/faChevronUp";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import local from "next/font/local";
 import type { Dispatch, SetStateAction } from "react";
-import { memo, useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import Filter from "./Filter";
 import type { VotoType } from "./page";
 
@@ -101,4 +101,4 @@ const Filters = ({
 	);
 };
 
-export default memo(Filters);
+export default Filters;

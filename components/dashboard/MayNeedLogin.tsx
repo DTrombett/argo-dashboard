@@ -1,5 +1,4 @@
 import local from "next/font/local";
-import { memo } from "react";
 import DismissLoginWarning from "./DismissLoginWarning";
 
 const semiBold = local({ src: "../../fonts/Poppins-Medium.ttf" });
@@ -15,4 +14,4 @@ const MayNeedLogin = () => (
 	</div>
 );
 
-export default memo(MayNeedLogin);
+export default MayNeedLogin;

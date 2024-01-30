@@ -2,7 +2,7 @@
 import { State } from "@/app/utils";
 import { faXmark } from "@fortawesome/free-solid-svg-icons/faXmark";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { memo, useContext } from "react";
+import { useContext } from "react";
 import { ClientContext } from "./ClientProvider";
 
 const DismissLoginWarning = () => {
@@ -19,4 +19,4 @@ const DismissLoginWarning = () => {
 	);
 };
 
-export default memo(DismissLoginWarning);
+export default DismissLoginWarning;

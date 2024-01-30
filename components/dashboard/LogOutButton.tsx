@@ -1,7 +1,7 @@
 "use client";
 import { State } from "@/app/utils";
 import Link from "next/link";
-import { memo, useContext } from "react";
+import { useContext } from "react";
 import { ClientContext } from "./ClientProvider";
 
 const LogOutButton = () => {
@@ -21,4 +21,4 @@ const LogOutButton = () => {
 	);
 };
 
-export default memo(LogOutButton);
+export default LogOutButton;

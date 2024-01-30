@@ -1,5 +1,4 @@
 import local from "next/font/local";
-import { memo } from "react";
 
 const bold = local({ src: "../../fonts/Poppins-Bold.ttf" });
 
@@ -18,4 +17,4 @@ const Column = ({
 	</div>
 );
 
-export default memo(Column);
+export default Column;

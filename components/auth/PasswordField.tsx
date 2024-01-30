@@ -1,7 +1,7 @@
 import { faEye } from "@fortawesome/free-regular-svg-icons/faEye";
 import { faEyeSlash } from "@fortawesome/free-regular-svg-icons/faEyeSlash";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { memo, useState } from "react";
+import { useState } from "react";
 
 const PasswordField = () => {
 	const [show, setShow] = useState(false);
@@ -31,4 +31,4 @@ const PasswordField = () => {
 	);
 };
 
-export default memo(PasswordField);
+export default PasswordField;
