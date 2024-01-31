@@ -1,13 +1,9 @@
+import { light, medium, regularItalic, semiBold } from "@/app/fonts";
 import { faXmark } from "@fortawesome/free-solid-svg-icons/faXmark";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import local from "next/font/local";
 import type { Dispatch, SetStateAction } from "react";
 import type { VotoType } from "./utils";
 
-const semiBold = local({ src: "../../../fonts/Poppins-SemiBold.ttf" });
-const medium = local({ src: "../../../fonts/Poppins-Medium.ttf" });
-const light = local({ src: "../../../fonts/Poppins-Light.ttf" });
-const italic = local({ src: "../../../fonts/Poppins-LightItalic.ttf" });
 const months = [
 	"GEN",
 	"FEB",
@@ -82,19 +78,23 @@ const PopupVoto = ({
 		</div>
 		<div className="flex flex-col my-4">
 			<span className={light.className}>Descrizione prova</span>
-			<span className={voto.descrizioneProva ? undefined : italic.className}>
+			<span
+				className={voto.descrizioneProva ? undefined : regularItalic.className}
+			>
 				{voto.descrizioneProva || "Descrizione non presente"}
 			</span>
 		</div>
 		<div className="flex flex-col my-4">
 			<span className={light.className}>Commento docente</span>
-			<span className={voto.desCommento ? undefined : italic.className}>
+			<span className={voto.desCommento ? undefined : regularItalic.className}>
 				{voto.desCommento || "Descrizione non presente"}
 			</span>
 		</div>
 		<div className="flex flex-col my-4">
 			<span className={light.className}>Descrizione voto</span>
-			<span className={voto.descrizioneVoto ? undefined : italic.className}>
+			<span
+				className={voto.descrizioneVoto ? undefined : regularItalic.className}
+			>
 				{voto.descrizioneVoto || "Descrizione non presente"}
 			</span>
 		</div>

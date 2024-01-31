@@ -12,7 +12,6 @@ body:has(.blockScroll, .blockScrollMobile) {
 	overflow: hidden;
 }
 
-a,
 .link {
 	color: #00a8fc;
 	cursor: pointer;

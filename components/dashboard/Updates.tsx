@@ -1,7 +1,7 @@
 "use client";
+import { regularItalic } from "@/app/fonts";
 import { EventType } from "@/app/utils";
 import dynamic from "next/dynamic";
-import local from "next/font/local";
 import { useCallback, useContext, useMemo } from "react";
 import LoadingPlaceholder from "../loading/LoadingPlaceholder";
 import { ClientContext } from "./ClientProvider";
@@ -17,7 +17,6 @@ const iconBachecaAlunno = dynamic(
 const iconBacheca = dynamic(() => import("../../icons/bacheca.svg"));
 const iconAppello = dynamic(() => import("../../icons/calendario.svg"));
 const iconVoti = dynamic(() => import("../../icons/voti-giornalieri.svg"));
-const italic = local({ src: "../../fonts/Poppins-Italic.ttf" });
 
 const Updates = ({
 	weekStart,
@@ -202,7 +201,9 @@ const Updates = ({
 					)
 					.map(({ element }) => element)
 			) : (
-				<span className={italic.className}>Nessun evento disponibile!</span>
+				<span className={regularItalic.className}>
+					Nessun evento disponibile!
+				</span>
 			),
 		[elements]
 	);

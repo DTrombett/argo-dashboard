@@ -1,7 +1,5 @@
-import local from "next/font/local";
+import { bold } from "@/app/fonts";
 import Menu from "./Menu";
-
-const bold = local({ src: "../../../fonts/Poppins-Bold.ttf" });
 
 const Layout = ({ children }: { children: React.ReactNode }) => (
 	<div className="mt-2 container flex flex-col justify-center h-full w-full">

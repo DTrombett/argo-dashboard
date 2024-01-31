@@ -5,26 +5,14 @@ import AppName from "@/components/utils/AppName";
 import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { Metadata } from "next";
-import local from "next/font/local";
 import Link from "next/link";
 import "tailwindcss/tailwind.css";
 import Home from "../icons/home-bianca.svg";
 import MenuIcon from "../icons/menu-icon.svg";
 import Opzioni from "../icons/opzioni.svg";
+import { extraBold, regular } from "./fonts";
 import "./globals.css";
 
-/**
- * - Thin
- * - ExtraLight
- * - Light
- * - Regular
- * - Medium
- * - SemiBold
- * - Bold
- * - ExtraBold
- */
-const poppinsRegular = local({ src: "../fonts/Poppins-Regular.ttf" });
-const titleFont = local({ src: "../fonts/Poppins-ExtraBold.ttf" });
 const description =
 	"Dashboard compatta, sicura e di facile utilizzo per gestire il registro elettronico Argo (didUP)";
 
@@ -64,10 +52,10 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: { children: React.ReactNode }) => (
 	<html lang="it">
 		<body
-			className={`min-h-screen bg-zinc-100 dark:bg-zinc-900 text-black dark:text-white text-center text-lg ${poppinsRegular.className}`}
+			className={`min-h-screen bg-zinc-100 dark:bg-zinc-900 text-black dark:text-white text-center text-lg ${regular.className}`}
 		>
 			<main className="flex flex-col min-h-screen p-4 items-center">
-				<span className={`m-4 text-4xl ${titleFont.className}`}>
+				<span className={`m-4 text-4xl ${extraBold.className}`}>
 					<AppName />
 				</span>
 				<div className="h-full w-full flex-1 flex flex-col items-center">

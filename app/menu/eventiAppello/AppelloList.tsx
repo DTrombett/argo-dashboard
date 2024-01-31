@@ -1,11 +1,10 @@
 "use client";
+import { regularItalic } from "@/app/fonts";
 import { ClientContext } from "@/components/dashboard/ClientProvider";
 import dynamic from "next/dynamic";
-import local from "next/font/local";
 import { useContext, useMemo } from "react";
 import AppelloItem from "./AppelloItem";
 
-const italic = local({ src: "../../../fonts/Poppins-Italic.ttf" });
 const iconAppello = dynamic(() => import("../../../icons/calendario.svg"));
 const icons: Record<
 	string,
@@ -82,7 +81,9 @@ const AppelloList = () => {
 				)
 				.map(({ element }) => element)
 		) : (
-			<span className={italic.className}>Nessun evento disponibile!</span>
+			<span className={regularItalic.className}>
+				Nessun evento disponibile!
+			</span>
 		);
 	}, [dashboard?.appello, dashboard?.fuoriClasse]);
 };

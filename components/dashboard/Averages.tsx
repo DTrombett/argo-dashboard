@@ -1,11 +1,9 @@
 "use client";
-import local from "next/font/local";
+import { regularItalic } from "@/app/fonts";
 import Link from "next/link";
 import { useContext, useMemo } from "react";
 import TouchableOpacity from "../utils/TouchableOpacity";
 import { ClientContext } from "./ClientProvider";
-
-const italic = local({ src: "../../fonts/Poppins-Italic.ttf" });
 
 const Averages = () => {
 	const {
@@ -33,7 +31,7 @@ const Averages = () => {
 	return result?.length ? (
 		result
 	) : (
-		<span className={italic.className}>
+		<span className={regularItalic.className}>
 			Nessun dato disponibile riguardo la media!
 		</span>
 	);

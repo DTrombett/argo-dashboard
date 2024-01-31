@@ -1,13 +1,11 @@
 "use client";
+import { light } from "@/app/fonts";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons/faChevronRight";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { Property } from "csstype";
-import local from "next/font/local";
 import Link from "next/link";
 import { useSelectedLayoutSegments } from "next/navigation";
 import { type SVGProps } from "react";
-
-const light = local({ src: "../../fonts/Poppins-Light.ttf" });
 
 const MenuEntry = ({
 	name,

@@ -1,4 +1,4 @@
-import local from "next/font/local";
+import { light, medium } from "@/app/fonts";
 
 const months = [
 	"GEN",
@@ -14,8 +14,6 @@ const months = [
 	"NOV",
 	"DIC",
 ];
-const medium = local({ src: "../../../fonts/Poppins-Medium.ttf" });
-const light = local({ src: "../../../fonts/Poppins-Light.ttf" });
 
 const AppelloItem = ({
 	icon: Icon,

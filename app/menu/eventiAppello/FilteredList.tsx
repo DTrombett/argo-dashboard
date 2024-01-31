@@ -1,12 +1,10 @@
 "use client";
+import { regularItalic, semiBold } from "@/app/fonts";
 import { ClientContext } from "@/components/dashboard/ClientProvider";
 import dynamic from "next/dynamic";
-import local from "next/font/local";
 import { useContext, useState } from "react";
 import AppelloItem from "./AppelloItem";
 
-const italic = local({ src: "../../../fonts/Poppins-Italic.ttf" });
-const semiBold = local({ src: "../../../fonts/Poppins-SemiBold.ttf" });
 const iconAppello = dynamic(() => import("../../../icons/calendario.svg"));
 const icons: Record<
 	string,
@@ -146,7 +144,7 @@ const FilteredList = () => {
 						)
 						.map(({ element }) => element)
 				) : (
-					<span className={`${italic.className} text-xl py-4 lg:pr-64`}>
+					<span className={`${regularItalic.className} text-xl py-4 lg:pr-64`}>
 						Nessun evento disponibile!
 					</span>
 				)}

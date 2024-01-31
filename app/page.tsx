@@ -8,12 +8,10 @@ import Scheduled from "@/components/dashboard/Scheduled";
 import Updates from "@/components/dashboard/Updates";
 import LoadingPlaceholder from "@/components/loading/LoadingPlaceholder";
 import TouchableOpacity from "@/components/utils/TouchableOpacity";
-import local from "next/font/local";
 import Link from "next/link";
 import { useContext } from "react";
+import { regularItalic } from "./fonts";
 import { State } from "./utils";
-
-const italic = local({ src: "../fonts/Poppins-Italic.ttf" });
 
 const Dashboard = () => {
 	const { client, state } = useContext(ClientContext);
@@ -61,7 +59,7 @@ const Dashboard = () => {
 								</span>
 							</Link>
 						</TouchableOpacity>
-						<span className={italic.className}>
+						<span className={regularItalic.className}>
 							<LoadingPlaceholder
 								loading={!client.dashboard || !period}
 								repeat={2}

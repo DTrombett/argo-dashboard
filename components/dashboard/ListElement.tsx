@@ -1,7 +1,7 @@
+import { light, medium } from "@/app/fonts";
 import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons/faUpRightFromSquare";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import dynamic from "next/dynamic";
-import local from "next/font/local";
 import type { Dispatch, SetStateAction, SVGProps } from "react";
 import { useState } from "react";
 import TouchableOpacity from "../utils/TouchableOpacity";
@@ -21,8 +21,6 @@ const months = [
 	"NOV",
 	"DIC",
 ];
-const medium = local({ src: "../../fonts/Poppins-Medium.ttf" });
-const light = local({ src: "../../fonts/Poppins-Light.ttf" });
 const Popup = dynamic(() => import("../utils/Popup"));
 
 const ListElement = ({
