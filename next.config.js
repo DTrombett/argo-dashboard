@@ -1,9 +1,20 @@
+const cspHeader = `
+  default-src 'none';
+	connect-src 'self' www.portaleargo.it;
+  script-src 'self' 'unsafe-eval' 'unsafe-inline';
+  style-src 'self' 'unsafe-inline';
+  img-src 'self' blob: data:;
+  font-src 'self';
+  object-src 'none';
+  base-uri 'self';
+  form-action 'self';
+  frame-ancestors 'self';
+  block-all-mixed-content;
+  upgrade-insecure-requests;
+`;
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-	/**
-	 * @param {import("webpack").Configuration} config
-	 * @returns
-	 */
 	webpack: (config, { isServer }) => {
 		if (!isServer)
 			config.externals = [
@@ -40,6 +51,23 @@ const nextConfig = {
 		fileLoaderRule.exclude = /\.svg$/i;
 		return config;
 	},
+	headers:
+		process.env.NODE_ENV === "development"
+			? undefined
+			: async () => [
+					{
+						source: "/(.*)",
+						headers: [
+							{
+								key: "Content-Security-Policy",
+								value: cspHeader.replace(/\n/g, ""),
+							},
+							{ key: "X-Frame-Options", value: "SAMEORIGIN" },
+							{ key: "X-Content-Type-Options", value: "nosniff" },
+							{ key: "X-XSS-Protection", value: "1" },
+						],
+					},
+			  ],
 };
 
 module.exports = nextConfig;
