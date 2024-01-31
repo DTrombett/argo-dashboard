@@ -2,7 +2,7 @@
 import local from "next/font/local";
 import Link from "next/link";
 import { useContext, useMemo } from "react";
-import TouchableOpacity from "../Utils/TouchableOpacity";
+import TouchableOpacity from "../utils/TouchableOpacity";
 import { ClientContext } from "./ClientProvider";
 
 const italic = local({ src: "../../fonts/Poppins-Italic.ttf" });

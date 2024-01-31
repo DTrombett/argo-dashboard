@@ -1,5 +1,5 @@
 "use client";
-import TouchableOpacity from "@/components/Utils/TouchableOpacity";
+import TouchableOpacity from "@/components/utils/TouchableOpacity";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons/faChevronDown";
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons/faChevronUp";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

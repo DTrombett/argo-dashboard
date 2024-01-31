@@ -1,6 +1,7 @@
 import ClientProvider from "@/components/dashboard/ClientProvider";
 import MenuList from "@/components/menu/MenuList";
 import TabIcon from "@/components/menu/TabIcon";
+import AppName from "@/components/utils/AppName";
 import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { Metadata } from "next";
@@ -67,7 +68,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
 		>
 			<main className="flex flex-col min-h-screen p-4 items-center">
 				<span className={`m-4 text-4xl ${titleFont.className}`}>
-					Argo Dashboard
+					<AppName />
 				</span>
 				<div className="h-full w-full flex-1 flex flex-col items-center">
 					<ClientProvider>

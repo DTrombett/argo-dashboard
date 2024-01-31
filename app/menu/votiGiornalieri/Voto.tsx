@@ -1,5 +1,5 @@
 "use client";
-import TouchableOpacity from "@/components/Utils/TouchableOpacity";
+import TouchableOpacity from "@/components/utils/TouchableOpacity";
 import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons/faUpRightFromSquare";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import dynamic from "next/dynamic";
@@ -11,7 +11,7 @@ const semiBold = local({ src: "../../../fonts/Poppins-SemiBold.ttf" });
 const medium = local({ src: "../../../fonts/Poppins-Medium.ttf" });
 const light = local({ src: "../../../fonts/Poppins-Light.ttf" });
 const italic = local({ src: "../../../fonts/Poppins-LightItalic.ttf" });
-const Popup = dynamic(() => import("@/components/Utils/Popup"));
+const Popup = dynamic(() => import("@/components/utils/Popup"));
 const PopupVoto = dynamic(() => import("./PopupVoto"));
 const months = [
 	"GEN",

@@ -1,5 +1,4 @@
 "use client";
-import TouchableOpacity from "@/components/Utils/TouchableOpacity";
 import Averages from "@/components/dashboard/Averages";
 import Canvas from "@/components/dashboard/Canvas";
 import { ClientContext } from "@/components/dashboard/ClientProvider";
@@ -8,6 +7,7 @@ import Entry from "@/components/dashboard/Entry";
 import Scheduled from "@/components/dashboard/Scheduled";
 import Updates from "@/components/dashboard/Updates";
 import LoadingPlaceholder from "@/components/loading/LoadingPlaceholder";
+import TouchableOpacity from "@/components/utils/TouchableOpacity";
 import local from "next/font/local";
 import Link from "next/link";
 import { useContext } from "react";

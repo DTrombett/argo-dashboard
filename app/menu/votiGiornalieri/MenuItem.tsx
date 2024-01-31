@@ -1,4 +1,4 @@
-import TouchableOpacity from "@/components/Utils/TouchableOpacity";
+import TouchableOpacity from "@/components/utils/TouchableOpacity";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons/faChevronRight";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import local from "next/font/local";
