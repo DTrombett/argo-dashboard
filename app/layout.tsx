@@ -10,6 +10,7 @@ import "tailwindcss/tailwind.css";
 import Home from "../icons/home-bianca.svg";
 import MenuIcon from "../icons/menu-icon.svg";
 import Opzioni from "../icons/opzioni.svg";
+import pkg from "../package.json";
 import { extraBold, regular } from "./fonts";
 import "./globals.css";
 
@@ -77,18 +78,21 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
 						</div>
 						{children}
 					</ClientProvider>
-					<Link
-						href="https://github.com/DTrombett/argo-dashboard"
-						target="_blank"
-						className="mt-4 px-1 text-base link"
-					>
-						<FontAwesomeIcon
-							icon={faGithub}
-							height={"1rem"}
-							className="inline"
-						/>{" "}
-						Open Source
-					</Link>
+					<div className="mt-4 text-base">
+						<Link
+							href="https://github.com/DTrombett/argo-dashboard"
+							target="_blank"
+							className="px-2 link border-r border-zinc-500"
+						>
+							<FontAwesomeIcon
+								icon={faGithub}
+								height={"1rem"}
+								className="inline"
+							/>{" "}
+							Open Source
+						</Link>
+						<span className="px-2">Versione {pkg.version}</span>
+					</div>
 				</div>
 			</main>
 		</body>
