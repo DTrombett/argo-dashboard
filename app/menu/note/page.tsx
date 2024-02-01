@@ -1,9 +1,7 @@
 "use client";
+import { regularItalic } from "@/app/fonts";
 import { ClientContext } from "@/components/dashboard/ClientProvider";
-import local from "next/font/local";
 import { useContext } from "react";
-
-const italic = local({ src: "../../../fonts/Poppins-Italic.ttf" });
 
 const Note = () => {
 	const { client } = useContext(ClientContext);
@@ -11,7 +9,7 @@ const Note = () => {
 	return (
 		<>
 			{!client.dashboard?.noteDisciplinari.length && (
-				<span className={`${italic.className} my-4`}>
+				<span className={`${regularItalic.className} my-4`}>
 					Non hai alcuna nota disciplinare!
 				</span>
 			)}

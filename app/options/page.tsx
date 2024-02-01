@@ -1,8 +1,6 @@
 import LogOutButton from "@/components/dashboard/LogOutButton";
 import RimuoviDati from "@/components/dashboard/RimuoviDati";
-import local from "next/font/local";
-
-const bold = local({ src: "../../fonts/Poppins-Bold.ttf" });
+import { bold } from "../fonts";
 
 const Options = () => (
 	<div className="container px-1 lg:px-8 my-2">

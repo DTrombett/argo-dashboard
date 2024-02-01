@@ -1,9 +1,7 @@
-import local from "next/font/local";
+import { regularItalic } from "@/app/fonts";
 import Voto from "./Voto";
 import type { FilterType, SortName, VotoType } from "./utils";
 import { sortFunctions } from "./utils";
-
-const italic = local({ src: "../../../fonts/Poppins-Italic.ttf" });
 
 const ListaVoti = ({
 	voti,
@@ -39,7 +37,7 @@ const ListaVoti = ({
 						<Voto voto={v} key={v.pk} showDescription={showDescription} />
 					))
 			) : (
-				<span className={`${italic.className} text-xl py-4 lg:pr-16`}>
+				<span className={`${regularItalic.className} text-xl py-4 lg:pr-16`}>
 					Nessun voto disponibile!
 				</span>
 			)}

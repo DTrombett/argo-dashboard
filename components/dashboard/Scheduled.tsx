@@ -1,7 +1,7 @@
 "use client";
+import { regularItalic } from "@/app/fonts";
 import { ScheduledType } from "@/app/utils";
 import dynamic from "next/dynamic";
-import local from "next/font/local";
 import { useContext, useMemo } from "react";
 import LoadingPlaceholder from "../loading/LoadingPlaceholder";
 import { ClientContext } from "./ClientProvider";
@@ -17,7 +17,6 @@ const iconPromemoria = dynamic(
 const iconRicevimento = dynamic(
 	() => import("../../icons/ricevimento-docenti.svg")
 );
-const italic = local({ src: "../../fonts/Poppins-Italic.ttf" });
 
 const Scheduled = ({
 	now,
@@ -190,7 +189,9 @@ const Scheduled = ({
 					)
 					.map(({ element }) => element)
 			) : (
-				<span className={italic.className}>Nessun impegno imminente!</span>
+				<span className={regularItalic.className}>
+					Nessun impegno imminente!
+				</span>
 			),
 		[elements]
 	);

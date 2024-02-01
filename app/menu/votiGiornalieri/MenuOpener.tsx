@@ -1,4 +1,4 @@
-import TouchableOpacity from "@/components/Utils/TouchableOpacity";
+import TouchableOpacity from "@/components/utils/TouchableOpacity";
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SubjectName from "./SubjectName";

@@ -1,16 +1,14 @@
 "use client";
-import TouchableOpacity from "@/components/Utils/TouchableOpacity";
+import { semiBold } from "@/app/fonts";
+import TouchableOpacity from "@/components/utils/TouchableOpacity";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons/faChevronDown";
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons/faChevronUp";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import local from "next/font/local";
 import type { Dispatch, SetStateAction } from "react";
 import { useCallback, useMemo, useState } from "react";
 import Filter from "./Filter";
 import type { FilterType, VotoType } from "./utils";
 import { filtersArray } from "./utils";
-
-const semiBold = local({ src: "../../../fonts/Poppins-SemiBold.ttf" });
 
 const Filters = ({
 	voti,

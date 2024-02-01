@@ -1,17 +1,13 @@
 "use client";
-import TouchableOpacity from "@/components/Utils/TouchableOpacity";
+import { light, medium, regularItalic, semiBold } from "@/app/fonts";
+import TouchableOpacity from "@/components/utils/TouchableOpacity";
 import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons/faUpRightFromSquare";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import dynamic from "next/dynamic";
-import local from "next/font/local";
 import type { Client } from "portaleargo-api";
 import { useMemo, useState } from "react";
 
-const semiBold = local({ src: "../../../fonts/Poppins-SemiBold.ttf" });
-const medium = local({ src: "../../../fonts/Poppins-Medium.ttf" });
-const light = local({ src: "../../../fonts/Poppins-Light.ttf" });
-const italic = local({ src: "../../../fonts/Poppins-LightItalic.ttf" });
-const Popup = dynamic(() => import("@/components/Utils/Popup"));
+const Popup = dynamic(() => import("@/components/utils/Popup"));
 const PopupVoto = dynamic(() => import("./PopupVoto"));
 const months = [
 	"GEN",
@@ -79,7 +75,7 @@ const Voto = ({
 						className={`py-1 ${
 							!showDescription || voto.descrizioneProva
 								? light.className
-								: italic.className
+								: regularItalic.className
 						}`}
 					>
 						{showDescription

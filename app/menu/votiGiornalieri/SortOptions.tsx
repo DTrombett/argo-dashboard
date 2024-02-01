@@ -1,15 +1,13 @@
 "use client";
-import TouchableOpacity from "@/components/Utils/TouchableOpacity";
+import { semiBold } from "@/app/fonts";
+import TouchableOpacity from "@/components/utils/TouchableOpacity";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons/faChevronDown";
 import { faChevronUp } from "@fortawesome/free-solid-svg-icons/faChevronUp";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import local from "next/font/local";
 import type { Dispatch, SetStateAction } from "react";
 import { useState } from "react";
 import Sort from "./Sort";
 import { sortNames, type SortName } from "./utils";
-
-const semiBold = local({ src: "../../../fonts/Poppins-SemiBold.ttf" });
 
 const SortOptions = ({
 	sort,
