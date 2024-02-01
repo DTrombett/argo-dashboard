@@ -41,7 +41,10 @@ const Dashboard = () => {
 			<Column name="Media" id="media">
 				<Entry name="Generale" id="generale">
 					<div className="flex flex-col justify-center items-center h-full">
-						<TouchableOpacity>
+						<TouchableOpacity
+							additionalClasses="scale-95"
+							className="duration-200"
+						>
 							<Link
 								className="relative flex justify-center w-fit"
 								href="/menu/votiGiornalieri"
