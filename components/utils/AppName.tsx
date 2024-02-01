@@ -7,13 +7,7 @@ const AppName = () => {
 	useEffect(() => {
 		if (location.hostname !== "argo-dashboard.vercel.app") setBeta(true);
 	}, []);
-	return beta ? (
-		<>
-			Argo Dash<span className="font-extrabold">β</span>oard
-		</>
-	) : (
-		"Argo Dashboard"
-	);
+	return beta ? "Argo Dashßoard" : "Argo Dashboard";
 };
 
 export default AppName;
