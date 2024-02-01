@@ -2,6 +2,7 @@ import ClientProvider from "@/components/dashboard/ClientProvider";
 import MenuList from "@/components/menu/MenuList";
 import TabIcon from "@/components/menu/TabIcon";
 import AppName from "@/components/utils/AppName";
+import Version from "@/components/utils/Version";
 import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { Metadata } from "next";
@@ -10,7 +11,6 @@ import "tailwindcss/tailwind.css";
 import Home from "../icons/home-bianca.svg";
 import MenuIcon from "../icons/menu-icon.svg";
 import Opzioni from "../icons/opzioni.svg";
-import pkg from "../package.json";
 import { extraBold, regular } from "./fonts";
 import "./globals.css";
 
@@ -91,7 +91,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
 							/>{" "}
 							Open Source
 						</Link>
-						<span className="px-2">Versione {pkg.version}</span>
+						<Version />
 					</div>
 				</div>
 			</main>
