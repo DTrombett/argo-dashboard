@@ -12,7 +12,8 @@ const Preview = ({
 		alt="Preview"
 		src={src}
 		sizes="50vw"
-		className={`${className} w-full h-auto`}
+		className={`${className} h-auto`}
+		style={{ width: "50vw" }}
 	/>
 );
 
