@@ -42,6 +42,9 @@ body:has(.blockScroll, .blockScrollMobile) {
 	.eye {
 		top: -1.5px;
 	}
+	.gridContainer {
+		max-height: 40rem;
+	}
 }
 
 .subject {

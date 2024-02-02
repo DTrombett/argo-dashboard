@@ -13,7 +13,7 @@ const NotFound = () => (
 			</span>
 			<span className="px-4 text-2xl">Ti sei perso?</span>
 		</div>
-		<Link href="/" className="link text-xl">
+		<Link href="/dashboard" className="link text-xl">
 			Torna a casa
 			<FontAwesomeIcon icon={faHome} height={"1rem"} className="inline px-2" />
 		</Link>

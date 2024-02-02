@@ -14,7 +14,7 @@ const Averages = () => {
 		const { listaMaterie, ...mediaMaterie } = dashboard.mediaMaterie;
 
 		return Object.entries(mediaMaterie).map(([pk, m]) => (
-			<Link key={pk} href={`/menu/votiGiornalieri/${pk}`}>
+			<Link key={pk} href={`/dashboard/menu/votiGiornalieri/${pk}`}>
 				<TouchableOpacity className="flex justify-between lg:hover:underline">
 					<span
 						className="text-left whitespace-nowrap overflow-auto outline-0 hideScrollbar subject"

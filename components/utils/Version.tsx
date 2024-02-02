@@ -7,7 +7,7 @@ const Version = () => {
 
 	return (
 		<span
-			className="px-2 select-none"
+			className="px-2 border-l border-zinc-500 select-none"
 			onClick={() => {
 				if (
 					location.hostname ===
