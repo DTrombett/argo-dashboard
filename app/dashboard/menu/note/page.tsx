@@ -1,35 +1,35 @@
 "use client";
 import { regularItalic } from "@/app/fonts";
 import { ClientContext } from "@/components/dashboard/ClientProvider";
+import { faCopy } from "@fortawesome/free-regular-svg-icons/faCopy";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext } from "react";
 
 const Note = () => {
-	const { client } = useContext(ClientContext);
+	const {
+		client: { dashboard },
+	} = useContext(ClientContext);
+	const data = JSON.stringify(dashboard?.noteDisciplinari, null, 2);
 
 	return (
 		<>
-			{!client.dashboard?.noteDisciplinari.length && (
+			{dashboard?.noteDisciplinari.length ? (
+				<code className="m-8 p-4 whitespace-break-spaces break-all text-left bg-zinc-200 dark:bg-zinc-800 rounded-xl relative">
+					<FontAwesomeIcon
+						icon={faCopy}
+						className="absolute right-4 top-4 h-8 p-3 rounded-lg cursor-pointer hover:bg-zinc-300 dark:hover:bg-zinc-700 hover:bg-opacity-80 dark:hover:bg-opacity-80"
+						onClick={navigator.clipboard.writeText.bind(
+							navigator.clipboard,
+							data
+						)}
+					/>
+					{data}
+				</code>
+			) : (
 				<span className={`${regularItalic.className} my-4`}>
 					Non hai alcuna nota disciplinare!
 				</span>
 			)}
-			<span className="my-auto px-2 sm:px-4 lg:px-8">
-				Nota: Purtroppo il layout delle note disciplinari non è ancora
-				disponibile in quanto non abbiamo dati reali su cui testare.
-				<br />
-				Se hai ricevuto una nota disciplinare (spero per te di no!) ti saremmo
-				veramente grati se potessi segnalarcelo su GitHub (
-				<a href="https://github.com/DTrombett/argo-dashboard" className="link">
-					argo-dashboard
-				</a>{" "}
-				o{" "}
-				<a href="https://github.com/DTrombett/portaleargo-api" className="link">
-					portaleargo-api
-				</a>
-				) tramite un issue e ti diremo come potrai facilmente fornirci un
-				esempio sul quale lavorare (senza alcuna informazione personale,
-				ovviamente).
-			</span>
 		</>
 	);
 };
