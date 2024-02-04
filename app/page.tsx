@@ -5,16 +5,18 @@ import { faDownload } from "@fortawesome/free-solid-svg-icons/faDownload";
 import { faLaptop } from "@fortawesome/free-solid-svg-icons/faLaptop";
 import { faLock } from "@fortawesome/free-solid-svg-icons/faLock";
 import Link from "next/link";
-import dark from "../images/dark.png";
-import lgDark from "../images/lgDark.png";
-import lgLight from "../images/lgLight.png";
-import light from "../images/light.png";
-import mdDark from "../images/mdDark.png";
-import mdLight from "../images/mdLight.png";
-import smDark from "../images/smDark.png";
-import smLight from "../images/smLight.png";
-import xlDark from "../images/xlDark.png";
-import xlLight from "../images/xlLight.png";
+import xllDark from "../images/2xl-dark.png";
+import xllLight from "../images/2xl-light.png";
+import dark from "../images/default-dark.png";
+import light from "../images/default-light.png";
+import lgDark from "../images/lg-dark.png";
+import lgLight from "../images/lg-light.png";
+import mdDark from "../images/md-dark.png";
+import mdLight from "../images/md-light.png";
+import smDark from "../images/sm-dark.png";
+import smLight from "../images/sm-light.png";
+import xlDark from "../images/xl-dark.png";
+import xlLight from "../images/xl-light.png";
 
 const Home = () => (
 	<>
@@ -53,8 +55,16 @@ const Home = () => (
 					src={lgLight}
 					className="hidden xl:hidden dark:hidden lg:block"
 				/>
-				<Preview src={xlDark} className="hidden xl:dark:block" />
-				<Preview src={xlLight} className="hidden dark:hidden xl:block" />
+				<Preview
+					src={xlDark}
+					className="hidden 2xl:hidden xl:dark:block 2xl:dark:hidden"
+				/>
+				<Preview
+					src={xlLight}
+					className="hidden 2xl:hidden dark:hidden xl:block"
+				/>
+				<Preview src={xllDark} className="hidden 2xl:dark:block" />
+				<Preview src={xllLight} className="hidden dark:hidden 2xl:block" />
 			</Link>
 			<Link
 				href="/dashboard"

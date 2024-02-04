@@ -15,6 +15,7 @@ const DismissLoginWarning = () => {
 			onClick={() => {
 				setState(State.Ready);
 			}}
+			id="dismissLoginWarning"
 		/>
 	);
 };

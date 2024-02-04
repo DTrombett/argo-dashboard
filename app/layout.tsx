@@ -50,7 +50,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
 			className={`min-h-screen bg-zinc-100 dark:bg-zinc-900 text-black dark:text-white text-center text-lg ${regular.className}`}
 		>
 			<main className="flex flex-col min-h-screen p-4 items-center">
-				<span className={`m-4 text-4xl ${extraBold.className}`}>
+				<span className={`m-4 text-4xl ${extraBold.className}`} id="title">
 					<AppName />
 				</span>
 				<div className="h-full w-full flex-1 flex flex-col items-center">

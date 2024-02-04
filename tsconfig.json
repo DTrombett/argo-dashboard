@@ -31,6 +31,6 @@
 			"@/*": ["./*"]
 		}
 	},
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+	"include": ["next-env.d.ts", "app", "components", ".next/types/**/*.ts"],
 	"exclude": ["node_modules"]
 }

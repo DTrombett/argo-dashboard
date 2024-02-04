@@ -9,7 +9,8 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-		"lint": "prettier --write ** && next lint"
+		"lint": "prettier --write ** && next lint",
+		"screenshots": "cd utils && del /q dist && tsc && cd dist && ren *.js *.mjs && node screenshots.mjs && copy /y ..\\..\\images\\xl-dark.png ..\\..\\public\\preview.png"
 	},
 	"dependencies": {
 		"@fortawesome/fontawesome-svg-core": "^6.5.1",
@@ -42,6 +43,7 @@
 		"eslint-plugin-node": "^11.1.0",
 		"eslint-plugin-react": "^7.33.2",
 		"eslint-plugin-react-hooks": "^4.6.0",
+		"playwright": "^1.41.2",
 		"postcss": "^8.4.33",
 		"postcss-flexbugs-fixes": "^5.0.2",
 		"postcss-import": "^16.0.0",
