@@ -34,7 +34,10 @@ const Canvas = ({ media = 0 }: { media?: number }) => {
 			context.stroke();
 			if (elapsed < duration) requestAnimationFrame(callback);
 		};
-		requestAnimationFrame(callback);
+		if (navigator.webdriver) {
+			start = 0;
+			callback(Infinity);
+		} else requestAnimationFrame(callback);
 	}, [media]);
 	return <canvas ref={canvasRef} width={125} height={125} />;
 };

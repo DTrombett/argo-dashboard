@@ -1,5 +1,10 @@
 /* eslint-disable node/no-unpublished-import */
-import { chromium, devices, selectors } from "playwright";
+import {
+	chromium,
+	devices,
+	selectors,
+	type BrowserContextOptions,
+} from "playwright";
 import localStorage from "./localStorage.json" assert { type: "json" };
 
 console.time("Screenshots");
@@ -17,7 +22,7 @@ const viewports: Record<string, (typeof devices)[string]> = {
 		viewport: { width: 1536, height: 864 },
 	},
 };
-const baseOptions = {
+const baseOptions: BrowserContextOptions = {
 	baseURL: url,
 	storageState: {
 		origins: [
@@ -53,10 +58,7 @@ await Promise.all(
 				);
 			await page.goto("/dashboard");
 			await page.getByTestId("dismissLoginWarning").click();
-			await Promise.all([
-				page.waitForTimeout(1_000),
-				page.getByTestId("title").hover(),
-			]);
+			await page.getByTestId("title").hover();
 			await page.screenshot({
 				animations: "disabled",
 				path: `../../images/${viewport}-${colorScheme}.png`,
