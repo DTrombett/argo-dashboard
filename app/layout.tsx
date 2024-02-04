@@ -12,7 +12,10 @@ const description =
 	"Dashboard compatta, sicura e di facile utilizzo per gestire il registro elettronico Argo (DidUP)";
 
 export const metadata: Metadata = {
-	alternates: { canonical: "https://argo-dashboard.vercel.app" },
+	alternates: {
+		canonical: "https://argo-dashboard.vercel.app",
+		types: { beta: "https://argo-dashboard-git-beta-dtrombett.vercel.app" },
+	},
 	applicationName: "Argo Dashboard",
 	authors: [{ name: "D Trombett", url: "https://github.com/DTrombett" }],
 	creator: "D Trombett",
@@ -30,14 +33,14 @@ export const metadata: Metadata = {
 		siteName: "Argo Dashboard",
 		title: "Argo Dashboard",
 		url: "https://argo-dashboard.vercel.app",
-		images: "https://argo-dashboard.vercel.app/preview.png",
+		images: "/preview.png",
 	},
 	publisher: "Vercel",
 	title: "Argo Dashboard",
 	twitter: {
 		card: "summary_large_image",
 		description,
-		images: "https://argo-dashboard.vercel.app/preview.png",
+		images: "/preview.png",
 		creator: "@dtrombett",
 		title: "Argo Dashboard",
 	},

@@ -1,11 +1,11 @@
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 const duration = 1_000;
 
 const Canvas = ({ media = 0 }: { media?: number }) => {
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 
-	useLayoutEffect(() => {
+	useEffect(() => {
 		const { current: canvas } = canvasRef;
 
 		if (!canvas) return;
