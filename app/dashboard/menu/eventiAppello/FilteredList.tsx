@@ -5,14 +5,20 @@ import dynamic from "next/dynamic";
 import { useContext, useState } from "react";
 import AppelloItem from "./AppelloItem";
 
-const iconAppello = dynamic(() => import("../../../icons/calendario.svg"));
+const iconAppello = dynamic(() => import("../../../../icons/calendario.svg"));
 const icons: Record<
 	string,
 	React.ComponentType<React.SVGProps<SVGElement>> | undefined
 > = {
-	A: dynamic(() => import("../../../icons/appello/assenza-dashboard-icon.svg")),
-	I: dynamic(() => import("../../../icons/appello/ritardo-dashboard-icon.svg")),
-	U: dynamic(() => import("../../../icons/appello/uscita-dashboard-icon.svg")),
+	A: dynamic(
+		() => import("../../../../icons/appello/assenza-dashboard-icon.svg")
+	),
+	I: dynamic(
+		() => import("../../../../icons/appello/ritardo-dashboard-icon.svg")
+	),
+	U: dynamic(
+		() => import("../../../../icons/appello/uscita-dashboard-icon.svg")
+	),
 };
 
 const FilteredList = () => {

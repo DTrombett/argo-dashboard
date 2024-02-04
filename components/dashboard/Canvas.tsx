@@ -1,11 +1,11 @@
-import { useLayoutEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 const duration = 1_000;
 
 const Canvas = ({ media = 0 }: { media?: number }) => {
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 
-	useLayoutEffect(() => {
+	useEffect(() => {
 		const { current: canvas } = canvasRef;
 
 		if (!canvas) return;
@@ -34,7 +34,10 @@ const Canvas = ({ media = 0 }: { media?: number }) => {
 			context.stroke();
 			if (elapsed < duration) requestAnimationFrame(callback);
 		};
-		requestAnimationFrame(callback);
+		if (navigator.webdriver) {
+			start = 0;
+			callback(Infinity);
+		} else requestAnimationFrame(callback);
 	}, [media]);
 	return <canvas ref={canvasRef} width={125} height={125} />;
 };

@@ -1,24 +1,21 @@
-import ClientProvider from "@/components/dashboard/ClientProvider";
-import MenuList from "@/components/menu/MenuList";
-import TabIcon from "@/components/menu/TabIcon";
 import AppName from "@/components/utils/AppName";
+import Version from "@/components/utils/Version";
 import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { Metadata } from "next";
 import Link from "next/link";
 import "tailwindcss/tailwind.css";
-import Home from "../icons/home-bianca.svg";
-import MenuIcon from "../icons/menu-icon.svg";
-import Opzioni from "../icons/opzioni.svg";
-import pkg from "../package.json";
 import { extraBold, regular } from "./fonts";
 import "./globals.css";
 
 const description =
-	"Dashboard compatta, sicura e di facile utilizzo per gestire il registro elettronico Argo (didUP)";
+	"Dashboard compatta, sicura e di facile utilizzo per gestire il registro elettronico Argo (DidUP)";
 
 export const metadata: Metadata = {
-	alternates: { canonical: "https://argo-dashboard.vercel.app" },
+	alternates: {
+		canonical: "https://argo-dashboard.vercel.app",
+		types: { beta: "https://argo-dashboard-git-beta-dtrombett.vercel.app" },
+	},
 	applicationName: "Argo Dashboard",
 	authors: [{ name: "D Trombett", url: "https://github.com/DTrombett" }],
 	creator: "D Trombett",
@@ -36,14 +33,14 @@ export const metadata: Metadata = {
 		siteName: "Argo Dashboard",
 		title: "Argo Dashboard",
 		url: "https://argo-dashboard.vercel.app",
-		images: "https://argo-dashboard.vercel.app/preview.png",
+		images: "/preview.png",
 	},
 	publisher: "Vercel",
 	title: "Argo Dashboard",
 	twitter: {
 		card: "summary_large_image",
 		description,
-		images: "https://argo-dashboard.vercel.app/preview.png",
+		images: "/preview.png",
 		creator: "@dtrombett",
 		title: "Argo Dashboard",
 	},
@@ -56,33 +53,16 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
 			className={`min-h-screen bg-zinc-100 dark:bg-zinc-900 text-black dark:text-white text-center text-lg ${regular.className}`}
 		>
 			<main className="flex flex-col min-h-screen p-4 items-center">
-				<span className={`m-4 text-4xl ${extraBold.className}`}>
+				<span className={`m-4 text-4xl ${extraBold.className}`} id="title">
 					<AppName />
 				</span>
 				<div className="h-full w-full flex-1 flex flex-col items-center">
-					<ClientProvider>
-						<div className="fixed lg:top-0 left-0 bottom-0 w-screen lg:w-20 bg-zinc-200 dark:bg-zinc-800 flex flex-row lg:flex-col p-2 rounded-t-2xl lg:rounded-r-2xl lg:rounded-tl-none whitespace-nowrap overflow-auto navigator z-10 hideScrollbar">
-							<TabIcon
-								name="Home"
-								icon={<Home className="invert dark:invert-0" />}
-								href="/"
-							/>
-							<TabIcon
-								name="Menu"
-								icon={<MenuIcon />}
-								className="lg:hidden"
-								href="/menu"
-							/>
-							<TabIcon name="Opzioni" icon={<Opzioni />} href="/options" />
-							<MenuList className="hidden lg:flex" />
-						</div>
-						{children}
-					</ClientProvider>
+					{children}
 					<div className="mt-4 text-base">
 						<Link
 							href="https://github.com/DTrombett/argo-dashboard"
 							target="_blank"
-							className="px-2 link border-r border-zinc-500"
+							className="px-2 link"
 						>
 							<FontAwesomeIcon
 								icon={faGithub}
@@ -91,7 +71,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => (
 							/>{" "}
 							Open Source
 						</Link>
-						<span className="px-2">Versione {pkg.version}</span>
+						<Version />
 					</div>
 				</div>
 			</main>

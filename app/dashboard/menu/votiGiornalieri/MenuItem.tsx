@@ -46,7 +46,7 @@ const MenuItem = ({
 					? "bg-zinc-300 dark:bg-zinc-700 lg:hover:bg-opacity-75 lg:dark:hover:bg-opacity-75"
 					: "bg-zinc-200 dark:bg-zinc-800 lg:hover:bg-opacity-50 lg:dark:hover:bg-opacity-50"
 			} ${last ? "rounded-b-lg" : "border-b"}`}
-			href={`/menu/votiGiornalieri/${pk}`}
+			href={`/dashboard/menu/votiGiornalieri/${pk}`}
 		>
 			<div className="flex flex-col flex-1 text-left overflow-hidden lg:mx-1">
 				<span className="whitespace-nowrap overflow-auto hideScrollbar">

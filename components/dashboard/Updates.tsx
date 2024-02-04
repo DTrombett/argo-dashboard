@@ -10,7 +10,9 @@ const ListElement = dynamic(() => import("./ListElement"), {
 	loading: () => <LoadingPlaceholder repeat={2} />,
 });
 const Allegato = dynamic(() => import("./Allegato"));
-const VotoPopup = dynamic(() => import("@/app/menu/votiGiornalieri/PopupVoto"));
+const VotoPopup = dynamic(
+	() => import("@/app/dashboard/menu/votiGiornalieri/PopupVoto")
+);
 const iconBachecaAlunno = dynamic(
 	() => import("../../icons/bacheca-alunno.svg")
 );

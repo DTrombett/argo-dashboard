@@ -1,0 +1,181 @@
+{
+	"dashboard": {
+		"fuoriClasse": [
+			{
+				"datEvento": "2023-09-26 00:00:00",
+				"descrizione": "Olimpiadi Matematica - Aula Magna",
+				"data": "2023-09-26",
+				"docente": "NOME PROF.",
+				"pk": "fuoriClasse-0",
+				"nota": " dalle 08:20 alle 11:00",
+				"frequenzaOnLine": false,
+				"new": true
+			}
+		],
+		"msg": "",
+		"opzioni": [],
+		"mediaGenerale": 8.5,
+		"ricaricaDati": false,
+		"listaDocentiClasse": [],
+		"bachecaAlunno": [
+			{
+				"nomeFile": "VALUTAZIONI PRIMO QUADRIMESTRE.PDF",
+				"datEvento": "2024-02-03 11:12:53",
+				"messaggio": ".",
+				"data": "2024-02-03",
+				"flgDownloadGenitore": "P",
+				"isPresaVisione": true,
+				"pk": "bachecaAlunno-0",
+				"new": true
+			}
+		],
+		"profiloDisabilitato": false,
+		"mediaMaterie": { "listaMaterie": {} },
+		"autocertificazione": {},
+		"listaMaterie": [],
+		"registro": [],
+		"schede": [],
+		"rimuoviDatiLocali": false,
+		"promemoria": [
+			{
+				"datEvento": "2024-01-29 00:00:00",
+				"desAnnotazioni": "Portare il libro per le esercitazioni sulla prova Invalsi.",
+				"pkDocente": "promemoria-0-docente",
+				"flgVisibileFamiglia": "S",
+				"datGiorno": "2024-01-29",
+				"docente": "NOME PROF.",
+				"oraInizio": "00:00",
+				"pk": "promemoria-0",
+				"oraFine": "00:00",
+				"new": true
+			}
+		],
+		"bacheca": [
+			{
+				"datEvento": "2024-02-02 16:51:48",
+				"messaggio": "In allegato troverete la programmazione per le attività da svolgersi nella prossima settimana.",
+				"data": "2024-01-26",
+				"pvRichiesta": true,
+				"categoria": "Comunicazioni Vicepresidenza",
+				"dataConfermaPresaVisione": "2024-01-27",
+				"url": null,
+				"autore": "Direzione/Segreteria",
+				"dataScadenza": "2024-02-03",
+				"adRichiesta": false,
+				"isPresaVisione": true,
+				"dataConfermaAdesione": "",
+				"pk": "bacheca-0",
+				"listaAllegati": [
+					{
+						"nomeFile": "SETTIMANA DI PAUSA.pdf",
+						"path": "path",
+						"descrizioneFile": null,
+						"pk": "bacheca-0-listaAllegati-0",
+						"url": "https://s3.eu-south-1.amazonaws.com/produzione-eu-south-1-files-repo"
+					}
+				],
+				"dataScadAdesione": null,
+				"isPresaAdesioneConfermata": false,
+				"new": true
+			}
+		],
+		"fileCondivisi": { "fileAlunniScollegati": [], "listaFile": [] },
+		"prenotazioniAlunni": [],
+		"voti": [],
+		"noteDisciplinari": [],
+		"pk": "0",
+		"appello": [
+			{
+				"datEvento": "2023-12-06 00:00:00",
+				"descrizione": "",
+				"daGiustificare": true,
+				"giustificata": "S",
+				"data": "2023-12-06",
+				"codEvento": "A",
+				"docente": "NOME PROF.",
+				"commentoGiustificazione": "-",
+				"pk": "appello-0",
+				"dataGiustificazione": "2023-12-11",
+				"nota": "Assenza",
+				"new": true
+			}
+		],
+		"classiExtra": false,
+		"dataAggiornamento": "2024-02-03T19:05:33.729Z"
+	},
+	"login": {
+		"codMin": "codMin",
+		"opzioni": [],
+		"isPrimoAccesso": false,
+		"profiloDisabilitato": false,
+		"isResetPassword": false,
+		"isSpid": false,
+		"token": "token",
+		"username": "username"
+	},
+	"profile": {
+		"resetPassword": false,
+		"ultimoCambioPwd": null,
+		"anno": {
+			"dataInizio": "2023-09-01",
+			"anno": "2023",
+			"dataFine": "2024-08-31"
+		},
+		"genitore": {
+			"desEMail": "genitore-desEMail",
+			"nominativo": "genitore-nominativo",
+			"pk": "genitore"
+		},
+		"profiloDisabilitato": false,
+		"isSpid": false,
+		"alunno": {
+			"isUltimaClasse": true,
+			"nominativo": "D TROMBETT",
+			"cognome": "TROMBETT",
+			"nome": "D",
+			"pk": "alunno",
+			"maggiorenne": true,
+			"desEmail": null
+		},
+		"scheda": {
+			"aggiornaSchedaPK": false,
+			"classe": {
+				"pk": "scheda-classe",
+				"desDenominazione": "5",
+				"desSezione": "A"
+			},
+			"dataInizio": "2023-09-01",
+			"anno": 2023,
+			"corso": {
+				"descrizione": "SCIENZE APPLICATE",
+				"pk": "scheda-corso"
+			},
+			"sede": {
+				"descrizione": "LICEO SCIENTIFICO",
+				"pk": "scheda-sede"
+			},
+			"scuola": {
+				"desOrdine": "S",
+				"descrizione": "ISTITUTO ISTRUZIONE SUPERIORE",
+				"pk": "scheda-scuola"
+			},
+			"dataFine": "2024-08-31",
+			"pk": "scheda"
+		},
+		"primoAccesso": false,
+		"profiloStorico": false,
+		"forceLogin": false,
+		"isModificato": true,
+		"pk": "0",
+		"mostraPallino": false,
+		"differenzaSchede": false
+	},
+	"token": {
+		"access_token": "access_token",
+		"expires_in": 3599,
+		"id_token": "id_token",
+		"scope": "openid offline profile user.roles argo",
+		"token_type": "bearer",
+		"expireDate": "2030-01-01T00:00:00.000Z"
+	}
+}
