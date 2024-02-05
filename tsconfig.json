@@ -1,8 +1,9 @@
 {
 	"compilerOptions": {
 		"target": "es5",
-		"lib": ["dom", "dom.iterable", "esnext"],
+		"lib": ["dom", "dom.iterable", "esnext", "WebWorker"],
 		"allowJs": true,
+		"checkJs": true,
 		"skipLibCheck": true,
 		"strict": true,
 		"forceConsistentCasingInFileNames": true,
@@ -31,6 +32,12 @@
 			"@/*": ["./*"]
 		}
 	},
-	"include": ["next-env.d.ts", "app", "components", ".next/types/**/*.ts"],
+	"include": [
+		"next-env.d.ts",
+		"app",
+		"components",
+		"public",
+		".next/types/**/*.ts"
+	],
 	"exclude": ["node_modules"]
 }

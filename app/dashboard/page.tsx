@@ -9,7 +9,7 @@ import Updates from "@/components/dashboard/Updates";
 import LoadingPlaceholder from "@/components/loading/LoadingPlaceholder";
 import TouchableOpacity from "@/components/utils/TouchableOpacity";
 import Link from "next/link";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { regularItalic } from "../fonts";
 import { State } from "../utils";
 
@@ -32,6 +32,10 @@ const Dashboard = () => {
 		.padStart(2, "0")}-${date.getDate()}`;
 	const tomorrowTime = date.setDate(date.getDate() + 1);
 
+	useEffect(() => {
+		if ("serviceWorker" in navigator)
+			navigator.serviceWorker.register("/serviceworker.js").catch(() => {});
+	}, []);
 	return (
 		<div
 			className={`w-full transition duration-200 flex flex-col justify-center text-xl container min-w-full lg:flex-row ${

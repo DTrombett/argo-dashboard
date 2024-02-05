@@ -61,7 +61,7 @@ await Promise.all(
 			await page.getByTestId("title").hover();
 			await page.screenshot({
 				animations: "disabled",
-				path: `../../images/${viewport}-${colorScheme}.png`,
+				path: `../../public/previews/${viewport}-${colorScheme}.png`,
 			});
 		})
 	)

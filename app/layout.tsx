@@ -2,7 +2,7 @@ import AppName from "@/components/utils/AppName";
 import Version from "@/components/utils/Version";
 import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 import "tailwindcss/tailwind.css";
 import { extraBold, regular } from "./fonts";
@@ -21,9 +21,9 @@ export const metadata: Metadata = {
 	creator: "D Trombett",
 	description,
 	generator: "Next.js",
-	icons: "/favicon.ico",
+	icons: { icon: "/favicon.ico", apple: "/icons/cropped.png" },
 	keywords: ["react", "nextjs", "argo", "registro", "vercel"],
-	// TODO: manifest
+	manifest: "/manifest.json",
 	metadataBase: new URL("https://argo-dashboard.vercel.app"),
 	openGraph: {
 		type: "website",
@@ -45,6 +45,13 @@ export const metadata: Metadata = {
 		title: "Argo Dashboard",
 	},
 	verification: { google: "TAmOsVi35BnusH1-Lx2BJLhd3O42orZcSRdGt2QON6A" },
+};
+
+export const viewport: Viewport = {
+	themeColor: [
+		{ media: "(prefers-color-scheme: light)", color: "#7DD3FC" },
+		{ media: "(prefers-color-scheme: dark)", color: "#0369A1" },
+	],
 };
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => (

@@ -10,7 +10,7 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "prettier --write ** && next lint",
-		"screenshots": "cd utils && del /q dist && tsc && cd dist && ren *.js *.mjs && node screenshots.mjs && copy /y ..\\..\\images\\xl-dark.png ..\\..\\public\\preview.png"
+		"screenshots": "cd utils && del /q dist && tsc && cd dist && ren *.js *.mjs && node screenshots.mjs && copy /y ..\\..\\public\\previews\\xl-dark.png ..\\..\\public\\preview.png"
 	},
 	"dependencies": {
 		"@fortawesome/fontawesome-svg-core": "^6.5.1",
