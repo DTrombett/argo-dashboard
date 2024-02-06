@@ -5,6 +5,7 @@ import { Client } from "portaleargo-api";
 import { createContext, useEffect, useState } from "react";
 import Login from "../auth/Login";
 import Loading from "../loading/Loading";
+import Offline from "./Offline";
 
 export const ClientContext = createContext(
 	{} as { client: Client; state: State; setState: (state: State) => void }
@@ -21,6 +22,19 @@ const ClientProvider = ({ children }: { children: React.ReactNode }) => {
 			return;
 		}
 		setState(State.NoDashboard);
+		// eslint-disable-next-line @typescript-eslint/no-unnecessary-boolean-literal-compare
+		if (window.navigator.onLine === false) {
+			client
+				.loadData()
+				.then(() => {
+					setState(State.Offline);
+				})
+				.catch(() => {
+					localStorage.clear();
+					setState(State.NeedLogin);
+				});
+			return;
+		}
 		client
 			.login()
 			.then(() => {
@@ -39,7 +53,13 @@ const ClientProvider = ({ children }: { children: React.ReactNode }) => {
 			) : (
 				children
 			)}
-			{state === State.MayNeedLogin && <MayNeedLogin />}
+			{state === State.MayNeedLogin ? (
+				<MayNeedLogin />
+			) : state === State.Offline ? (
+				<Offline />
+			) : (
+				<></>
+			)}
 		</ClientContext.Provider>
 	);
 };

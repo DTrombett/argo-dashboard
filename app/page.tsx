@@ -1,5 +1,6 @@
 import Detail from "@/components/utils/Detail";
 import Preview from "@/components/utils/Preview";
+import RegisterServiceWorker from "@/components/utils/RegisterServiceWorker";
 import { faAd } from "@fortawesome/free-solid-svg-icons/faAd";
 import { faDownload } from "@fortawesome/free-solid-svg-icons/faDownload";
 import { faLaptop } from "@fortawesome/free-solid-svg-icons/faLaptop";
@@ -95,6 +96,7 @@ const Home = () => (
 				text="Tutti i dati vengono scaricati con una connessione criptata e le credenziali non vengono salvate da nessuna parte."
 			/>
 		</div>
+		<RegisterServiceWorker />
 	</>
 );
 
