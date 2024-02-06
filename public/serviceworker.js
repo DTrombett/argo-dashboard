@@ -15,7 +15,11 @@ const putIntoCache = async (request, response) => {
 const makeRequest = async (request) => {
 	const response = await fetch(request);
 
-	if (request.method === "GET" && response.ok)
+	if (
+		request.method === "GET" &&
+		response.ok &&
+		request.url.startsWith("https://")
+	)
 		putIntoCache(request, response.clone()).catch(console.error);
 	return response;
 };
