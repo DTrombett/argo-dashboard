@@ -5,8 +5,6 @@
 const putIntoCache = async (request, response) => {
 	const cache = await caches.open("cache");
 
-	if (!response.headers.has("date"))
-		response.headers.set("date", new Date().toISOString());
 	cache.put(request, response);
 };
 
