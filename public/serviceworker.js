@@ -15,12 +15,7 @@ const putIntoCache = async (request, response) => {
 const makeRequest = async (request) => {
 	const response = await fetch(request);
 
-	if (
-		request.method === "GET" &&
-		response.ok &&
-		request.url.startsWith("https://")
-	)
-		putIntoCache(request, response.clone()).catch(console.error);
+	if (response.ok) putIntoCache(request, response.clone()).catch(console.error);
 	return response;
 };
 
@@ -28,8 +23,7 @@ const makeRequest = async (request) => {
  * @param {Request} request
  */
 const handleCache = async (request) => {
-	const cached =
-		request.method === "GET" ? await caches.match(request) : undefined;
+	const cached = await caches.match(request);
 	const cachedDate = cached?.headers.get("date");
 
 	if (
@@ -46,7 +40,12 @@ const handleCache = async (request) => {
 self.addEventListener(
 	"fetch",
 	/** @type {EventListener} */ (
-		(/** @type {FetchEvent} */ event) =>
-			event.respondWith(handleCache(event.request))
+		(/** @type {FetchEvent} */ event) => {
+			if (
+				event.request.method === "GET" &&
+				event.request.url.startsWith("https://")
+			)
+				event.respondWith(handleCache(event.request));
+		}
 	)
 );
