@@ -15,7 +15,8 @@
 		{
 			"src": "/icons/icon.png",
 			"type": "image/png",
-			"sizes": "3256x3256"
+			"sizes": "3256x3256",
+			"purpose": "maskable"
 		},
 		{
 			"src": "/icons/cropped.png",
