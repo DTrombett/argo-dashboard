@@ -3,9 +3,10 @@
 	"name": "Argo Dashboard",
 	"icons": [
 		{
-			"src": "/icons/cropped.png",
+			"src": "/icons/icon.png",
 			"type": "image/png",
-			"sizes": "2750x2750"
+			"sizes": "2750x2750",
+			"purpose": "maskable"
 		},
 		{
 			"src": "/icons/512x512.png",
@@ -16,12 +17,6 @@
 			"src": "/icons/192x192.png",
 			"type": "image/png",
 			"sizes": "192x192"
-		},
-		{
-			"src": "/icons/icon.png",
-			"type": "image/png",
-			"sizes": "3256x3256",
-			"purpose": "maskable"
 		}
 	],
 	"start_url": "/dashboard",

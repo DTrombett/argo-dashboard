@@ -1,9 +1,9 @@
 "use client";
 import Averages from "@/components/dashboard/Averages";
-import Canvas from "@/components/dashboard/Canvas";
 import { ClientContext } from "@/components/dashboard/ClientProvider";
 import Column from "@/components/dashboard/Column";
 import Entry from "@/components/dashboard/Entry";
+import MediaCircle from "@/components/dashboard/MediaCircle";
 import Scheduled from "@/components/dashboard/Scheduled";
 import Updates from "@/components/dashboard/Updates";
 import LoadingPlaceholder from "@/components/loading/LoadingPlaceholder";
@@ -40,26 +40,16 @@ const Dashboard = () => {
 		>
 			<Column name="Media" id="media">
 				<Entry name="Generale" id="generale">
-					<div className="flex flex-col justify-center items-center h-full">
+					<div className="flex flex-col justify-center items-center h-full -mt-1">
 						<TouchableOpacity
 							additionalClasses="scale-95"
-							className="duration-200"
+							className="duration-200 ease-in lg:hover:scale-105"
 						>
 							<Link
-								className="relative flex justify-center w-fit"
+								className="relative flex justify-center w-fit underlineChildren"
 								href="/dashboard/menu/votiGiornalieri"
 							>
-								<Canvas media={client.dashboard?.mediaGenerale} />
-								<span className="absolute top-0 left-0 w-full h-full flex items-center justify-center hover:underline">
-									<LoadingPlaceholder
-										loading={!client.dashboard}
-										width={"3rem"}
-									>
-										{client.dashboard?.mediaGenerale
-											? client.dashboard.mediaGenerale.toFixed(2)
-											: "N/D"}
-									</LoadingPlaceholder>
-								</span>
+								<MediaCircle media={client.dashboard?.mediaGenerale} />
 							</Link>
 						</TouchableOpacity>
 						<span className={regularItalic.className}>

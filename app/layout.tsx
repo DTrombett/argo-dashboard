@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 	creator: "D Trombett",
 	description,
 	generator: "Next.js",
-	icons: { icon: "/favicon.ico", apple: "/icons/cropped.png" },
+	icons: { icon: "/favicon.ico", apple: "/icons/icon.png" },
 	keywords: ["react", "nextjs", "argo", "registro", "vercel"],
 	manifest: "/manifest.json",
 	metadataBase: new URL("https://argo-dashboard.vercel.app"),

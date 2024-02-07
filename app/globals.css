@@ -51,6 +51,10 @@ body:has(.blockScroll, .blockScrollMobile) {
 	max-width: 80%;
 }
 
+.underlineChildren:hover * {
+	text-decoration: underline;
+}
+
 .loading {
 	animation: 1500ms infinite loading;
 }
