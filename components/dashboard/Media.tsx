@@ -78,6 +78,7 @@ const Media = () => {
 						strokeOpacity={0.25}
 						strokeWidth={10}
 						strokeDasharray={`${newArc} ${secondCircle - newArc}`}
+						className="transition-all duration-300 ease-in-out"
 					/>
 					<circle
 						cx="50%"
@@ -85,6 +86,7 @@ const Media = () => {
 						r={secondRadius}
 						strokeWidth={10}
 						strokeDasharray={`${realArc} ${secondCircle - realArc}`}
+						className="transition-all duration-300 ease-in-out"
 					/>
 					<text
 						x={Math.sin(rad) * (secondRadius + 10) + totalRadius * 1.5}

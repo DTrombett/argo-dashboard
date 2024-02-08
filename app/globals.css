@@ -193,6 +193,9 @@ body:has(.navigator) {
 			@apply opacity-25;
 		}
 		.subjectGroup:hover {
+			circle {
+				stroke-width: 14;
+			}
 			.subjectName {
 				@apply underline;
 			}
