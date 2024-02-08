@@ -51,10 +51,6 @@ body:has(.blockScroll, .blockScrollMobile) {
 	max-width: 80%;
 }
 
-.underlineChildren:hover * {
-	text-decoration: underline;
-}
-
 .loading {
 	animation: 1500ms infinite loading;
 }
@@ -103,6 +99,15 @@ body:has(.navigator) {
 
 .subjectsList {
 	max-height: 95%;
+}
+
+.circle:hover {
+	.arc {
+		@apply opacity-0;
+	}
+	.subjects {
+		@apply opacity-100;
+	}
 }
 
 .popup,
@@ -176,6 +181,29 @@ body:has(.navigator) {
 
 	.popupMobile {
 		animation: none;
+	}
+
+	.underlineChildren:hover * {
+		text-decoration: underline;
+	}
+
+	.circle:hover:not(:has(.subjectGroup:hover)) .average {
+		@apply underline;
+	}
+
+	.circle:has(.subjectGroup:hover) {
+		.average,
+		.subjectGroup:not(:hover) {
+			@apply opacity-25;
+		}
+		.subjectGroup:hover {
+			.subjectName {
+				@apply underline;
+			}
+			.subjectAvg {
+				@apply opacity-100;
+			}
+		}
 	}
 }
 
