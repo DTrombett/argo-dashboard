@@ -73,7 +73,7 @@ const MenuList = ({ className }: { className?: string }) => {
 		if (!dashboard?.registro) return undefined;
 		const now = Date.now();
 		const { length } = dashboard.registro.filter(
-			(entry) => entry.attivita && new Date(entry.datGiorno).getTime() > now
+			(entry) => entry.attivita && Date.parse(entry.datGiorno) > now
 		);
 
 		return length
