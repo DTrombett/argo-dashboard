@@ -10,6 +10,7 @@ import localStorage from "./localStorage.json" assert { type: "json" };
 console.time("Screenshots");
 selectors.setTestIdAttribute("id");
 const url = "http://localhost:3000";
+const now = new Date("February 05 2024 13:37:11").valueOf();
 const schemes = ["light", "dark"] as const;
 const viewports: Record<string, (typeof devices)[string]> = {
 	default: devices["iPhone 14 Pro Max"],
@@ -48,6 +49,20 @@ await Promise.all(
 				colorScheme,
 			});
 
+			await page.addInitScript(`{
+  			Date = class extends Date {
+    			constructor(...args) {
+      			if (args.length === 0) {
+        			super(${now});
+      			} else {
+        			super(...args);
+      			}
+    			}
+  			}
+  			const __DateNowOffset = ${now} - Date.now();
+  			const __DateNow = Date.now;
+  			Date.now = () => __DateNow() + __DateNowOffset;
+			}`);
 			await page
 				.context()
 				.route(
