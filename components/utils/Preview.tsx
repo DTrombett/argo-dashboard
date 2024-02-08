@@ -12,7 +12,7 @@ const Preview = ({
 		alt="Preview"
 		src={src}
 		sizes="50vw"
-		placeholder="blur"
+		priority
 		className={`${className} h-auto`}
 		style={{ width: "50vw" }}
 	/>
