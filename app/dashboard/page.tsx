@@ -8,7 +8,6 @@ import Scheduled from "@/components/dashboard/Scheduled";
 import Updates from "@/components/dashboard/Updates";
 import LoadingPlaceholder from "@/components/loading/LoadingPlaceholder";
 import TouchableOpacity from "@/components/utils/TouchableOpacity";
-import Link from "next/link";
 import { useContext } from "react";
 import { regularItalic } from "../fonts";
 import { State } from "../utils";
@@ -43,14 +42,9 @@ const Dashboard = () => {
 					<div className="flex flex-col justify-center items-center h-full -mt-1">
 						<TouchableOpacity
 							additionalClasses="scale-95"
-							className="duration-200 ease-in"
+							className="duration-200 ease-in cursor-pointer select-none"
 						>
-							<Link
-								className="relative flex justify-center w-fit"
-								href="/dashboard/menu/votiGiornalieri"
-							>
-								<Media />
-							</Link>
+							<Media />
 						</TouchableOpacity>
 						<span className={regularItalic.className}>
 							<LoadingPlaceholder

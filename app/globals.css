@@ -187,10 +187,6 @@ body:has(.navigator) {
 		text-decoration: underline;
 	}
 
-	.circle:hover:not(:has(.subjectGroup:hover)) .average {
-		@apply underline;
-	}
-
 	.circle:has(.subjectGroup:hover) {
 		.average,
 		.subjectGroup:not(:hover) {

@@ -67,7 +67,7 @@ const Media = () => {
 					strokeDashoffset={dashoffset}
 					className="subjectGroup ease-in-out duration-300"
 					onClick={(event) => {
-						event.preventDefault();
+						event.stopPropagation();
 						router.push(`/dashboard/menu/votiGiornalieri/${pk}`);
 					}}
 				>
@@ -146,6 +146,9 @@ const Media = () => {
 			fill="none"
 			strokeLinecap="round"
 			className="circle"
+			onClick={() => {
+				router.push("/dashboard/menu/votiGiornalieri");
+			}}
 		>
 			<g>
 				<circle
@@ -172,7 +175,7 @@ const Media = () => {
 					textAnchor="middle"
 					alignmentBaseline="central"
 					fill={color}
-					className={`${semiBold.className} text-2xl duration-300 ease-in-out average`}
+					className={`${semiBold.className} text-2xl duration-300 ease-in-out lg:hover:underline average`}
 				>
 					{media.toLocaleString()}
 				</text>
