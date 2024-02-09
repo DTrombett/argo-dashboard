@@ -73,7 +73,7 @@ const Scheduled = ({
 					...event.compiti
 						.filter(
 							tomorrow === undefined
-								? (c) => new Date(c.dataConsegna).getTime() >= tomorrowTime
+								? (c) => Date.parse(c.dataConsegna) >= tomorrowTime
 								: (c) => c.dataConsegna === tomorrow
 						)
 						.map((c) => {
@@ -103,7 +103,7 @@ const Scheduled = ({
 		() =>
 			dashboard?.promemoria
 				.filter((p) => {
-					const t = new Date(p.datGiorno).getTime();
+					const t = Date.parse(p.datGiorno);
 
 					return now === undefined
 						? t >= tomorrowTime
@@ -137,9 +137,9 @@ const Scheduled = ({
 			dashboard?.prenotazioniAlunni
 				.filter((p) => {
 					if (p.prenotazione.flgAnnullato === "E") return false;
-					const t = new Date(
+					const t = Date.parse(
 						`${p.disponibilita.datDisponibilita} ${p.disponibilita.ora_Inizio}`
-					).getTime();
+					);
 
 					return now === undefined
 						? t >= tomorrowTime

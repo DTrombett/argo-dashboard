@@ -41,7 +41,7 @@ const Updates = ({
 	const appelloArray = useMemo(
 		() =>
 			appello
-				.filter((e) => checkDate(new Date(e.data).getTime()))
+				.filter((e) => checkDate(Date.parse(e.data)))
 				.map((event) => ({
 					element: (
 						<ListElement
@@ -55,7 +55,7 @@ const Updates = ({
 							header={event.docente}
 						/>
 					),
-					date: new Date(event.datEvento),
+					date: Date.parse(event.datEvento),
 					type: EventType.Appello,
 				})),
 		[checkDate, appello]
@@ -63,7 +63,7 @@ const Updates = ({
 	const fuoriClasseArray = useMemo(
 		() =>
 			fuoriClasse
-				.filter((e) => checkDate(new Date(e.data).getTime()))
+				.filter((e) => checkDate(Date.parse(e.data)))
 				.map((event) => ({
 					element: (
 						<ListElement
@@ -77,7 +77,7 @@ const Updates = ({
 							header={event.docente}
 						/>
 					),
-					date: new Date(event.data),
+					date: Date.parse(event.data),
 					type: EventType.Appello,
 				})),
 		[checkDate, fuoriClasse]
@@ -85,7 +85,7 @@ const Updates = ({
 	const votiArray = useMemo(
 		() =>
 			voti
-				.filter((e) => checkDate(new Date(e.datEvento).getTime()))
+				.filter((e) => checkDate(Date.parse(e.datEvento)))
 				.map((event) => {
 					const date = new Date(event.datGiorno);
 
@@ -108,7 +108,7 @@ const Updates = ({
 								)}
 							/>
 						),
-						date: new Date(event.datEvento),
+						date: Date.parse(event.datEvento),
 						type: EventType.Voti,
 					};
 				}),
@@ -117,7 +117,7 @@ const Updates = ({
 	const bacheca = useMemo(
 		() =>
 			client
-				.dashboard!.bacheca.filter((e) => checkDate(new Date(e.data).getTime()))
+				.dashboard!.bacheca.filter((e) => checkDate(Date.parse(e.data)))
 				.map((event) => ({
 					element: (
 						<ListElement
@@ -147,7 +147,7 @@ const Updates = ({
 							)}
 						</ListElement>
 					),
-					date: new Date(event.data),
+					date: Date.parse(event.data),
 					type: EventType.Bacheca,
 				})),
 		[checkDate, client]
@@ -156,7 +156,7 @@ const Updates = ({
 		() =>
 			client
 				.dashboard!.bachecaAlunno.filter((e) =>
-					checkDate(new Date(e.datEvento).getTime())
+					checkDate(Date.parse(e.datEvento))
 				)
 				.map((event) => ({
 					element: (
@@ -175,7 +175,7 @@ const Updates = ({
 							/>
 						</ListElement>
 					),
-					date: new Date(event.datEvento),
+					date: Date.parse(event.datEvento),
 					type: EventType.BachecaAlunno,
 				})),
 		[checkDate, client]
@@ -183,7 +183,7 @@ const Updates = ({
 	const elements: {
 		element: React.JSX.Element;
 		type: EventType;
-		date: Date;
+		date: number;
 	}[] = useMemo(
 		() =>
 			appelloArray.concat(fuoriClasseArray, votiArray, bacheca, bachecaAlunno),
@@ -196,7 +196,7 @@ const Updates = ({
 				elements
 					.sort(
 						({ type: type1, date: date1 }, { type: type2, date: date2 }) =>
-							date2.getTime() - date1.getTime() || type1 - type2
+							date2 - date1 || type1 - type2
 					)
 					.filter((e, i, array) =>
 						array.every((a, j) => j <= i || a.element.key !== e.element.key)
