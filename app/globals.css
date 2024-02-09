@@ -193,7 +193,7 @@ body:has(.navigator) {
 			@apply opacity-25;
 		}
 		.subjectGroup:hover {
-			circle {
+			.arcs {
 				stroke-width: 14;
 			}
 			.subjectName {
