@@ -48,7 +48,7 @@ const Media = () => {
 			(secondCircle - mediaMaterie.length * constOffset) / voti;
 		let offset = startOffset;
 
-		return mediaMaterie.map(([pk, data]) => {
+		return mediaMaterie.map(([pk, data], i) => {
 			const newArc = data.numVoti * resolvedCircle;
 			const dashoffset = offset;
 			const realArc =
@@ -65,59 +65,75 @@ const Media = () => {
 					key={pk}
 					stroke={getColor(data.mediaMateria)}
 					strokeDashoffset={dashoffset}
-					className="subjectGroup ease-in-out duration-300"
+					className="ease-in-out duration-500 opacity-0"
 					onClick={(event) => {
 						event.stopPropagation();
 						router.push(`/dashboard/menu/votiGiornalieri/${pk}`);
 					}}
+					style={{
+						transitionDuration: `${i * 50 + 250}ms`,
+						transitionDelay: "50ms",
+					}}
 				>
+					<g
+						className="subjectGroup ease-in-out"
+						style={{
+							transitionDuration: `${i * 50 + 250}ms`,
+							transitionDelay: "150ms",
+						}}
+					>
+						<circle
+							cx="50%"
+							cy="50%"
+							r={secondRadius}
+							strokeOpacity={0.25}
+							strokeWidth={10}
+							strokeDasharray={`${newArc} ${secondCircle - newArc}`}
+							className="transition-all duration-200 ease-in arcs"
+						/>
+						<circle
+							cx="50%"
+							cy="50%"
+							r={secondRadius}
+							strokeWidth={10}
+							strokeDasharray={`${realArc} ${secondCircle - realArc}`}
+							className="transition-all duration-200 ease-in arcs"
+						/>
+						<text
+							x={Math.sin(rad) * (secondRadius + 10) + totalRadius * 1.5}
+							y={Math.cos(rad) * (secondRadius + 8) + totalRadius}
+							textAnchor={
+								avgOffset < firstPart && avgOffset > half
+									? "start"
+									: -avgOffset < firstPart && -avgOffset > half
+									? "end"
+									: "middle"
+							}
+							alignmentBaseline={
+								avgOffset > -half && avgOffset < half
+									? "before-edge"
+									: avgOffset < -firstPart || avgOffset > firstPart
+									? "after-edge"
+									: "central"
+							}
+							stroke="currentColor"
+							className={`${thin.className} text-xs tracking-widest subjectName`}
+						>
+							{materiaLight?.codAggrInvalsi ?? materiaLight?.codMateria}
+						</text>
+					</g>
 					<circle
 						cx="50%"
 						cy="50%"
+						strokeDashoffset={dashoffset - 11}
 						r={secondRadius}
-						strokeOpacity={0.25}
-						strokeWidth={10}
-						strokeDasharray={`${newArc} ${secondCircle - newArc}`}
-						className="transition-all duration-300 ease-in-out arcs"
-					/>
-					<circle
-						cx="50%"
-						cy="50%"
-						r={secondRadius}
-						strokeWidth={24}
-						strokeDasharray={`${newArc} ${secondCircle - newArc}`}
+						strokeWidth={32}
+						strokeLinecap="square"
+						strokeDasharray={`${
+							newArc - (i === mediaMaterie.length - 1 ? 22 : 0)
+						} ${secondCircle - newArc}`}
 						className="opacity-0"
 					/>
-					<circle
-						cx="50%"
-						cy="50%"
-						r={secondRadius}
-						strokeWidth={10}
-						strokeDasharray={`${realArc} ${secondCircle - realArc}`}
-						className="transition-all duration-300 ease-in-out arcs"
-					/>
-					<text
-						x={Math.sin(rad) * (secondRadius + 10) + totalRadius * 1.5}
-						y={Math.cos(rad) * (secondRadius + 8) + totalRadius}
-						textAnchor={
-							avgOffset < firstPart && avgOffset > half
-								? "start"
-								: -avgOffset < firstPart && -avgOffset > half
-								? "end"
-								: "middle"
-						}
-						alignmentBaseline={
-							avgOffset > -half && avgOffset < half
-								? "before-edge"
-								: avgOffset < -firstPart || avgOffset > firstPart
-								? "after-edge"
-								: "central"
-						}
-						stroke="currentColor"
-						className={`${thin.className} text-xs tracking-widest subjectName`}
-					>
-						{materiaLight?.codAggrInvalsi ?? materiaLight?.codMateria}
-					</text>
 					<text
 						x={Math.sin(rad) * (secondRadius - 16) + totalRadius * 1.5}
 						y={Math.cos(rad) * (secondRadius - 12) + totalRadius}
@@ -190,7 +206,7 @@ const Media = () => {
 					{media.toLocaleString()}
 				</text>
 			</g>
-			<g className="subjects opacity-0 duration-1000 ease-in-out">{subjects}</g>
+			<g className="subjects">{subjects}</g>
 		</svg>
 	);
 };

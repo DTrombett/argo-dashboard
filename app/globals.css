@@ -101,12 +101,19 @@ body:has(.navigator) {
 	max-height: 95%;
 }
 
+.subjectGroup {
+	transform: translate(12.5%, 12.5%) scaleX(0.75) scaleY(0.75);
+}
+
 .circle:hover {
 	.arc {
 		@apply opacity-0;
 	}
-	.subjects {
+	.subjects > g {
 		@apply opacity-100;
+	}
+	.subjects > g .subjectGroup {
+		@apply scale-100 translate-x-0 translate-y-0;
 	}
 }
 
@@ -187,12 +194,15 @@ body:has(.navigator) {
 		text-decoration: underline;
 	}
 
-	.circle:has(.subjectGroup:hover) {
+	.circle:has(.subjects > g:hover) {
 		.average,
-		.subjectGroup:not(:hover) {
+		.subjects > g:not(:hover) > .subjectGroup > * {
 			@apply opacity-25;
 		}
-		.subjectGroup:hover {
+		.subjects > g:hover {
+			> circle {
+				stroke-width: 40;
+			}
 			.arcs {
 				stroke-width: 14;
 			}
