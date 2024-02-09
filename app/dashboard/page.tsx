@@ -3,12 +3,11 @@ import Averages from "@/components/dashboard/Averages";
 import { ClientContext } from "@/components/dashboard/ClientProvider";
 import Column from "@/components/dashboard/Column";
 import Entry from "@/components/dashboard/Entry";
-import MediaCircle from "@/components/dashboard/MediaCircle";
+import Media from "@/components/dashboard/Media";
 import Scheduled from "@/components/dashboard/Scheduled";
 import Updates from "@/components/dashboard/Updates";
 import LoadingPlaceholder from "@/components/loading/LoadingPlaceholder";
 import TouchableOpacity from "@/components/utils/TouchableOpacity";
-import Link from "next/link";
 import { useContext } from "react";
 import { regularItalic } from "../fonts";
 import { State } from "../utils";
@@ -43,21 +42,16 @@ const Dashboard = () => {
 					<div className="flex flex-col justify-center items-center h-full -mt-1">
 						<TouchableOpacity
 							additionalClasses="scale-95"
-							className="duration-200 ease-in lg:hover:scale-105"
+							className="duration-200 ease-in cursor-pointer select-none"
 						>
-							<Link
-								className="relative flex justify-center w-fit underlineChildren"
-								href="/dashboard/menu/votiGiornalieri"
-							>
-								<MediaCircle media={client.dashboard?.mediaGenerale} />
-							</Link>
+							<Media />
 						</TouchableOpacity>
 						<span className={regularItalic.className}>
 							<LoadingPlaceholder
 								loading={!client.dashboard || !period}
 								width={"75%"}
 							>
-								Calcolata nel periodo {period?.dataInizio} - {period?.dataFine}
+								{period?.dataInizio} - {period?.dataFine}
 							</LoadingPlaceholder>
 						</span>
 					</div>
