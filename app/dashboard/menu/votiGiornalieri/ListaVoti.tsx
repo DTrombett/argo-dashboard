@@ -28,20 +28,16 @@ const ListaVoti = ({
 		return checked.length === types.size;
 	});
 
-	return (
-		<div className="flex flex-col flex-1 lg:mx-4 my-auto lg:my-0">
-			{resolved?.length ? (
-				resolved
-					.sort(sortFunctions[sort])
-					.map((v) => (
-						<Voto voto={v} key={v.pk} showDescription={showDescription} />
-					))
-			) : (
-				<span className={`${regularItalic.className} text-xl py-4 lg:pr-16`}>
-					Nessun voto disponibile!
-				</span>
-			)}
-		</div>
+	return resolved?.length ? (
+		resolved
+			.sort(sortFunctions[sort])
+			.map((v) => (
+				<Voto voto={v} key={v.pk} showDescription={showDescription} />
+			))
+	) : (
+		<span className={`${regularItalic.className} text-xl py-4 lg:pr-16`}>
+			Nessun voto disponibile!
+		</span>
 	);
 };
 

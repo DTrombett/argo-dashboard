@@ -6,7 +6,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => (
 		<h2 className={`${bold.className} text-2xl mb-4`}>Voti Giornalieri</h2>
 		<div className="flex flex-col lg:flex-row">
 			<Menu />
-			{children}
+			<div className="flex-1 mt-4 lg:mt-0 flex flex-col lg:flex-row-reverse justify-between">
+				{children}
+			</div>
 		</div>
 	</div>
 );

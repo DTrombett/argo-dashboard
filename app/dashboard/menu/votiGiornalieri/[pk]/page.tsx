@@ -2,6 +2,7 @@
 import { ClientContext } from "@/components/dashboard/ClientProvider";
 import { useContext, useMemo, useState } from "react";
 import Filters from "../Filters";
+import Graph from "../Graph";
 import ListaVoti from "../ListaVoti";
 import SortOptions from "../SortOptions";
 import type { FilterType, SortName } from "../utils";
@@ -18,13 +19,16 @@ const VotiMateria = ({ params: { pk } }: { params: { pk: string } }) => {
 	);
 
 	return (
-		<div className="flex-1 mt-4 lg:mt-0 flex flex-col lg:flex-row-reverse justify-between lg:overflow-y-auto">
+		<>
 			<div>
 				<Filters filters={filters} setFilters={setFilters} voti={voti} />
 				<SortOptions sort={sort} setSort={setSort} />
 			</div>
-			<ListaVoti filters={filters} voti={voti} sort={sort} showDescription />
-		</div>
+			<div className="flex flex-col flex-1 lg:mx-4 my-auto lg:my-0">
+				<Graph voti={voti} />
+				<ListaVoti filters={filters} voti={voti} sort={sort} showDescription />
+			</div>
+		</>
 	);
 };
 
