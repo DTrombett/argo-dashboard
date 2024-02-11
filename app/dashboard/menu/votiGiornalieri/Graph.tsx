@@ -1,6 +1,20 @@
 import { useMemo } from "react";
 import { sortFunctions, type VotoType } from "./utils";
 
+const months = [
+	"GEN",
+	"FEB",
+	"MAR",
+	"APR",
+	"MAG",
+	"GIU",
+	"LUG",
+	"AGO",
+	"SET",
+	"OTT",
+	"NOV",
+	"DIC",
+];
 const getColor = (n: number) =>
 	n >= 6 ? "#0c6" : n >= 5 || n === 0 ? "#fa3" : "#f33";
 
@@ -21,9 +35,9 @@ const Graph = ({ voti: votiRaw }: { voti?: VotoType[] }) => {
 		if (!voti?.length) return [];
 		const startTime = Date.parse(voti[0].datGiorno);
 		const totalTime = Date.parse(voti.at(-1)!.datGiorno) - startTime;
-		const last = Math.floor(lowest!.valore - 0.25);
-		const first = Math.ceil(highest!.valore + 0.25);
-		const diff = first - last;
+		const last = Math.max(Math.floor(lowest!.valore - 0.25), 0);
+		const first = Math.min(Math.ceil(highest!.valore + 0.25), 10);
+		const diff = first - last + 1;
 
 		return [
 			voti.map((v) => (
@@ -34,26 +48,24 @@ const Graph = ({ voti: votiRaw }: { voti?: VotoType[] }) => {
 						backgroundColor: getColor(v.valore),
 						left: `calc(${
 							(Date.parse(v.datGiorno) - startTime) / totalTime
-						} * (100% - 2.75rem) + 1.75rem)`,
-						top: `calc(${((first - 0.5 - v.valore) / diff) * 100}% - 6px)`,
+						} * (100% - 1.25rem) + 0.25rem)`,
+						top: `calc(${((first + 0.5 - v.valore) / diff) * 100}% - 6px)`,
 					}}
 					title={v.valore.toLocaleString()}
 				></div>
 			)),
 			[...Array(diff).keys()].map((n) => (
 				<span key={n} className="w-6 my-auto">
-					{10 - n}
+					{first - n}
 				</span>
 			)),
 		];
 	}, [votiRaw]);
 
 	return (
-		<div className="h-60 w-full">
-			<div className="relative flex flex-col h-full w-full justify-evenly">
-				{numbers}
-				{grades}
-			</div>
+		<div className="h-60 flex w-full">
+			<div className="flex flex-col justify-evenly">{numbers}</div>
+			<div className="relative flex-1">{grades}</div>
 		</div>
 	);
 };
