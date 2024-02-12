@@ -18,7 +18,23 @@ const months = [
 const getColor = (n: number) =>
 	n >= 6 ? "#0c6" : n >= 5 || n === 0 ? "#fa3" : "#f33";
 
-const Graph = ({ voti: votiRaw }: { voti?: VotoType[] }) => {
+const Graph = ({
+	voti: votiRaw,
+	period,
+}: {
+	voti?: VotoType[];
+	period?: { dataInizio: string; dataFine: string };
+}) => {
+	const [startDate, endDate] = useMemo(
+		() =>
+			period ? [new Date(period.dataInizio), new Date(period.dataFine)] : [],
+		[period]
+	);
+	const startMonth = startDate?.getMonth();
+	const startTime = startDate?.getTime();
+	const startYear = startDate?.getFullYear();
+	const totalTime =
+		period && Math.min(Date.now(), endDate!.getTime()) - startTime!;
 	const [grades, numbers] = useMemo(() => {
 		let highest: VotoType | undefined, lowest: VotoType | undefined;
 		const voti = votiRaw
@@ -32,23 +48,22 @@ const Graph = ({ voti: votiRaw }: { voti?: VotoType[] }) => {
 			})
 			.sort(sortFunctions["Meno recente"]);
 
-		if (!voti?.length) return [];
-		const startTime = Date.parse(voti[0].datGiorno);
-		const totalTime = Date.parse(voti.at(-1)!.datGiorno) - startTime;
-		const last = Math.max(Math.floor(lowest!.valore - 0.25), 0);
-		const first = Math.min(Math.ceil(highest!.valore + 0.25), 10);
-		const diff = first - last + 1;
+		if (!voti?.length || !period) return [];
+		const first = Math.ceil(highest!.valore);
+		const diff = first - Math.floor(lowest!.valore) + 1;
 
 		return [
 			voti.map((v) => (
 				<div
 					key={v.pk}
-					className="w-3 h-3 absolute rounded-full"
+					className="w-4 h-4 absolute rounded-full border"
 					style={{
 						backgroundColor: getColor(v.valore),
 						left: `calc(${
-							(Date.parse(v.datGiorno) - startTime) / totalTime
-						} * (100% - 1.25rem) + 0.25rem)`,
+							totalTime
+								? (Date.parse(v.datGiorno) - startTime!) / totalTime
+								: 0.5
+						} * (100% - 1.25rem) + 0.5rem)`,
 						top: `calc(${((first + 0.5 - v.valore) / diff) * 100}% - 6px)`,
 					}}
 					title={v.valore.toLocaleString()}
@@ -60,12 +75,38 @@ const Graph = ({ voti: votiRaw }: { voti?: VotoType[] }) => {
 				</span>
 			)),
 		];
-	}, [votiRaw]);
+	}, [votiRaw, period, totalTime, startTime]);
+	const resolvedMonths = useMemo(
+		() =>
+			period &&
+			months.map((m, i) => {
+				const date = new Date(startYear! + Number(i < startMonth!), i);
+				const per =
+					((date.getTime() + date.setMonth(i + 1)) / 2 - startTime!) /
+					totalTime!;
+
+				return (
+					<span
+						key={m}
+						className={`absolute w-10 ${per < 0 || per > 1 ? "hidden" : ""}`}
+						style={{
+							left: `calc(${per} * (100% - 1.5rem))`,
+						}}
+					>
+						{m}
+					</span>
+				);
+			}),
+		[period, startMonth, startTime, startYear, totalTime]
+	);
 
 	return (
-		<div className="h-60 flex w-full">
-			<div className="flex flex-col justify-evenly">{numbers}</div>
-			<div className="relative flex-1">{grades}</div>
+		<div className="min-h-40 sm:min-h-48 md:min-h-56 lg:min-h-64 xl:min-h-72 2xl:min-h-80 flex flex-col w-full mb-2">
+			<div className="flex flex-1">
+				<div className="flex flex-col justify-evenly">{numbers}</div>
+				<div className="relative flex-1">{grades}</div>
+			</div>
+			<div className="relative h-7 overflow-x-hidden">{resolvedMonths}</div>
 		</div>
 	);
 };

@@ -34,7 +34,10 @@ const Media = () => {
 				): data is [
 					string,
 					Extract<Dashboard["mediaMaterie"][string], { mediaMateria: number }>
-				] => "mediaMateria" in data[1]
+				] =>
+					"mediaMateria" in data[1] &&
+					dashboard.listaMaterie.find(({ pk }) => pk === data[0])?.faMedia ===
+						true
 			),
 		[dashboard]
 	);

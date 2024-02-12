@@ -25,7 +25,10 @@ const VotiMateria = ({ params: { pk } }: { params: { pk: string } }) => {
 				<SortOptions sort={sort} setSort={setSort} />
 			</div>
 			<div className="flex flex-col flex-1 lg:mx-4 my-auto lg:my-0">
-				<Graph voti={voti} />
+				<Graph
+					voti={voti}
+					period={dashboard?.listaPeriodi?.find((p) => p.pkPeriodo === "*")}
+				/>
 				<ListaVoti filters={filters} voti={voti} sort={sort} showDescription />
 			</div>
 		</>
