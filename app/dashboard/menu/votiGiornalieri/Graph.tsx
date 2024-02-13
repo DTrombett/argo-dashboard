@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { sortFunctions, type VotoType } from "./utils";
+import { semiBold } from "@/app/fonts";
 
 const months = [
 	"GEN",
@@ -56,7 +57,7 @@ const Graph = ({
 			voti.map((v) => (
 				<div
 					key={v.pk}
-					className="w-4 h-4 absolute rounded-full border"
+					className="w-4 h-4 absolute rounded-full transition-all border border-zinc-100 dark:border-zinc-900 hover:z-10 hover:w-12 hover:h-12 hover:-translate-x-4 hover:-translate-y-4"
 					style={{
 						backgroundColor: getColor(v.valore),
 						left: `calc(${
@@ -67,7 +68,13 @@ const Graph = ({
 						top: `calc(${((first + 0.5 - v.valore) / diff) * 100}% - 6px)`,
 					}}
 					title={v.valore.toLocaleString()}
-				></div>
+				>
+					<span
+						className={`opacity-0 hidden transition whitespace-nowrap cursor-default h-full text-white content-center ${semiBold.className}`}
+					>
+						{v.codCodice}
+					</span>
+				</div>
 			)),
 			[...Array(diff).keys()].map((n) => (
 				<span key={n} className="w-6 my-auto">
@@ -104,7 +111,7 @@ const Graph = ({
 		<div className="min-h-40 sm:min-h-48 md:min-h-56 lg:min-h-64 xl:min-h-72 2xl:min-h-80 flex flex-col w-full mb-2">
 			<div className="flex flex-1">
 				<div className="flex flex-col justify-evenly">{numbers}</div>
-				<div className="relative flex-1">{grades}</div>
+				<div className="relative flex-1 graphPoints">{grades}</div>
 			</div>
 			<div className="relative h-7 overflow-x-hidden">{resolvedMonths}</div>
 		</div>

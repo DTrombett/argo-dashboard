@@ -216,6 +216,10 @@ body:has(.navigator) {
 	}
 }
 
+.graphPoints > div:hover > span {
+	@apply opacity-100 block;
+}
+
 @keyframes fadeIn {
 	from {
 		transform: scale(0, 0) translate(0, -50%);
