@@ -46,7 +46,7 @@
 		"playwright": "^1.41.2",
 		"postcss": "^8.4.35",
 		"postcss-flexbugs-fixes": "^5.0.2",
-		"postcss-import": "^16.0.0",
+		"postcss-import": "^16.1.0",
 		"postcss-preset-env": "^9.3.0",
 		"typescript": "^5.3.3"
 	}
