@@ -73,7 +73,7 @@ const Home = () => (
 				Entra
 			</Link>
 		</div>
-		<div className="mt-4 flex flex-col flex-wrap content-center gridContainer">
+		<div className="mt-4 w-full flex flex-col flex-wrap content-center gridContainer">
 			<Detail
 				icon={faDownload}
 				title="Nessuna app necessaria"
