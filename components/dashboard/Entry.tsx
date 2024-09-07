@@ -10,7 +10,7 @@ const Entry = ({
 	id: string;
 }) => (
 	<div
-		className="flex flex-col sm:flex-1 lg:flex-auto max-w-full border-t-2 max-h-80 py-4 lg:h-72 lg:max-h-72 lg:px-2 last:pb-2"
+		className="flex flex-col sm:flex-1 sm:w-1/2 lg:w-auto lg:flex-auto max-w-full border-t-2 max-h-80 py-4 lg:h-72 lg:max-h-72 lg:px-2 last:pb-2"
 		id={id}
 	>
 		<span className={semiBold.className}>{name}</span>

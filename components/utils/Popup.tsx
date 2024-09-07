@@ -15,11 +15,12 @@ const Popup = ({
 		};
 
 		document.body.addEventListener("keydown", listener);
-		return window.removeEventListener.bind(
+		return window.removeEventListener.bind<
 			null,
-			"keydown",
-			listener as EventListener
-		);
+			["keydown", EventListener],
+			any[],
+			void
+		>(null, "keydown", listener as EventListener);
 	}, [setOpen]);
 
 	return (

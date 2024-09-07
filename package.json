@@ -10,7 +10,7 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "prettier --write ** && next lint",
-		"screenshots": "cd utils && del /q dist && tsc && cd dist && ren *.js *.mjs && node screenshots.mjs && copy /y ..\\..\\images\\xl-dark.png ..\\..\\public\\preview.png"
+		"screenshots": "cd utils && del /q dist && tsc && cd dist && ren *.js *.mjs && node screenshots.mjs && copy /y ..\\..\\public\\previews\\xl-dark.png ..\\..\\public\\preview.png"
 	},
 	"dependencies": {
 		"@fortawesome/fontawesome-svg-core": "^6.5.1",
@@ -31,10 +31,10 @@
 	"devDependencies": {
 		"@next/eslint-plugin-next": "^14.1.0",
 		"@svgr/webpack": "^8.1.0",
-		"@types/node": "^20.11.15",
-		"@types/react": "^18.2.51",
-		"@types/react-dom": "^18.2.18",
-		"@typescript-eslint/eslint-plugin": "^6.20.0",
+		"@types/node": "^20.12.11",
+		"@types/react": "^18.2.55",
+		"@types/react-dom": "^18.2.19",
+		"@typescript-eslint/eslint-plugin": "^6.21.0",
 		"autoprefixer": "^10.4.17",
 		"eslint": "^8.56.0",
 		"eslint-config-next": "14.1.0",
@@ -44,7 +44,7 @@
 		"eslint-plugin-react": "^7.33.2",
 		"eslint-plugin-react-hooks": "^4.6.0",
 		"playwright": "^1.41.2",
-		"postcss": "^8.4.33",
+		"postcss": "^8.4.35",
 		"postcss-flexbugs-fixes": "^5.0.2",
 		"postcss-import": "^16.0.0",
 		"postcss-preset-env": "^9.3.0",
