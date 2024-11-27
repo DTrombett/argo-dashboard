@@ -1,14 +1,15 @@
 const cspHeader = `
   default-src 'none';
 	connect-src 'self' www.portaleargo.it;
-  script-src 'self' 'unsafe-eval' 'unsafe-inline';
-  style-src 'self' 'unsafe-inline';
-  img-src 'self' blob: data:;
-  font-src 'self';
-  object-src 'none';
   base-uri 'self';
+  font-src 'self';
   form-action 'self';
   frame-ancestors 'self';
+  img-src 'self' blob: data:;
+	manifest-src 'self';
+  object-src 'none';
+  script-src 'self' 'unsafe-eval' 'unsafe-inline';
+  style-src 'self' 'unsafe-inline';
   block-all-mixed-content;
   upgrade-insecure-requests;
 `;

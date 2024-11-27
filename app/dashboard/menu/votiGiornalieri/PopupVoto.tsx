@@ -1,4 +1,5 @@
 import { light, medium, regularItalic, semiBold } from "@/app/fonts";
+import Copy from "@/components/utils/Copy";
 import { faXmark } from "@fortawesome/free-solid-svg-icons/faXmark";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { Dispatch, SetStateAction } from "react";
@@ -82,12 +83,14 @@ const PopupVoto = ({
 				className={voto.descrizioneProva ? undefined : regularItalic.className}
 			>
 				{voto.descrizioneProva || "Descrizione non presente"}
+				<Copy text={voto.descrizioneProva} />
 			</span>
 		</div>
 		<div className="flex flex-col my-4">
 			<span className={light.className}>Commento docente</span>
 			<span className={voto.desCommento ? undefined : regularItalic.className}>
 				{voto.desCommento || "Descrizione non presente"}
+				<Copy text={voto.desCommento} />
 			</span>
 		</div>
 		<div className="flex flex-col my-4">
@@ -96,6 +99,7 @@ const PopupVoto = ({
 				className={voto.descrizioneVoto ? undefined : regularItalic.className}
 			>
 				{voto.descrizioneVoto || "Descrizione non presente"}
+				<Copy text={voto.descrizioneVoto} />
 			</span>
 		</div>
 	</>

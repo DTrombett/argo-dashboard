@@ -22,11 +22,11 @@ export const sortFunctions: Record<
 	((a: VotoType, b: VotoType) => number) | undefined
 > = {
 	"Più recente": (a, b) =>
-		new Date(a.datGiorno) > new Date(b.datGiorno) ? -1 : 1,
+		Date.parse(a.datGiorno) > Date.parse(b.datGiorno) ? -1 : 1,
 	"Meno recente": (a, b) =>
-		new Date(a.datGiorno) > new Date(b.datGiorno) ? 1 : -1,
+		Date.parse(a.datGiorno) > Date.parse(b.datGiorno) ? 1 : -1,
 	"Ultima modifica": (a, b) =>
-		new Date(a.datEvento) > new Date(b.datEvento) ? -1 : 1,
+		Date.parse(a.datEvento) > Date.parse(b.datEvento) ? -1 : 1,
 	"Voto più alto": (a, b) => b.valore - a.valore,
 	"Voto più basso": (a, b) => a.valore - b.valore,
 };

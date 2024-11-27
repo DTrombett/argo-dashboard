@@ -26,7 +26,7 @@ const FilteredList = () => {
 	const [filters, setFilters] = useState<string[]>([]);
 	const elements: {
 		element: JSX.Element;
-		date: Date;
+		date: number;
 	}[] = [];
 	const categories = {
 		A: 0,
@@ -67,7 +67,7 @@ const FilteredList = () => {
 								}
 							/>
 						),
-						date: new Date(event.data),
+						date: Date.parse(event.data),
 					});
 				if (event.codEvento in categories) categories[event.codEvento as "A"]++;
 				pks.push(event.pk);
@@ -86,7 +86,7 @@ const FilteredList = () => {
 								footer={event.descrizione}
 							/>
 						),
-						date: new Date(event.data),
+						date: Date.parse(event.data),
 					});
 				categories.FC++;
 				pks.push(event.pk);
@@ -144,10 +144,7 @@ const FilteredList = () => {
 			<div className="flex flex-col flex-1 lg:mx-8 my-auto">
 				{elements.length ? (
 					elements
-						.sort(
-							({ date: date1 }, { date: date2 }) =>
-								date2.getTime() - date1.getTime()
-						)
+						.sort(({ date: date1 }, { date: date2 }) => date2 - date1)
 						.map(({ element }) => element)
 				) : (
 					<span className={`${regularItalic.className} text-xl py-4 lg:pr-64`}>

@@ -1,8 +1,9 @@
 import AppName from "@/components/utils/AppName";
+import RegisterServiceWorker from "@/components/utils/RegisterServiceWorker";
 import Version from "@/components/utils/Version";
 import { faGithub } from "@fortawesome/free-brands-svg-icons/faGithub";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 import "tailwindcss/tailwind.css";
 import { extraBold, regular } from "./fonts";
@@ -21,9 +22,9 @@ export const metadata: Metadata = {
 	creator: "D Trombett",
 	description,
 	generator: "Next.js",
-	icons: "/favicon.ico",
+	icons: { icon: "/favicon.ico", apple: "/icons/icon.png" },
 	keywords: ["react", "nextjs", "argo", "registro", "vercel"],
-	// TODO: manifest
+	manifest: "/manifest.json",
 	metadataBase: new URL("https://argo-dashboard.vercel.app"),
 	openGraph: {
 		type: "website",
@@ -47,36 +48,46 @@ export const metadata: Metadata = {
 	verification: { google: "TAmOsVi35BnusH1-Lx2BJLhd3O42orZcSRdGt2QON6A" },
 };
 
+export const viewport: Viewport = {
+	themeColor: [
+		{ media: "(prefers-color-scheme: light)", color: "#7DD3FC" },
+		{ media: "(prefers-color-scheme: dark)", color: "#0369A1" },
+	],
+};
+
 const RootLayout = ({ children }: { children: React.ReactNode }) => (
-	<html lang="it">
-		<body
-			className={`min-h-screen bg-zinc-100 dark:bg-zinc-900 text-black dark:text-white text-center text-lg ${regular.className}`}
-		>
-			<main className="flex flex-col min-h-screen p-4 items-center">
-				<span className={`m-4 text-4xl ${extraBold.className}`} id="title">
-					<AppName />
-				</span>
-				<div className="h-full w-full flex-1 flex flex-col items-center">
-					{children}
-					<div className="mt-4 text-base">
-						<Link
-							href="https://github.com/DTrombett/argo-dashboard"
-							target="_blank"
-							className="px-2 link"
-						>
-							<FontAwesomeIcon
-								icon={faGithub}
-								height={"1rem"}
-								className="inline"
-							/>{" "}
-							Open Source
-						</Link>
-						<Version />
+	<>
+		<html lang="it">
+			<body
+				className={`min-h-screen bg-zinc-100 dark:bg-zinc-900 text-black dark:text-white text-center text-lg ${regular.className}`}
+			>
+				<main className="flex flex-col min-h-screen p-4 items-center">
+					<span className={`m-4 text-4xl ${extraBold.className}`} id="title">
+						<AppName />
+					</span>
+					<div className="h-full w-full flex-1 flex flex-col items-center">
+						{children}
+						<div className="mt-4 text-base">
+							<Link
+								href="https://github.com/DTrombett/argo-dashboard"
+								target="_blank"
+								className="px-2 link"
+							>
+								<FontAwesomeIcon
+									icon={faGithub}
+									height={"1rem"}
+									className="inline"
+								/>{" "}
+								Open Source
+							</Link>
+							<Version />
+						</div>
 					</div>
-				</div>
-			</main>
-		</body>
-	</html>
+				</main>
+			</body>
+			<RegisterServiceWorker />
+		</html>
+	</>
 );
 
 export default RootLayout;

@@ -4,6 +4,7 @@ export enum State {
 	NoDashboard,
 	Ready,
 	MayNeedLogin,
+	Offline,
 }
 export enum ScheduledType {
 	Compiti,

@@ -1,0 +1,90 @@
+{
+	"short_name": "Argo Dashboard",
+	"name": "Argo Dashboard",
+	"icons": [
+		{
+			"src": "/icons/icon.png",
+			"type": "image/png",
+			"sizes": "2750x2750",
+			"purpose": "maskable"
+		},
+		{
+			"src": "/icons/512x512.png",
+			"type": "image/png",
+			"sizes": "512x512"
+		},
+		{
+			"src": "/icons/192x192.png",
+			"type": "image/png",
+			"sizes": "192x192"
+		}
+	],
+	"start_url": "/dashboard",
+	"background_color": "#18181B",
+	"display": "fullscreen",
+	"display_override": ["window-controls-overlay"],
+	"scope": "/dashboard",
+	"theme_color": "#0369A1",
+	"description": "Dashboard compatta, sicura e di facile utilizzo per gestire il registro elettronico Argo (DidUP)",
+	"screenshots": [
+		{
+			"src": "/previews/default-dark.png",
+			"type": "image/png",
+			"sizes": "1290x2220",
+			"form_factor": "narrow"
+		},
+		{
+			"src": "/previews/default-light.png",
+			"type": "image/png",
+			"sizes": "1290x2220",
+			"form_factor": "narrow"
+		},
+		{
+			"src": "/previews/xl-dark.png",
+			"type": "image/png",
+			"sizes": "1920x1080",
+			"form_factor": "wide"
+		},
+		{
+			"src": "/previews/xl-light.png",
+			"type": "image/png",
+			"sizes": "1920x1080",
+			"form_factor": "wide"
+		},
+		{
+			"src": "/previews/2xl-dark.png",
+			"type": "image/png",
+			"sizes": "3072x1728",
+			"form_factor": "wide"
+		},
+		{
+			"src": "/previews/2xl-light.png",
+			"type": "image/png",
+			"sizes": "3072x1728",
+			"form_factor": "wide"
+		}
+	],
+	"shortcuts": [
+		{
+			"name": "Modifica le opzioni",
+			"short_name": "Opzioni",
+			"description": "Effettua il log out, elimina i dati locali o modifica le tue preferenze",
+			"url": "/dashboard/options",
+			"icons": [{ "src": "/icons/options.png", "sizes": "192x192" }]
+		},
+		{
+			"name": "Visualizza i voti giornalieri",
+			"short_name": "Voti giornalieri",
+			"description": "Controlla i tuoi voti giornalieri per ogni materia",
+			"url": "/dashboard/menu/votiGiornalieri",
+			"icons": [{ "src": "/icons/votiGiornalieri.png", "sizes": "192x192" }]
+		},
+		{
+			"name": "Visualizza gli eventi appello",
+			"short_name": "Appello",
+			"description": "Controlla gli ultimi eventi dell'appello",
+			"url": "/dashboard/menu/eventiAppello",
+			"icons": [{ "src": "/icons/eventiAppello.png", "sizes": "192x192" }]
+		}
+	]
+}

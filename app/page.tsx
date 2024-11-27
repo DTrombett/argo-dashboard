@@ -5,18 +5,18 @@ import { faDownload } from "@fortawesome/free-solid-svg-icons/faDownload";
 import { faLaptop } from "@fortawesome/free-solid-svg-icons/faLaptop";
 import { faLock } from "@fortawesome/free-solid-svg-icons/faLock";
 import Link from "next/link";
-import xllDark from "../images/2xl-dark.png";
-import xllLight from "../images/2xl-light.png";
-import dark from "../images/default-dark.png";
-import light from "../images/default-light.png";
-import lgDark from "../images/lg-dark.png";
-import lgLight from "../images/lg-light.png";
-import mdDark from "../images/md-dark.png";
-import mdLight from "../images/md-light.png";
-import smDark from "../images/sm-dark.png";
-import smLight from "../images/sm-light.png";
-import xlDark from "../images/xl-dark.png";
-import xlLight from "../images/xl-light.png";
+import xllDark from "../public/previews/2xl-dark.png";
+import xllLight from "../public/previews/2xl-light.png";
+import dark from "../public/previews/default-dark.png";
+import light from "../public/previews/default-light.png";
+import lgDark from "../public/previews/lg-dark.png";
+import lgLight from "../public/previews/lg-light.png";
+import mdDark from "../public/previews/md-dark.png";
+import mdLight from "../public/previews/md-light.png";
+import smDark from "../public/previews/sm-dark.png";
+import smLight from "../public/previews/sm-light.png";
+import xlDark from "../public/previews/xl-dark.png";
+import xlLight from "../public/previews/xl-light.png";
 
 const Home = () => (
 	<>

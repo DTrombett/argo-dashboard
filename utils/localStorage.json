@@ -2,9 +2,9 @@
 	"dashboard": {
 		"fuoriClasse": [
 			{
-				"datEvento": "2023-09-26 00:00:00",
+				"datEvento": "2024-02-05 00:00:00",
 				"descrizione": "Olimpiadi Matematica - Aula Magna",
-				"data": "2023-09-26",
+				"data": "2024-02-05",
 				"docente": "NOME PROF.",
 				"pk": "fuoriClasse-0",
 				"nota": " dalle 08:20 alle 11:00",
@@ -30,19 +30,295 @@
 			}
 		],
 		"profiloDisabilitato": false,
-		"mediaMaterie": { "listaMaterie": {} },
+		"mediaMaterie": {
+			"materia-0": {
+				"sommaValutazioniOrale": 9,
+				"numValutazioniOrale": 1,
+				"mediaMateria": 9.25,
+				"mediaScritta": 9.5,
+				"sumValori": 18.5,
+				"numValori": 1,
+				"numVoti": 2,
+				"numValutazioniScritto": 1,
+				"sommaValutazioniScritto": 9.5,
+				"mediaOrale": 9
+			},
+			"materia-1": {
+				"sommaValutazioniOrale": 9,
+				"numValutazioniOrale": 1,
+				"mediaMateria": 9,
+				"mediaScritta": 0,
+				"sumValori": 9,
+				"numValori": 1,
+				"numVoti": 1,
+				"numValutazioniScritto": 0,
+				"sommaValutazioniScritto": 0,
+				"mediaOrale": 9
+			},
+			"materia-2": {
+				"sommaValutazioniOrale": 17.5,
+				"numValutazioniOrale": 2,
+				"mediaMateria": 8.66,
+				"mediaScritta": 8.57,
+				"sumValori": 34.65,
+				"numValori": 1,
+				"numVoti": 4,
+				"numValutazioniScritto": 2,
+				"sommaValutazioniScritto": 17.15,
+				"mediaOrale": 8.75
+			},
+			"materia-3": {
+				"sommaValutazioniOrale": 14,
+				"numValutazioniOrale": 2,
+				"mediaMateria": 7,
+				"mediaScritta": 0,
+				"sumValori": 14,
+				"numValori": 1,
+				"numVoti": 2,
+				"numValutazioniScritto": 0,
+				"sommaValutazioniScritto": 0,
+				"mediaOrale": 7
+			},
+			"materia-4": {
+				"sommaValutazioniOrale": 9,
+				"numValutazioniOrale": 1,
+				"mediaMateria": 8.5,
+				"mediaScritta": 8.25,
+				"sumValori": 25.5,
+				"numValori": 1,
+				"numVoti": 3,
+				"numValutazioniScritto": 2,
+				"sommaValutazioniScritto": 16.5,
+				"mediaOrale": 9
+			},
+			"materia-5": {
+				"sommaValutazioniOrale": 14.75,
+				"numValutazioniOrale": 2,
+				"mediaMateria": 7.38,
+				"mediaScritta": 0,
+				"sumValori": 14.75,
+				"numValori": 1,
+				"numVoti": 2,
+				"numValutazioniScritto": 0,
+				"sommaValutazioniScritto": 0,
+				"mediaOrale": 7.38
+			},
+			"materia-6": {
+				"sommaValutazioniOrale": 8.5,
+				"numValutazioniOrale": 1,
+				"mediaMateria": 9.17,
+				"mediaScritta": 9.5,
+				"sumValori": 27.5,
+				"numValori": 1,
+				"numVoti": 3,
+				"numValutazioniScritto": 2,
+				"sommaValutazioniScritto": 19,
+				"mediaOrale": 8.5
+			},
+			"materia-7": {
+				"sommaValutazioniOrale": 16.5,
+				"numValutazioniOrale": 2,
+				"mediaMateria": 8.25,
+				"mediaScritta": 8.25,
+				"sumValori": 33,
+				"numValori": 1,
+				"numVoti": 4,
+				"numValutazioniScritto": 2,
+				"sommaValutazioniScritto": 16.5,
+				"mediaOrale": 8.25
+			},
+			"materia-8": {
+				"sommaValutazioniOrale": 6,
+				"numValutazioniOrale": 1,
+				"mediaMateria": 7.83,
+				"mediaScritta": 8.75,
+				"sumValori": 23.5,
+				"numValori": 1,
+				"numVoti": 3,
+				"numValutazioniScritto": 2,
+				"sommaValutazioniScritto": 17.5,
+				"mediaOrale": 6
+			},
+			"materia-9": {
+				"sommaValutazioniOrale": 9,
+				"numValutazioniOrale": 1,
+				"mediaMateria": 9,
+				"mediaScritta": 0,
+				"sumValori": 9,
+				"numValori": 1,
+				"numVoti": 1,
+				"numValutazioniScritto": 0,
+				"sommaValutazioniScritto": 0,
+				"mediaOrale": 9
+			},
+			"materia-10": {
+				"sommaValutazioniOrale": 8.5,
+				"numValutazioniOrale": 1,
+				"mediaMateria": 8.67,
+				"mediaScritta": 8.75,
+				"sumValori": 26,
+				"numValori": 1,
+				"numVoti": 3,
+				"numValutazioniScritto": 2,
+				"sommaValutazioniScritto": 17.5,
+				"mediaOrale": 8.5
+			},
+			"materia-11": {
+				"sommaValutazioniOrale": 18,
+				"numValutazioniOrale": 2,
+				"mediaMateria": 9,
+				"mediaScritta": 9,
+				"sumValori": 36,
+				"numValori": 1,
+				"numVoti": 4,
+				"numValutazioniScritto": 2,
+				"sommaValutazioniScritto": 18,
+				"mediaOrale": 9
+			}
+		},
 		"autocertificazione": {},
-		"listaMaterie": [],
-		"registro": [],
+		"listaMaterie": [
+			{
+				"abbreviazione": "LINGUA E LETT. ITAL.",
+				"scrut": true,
+				"codTipo": "NO",
+				"faMedia": true,
+				"materia": "LINGUA E LETTERATURA ITALIANA",
+				"pk": "materia-0"
+			},
+			{
+				"abbreviazione": "LINGUA E CULT. INGL.",
+				"scrut": true,
+				"codTipo": "LS",
+				"faMedia": true,
+				"materia": "LINGUA E CULTURA INGLESE",
+				"pk": "materia-1"
+			},
+			{
+				"abbreviazione": "STORIA",
+				"scrut": true,
+				"codTipo": "NO",
+				"faMedia": true,
+				"materia": "STORIA",
+				"pk": "materia-2"
+			},
+			{
+				"abbreviazione": "FILOSOFIA",
+				"scrut": true,
+				"codTipo": "NO",
+				"faMedia": true,
+				"materia": "FILOSOFIA",
+				"pk": "materia-3"
+			},
+			{
+				"abbreviazione": "MATEMATICA",
+				"scrut": true,
+				"codTipo": "NO",
+				"faMedia": true,
+				"materia": "MATEMATICA",
+				"pk": "materia-4"
+			},
+			{
+				"abbreviazione": "INFORMATICA",
+				"scrut": true,
+				"codTipo": "NO",
+				"faMedia": true,
+				"materia": "INFORMATICA",
+				"pk": "materia-5"
+			},
+			{
+				"abbreviazione": "FISICA",
+				"scrut": true,
+				"codTipo": "NO",
+				"faMedia": true,
+				"materia": "FISICA SCRITTO E ORALE",
+				"pk": "materia-6"
+			},
+			{
+				"abbreviazione": "SCIENZE NATURALI",
+				"scrut": true,
+				"codTipo": "NO",
+				"faMedia": true,
+				"materia": "SCIENZE NATURALI",
+				"pk": "materia-7"
+			},
+			{
+				"abbreviazione": "DISEGNO ST. ARTE",
+				"scrut": true,
+				"codTipo": "NO",
+				"faMedia": true,
+				"materia": "DISEGNO E STORIA DELL'ARTE",
+				"pk": "materia-8"
+			},
+			{
+				"abbreviazione": "SCIENZE MOT.SPORT.",
+				"scrut": true,
+				"codTipo": "EF",
+				"faMedia": true,
+				"materia": "SCIENZE MOTORIE E SPORTIVE",
+				"pk": "materia-9"
+			},
+			{
+				"abbreviazione": "RELIGIONE CATTOLICA",
+				"scrut": true,
+				"codTipo": "RE",
+				"faMedia": false,
+				"materia": "RELIGIONE CATTOLICA O ATTIVITA' ALTERNATIVA",
+				"pk": "materia-10"
+			},
+			{
+				"abbreviazione": "EDUCAZIONE CIVICA",
+				"scrut": true,
+				"codTipo": "NO",
+				"faMedia": true,
+				"materia": "EDUCAZIONE CIVICA",
+				"pk": "materia-11"
+			}
+		],
+		"registro": [
+			{
+				"datEvento": "2024-02-07 12:29:50",
+				"isFirmato": false,
+				"compiti": [],
+				"docente": "NOME PROF.",
+				"pkMateria": "registro-0-materia",
+				"desUrl": null,
+				"pkDocente": "registro-0-docente",
+				"datGiorno": "2024-02-07",
+				"materia": "MATEMATICA",
+				"pk": "registro-0",
+				"attivita": "Incontro in Aula Magna con l'UNIVAQ per l'orientamento",
+				"ora": 1
+			},
+			{
+				"datEvento": "2024-02-05 12:10:31",
+				"isFirmato": true,
+				"compiti": [
+					{
+						"compito": "Pagg. A78 (emiacetali) , B8-B9\nEsercizio pag. B58 n 18\n",
+						"dataConsegna": "2024-02-08"
+					}
+				],
+				"docente": "NOME PROF.",
+				"pkMateria": "registro-1-materia",
+				"desUrl": "",
+				"pkDocente": "registro-1-docente",
+				"datGiorno": "2024-02-05",
+				"materia": "SCIENZE NATURALI",
+				"pk": "registro-1",
+				"attivita": "Addizione nucleofila con formazione di un emiacetale. Formule di Haworth di glucosio e fruttosio. Anomeri ed epimeri",
+				"ora": 4
+			}
+		],
 		"schede": [],
 		"rimuoviDatiLocali": false,
 		"promemoria": [
 			{
-				"datEvento": "2024-01-29 00:00:00",
+				"datEvento": "2024-02-06 00:00:00",
 				"desAnnotazioni": "Portare il libro per le esercitazioni sulla prova Invalsi.",
 				"pkDocente": "promemoria-0-docente",
 				"flgVisibileFamiglia": "S",
-				"datGiorno": "2024-01-29",
+				"datGiorno": "2024-02-06",
 				"docente": "NOME PROF.",
 				"oraInizio": "00:00",
 				"pk": "promemoria-0",
@@ -54,10 +330,10 @@
 			{
 				"datEvento": "2024-02-02 16:51:48",
 				"messaggio": "In allegato troverete la programmazione per le attività da svolgersi nella prossima settimana.",
-				"data": "2024-01-26",
+				"data": "2024-02-02",
 				"pvRichiesta": true,
 				"categoria": "Comunicazioni Vicepresidenza",
-				"dataConfermaPresaVisione": "2024-01-27",
+				"dataConfermaPresaVisione": "2024-02-02",
 				"url": null,
 				"autore": "Direzione/Segreteria",
 				"dataScadenza": "2024-02-03",
@@ -81,23 +357,114 @@
 		],
 		"fileCondivisi": { "fileAlunniScollegati": [], "listaFile": [] },
 		"prenotazioniAlunni": [],
-		"voti": [],
+		"voti": [
+			{
+				"datEvento": "2024-02-05",
+				"pkPeriodo": "periodo-1",
+				"codCodice": "8--",
+				"valore": 7.75,
+				"codVotoPratico": "N",
+				"docente": "NOME PROF.",
+				"pkMateria": "materia-7",
+				"tipoValutazione": null,
+				"prgVoto": 1,
+				"descrizioneProva": "",
+				"faMenoMedia": "",
+				"pkDocente": "voto-0-docente",
+				"descrizioneVoto": "otto--",
+				"codTipo": "V",
+				"datGiorno": "2024-02-05",
+				"mese": 2,
+				"numMedia": 1,
+				"pk": "voto-0",
+				"desMateria": "STORIA",
+				"materiaLight": {
+					"scuMateriaPK": {
+						"codMin": "",
+						"prgScuola": 2,
+						"numAnno": 2023,
+						"prgMateria": 27
+					},
+					"codMateria": "STO",
+					"desDescrizione": "STORIA",
+					"desDescrAbbrev": "STORIA",
+					"codSuddivisione": "O",
+					"codTipo": "NO",
+					"flgConcorreMedia": "S",
+					"codAggrDisciplina": null,
+					"flgLezioniIndividuali": null,
+					"codAggrInvalsi": null,
+					"codMinisteriale": "",
+					"icona": "https://cdn.portaleargo.it/wsx/images/materia.png",
+					"descrizione": null,
+					"conInsufficienze": false,
+					"selezionata": false,
+					"prgMateria": 27,
+					"tipoOnGrid": "(Materia)",
+					"articolata": "Orale",
+					"tipo": "Normale",
+					"lezioniIndividuali": false,
+					"codEDescrizioneMateria": "STO - STORIA",
+					"idmateria": ""
+				},
+				"desCommento": ""
+			}
+		],
 		"noteDisciplinari": [],
 		"pk": "0",
 		"appello": [
 			{
-				"datEvento": "2023-12-06 00:00:00",
+				"datEvento": "2024-02-01 00:00:00",
 				"descrizione": "",
 				"daGiustificare": true,
 				"giustificata": "S",
-				"data": "2023-12-06",
+				"data": "2024-02-01",
 				"codEvento": "A",
 				"docente": "NOME PROF.",
 				"commentoGiustificazione": "-",
 				"pk": "appello-0",
-				"dataGiustificazione": "2023-12-11",
+				"dataGiustificazione": "2024-02-02",
 				"nota": "Assenza",
 				"new": true
+			}
+		],
+		"listaPeriodi": [
+			{
+				"pkPeriodo": "periodo-0",
+				"dataInizio": "11/09/2023",
+				"descrizione": "PRIMO QUADRIMESTRE",
+				"datInizio": "2023-09-11",
+				"votoUnico": false,
+				"mediaScrutinio": 0,
+				"isMediaScrutinio": false,
+				"dataFine": "27/01/2024",
+				"datFine": "2024-01-27",
+				"codPeriodo": "1Q",
+				"isScrutinioFinale": false
+			},
+			{
+				"pkPeriodo": "periodo-1",
+				"dataInizio": "28/01/2024",
+				"descrizione": "SCRUTINIO FINALE",
+				"datInizio": "2024-01-28",
+				"votoUnico": false,
+				"mediaScrutinio": 0,
+				"isMediaScrutinio": false,
+				"dataFine": "08/06/2024",
+				"datFine": "2024-06-08",
+				"codPeriodo": "SF",
+				"isScrutinioFinale": true
+			},
+			{
+				"pkPeriodo": "*",
+				"dataInizio": "2023-09-01",
+				"descrizione": "Intero Anno",
+				"votoUnico": false,
+				"mediaScrutinio": 0,
+				"isMediaScrutinio": false,
+				"dataFine": "2024-08-31",
+				"codPeriodo": "*",
+				"isScrutinioFinale": false
 			}
 		],
 		"classiExtra": false,
