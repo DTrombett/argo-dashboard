@@ -15,15 +15,7 @@ const cspHeader = `
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-	webpack: (config, { isServer }) => {
-		if (!isServer)
-			config.externals = [
-				...config.externals,
-				({ context, request }, callback) =>
-					context?.includes("portaleargo-api")
-						? callback(null, `"${request}"`)
-						: callback(),
-			];
+	webpack: (config) => {
 		const fileLoaderRule = config.module?.rules?.find(
 			(rule) =>
 				rule &&

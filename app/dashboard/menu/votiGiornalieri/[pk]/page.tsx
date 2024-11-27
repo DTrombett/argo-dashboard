@@ -6,7 +6,8 @@ import ListaVoti from "../ListaVoti";
 import SortOptions from "../SortOptions";
 import type { FilterType, SortName } from "../utils";
 
-const VotiMateria = ({ params: { pk } }: { params: { pk: string } }) => {
+const VotiMateria = ({ params }: { params: Promise<{ pk: string }> }) => {
+	const { pk } = params as Partial<Awaited<typeof params>>;
 	const {
 		client: { dashboard },
 	} = useContext(ClientContext);

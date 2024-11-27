@@ -1,16 +1,16 @@
 "use client";
 import { State } from "@/app/utils";
 import dynamic from "next/dynamic";
-import { Client } from "portaleargo-api";
+import { WebClient } from "portaleargo-api/web";
 import { createContext, useEffect, useState } from "react";
 import Login from "../auth/Login";
 import Loading from "../loading/Loading";
 
 export const ClientContext = createContext(
-	{} as { client: Client; state: State; setState: (state: State) => void }
+	{} as { client: WebClient; state: State; setState: (state: State) => void }
 );
 const MayNeedLogin = dynamic(() => import("./MayNeedLogin"));
-const client = new Client();
+const client = new WebClient();
 
 const ClientProvider = ({ children }: { children: React.ReactNode }) => {
 	const [state, setState] = useState(State.FirstLoading);
